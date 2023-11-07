@@ -62,6 +62,10 @@ module.exports = {
         test: /\.(png|jpg|gif|svg|mp3|mpe?g)$/,
         type: 'asset/resource',
       },
+      {
+        test: /\.scss$/i,
+        use: ['style-loader', 'css-loader','sass-loader'],
+      },
 
       /* automatically chooses between exporting a data URI and emitting a separate file.
       {
