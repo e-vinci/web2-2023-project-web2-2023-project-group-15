@@ -1,19 +1,22 @@
+/* eslint-disable import/first */
+/* eslint-disable import/order */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
-import { v4 as uuidv4 } from 'uuid';
-import categories from './categories.js';
-
 const path = require('node:path');
 const escape = require('escape-html');
+
+const categories = require('./categories.js');
+
 const { parse, serialize } = require('../utils/json');
 
 const jsonDbPath = path.join(__dirname, '/../data/products.json');
 
 const defaultProducts = [
   {
-    id: uuidv4(),
+    id: 1,
     name: 'Rolex Submarine',
     price: 60000.0,
     description: 'Rolex submarine test test test ',
@@ -56,7 +59,7 @@ function createOneProduct(name, price, description, categorieParam, model3D) {
   });
 
   const createdProduct = {
-    id: uuidv4(),
+    id: 1,
     name: escape(name),
     price: escape(price),
     description: escape(description),
