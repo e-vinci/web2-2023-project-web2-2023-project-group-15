@@ -10,6 +10,8 @@ const escape = require('escape-html');
 
 const categories = require('./categories.js');
 
+const subcategory = require('./Subcategory.js');
+
 const { parse, serialize } = require('../utils/json');
 
 const jsonDbPath = path.join(__dirname, '/../data/products.json');
@@ -22,9 +24,11 @@ const defaultProducts = [
     description: 'Rolex submarine test test test ',
     categorie: categories.getCategorieWatches(),
     imgList: [],
-    model3D: 'Url',
+    subcategory: [subcategory.getCategorieRolex(), subcategory.genderSubcategory.Mans],
+    model3D: 'rolexSubmarine',
   },
 ];
+serialize(jsonDbPath, defaultProducts);
 
 function readAllProducts(orderBy) {
   const orderByTitle = orderBy?.includes('name') ? orderBy : undefined;

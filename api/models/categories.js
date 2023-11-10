@@ -30,6 +30,8 @@ const defaultCategories = [
   },
 ];
 
+serialize(jsonDbPath, defaultCategories);
+
 function getCategorieWatches() {
   return defaultCategories[0].name;
 }
@@ -40,7 +42,7 @@ function getCategorieCosmetics() {
   return defaultCategories[2].name;
 }
 function getCategorieClothing() {
-  return defaultCategories[3];
+  return defaultCategories[3].name;
 }
 
 function readAllCategories() {

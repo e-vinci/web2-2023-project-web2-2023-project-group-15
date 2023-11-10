@@ -1,8 +1,11 @@
 ######### NORMAL OPERATION  ###########
 
-### Read all pizzas
+### Read all Products
 GET http://localhost:3000/pizzas
 
-### Read all pizzas with File variable
+### Read all Products with File variable
 @baseUrl = http://localhost:3000
 GET {{baseUrl}}/products
+
+### get Product 
+GET {{baseUrl}}/products/1
