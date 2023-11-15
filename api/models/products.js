@@ -149,7 +149,6 @@ function getAllMenProducts() {
     const subcategories = product.subcategory.map((s) => s.toLowerCase());
     return subcategories.includes(subcategory.genderSubcategory.Mans.toLowerCase());
   });
-  console.log(menItems);
   return menItems.length > 0 ? menItems : null;
 }
 
@@ -159,7 +158,6 @@ function getAllWomenProducts() {
     const subcategories = product.subcategory.map((s) => s.toLowerCase());
     return subcategories.includes(subcategory.genderSubcategory.Womans.toLowerCase());
   });
-  console.log(womenItems);
   return womenItems.length > 0 ? womenItems : null;
 }
 
