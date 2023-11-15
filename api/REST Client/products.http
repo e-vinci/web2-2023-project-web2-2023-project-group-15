@@ -1,11 +1,19 @@
-######### NORMAL OPERATION  ###########
-
-### Read all Products
-GET http://localhost:3000/pizzas
-
 ### Read all Products with File variable
 @baseUrl = http://localhost:3000
 GET {{baseUrl}}/products
 
 ### get Product 
-GET {{baseUrl}}/products/1
+GET {{baseUrl}}/products/2
+
+### get Product by name
+GET {{baseUrl}}/products?order=-name
+
+### get Product by category
+GET {{baseUrl}}/products?category=woman
+
+### get Product by category
+GET {{baseUrl}}/products?category=man
+
+### post add product
+POST {{baseUrl}}/products
+Content-Type: application/json

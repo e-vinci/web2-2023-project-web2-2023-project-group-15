@@ -12,8 +12,8 @@ const { parse, serialize } = require('../utils/json');
 const jsonDbPath = path.join(__dirname, '/../data/subcategory.json');
 
 const genderSubcategory = {
-  Mans: 'Mans',
-  Womans: 'Womans',
+  Mans: 'Man',
+  Womans: 'Woman',
 };
 
 const defaultSubcategory = [
@@ -33,6 +33,10 @@ const defaultSubcategory = [
     id: 4,
     name: 'Prada',
   },
+  {
+    id: 5,
+    name: 'Cartier',
+  },
 ];
 
 serialize(jsonDbPath, defaultSubcategory);
@@ -49,9 +53,11 @@ function getCategorieLouisVuitton() {
 function getCategoriePrada() {
   return defaultSubcategory[3].name;
 }
+function getCategorieCartier() {
+  return defaultSubcategory[4].name;
+}
 function readAllCategories() {
   const categories = parse(jsonDbPath, defaultSubcategory);
-
   return categories;
 }
 
@@ -61,5 +67,6 @@ module.exports = {
   getCategorieGucci,
   getCategorieLouisVuitton,
   getCategoriePrada,
+  getCategorieCartier,
   readAllCategories,
 };

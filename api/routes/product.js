@@ -13,7 +13,7 @@ const router = express.Router();
    GET /product?order=-name : descending order by name
 */
 router.get('/', (req, res) => {
-  const allProductsPotentiallyOrdered = readAllProducts(req?.query?.order);
+  const allProductsPotentiallyOrdered = readAllProducts(req?.query?.order, req?.query?.category);
 
   return res.json(allProductsPotentiallyOrdered);
 });
