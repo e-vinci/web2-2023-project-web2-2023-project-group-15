@@ -42,8 +42,7 @@ const defaultProducts = [
     id: 3,
     name: 'Louis Vuitton Dubai',
     price: 6999.99,
-    description:
-      'test sac louis vuitton femme',
+    description: 'test sac louis vuitton femme',
     categorie: categories.getCategorieBags(),
     imgList: [],
     subcategory: [subcategory.getCategorieLouisVuitton, subcategory.genderSubcategory.Womans],
@@ -52,30 +51,37 @@ const defaultProducts = [
 ];
 serialize(jsonDbPath, defaultProducts);
 
-function readAllProducts(params) {
-  const orderByTitle = params?.includes('name') ? params : undefined;
-  const category = params?.category?.toLowerCase();
+function sortProductsByName(param) {
+  const orderByTitle = param?.includes('name') ? param : undefined;
 
   let orderedProducts;
   const products = parse(jsonDbPath, defaultProducts);
 
-  if (orderByTitle) {
-    orderedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
-    if (orderByTitle === '-name') {
-      orderedProducts = orderedProducts.reverse();
-    }
+  orderedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
+  if (orderByTitle === '-name') {
+    orderedProducts = orderedProducts.reverse();
   }
+
+  const allProductsPotentiallyOrdered = orderedProducts ?? products;
+  return allProductsPotentiallyOrdered;
+}
+
+function renderAllProductsByCategory(param) {
+  let category = param?.toLowerCase().includes('man') ? param : undefined;
+  if (category === undefined) {
+    category = param?.toLowerCase().includes('woman') ? param : undefined;
+  }
+  const products = parse(jsonDbPath, defaultProducts);
 
   let filteredProducts;
-  if (category) {
-    if (category === 'man') {
-      filteredProducts = getAllMenProducts([...products]);
-    } else if (category === 'woman') {
-      filteredProducts = getAllWomenProducts([...products]);
-    }
+
+  if (category === 'man') {
+    filteredProducts = getAllMenProducts([...products]);
+  } else if (category === 'woman') {
+    filteredProducts = getAllWomenProducts([...products]);
   }
 
-  const allProductsPotentiallyOrdered = filteredProducts ?? orderedProducts ?? products;
+  const allProductsPotentiallyOrdered = filteredProducts ?? products;
   return allProductsPotentiallyOrdered;
 }
 
@@ -145,24 +151,29 @@ function updateOneProduct(id, propertiesToUpdate) {
 
 function getAllMenProducts() {
   const products = parse(jsonDbPath, defaultProducts);
-  const menItems = products.filter((product) => {
-    const subcategories = product.subcategory.map((s) => s.toLowerCase());
-    return subcategories.includes(subcategory.genderSubcategory.Mans.toLowerCase());
+  const menItems = [];
+  products.forEach((item) => {
+    if (item.subcategory.includes(subcategory.genderSubcategory.Mans)) {
+      menItems.push(item);
+    }
   });
   return menItems.length > 0 ? menItems : null;
 }
 
 function getAllWomenProducts() {
   const products = parse(jsonDbPath, defaultProducts);
-  const womenItems = products.filter((product) => {
-    const subcategories = product.subcategory.map((s) => s.toLowerCase());
-    return subcategories.includes(subcategory.genderSubcategory.Womans.toLowerCase());
+  const womenItems = [];
+  products.forEach((item) => {
+    if (item.subcategory.includes(subcategory.genderSubcategory.Womans)) {
+      womenItems.push(item);
+    }
   });
   return womenItems.length > 0 ? womenItems : null;
 }
 
 module.exports = {
-  readAllProducts,
+  sortProductsByName,
+  renderAllProductsByCategory,
   readOneProduct,
   createOneProduct,
   deleteOneProduct,

@@ -1,8 +1,9 @@
 /* eslint-disable spaced-comment */
 const express = require('express');
 const {
-  readAllProducts,
+  renderAllProductsByCategory,
   readOneProduct,
+  sortProductsByName,
 } = require('../models/products');
 //const { authorize, isAdmin } = require('../utils/auths');
 
@@ -13,8 +14,10 @@ const router = express.Router();
    GET /product?order=-name : descending order by name
 */
 router.get('/', (req, res) => {
-  const allProductsPotentiallyOrdered = readAllProducts(req?.query?.order, req?.query?.category);
-
+  let allProductsPotentiallyOrdered;
+  if (req?.query?.order) allProductsPotentiallyOrdered = sortProductsByName(req.query.order);
+  // eslint-disable-next-line max-len
+  if (req?.query?.category) allProductsPotentiallyOrdered = renderAllProductsByCategory(req.query.category);
   return res.json(allProductsPotentiallyOrdered);
 });
 

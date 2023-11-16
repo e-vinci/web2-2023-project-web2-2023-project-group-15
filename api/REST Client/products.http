@@ -6,6 +6,9 @@ GET {{baseUrl}}/products
 GET {{baseUrl}}/products/2
 
 ### get Product by name
+GET {{baseUrl}}/products?order=name
+
+### get Product by name
 GET {{baseUrl}}/products?order=-name
 
 ### get Product by category
