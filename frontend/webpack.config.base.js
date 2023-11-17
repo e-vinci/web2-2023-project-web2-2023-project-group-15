@@ -67,13 +67,7 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              data: '@import "path/to/global.scss";',
-              includePaths:[__dirname, 'src']
-            },
-          },
+          'sass-loader'
         ],
       },
       /* automatically chooses between exporting a data URI and emitting a separate file.
