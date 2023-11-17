@@ -32,6 +32,15 @@ GET {{baseUrl}}/products?name=rolex
 ### get Products with not full name
 GET {{baseUrl}}/products?name=lo
 
+### get Products with not full name
+GET {{baseUrl}}/products?brand=cartier
+
+### get Products with not full name
+GET {{baseUrl}}/products?brand=rolex
+
+### get Products with not full name
+GET {{baseUrl}}/products?brand=LouisVuitton
+
 ### post add product
 POST {{baseUrl}}/products
 Content-Type: application/json

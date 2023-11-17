@@ -1,6 +1,7 @@
 /* eslint-disable spaced-comment */
 const express = require('express');
 const {
+  searchProductsByBrand,
   searchProductsByName,
   renderAllProductsByCategory,
   readOneProduct,
@@ -23,9 +24,11 @@ router.get('/', (req, res) => {
   let allProductsPotentiallyOrdered;
   if (req?.query?.order) allProductsPotentiallyOrdered = sortProductsByName(req.query.order);
   // eslint-disable-next-line max-len
-  if (req?.query?.category) allProductsPotentiallyOrdered = renderAllProductsByCategory(req.query.category);
-  if (req?.query?.name) allProductsPotentiallyOrdered = searchProductsByName(req.query.name);
-  if (allProductsPotentiallyOrdered === undefined) allProductsPotentiallyOrdered = defaultProducts;
+  else if (req?.query?.category) allProductsPotentiallyOrdered = renderAllProductsByCategory(req.query.category);
+  else if (req?.query?.name) allProductsPotentiallyOrdered = searchProductsByName(req.query.name);
+  // eslint-disable-next-line max-len
+  else if (req?.query?.brand) allProductsPotentiallyOrdered = searchProductsByBrand(req.query.brand);
+  else allProductsPotentiallyOrdered = defaultProducts;
   return res.json(allProductsPotentiallyOrdered);
 });
 

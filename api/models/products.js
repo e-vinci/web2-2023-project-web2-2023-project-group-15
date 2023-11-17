@@ -10,15 +10,14 @@ const escape = require('escape-html');
 
 const categories = require('./categories.js');
 
-const subcategory = require('./Subcategory.js');
+const subcategory = require('./subcategory.js');
 
 const { parse, serialize } = require('../utils/json');
 
 const jsonDbPath = path.join(__dirname, '/../data/products.json');
+const jsonDbPathSub = path.join(__dirname, '/../data/subcategory.json');
 
-const {
-  readAllCategories,
-} = require('./categories');
+const { readAllCategories } = require('./categories');
 
 const defaultProducts = [
   {
@@ -49,7 +48,7 @@ const defaultProducts = [
     description: 'test sac louis vuitton femme',
     categorie: categories.getCategorieBags(),
     imgList: [],
-    subcategory: [subcategory.getCategorieLouisVuitton, subcategory.genderSubcategory.Womans],
+    subcategory: [subcategory.getCategorieLouisVuitton(), subcategory.genderSubcategory.Womans],
     model3D: 'LVDubai',
   },
 ];
@@ -85,7 +84,6 @@ function renderAllProductsByCategory(param) {
     const categoriesArray = Object.values(listOfCategories);
     // eslint-disable-next-line max-len
     const requestedCategory = categoriesArray.find((cat) => param?.toLowerCase().includes(cat.name.toLowerCase()));
-
     if (requestedCategory) {
       category = requestedCategory.name;
     }
@@ -115,12 +113,32 @@ function getAllProductsByCategory(products, category) {
 
 function searchProductsByName(param) {
   const products = parse(jsonDbPath, defaultProducts);
-  const filteredProducts = products.filter((product) =>
-    // eslint-disable-next-line implicit-arrow-linebreak
-    product.name.toLowerCase().includes(param.toLowerCase()),
-  // eslint-disable-next-line function-paren-newline
+  const filteredProducts = products.filter(
+    (product) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      product.name.toLowerCase().includes(param.toLowerCase()),
+    // eslint-disable-next-line function-paren-newline
   );
   return filteredProducts;
+}
+
+function searchProductsByBrand(param) {
+  const products = parse(jsonDbPath, defaultProducts);
+  const filteredProducts = [];
+
+  const brandParamLowerCase = param.toLowerCase();
+
+  products.forEach((product) => {
+    const brandProduct = removeSpacesAndMajFromString(product.subcategory[0]);
+    if (brandProduct === brandParamLowerCase) {
+      filteredProducts.push(product);
+    }
+  });
+  return filteredProducts;
+}
+
+function removeSpacesAndMajFromString(param) {
+  return param ? param.toLowerCase().replace(/\s/g, '') : '';
 }
 
 function readOneProduct(id) {
@@ -219,5 +237,6 @@ module.exports = {
   updateOneProduct,
   getAllMenProducts,
   getAllWomenProducts,
+  searchProductsByBrand,
   defaultProducts,
 };
