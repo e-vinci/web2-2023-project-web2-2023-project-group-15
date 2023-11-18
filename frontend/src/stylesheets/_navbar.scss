@@ -1,41 +1,133 @@
 @use 'color';
+
+.navbarWrapper{
+  display: inline-block;
+}
+.container-nav{
+  overflow: hidden;
+  background-color: color.$primary-white;
+  z-index: -1;
+ 
+}
+
+
 /* Add a black background color to the top navigation bar */
 .topnav {
+  display: block;
   overflow: hidden;
-  background-color: #e9e9e9;
+  background-color: color.$primary-white;
+  text-align: right;
+  border-bottom-style:solid;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: left;
-  display: block;
-  color: black;
+  display: inline-block;
+  color: color.$primary-black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 12px;
+  cursor: pointer;
 }
 
-/* Change the color of links on hover */
+/* Change the color of links on hover 
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: color.$primary-black;
 }
-
+*/
 /* Style the "active" element to highlight the current page */
 .topnav a.active {
   background-color: #2196F3;
-  color: white;
+  color: color.$primary-white;
 }
 
 /* Style the search box inside the navigation bar */
 .topnav input[type=text] {
-  float: right;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
+  width: 250px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  border: 1px solid #000;
+  
+
+}
+.menu {
+  display: inline-block;
+}
+.bar1{
+  width: 35px;
+  height: 4px;
+  background-color: color.$primary-black;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.bar2{
+  width: 25px;
+  height: 4px;
+  background-color: color.$primary-black;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+.bar3{
+  width: 35px;
+  height: 4px;
+  background-color: color.$primary-black;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+/* Rotate first bar */
+.change .bar1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+/* Fade out the second bar */
+.change .bar2 {opacity: 0;}
+
+/* Rotate last bar */
+.change .bar3 {
+  transform: translate(0, -11px) rotate(45deg);
+}
+.containerLogos{
+  display: flex;
+  color: color.$primary-black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  float: left;
+  justify-content: space-between;
+  border-right-style:solid;
+  
+}
+.containerLogos2{
+  display: flex;
+  color: color.$primary-black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  float: left;
+  justify-content: space-between;
+  border-right-style:solid;
+  
+}
+.logo{
+  width: 100%;
+  margin-right: 10px;
+  border-right-color:color.$primary-black ;
+
+}
+.logoDiv{
+  height: 100%;
+  width: 100%;
+  padding-right: 50px;
+  margin-right: 50px;
+  border-right-style:solid;
+  border-bottom-style:solid;
+  border-right-color: color.$primary-black;
 }
 
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
