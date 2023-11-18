@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { removePathPrefix, usePathPrefix } from '../../utils/path-prefix';
 import routes from './routes';
 
@@ -13,6 +14,7 @@ function onNavBarClick() {
   navbarWrapper.addEventListener('click', (e) => {
     e.preventDefault();
     const navBarItemClicked = e.target;
+    console.log(`${navBarItemClicked  } clicked`);
     const uri = navBarItemClicked?.dataset?.uri;
     if (uri) {
       const componentToRender = routes[uri];

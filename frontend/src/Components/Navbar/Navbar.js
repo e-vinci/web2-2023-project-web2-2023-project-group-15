@@ -19,15 +19,15 @@ const Navbar = () => {
   const navbar = `
   <div class="flex-container">
     <div class="logoDiv">
-      <a href="#home  class="logo" "><img src="${logo}" alt="profile icon"></a>
+      <a href="#home  class="logo" "><img src="${logo}" data-uri="/" alt="profile icon"></a>
     </div>
     <div class="logoTextDiv">
-      <img src="${GrandiosoVinciText}" id="shoppingCart" alt="profile icon">
+      <img src="${GrandiosoVinciText}" data-uri="/" id="shoppingCart" alt="profile icon">
     </div>
     <div class="containerIcons">
       <input type="text" placeholder="Search.." class="icon">
-      <a href="#home" class="icon" ><img src="${profileIcon}" id="profileIcon" alt="profile icon" class="iconImg"></a>
-      <a href="#about" class="icon"><img src="${shoppingCart}" id="shoppingCart" alt="profile icon" class="iconImg"></a>
+      <a href="#home" class="icon" ><img src="${profileIcon}" data-uri="/login" id="profileIcon" alt="profile icon" class="iconImg"></a>
+      <a href="#about" class="icon"><img src="${shoppingCart}"  data-uri="/shoppingCart" id="shoppingCart" alt="profile icon" class="iconImg"></a>
       <a href="#about" class="navMenu">
         <div class="hamburger">
           <div class="hamburger__container">
