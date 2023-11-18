@@ -13,7 +13,7 @@ const productRouter = require('./routes/product');
 const cartRouter = require('./routes/cart');
 const categorieRouter = require('./routes/categorie');
 const sousCategorieRouter = require('./routes/sousCategories');
-
+const authsRouter = require('./routes/auths');
 const app = express();
 
 app.use(logger('dev'));
@@ -28,6 +28,6 @@ app.use('/products', productRouter);
 app.use('/carts', cartRouter);
 app.use('/categories', categorieRouter);
 app.use('/sousCategories', sousCategorieRouter);
-//app.use('/auths', authsRouter);
+app.use('/auths', authsRouter);
 
 module.exports = app;
