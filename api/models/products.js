@@ -10,11 +10,14 @@ const escape = require('escape-html');
 
 const categories = require('./categories.js');
 
-const subcategory = require('./Subcategory.js');
+const subcategory = require('./subcategory.js');
 
 const { parse, serialize } = require('../utils/json');
 
 const jsonDbPath = path.join(__dirname, '/../data/products.json');
+const jsonDbPathSub = path.join(__dirname, '/../data/subcategory.json');
+
+const { readAllCategories } = require('./categories');
 
 const defaultProducts = [
   {
@@ -45,7 +48,7 @@ const defaultProducts = [
     description: 'test sac louis vuitton femme',
     categorie: categories.getCategorieBags(),
     imgList: [],
-    subcategory: [subcategory.getCategorieLouisVuitton, subcategory.genderSubcategory.Womans],
+    subcategory: [subcategory.getCategorieLouisVuitton(), subcategory.genderSubcategory.Womans],
     model3D: 'LVDubai',
   },
 ];
@@ -67,22 +70,75 @@ function sortProductsByName(param) {
 }
 
 function renderAllProductsByCategory(param) {
-  let category = param?.toLowerCase().includes('man') ? param : undefined;
-  if (category === undefined) {
-    category = param?.toLowerCase().includes('woman') ? param : undefined;
+  let category;
+  let gender;
+
+  if (param?.toLowerCase().includes('woman')) {
+    gender = 'woman';
+  } else if (param?.toLowerCase().includes('man')) {
+    gender = 'man';
+  } else {
+    // Si la requête ne spécifie pas un genre, vérifier si elle spécifie une catégorie
+    // eslint-disable-next-line max-len
+    const listOfCategories = readAllCategories();
+    const categoriesArray = Object.values(listOfCategories);
+    // eslint-disable-next-line max-len
+    const requestedCategory = categoriesArray.find((cat) => param?.toLowerCase().includes(cat.name.toLowerCase()));
+    if (requestedCategory) {
+      category = requestedCategory.name;
+    }
   }
+
   const products = parse(jsonDbPath, defaultProducts);
 
   let filteredProducts;
 
-  if (category === 'man') {
+  if (gender === 'man') {
     filteredProducts = getAllMenProducts([...products]);
-  } else if (category === 'woman') {
+  } else if (gender === 'woman') {
     filteredProducts = getAllWomenProducts([...products]);
+  } else if (category) {
+    filteredProducts = getAllProductsByCategory([...products], category);
   }
 
   const allProductsPotentiallyOrdered = filteredProducts ?? products;
   return allProductsPotentiallyOrdered;
+}
+
+// Ajouter une nouvelle fonction pour filtrer par catégorie
+function getAllProductsByCategory(products, category) {
+  // eslint-disable-next-line max-len
+  return products.filter((product) => product.categorie.toLowerCase().includes(category.toLowerCase()));
+}
+
+function searchProductsByName(param) {
+  const products = parse(jsonDbPath, defaultProducts);
+  const filteredProducts = products.filter(
+    (product) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      product.name.toLowerCase().includes(param.toLowerCase()),
+    // eslint-disable-next-line function-paren-newline
+  );
+  return filteredProducts;
+}
+
+function searchProductsByBrand(param) {
+  const products = parse(jsonDbPath, defaultProducts);
+  const filteredProducts = [];
+
+  const brandParamLowerCase = param.toLowerCase();
+
+  products.forEach((product) => {
+    const brandProduct = removeSpacesAndMajFromString(product.subcategory[0]);
+    if (brandProduct === brandParamLowerCase) {
+      filteredProducts.push(product);
+    }
+  });
+  return filteredProducts;
+}
+
+function removeSpacesAndMajFromString(param) {
+  return param ? param.toLowerCase().replace(/\s/g, '') : '';
 }
 
 function readOneProduct(id) {
@@ -173,6 +229,7 @@ function getAllWomenProducts() {
 
 module.exports = {
   sortProductsByName,
+  searchProductsByName,
   renderAllProductsByCategory,
   readOneProduct,
   createOneProduct,
@@ -180,4 +237,6 @@ module.exports = {
   updateOneProduct,
   getAllMenProducts,
   getAllWomenProducts,
+  searchProductsByBrand,
+  defaultProducts,
 };

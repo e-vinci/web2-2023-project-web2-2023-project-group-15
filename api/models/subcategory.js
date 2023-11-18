@@ -56,7 +56,7 @@ function getCategoriePrada() {
 function getCategorieCartier() {
   return defaultSubcategory[4].name;
 }
-function readAllCategories() {
+function readAllSubCategories() {
   const categories = parse(jsonDbPath, defaultSubcategory);
   return categories;
 }
@@ -68,5 +68,5 @@ module.exports = {
   getCategorieLouisVuitton,
   getCategoriePrada,
   getCategorieCartier,
-  readAllCategories,
+  readAllSubCategories,
 };

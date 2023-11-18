@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
+import '../../stylesheets/_navbar.scss';
 
 /**
  * Render the Navbar which is styled by using Bootstrap
@@ -52,6 +53,12 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
+  <div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <input type="text" placeholder="Search..">
+</div>
   `;
   navbarWrapper.innerHTML = navbar;
 };

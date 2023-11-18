@@ -5,17 +5,41 @@ GET {{baseUrl}}/products
 ### get Product 
 GET {{baseUrl}}/products/2
 
-### get Product by name
+### get Product order bu name asc
 GET {{baseUrl}}/products?order=name
 
-### get Product by name
+### get Product order by name desc
 GET {{baseUrl}}/products?order=-name
 
-### get Product by category
+### get Product by category gender
 GET {{baseUrl}}/products?category=woman
 
-### get Product by category
+### get Product by category gender
 GET {{baseUrl}}/products?category=man
+
+### get Product by category of object
+GET {{baseUrl}}/products?category=watches
+
+### get Product by category of object
+GET {{baseUrl}}/products?category=Bags
+
+### get Product by category of object
+GET {{baseUrl}}/products?category=cosmetics
+
+### get Products by name
+GET {{baseUrl}}/products?name=rolex
+
+### get Products with not full name
+GET {{baseUrl}}/products?name=lo
+
+### get Products with not full name
+GET {{baseUrl}}/products?brand=cartier
+
+### get Products with not full name
+GET {{baseUrl}}/products?brand=rolex
+
+### get Products with not full name
+GET {{baseUrl}}/products?brand=LouisVuitton
 
 ### post add product
 POST {{baseUrl}}/products
