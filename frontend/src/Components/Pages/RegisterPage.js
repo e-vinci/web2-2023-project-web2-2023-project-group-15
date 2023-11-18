@@ -42,10 +42,10 @@ function renderRegisterForm() {
             <div class="mb-md-5 mt-md-4 pb-1">
 
               <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
-              <p class="text-white-50 mb-5">Enter your email and your password!</p>
+              <p class="text-white-50 mb-5">Enter your username and your password!</p>
 
               <div class="form-outline form-white mb-2">
-                <input type="email" id="registerUsername" class="form-control form-control-lg" placeholder = "email" required = true/>
+                <input type="text" id="registerUsername" class="form-control form-control-lg" placeholder = "username" required = true/>
                 <label class="form-label" for="registerUsername"></label>
               </div>
 
@@ -66,7 +66,7 @@ function renderRegisterForm() {
               <label class="form-check-label" for="rememberme">Remember me</label>
               </div>
 
-              <button class="btn btn-outline-light btn-lg px-5" type="submit" value="Register">Register</button>
+              <input type="submit" class="btn btn-outline-light btn-lg px-5" value="Register" />
             
             </div>
 
@@ -86,20 +86,21 @@ function onCheckboxClicked(e) {
 }
 
 async function onRegister(e) {
-  console.log("sdfgh");
   e.preventDefault();
-  console.log("eeeee");
+
   const mail = document.querySelector('#registerUsername').value;
   const registerPassword = document.querySelector('#registerPassword').value;
   const registerConfPassword = document.querySelector('#registerConfPassword').value;
-  
+
+  if(registerPassword !== registerConfPassword) {
+    throw new Error(`The password is not the same`);
+  }
 
   const options = {
     method: 'POST',
     body: JSON.stringify({
-      mail,
-      registerPassword,
-      registerConfPassword,
+      "username": mail,
+      "password": registerPassword,
     }),
     headers: {
       'Content-Type': 'application/json',
@@ -107,13 +108,10 @@ async function onRegister(e) {
   };
 
   const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
-  console.log("api go on ");
   const authenticatedUser = await response.json();
 
   try{
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-    // eslint-disable-next-line no-console
-    console.log('Newly registered & authenticated user : ', authenticatedUser);
 
     setAuthenticatedUser(authenticatedUser);
     Navbar();
@@ -146,10 +144,10 @@ function renderLoginForm() {
             <div class="mb-md-5 mt-md-4 pb-1 ">
 
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">Enter your email and your password !</p>
+              <p class="text-white-50 mb-5">Enter your username and your password !</p>
 
               <div class="form-outline form-white mb-4">
-                <input type="email" id="loginUsername" class="form-control form-control-lg" placeholder = "email" />
+                <input type="text" id="loginUsername" class="form-control form-control-lg" placeholder = "username" />
                 <label class="form-label" for="loginUsername"></label>
               </div>
 
@@ -158,10 +156,7 @@ function renderLoginForm() {
                 <label class="form-label" for="loginPassword"></label>
               </div>
 
-
-              <button class="btn btn-outline-light btn-lg px-5 " type="submit" value="Se connecter">Login</button>
-
-
+              <input type="submit" class="btn btn-outline-light btn-lg px-5" value="Login" />
 
             </div>
 
@@ -173,43 +168,44 @@ function renderLoginForm() {
  ` 
 }
 
-async function onLogin(e) {
-  console.log("azerty");
+async function onLogin(e) { 
   e.preventDefault();
 
   const mail = document.querySelector('#loginUsername').value;
   const password = document.querySelector('#loginPassword').value;
-  console.log("rrrrrrr");
+
   const options = {
     method: 'POST',
     body: JSON.stringify({
-      mail,
-      password,
+      "username": mail,
+      "password": password,
     }),
     headers: {
       'Content-Type': 'application/json',
     },
   };
-  console.log(mail, password);
 
-  const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
-  console.log("api go on");
-  const authenticatedUser = await response.json();
-  try{
-    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-      // eslint-disable-next-line no-console
-      console.log('Newly registered & authenticated user : ', authenticatedUser);
-      console.log('Authenticated user : ', authenticatedUser);
+  try {
+    const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
 
+    if (!response.ok) {
+      throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+    }
+
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      const authenticatedUser = await response.json();
       setAuthenticatedUser(authenticatedUser);
-console.log("auths'''''''''''");
-      Navbar();
-      
-
+      Navbar();     
       Navigate('/');
-  }catch (error){
-    alert(authenticatedUser);
+    } else {
+      alert('Login failed: Server response is not in JSON format.');
+    }
+  } catch (error) {
+    
+    alert(error.message);
   }
 }
+
 
 export default RegisterPage;

@@ -5,7 +5,7 @@ import Navigate from '../Router/Navigate';
 const Logout = () => {
   clearAuthenticatedUser();
   Navbar();
-  Navigate('/');
+  Navigate('/login');
 };
 
 export default Logout;
