@@ -17,28 +17,26 @@ import logo from '../../img/navbar/logo.svg';
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
   const navbar = `
-  <div class="container-nav">
-    
-    <div class="topnav">
-      <div class="containerLogos">
-        <div class="logoDiv">
-          <a href="#home  class="logo" "><img src="${logo}" alt="profile icon"></a>
-        </div>
-        <img src="${GrandiosoVinciText}" id="shoppingCart" alt="profile icon">
-      </div>
-
-      <div class="containerIcons">
-        <input type="text" placeholder="Search..">
-        <a href="#home"><img src="${profileIcon}" id="profileIcon" alt="profile icon"></a>
-        <a href="#about"><img src="${shoppingCart}" id="shoppingCart" alt="profile icon"></a>
-        <a href="#about" class="navMenu">
-          <div class="menu" ">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
+  <div class="flex-container">
+    <div class="logoDiv">
+      <a href="#home  class="logo" "><img src="${logo}" alt="profile icon"></a>
+    </div>
+    <div class="logoTextDiv">
+      <img src="${GrandiosoVinciText}" id="shoppingCart" alt="profile icon">
+    </div>
+    <div class="containerIcons">
+      <input type="text" placeholder="Search.." class="icon">
+      <a href="#home" class="icon" ><img src="${profileIcon}" id="profileIcon" alt="profile icon" class="iconImg"></a>
+      <a href="#about" class="icon"><img src="${shoppingCart}" id="shoppingCart" alt="profile icon" class="iconImg"></a>
+      <a href="#about" class="navMenu">
+        <div class="hamburger">
+          <div class="hamburger__container">
+            <div class="hamburger__inner"></div>
+            <div class="hamburger__hidden"></div>
           </div>
-        </a>
-      </div>
+         </div>
+      </a>
+    </div>
   </div>
   `;
   navbarWrapper.innerHTML = navbar;

@@ -1,146 +1,196 @@
 @use 'color';
 
-.navbarWrapper{
-  display: inline-block;
-}
-.container-nav{
-  overflow: hidden;
-  background-color: color.$primary-white;
-  z-index: -1;
- 
-}
+$h-padding: 15px;
+$h-width: 36px;
+$h-height: 24px;
+$h-background-color: transparent;
+$h-line-color: #fff;
+$h-hover-line-color: red;
+$h-line-height: 5px;
+$h-border-radius: 4px;
+$h-transition-time: 0.4s;
+$h-transition-function: ease;
+$h-transition-opacity: 0;
+$h-vertical-gap: 13px;
+$h-initial-opposition: 5px;
+$h-hide-distance: $h-width + $h-padding;
 
-
-/* Add a black background color to the top navigation bar */
-.topnav {
-  display: block;
-  overflow: hidden;
-  background-color: color.$primary-white;
-  text-align: right;
-  border-bottom-style:solid;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  display: inline-block;
-  color: color.$primary-black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-/* Change the color of links on hover 
-.topnav a:hover {
+@mixin line-props {
+  width: 100%;
+  height: $h-line-height;
   background-color: color.$primary-black;
+  border-radius: $h-border-radius;
+  position: absolute;
+  transition-property: transform, opacity;
+  transition-timing-function: ease;
+  transition-duration: $h-transition-time;
 }
-*/
-/* Style the "active" element to highlight the current page */
-.topnav a.active {
-  background-color: #2196F3;
-  color: color.$primary-white;
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  border-bottom-style: solid;
+  border-bottom-color: color.$primary-black ;
+}
+
+.logoDiv {
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-right: 5%;
+  border-right-style: solid;
+}
+
+.logoTextDiv {
+  margin-right: 30%;
 }
 
 /* Style the search box inside the navigation bar */
-.topnav input[type=text] {
+.containerIcons input[type=text] {
   width: 250px;
   height: 30px;
   flex-shrink: 0;
   border-radius: 3px;
-  border: 1px solid #000;
-  
+  border: 1px solid color.$primary-black;
+  padding-top: 1%;
+}
+
+.containerIcons {
+  text-align: center;
+  vertical-align: middle;
+  padding-right: 1%;
+}
+
+.containerIcons a img {
+  cursor: pointer;
+}
+
+.icon {
+  margin: 25px;
+  padding-top: 10%;
+  vertical-align: middle;
+}
+.hamburger {
+  margin: -25px;
+  padding: $h-padding;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  background-color: $h-background-color;
+
+  &__container {
+    width: $h-width;
+    height: $h-height;
+    position: relative;
+    
+  }
+
+  &:hover  &__inner {
+    transform: translate(-#{$h-hide-distance}, 50%);
+    opacity: $h-transition-opacity;
+  }
+
+  &:hover &__inner::before,
+  &:hover &__inner::after {
+    transform: translate(#{$h-hide-distance * 2}, 0);
+    opacity: $h-transition-opacity;
+  }
+
+  &.is-active &__inner {
+    background-color: color.$primary-black;
+    display: none;
+  }
+
+  &__inner {
+    @include line-props();
+    top: 50%;
+    transform: translate($h-initial-opposition, -50%);
+    opacity: 1;
+    background-color: color.$primary-black;
+
+    &::before,
+    &::after {
+      @include line-props();
+
+      content: "";
+      opacity: 1;
+      transform: translate(-#{$h-initial-opposition}, 0);
+    }
+
+    &::before {
+      top: -#{$h-vertical-gap};
+    }
+
+    &::after {
+      top: $h-vertical-gap;
+    }
+  }
+
+  &:hover  &__hidden {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+
+  &:hover &__hidden::before,
+  &:hover &__hidden::after {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  &.is-active &__hidden {
+    opacity: 1;
+    transform: rotate(45deg);
+  }
+
+  &.is-active &__hidden::before {
+    transform: translate(0, #{$h-vertical-gap}) rotate(90deg);
+    transform-origin: center;
+  }
+
+  &.is-active &__hidden::after {
+    transform-origin: center;
+    transform: translate(0, -#{$h-vertical-gap}) rotate(0);
+  }
+
+  &__hidden {
+    opacity: 0;
+    @include line-props();
+    
+    background-color: color.$primary-black;
+    top: 50%;
+    transform: translate(#{$h-hide-distance}, -50%);
+   
+
+    &::before,
+    &::after {
+      @include line-props();
+      background-color: color.$primary-black;
+
+      content: "";
+      transform: translate(#{$h-hide-distance * 2}, 0);
+    }
+
+    &::before {
+      top: -#{$h-vertical-gap};
+    }
+
+    &::after {
+      top: $h-vertical-gap;
+    }
+  }
 
 }
 .menu {
   display: inline-block;
-}
-.bar1{
-  width: 35px;
-  height: 4px;
-  background-color: color.$primary-black;
-  margin: 6px 0;
-  transition: 0.4s;
-}
-
-.bar2{
-  width: 25px;
-  height: 4px;
-  background-color: color.$primary-black;
-  margin: 6px 0;
-  transition: 0.4s;
-}
-.bar3{
-  width: 35px;
-  height: 4px;
-  background-color: color.$primary-black;
-  margin: 6px 0;
-  transition: 0.4s;
-}
-/* Rotate first bar */
-.change .bar1 {
-  transform: translate(0, 11px) rotate(-45deg);
-}
-/* Fade out the second bar */
-.change .bar2 {opacity: 0;}
-
-/* Rotate last bar */
-.change .bar3 {
-  transform: translate(0, -11px) rotate(45deg);
-}
-.containerLogos{
-  display: flex;
-  color: color.$primary-black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 12px;
   cursor: pointer;
-  float: left;
-  justify-content: space-between;
-  border-right-style:solid;
-  
-}
-.containerLogos2{
-  display: flex;
-  color: color.$primary-black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 12px;
-  cursor: pointer;
-  float: left;
-  justify-content: space-between;
-  border-right-style:solid;
-  
-}
-.logo{
-  width: 100%;
-  margin-right: 10px;
-  border-right-color:color.$primary-black ;
-
-}
-.logoDiv{
-  height: 100%;
-  width: 100%;
-  padding-right: 50px;
-  margin-right: 50px;
-  border-right-style:solid;
-  border-bottom-style:solid;
-  border-right-color: color.$primary-black;
 }
 
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-@media screen and (max-width: 600px) {
-  .topnav a, .topnav input[type=text] {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;
-  }
+
+.containerIcons {
+  margin-right: 2%;
 }
+
