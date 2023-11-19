@@ -1,3 +1,5 @@
+// import { addItemToCart } from "../../utils/shoppingCart";
+
 const html = `
         <!-- Product section-->
         <section class="py-5">
@@ -14,7 +16,7 @@ const html = `
                         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button" id="addToCart">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
@@ -134,6 +136,14 @@ const html = `
 const ProductPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = html;
+
+    const btnAddToCart = document.getElementById('addToCart')
+
+    
+    btnAddToCart.addEventListener('click', async (e) => {
+        e.preventDefault();
+       // addItemToCart(products.id, products.name, products.price,1);
+      }); 
   };
   
   export default ProductPage;
