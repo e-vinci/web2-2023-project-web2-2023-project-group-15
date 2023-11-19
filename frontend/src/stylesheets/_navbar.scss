@@ -1,4 +1,5 @@
 @use 'color';
+@use 'responsive';
 
 $h-padding: 15px;
 $h-width: 36px;
@@ -7,7 +8,7 @@ $h-background-color: transparent;
 $h-line-color: #fff;
 $h-hover-line-color: red;
 $h-line-height: 5px;
-$h-border-radius: 4px;
+$h-border-radius: 1px;
 $h-transition-time: 0.4s;
 $h-transition-function: ease;
 $h-transition-opacity: 0;
@@ -24,6 +25,12 @@ $h-hide-distance: $h-width + $h-padding;
   transition-property: transform, opacity;
   transition-timing-function: ease;
   transition-duration: $h-transition-time;
+}
+
+.logoSVG {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
 }
 
 .flex-container {
@@ -43,13 +50,14 @@ $h-hide-distance: $h-width + $h-padding;
   margin-right: 5%;
   padding-right: 5%;
   border-right-style: solid;
+  cursor: pointer;
 }
 
 .logoTextDiv {
   margin-right: 30%;
+  cursor: pointer;
 }
-
-/* Style the search box inside the navigation bar */
+//-----------------Menu Icons  ----------------------------------//
 .containerIcons input[type=text] {
   width: 250px;
   height: 30px;
@@ -60,36 +68,75 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .containerIcons {
-  text-align: center;
-  vertical-align: middle;
+  display: flex;
   padding-right: 1%;
+  align-items: center;
 }
 
 .containerIcons a img {
   cursor: pointer;
 }
 
+.iconDiv {
+  height: 100%;
+  padding-top: 2.5%;
+
+}
+
 .icon {
-  margin: 25px;
+  margin: 28px;
   padding-top: 10%;
   vertical-align: middle;
+  text-decoration: none;
+  flex: 1;
 }
-.hamburger {
-  margin: -25px;
+
+.containerIcons {
+  margin-right: 2%;
+}
+
+#shoppingCartDiv {}
+
+#shoppingCart {
+  fill: black;
+
+}
+
+.profileIcon {
+  width: 50px;
+  height: 50px;
+  fill: transparent;
+}
+
+.iconDiv:hover {
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+  .profileIcon {
+    fill: transparent;
+    stroke: color.$primary-white;
+    animation: animated-svg 0.1s linear forwards;
+    cursor: pointer;
+  }
+}
+
+//-----------------Menu 3 bars ----------------------------------//
+.menu {
+  margin: -20px;
   padding: $h-padding;
   cursor: pointer;
   display: inline-block;
   overflow: hidden;
   background-color: $h-background-color;
+  margin-left: 10%;
 
   &__container {
     width: $h-width;
     height: $h-height;
     position: relative;
-    
+
   }
 
-  &:hover  &__inner {
+  &:hover &__inner {
     transform: translate(-#{$h-hide-distance}, 50%);
     opacity: $h-transition-opacity;
   }
@@ -130,7 +177,7 @@ $h-hide-distance: $h-width + $h-padding;
     }
   }
 
-  &:hover  &__hidden {
+  &:hover &__hidden {
     opacity: 1;
     transform: translate(0, -50%);
   }
@@ -159,11 +206,11 @@ $h-hide-distance: $h-width + $h-padding;
   &__hidden {
     opacity: 0;
     @include line-props();
-    
+
     background-color: color.$primary-black;
     top: 50%;
     transform: translate(#{$h-hide-distance}, -50%);
-   
+
 
     &::before,
     &::after {
@@ -184,16 +231,55 @@ $h-hide-distance: $h-width + $h-padding;
   }
 
 }
-.menu {
-  display: inline-block;
-  cursor: pointer;
+
+
+//-----------------Responsive----------------------------------//
+@include responsive.Phone {
+  .profileIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  #researchBar {
+    display: none;
+  }
+
+  .logoTextDiv {
+    display: none;
+  }
+
+  .containerIcons {
+    margin-right: 10%;
+  }
+  .iconDiv{
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  .logoSVG {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 
-.containerIcons {
-  margin-right: 2%;
-}
 
-#shoppingCart{
-  cursor: pointer;
+//-----------------Animation----------------------------------//
+@keyframes animated-svg {
+  0% {
+    stroke-dashoffset: 0;
+  }
+
+  40% {
+    stroke-dashoffset: 1560;
+  }
+
+  40% {
+    stroke-dashoffset: 3120;
+    fill: transparent;
+  }
+
+  100% {
+    stroke-dashoffset: 3120;
+    fill: color.$primary-white;
+  }
 }
