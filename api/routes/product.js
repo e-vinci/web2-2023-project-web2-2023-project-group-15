@@ -1,13 +1,22 @@
 /* eslint-disable spaced-comment */
 const express = require('express');
+const path = require('node:path');
+
+const { parse } = require('../utils/json');
+
 const {
   searchProductsByBrand,
+  createOneProduct,
   searchProductsByName,
   renderAllProductsByCategory,
   readOneProduct,
   sortProductsByName,
   defaultProducts,
+  deleteOneProduct,
 } = require('../models/products');
+
+const jsonDbPath = path.join(__dirname, '/../data/products.json');
+
 //const { authorize, isAdmin } = require('../utils/auths');
 
 const router = express.Router();
@@ -22,13 +31,14 @@ const router = express.Router();
 */
 router.get('/', (req, res) => {
   let allProductsPotentiallyOrdered;
+  const products = parse(jsonDbPath, defaultProducts);
   if (req?.query?.order) allProductsPotentiallyOrdered = sortProductsByName(req.query.order);
   // eslint-disable-next-line max-len
   else if (req?.query?.category) allProductsPotentiallyOrdered = renderAllProductsByCategory(req.query.category);
   else if (req?.query?.name) allProductsPotentiallyOrdered = searchProductsByName(req.query.name);
   // eslint-disable-next-line max-len
   else if (req?.query?.brand) allProductsPotentiallyOrdered = searchProductsByBrand(req.query.brand);
-  else allProductsPotentiallyOrdered = defaultProducts;
+  else allProductsPotentiallyOrdered = products;
   return res.json(allProductsPotentiallyOrdered);
 });
 
@@ -39,6 +49,33 @@ router.get('/:id', (req, res) => {
   if (!foundProduct) return res.sendStatus(404);
 
   return res.json(foundProduct);
+});
+
+// Add in data/products a new product
+router.post('/', (req, res) => {
+  const name = req?.body?.name?.length !== 0 ? req.body.name : undefined;
+  const price = req?.body?.price > 0 ? req.body.price : undefined;
+  const description = req?.body?.description?.length !== 0 ? req.body.description : undefined;
+  const categorie = req?.body?.categorie?.length !== 0 ? req.body.categorie : undefined;
+  const imgList = req?.body?.imgList ? req.body.imgList : undefined;
+  const sub = req?.body?.subcategory ? req.body.subcategory : undefined;
+  const modele = req?.body?.model3D !== 0 ? req.body.model3D : undefined;
+
+  if (!name || !price || !description || !categorie || !imgList || !sub || !modele) {
+    return res.sendStatus(400).json({ error: 'Paramètres invalides' }); // error code '400 Bad request'
+  }
+  const createdProd = createOneProduct(name, price, description, categorie, imgList, sub, modele);
+
+  return res.json(createdProd);
+});
+
+// Delete a pizza from the menu based on its id
+router.delete('/:id', (req, res) => {
+  const deletedProduct = deleteOneProduct(req.params.id);
+
+  if (!deletedProduct) return res.sendStatus(404);
+
+  return res.json(deletedProduct);
 });
 
 module.exports = router;

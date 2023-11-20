@@ -3,7 +3,7 @@
 GET {{baseUrl}}/products
 
 ### get Product 
-GET {{baseUrl}}/products/2
+GET {{baseUrl}}/products/4
 
 ### get Product order bu name asc
 GET {{baseUrl}}/products?order=name
@@ -44,3 +44,16 @@ GET {{baseUrl}}/products?brand=LouisVuitton
 ### post add product
 POST {{baseUrl}}/products
 Content-Type: application/json
+
+{
+    "name": "Armani Code",
+    "price": 289.99,
+    "description": "Parfum pour homme aux odeurs de male alpha",
+    "categorie": "Cosmetic",
+    "imgList": [],
+    "subcategory": ["Armani", "Man"],
+    "model3D": "ArmaniCode"
+}
+
+### delete product
+DELETE {{baseUrl}}/products/2
