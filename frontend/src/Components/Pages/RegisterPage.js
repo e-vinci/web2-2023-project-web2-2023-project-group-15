@@ -1,9 +1,8 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-unused-vars */
-import { getRememberMe, setAuthenticatedUser, setRememberMe } from '../../utils/auths';
+import { getRememberMe, setRememberMe } from '../../utils/auths';
 import { clearPage, renderPageTitle } from '../../utils/render';
-import Navbar from '../Navbar/Navbar';
-import Navigate from '../Router/Navigate';
+import UserLibrary from '../../Domain/UserLibrary';
 
 const RegisterPage = () => {
   clearPage();
@@ -77,50 +76,13 @@ function renderRegisterForm() {
       </div>
   </div>
 `
- form.addEventListener('submit', onRegister);
-
+  form.addEventListener('submit', UserLibrary.prototype.onRegister);
+ 
 }
 
 // eslint-disable-next-line no-unused-vars
 function onCheckboxClicked(e) {
   setRememberMe(e.target.checked);
-}
-
-async function onRegister(e) {
-  e.preventDefault();
-
-  const mail = document.querySelector('#registerUsername').value;
-  const registerPassword = document.querySelector('#registerPassword').value;
-  const registerConfPassword = document.querySelector('#registerConfPassword').value;
-
-  if(registerPassword !== registerConfPassword) {
-    throw new Error(`The password is not the same`);
-  }
-
-  const options = {
-    method: 'POST',
-    body: JSON.stringify({
-      "username": mail,
-      "password": registerPassword,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
-  const authenticatedUser = await response.json();
-
-  try{
-    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
-    setAuthenticatedUser(authenticatedUser);
-    Navbar();
-    Navigate('/');
-  }catch(error){
-    alert(authenticatedUser);
-  }
-  
 }
 
 
@@ -132,7 +94,7 @@ function renderLoginForm() {
   loginForm.className='loginform';
   maDiv2.appendChild(loginForm);
   maDiv.appendChild(maDiv2);
-  loginForm.addEventListener('submit', onLogin);
+  loginForm.addEventListener('submit', UserLibrary.prototype.onLogin);
 
   loginForm.innerHTML=
   ` 
@@ -168,45 +130,5 @@ function renderLoginForm() {
     </div>
  ` 
 }
-
-async function onLogin(e) { 
-  e.preventDefault();
-
-  const mail = document.querySelector('#loginUsername').value;
-  const password = document.querySelector('#loginPassword').value;
-
-  const options = {
-    method: 'POST',
-    body: JSON.stringify({
-      "username": mail,
-      "password": password,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  try {
-    const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
-
-    if (!response.ok) {
-      throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-    }
-
-    const contentType = response.headers.get('content-type');
-    if (contentType && contentType.includes('application/json')) {
-      const authenticatedUser = await response.json();
-      setAuthenticatedUser(authenticatedUser);
-      Navbar();     
-      Navigate('/');
-    } else {
-      alert('Login failed: Server response is not in JSON format.');
-    }
-  } catch (error) {
-    
-    alert(error.message);
-  }
-}
-
 
 export default RegisterPage;

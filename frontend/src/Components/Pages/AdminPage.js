@@ -1,32 +1,15 @@
 // import { getCartTotal } from "../../utils/shoppingCart";
-// import {Chart} from 'chart.js/auto';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {Chart} from 'chart.js/auto';
 
 
 const html = `
-<header class="app-header">
-<nav class="navbar navbar-expand-lg navbar-light">
-  <ul class="navbar-nav">
-    <li class="nav-item d-block d-xl-none">
-      <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-        <i class="ti ti-menu-2"></i>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-        <i class="ti ti-bell-ringing"></i>
-        <div class="notification bg-primary rounded-circle"></div>
-      </a>
-    </li>
-  </ul>
-</header>
-<!--  Header End -->
+
 <div class="container-fluid">
 <!--  Row 1 -->
 <div class="row">
   <div class="col-lg-8 d-flex align-items-strech">
-    <div class="card w-100">
+    <div class="card border-white w-100">
       <div class="card-body">
         <div class="mb-3 mb-sm-0">
         <h5 class="card-title fw-semibold">Sales Overview</h5>
@@ -43,7 +26,7 @@ const html = `
     <div class="row">
       <div class="col-lg-12">
         <!-- Yearly Breakup -->
-        <div class="card overflow-hidden">
+        <div class="card border-white overflow-hidden">
           <div class="card-body p-4">
             <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
             <div class="row align-items-center">
@@ -79,7 +62,7 @@ const html = `
       </div>
       <div class="col-lg-12">
         <!-- Monthly Earnings -->
-        <div class="card">
+        <div class="card border-white">
           <div class="card-body">
             <div class="row alig n-items-start">
               <div class="col-8">
@@ -112,7 +95,7 @@ const html = `
 </div>
 <div class="row">
   <div class="col-lg-4 d-flex align-items-stretch">
-    <div class="card w-100">
+    <div class="card border-white w-100">
       <div class="card-body p-4">
         <div class="mb-4">
           <h5 class="card-title fw-semibold">Recent Transactions</h5>
@@ -175,7 +158,7 @@ const html = `
     </div>
   </div>
   <div class="col-lg-8 d-flex align-items-stretch">
-    <div class="card w-100">
+    <div class="card border-white w-100">
       <div class="card-body p-4">
         <h5 class="card-title fw-semibold mb-4">Recent Transactions</h5>
         <div class="table-responsive">

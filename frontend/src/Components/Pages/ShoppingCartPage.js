@@ -167,8 +167,8 @@ const ShoppingCartPage = () => {
                       
                     </div>
   
-                    <button type="button" class="btn btn-dark btn-block btn-lg"
-                      data-mdb-ripple-color="dark">Checkout With</button>
+                    <button id="btnCheckout" type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Checkout </button>
   
                   </div>
                 </div>
@@ -203,7 +203,11 @@ while(countProductCart){
     Navigate('/allProducts')
     }); 
 
- 
+    const btnCheckout = document.getElementById('btnCheckout');
+    btnCheckout.addEventListener('click', async (e) => {
+      e.preventDefault();
+      Navigate('/checkout')
+    })
 
   };
   
