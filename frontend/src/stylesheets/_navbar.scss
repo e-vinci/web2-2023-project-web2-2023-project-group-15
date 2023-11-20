@@ -28,8 +28,8 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .logoSVG {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   cursor: pointer;
 }
 
@@ -53,13 +53,13 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .logoTextDiv {
-  margin-right: 30%;
+  margin-right: 35%;
   cursor: pointer;
 }
 //-----------------Menu Icons  ----------------------------------//
 .containerIcons input[type=text] {
   width: 250px;
-  height: 30px;
+  height: 35px;
   flex-shrink: 0;
   border-radius: 3px;
   border: 1px solid color.$primary-black;
@@ -91,9 +91,8 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .containerIcons {
-  margin-right: 2%;
+  margin-right: 3%;
 }
-
 
 #shoppingCart {
   fill: black;
