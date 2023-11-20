@@ -7,7 +7,7 @@ $h-height: 24px;
 $h-background-color: transparent;
 $h-line-color: #fff;
 $h-hover-line-color: red;
-$h-line-height: 5px;
+$h-line-height: 3.5px;
 $h-border-radius: 1px;
 $h-transition-time: 0.4s;
 $h-transition-function: ease;
@@ -28,8 +28,8 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .logoSVG {
-  width: 80px;
-  height: 80px;
+  width: 55px;
+  height: 55px;
   cursor: pointer;
 }
 
@@ -46,21 +46,20 @@ $h-hide-distance: $h-width + $h-padding;
 .logoDiv {
   display: flex;
   align-items: center;
-  margin-left: 5%;
-  margin-right: 5%;
-  padding-right: 5%;
+  margin-left: 2%;
+  padding-right: 2%;
   border-right-style: solid;
   cursor: pointer;
 }
 
 .logoTextDiv {
-  margin-right: 30%;
+  margin-right: 35%;
   cursor: pointer;
 }
 //-----------------Menu Icons  ----------------------------------//
 .containerIcons input[type=text] {
   width: 250px;
-  height: 30px;
+  height: 35px;
   flex-shrink: 0;
   border-radius: 3px;
   border: 1px solid color.$primary-black;
@@ -69,7 +68,7 @@ $h-hide-distance: $h-width + $h-padding;
 
 .containerIcons {
   display: flex;
-  padding-right: 1%;
+  margin-right: 5%;
   align-items: center;
 }
 
@@ -79,7 +78,7 @@ $h-hide-distance: $h-width + $h-padding;
 
 .iconDiv {
   height: 100%;
-  padding-top: 2.5%;
+  padding-top: 3.5%;
 
 }
 
@@ -92,10 +91,8 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .containerIcons {
-  margin-right: 2%;
+  margin-right: 3%;
 }
-
-#shoppingCartDiv {}
 
 #shoppingCart {
   fill: black;
@@ -103,8 +100,8 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .profileIcon {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   fill: transparent;
 }
 
@@ -234,6 +231,72 @@ $h-hide-distance: $h-width + $h-padding;
 
 
 //-----------------Responsive----------------------------------//
+@include responsive.BigScreen{
+  .logoSVG {
+    width: 80px;
+    height: 80px;
+  }
+  .logoTextDiv {
+    width: 30px;
+    height: 30px;
+  }
+  .logoTextDiv {
+    margin-right: 60%;
+    cursor: pointer;
+  }
+  .containerIcons {
+    margin-right: 3%;
+  }
+}
+@include responsive.Laptop{
+  .logoSVG {
+    width: 50px;
+    height: 50px;
+  }
+  .logoTextDiv {
+    width: 30px;
+    height: 30px;
+  }
+  .logoTextDiv {
+    margin-right: 45%;
+    cursor: pointer;
+  }
+  .containerIcons {
+    display: flex;
+    margin-right: 3%;
+    align-items: center;
+  }
+}
+
+@include responsive.LaptopOld{
+  .logoSVG {
+    width: 50px;
+    height: 50px;
+  }
+  .logoTextDiv {
+    width: 30px;
+    height: 30px;
+  }
+  .containerIcons {
+    margin-right: 5%;
+  }
+}
+@include responsive.Tablet{
+  .logoSVG {
+    width: 50px;
+    height: 50px;
+  }
+  .logoTextDiv {
+    width: 30px;
+    height: 30px;
+  }
+  .logoTextDiv {
+    display: none;
+  }
+  .containerIcons {
+    margin-right: 10%;
+  }
+}
 @include responsive.Phone {
   .profileIcon {
     width: 30px;

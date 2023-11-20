@@ -5,6 +5,7 @@ import AllProductPage from '../Pages/AllProductPage';
 import ProductPage from '../Pages/ProductPage';
 import RegisterPage from '../Pages/RegisterPage';
 import Logout from '../Logout/Logout';
+import AdminPage from '../Pages/AdminPage';
 
 const routes = {
   '/': HomePage,
@@ -15,6 +16,7 @@ const routes = {
   '/logout': Logout,
   '/login':RegisterPage,
   '/register': RegisterPage,
+  '/admin':AdminPage
 
 };
 

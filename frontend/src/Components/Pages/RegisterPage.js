@@ -30,7 +30,7 @@ function renderRegisterForm() {
   maDiv2.appendChild(form);
   maDiv.appendChild(maDiv2);
   container.appendChild(maDiv);
-  main.appendChild(container);
+  main.appendChild(container); 
 
   form.innerHTML=
   ` 

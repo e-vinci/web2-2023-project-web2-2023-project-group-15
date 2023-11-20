@@ -1,10 +1,14 @@
-// import { loadCart, countProductCart } from "../../utils/shoppingCart";
-// import { getAuthenticatedUser } from "../../utils/auths";
+/* eslint-disable no-unused-vars */
+ // import { loadCart, countProductCart } from "../../utils/shoppingCart";
+ import { getAuthenticatedUser } from "../../utils/auths";
+import Navigate from "../Router/Navigate";
 
-
+// ${user.username}
 const ShoppingCartPage = () => {
-    // const user = getAuthenticatedUser();
-    const html = `<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+     const user = getAuthenticatedUser();
+    const html = `
+    <h1>Panier de :</h1>
+    <section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
@@ -122,7 +126,7 @@ const ShoppingCartPage = () => {
                     <hr class="my-4">
   
                     <div class="pt-5">
-                      <h6 class="mb-0"><a href="#!" class="text-body"><i
+                      <h6 class="mb-0"><a class="text-body" id="backToShop"><i
                             class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
                     </div>
                   </div>
@@ -190,10 +194,16 @@ while(countProductCart){
 }
 */
 
+
     const main = document.querySelector('main');
 
     main.innerHTML = html;
 
+    const btnBackToShop = document.getElementById('backToShop');
+    btnBackToShop.addEventListener('click', async (e) => {
+      e.preventDefault();
+    Navigate('/allProducts')
+    }); 
 
  
 
