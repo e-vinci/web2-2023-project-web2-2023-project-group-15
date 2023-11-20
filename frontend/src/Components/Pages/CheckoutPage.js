@@ -1,7 +1,10 @@
 import { getAuthenticatedUser } from "../../utils/auths";
 // import { getCartTotal } from "../../utils/shoppingCart";
 
-const user = getAuthenticatedUser();
+
+
+const CheckoutPage = () => {
+    const user = getAuthenticatedUser();
 
 const html = `
 <section class="h-100 h-custom" style="background-color: #d2c9ff;">
@@ -177,8 +180,6 @@ const html = `
 </div>
 </div>
 </section>`;
-
-const CheckoutPage = () => {
 
     const main = document.querySelector('main');
     main.innerHTML = html;
