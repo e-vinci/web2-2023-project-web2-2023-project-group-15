@@ -37,6 +37,10 @@ const defaultSubcategory = [
     id: 5,
     name: 'Cartier',
   },
+  {
+    id: 6,
+    name: 'Armani',
+  },
 ];
 
 serialize(jsonDbPath, defaultSubcategory);
@@ -56,6 +60,9 @@ function getCategoriePrada() {
 function getCategorieCartier() {
   return defaultSubcategory[4].name;
 }
+function getCategorieArmani() {
+  return defaultSubcategory[5].name;
+}
 function readAllSubCategories() {
   const categories = parse(jsonDbPath, defaultSubcategory);
   return categories;
@@ -68,5 +75,6 @@ module.exports = {
   getCategorieLouisVuitton,
   getCategoriePrada,
   getCategorieCartier,
+  getCategorieArmani,
   readAllSubCategories,
 };
