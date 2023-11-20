@@ -52,7 +52,6 @@ const defaultProducts = [
     model3D: 'LVDubai',
   },
 ];
-serialize(jsonDbPath, defaultProducts);
 
 function sortProductsByName(param) {
   const orderByTitle = param?.includes('name') ? param : undefined;
@@ -150,7 +149,8 @@ function readOneProduct(id) {
   return products[indexOfProdcutsFound];
 }
 
-function createOneProduct(name, price, description, categorieParam, model3D) {
+// eslint-disable-next-line max-len
+function createOneProduct(name, price, description, categorieParam, imgs, subcategories, model3D) {
   const products = parse(jsonDbPath, defaultProducts);
 
   const categoriesBd = categories.readAllCategories();
@@ -161,13 +161,16 @@ function createOneProduct(name, price, description, categorieParam, model3D) {
     }
   });
 
+  const parsedPrice = parseFloat(price);
+
   const createdProduct = {
     id: products.length + 1,
     name: escape(name),
-    price: escape(price),
+    price: parsedPrice,
     description: escape(description),
     categorie: escape(categorieproduct),
-    imgList: [],
+    imgList: imgs,
+    subcategory: subcategories,
     model3d: model3D,
   };
 

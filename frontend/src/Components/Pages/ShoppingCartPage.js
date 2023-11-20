@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
  // import { loadCart, countProductCart } from "../../utils/shoppingCart";
  import { getAuthenticatedUser } from "../../utils/auths";
 import Navigate from "../Router/Navigate";
 
+// ${user.username}
 const ShoppingCartPage = () => {
      const user = getAuthenticatedUser();
     const html = `
-    <h1>Panier de : ${user.username}</h1>
+    <h1>Panier de :</h1>
     <section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
