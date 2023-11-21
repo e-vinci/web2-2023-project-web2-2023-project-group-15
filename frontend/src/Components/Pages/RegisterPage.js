@@ -8,7 +8,7 @@ const RegisterPage = () => {
   clearPage();
   renderPageTitle();
   renderRegisterForm();
-  renderLoginForm();
+
 };
 
 function renderRegisterForm() {
@@ -41,11 +41,20 @@ function renderRegisterForm() {
 
             <div class="mb-md-5 mt-md-4 pb-1">
 
-              <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
-              <p class="text-white-50 mb-5">Enter your username and your password!</p>
+              <h2 class="fw-bold mb-2 text-uppercase">SIGN UP</h2>
+              
+              <div class="form-outline form-white mb-2">
+              <input type="text" id="firstname" class="form-control form-control-lg" placeholder = "firstname" required = true/>
+              <label class="form-label" for="firstname"></label>
+              </div>
 
               <div class="form-outline form-white mb-2">
-                <input type="text" id="registerUsername" class="form-control form-control-lg" placeholder = "username" required = true/>
+              <input type="text" id="lastname" class="form-control form-control-lg" placeholder = "lastname" required = true/>
+              <label class="form-label" for="lastname"></label>
+              </div>
+
+              <div class="form-outline form-white mb-2">
+                <input type="email" id="registerUsername" class="form-control form-control-lg" placeholder = "email" required = true/>
                 <label class="form-label" for="registerUsername"></label>
               </div>
 
@@ -59,14 +68,12 @@ function renderRegisterForm() {
               <label class="form-label" for="registerConfPassword"></label>
             </div>
 
-             
-           
               <div class="mb-3 form-check">
                  <input type="checkbox" id="rememberme" class="form-check-input" checked="${getRememberMe()}"/>
               <label class="form-check-label" for="rememberme">Remember me</label>
               </div>
 
-              <input type="submit" class="btn btn-outline-light btn-lg px-5" value="Register" />
+              <input type="submit" class="btn btn-outline-light btn-lg px-5" value="SIGN UP" />
             
             </div>
 
@@ -86,49 +93,5 @@ function onCheckboxClicked(e) {
 }
 
 
-function renderLoginForm() {
-  const maDiv = document.getElementById('maDiv');
-  const maDiv2 = document.createElement('div');
-  maDiv2.className= 'col-5';
-  const loginForm = document.createElement('form');
-  loginForm.className='loginform';
-  maDiv2.appendChild(loginForm);
-  maDiv.appendChild(maDiv2);
-  loginForm.addEventListener('submit', UserLibrary.prototype.onLogin);
-
-  loginForm.innerHTML=
-  ` 
-  <div class="container-fluid py-3 h-100">
-    <div class="row d-flex align-items-center h-100">
-      <div class="col-12">
-        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body px-5 py-3 text-center">
-
-            <div class="mb-md-5 mt-md-4 pb-1 ">
-
-              <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">Enter your username and your password !</p>
-
-              <div class="form-outline form-white mb-4">
-                <input type="text" id="loginUsername" class="form-control form-control-lg" placeholder = "username" />
-                <label class="form-label" for="loginUsername"></label>
-              </div>
-
-              <div class="form-outline form-white mb-4">
-                <input type="password" id="loginPassword" class="form-control form-control-lg" placeholder = "password" />
-                <label class="form-label" for="loginPassword"></label>
-              </div>
-
-              <input type="submit" class="btn btn-outline-light btn-lg px-5" value="Login" />
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
- ` 
-}
 
 export default RegisterPage;

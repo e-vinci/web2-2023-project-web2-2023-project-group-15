@@ -6,6 +6,7 @@ const { parse } = require('../utils/json');
 
 const {
   searchProductsByBrand,
+  updateOneProduct,
   createOneProduct,
   searchProductsByName,
   renderAllProductsByCategory,
@@ -76,6 +77,29 @@ router.delete('/:id', (req, res) => {
   if (!deletedProduct) return res.sendStatus(404);
 
   return res.json(deletedProduct);
+});
+
+// Update a pizza based on its id and new values for its parameters
+router.patch('/:id', (req, res) => {
+  const name = req?.body?.name?.length !== 0 ? req.body.name : undefined;
+  const price = req?.body?.price > 0 ? req.body.price : undefined;
+  const description = req?.body?.description?.length !== 0 ? req.body.description : undefined;
+  const categorie = req?.body?.categorie?.length !== 0 ? req.body.categorie : undefined;
+  const imgList = req?.body?.imgList ? req.body.imgList : undefined;
+  const subcategory = req?.body?.subcategory ? req.body.subcategory : undefined;
+  const model3D = req?.body?.model3D !== 0 ? req.body.model3D : undefined;
+
+  if (!name || !price || !description || !categorie || !imgList || !subcategory || !model3D) {
+    return res.sendStatus(400);
+  }
+
+  const updatedProduct = updateOneProduct(req.params.id, {
+    name, price, description, categorie, imgList, subcategory, model3D,
+  });
+
+  if (!updatedProduct) return res.sendStatus(404);
+
+  return res.json(updatedProduct);
 });
 
 module.exports = router;

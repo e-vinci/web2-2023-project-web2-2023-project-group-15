@@ -8,6 +8,8 @@ class UserLibrary{
     async onRegister(e) {
 
         e.preventDefault();
+        const firstname = document.querySelector('#firstname').value;
+        const lastname = document.querySelector('#lastname').value;
         const mail = document.querySelector('#registerUsername').value;
         const registerPassword = document.querySelector('#registerPassword').value;
         const registerConfPassword = document.querySelector('#registerConfPassword').value;
@@ -19,13 +21,16 @@ class UserLibrary{
         const options = {
           method: 'POST',
           body: JSON.stringify({
-            "username": mail,
+            "firstname": firstname,
+            "lastname": lastname,
+            "email": mail,
             "password": registerPassword,
           }),
           headers: {
             'Content-Type': 'application/json',
           },
         };
+        
       
         const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
         const authenticatedUser = await response.json();
@@ -52,14 +57,15 @@ class UserLibrary{
         const options = {
           method: 'POST',
           body: JSON.stringify({
-            "username": mail,
+            "email": mail,
             "password": password,
           }),
           headers: {
             'Content-Type': 'application/json',
           },
         };
-      
+        
+        
         try {
           const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
       
@@ -77,7 +83,7 @@ class UserLibrary{
             alert('Login failed: Server response is not in JSON format.');
           }
         } catch (error) {
-          
+        
           alert(error.message);
         }
     }
