@@ -3,6 +3,7 @@
 
 import UserLibrary from '../../Domain/UserLibrary';
 import { clearPage } from '../../utils/render';
+import Navigate from '../Router/Navigate';
 
 const LoginPage = () => {
     clearPage();
@@ -55,7 +56,7 @@ function renderLoginForm() {
   
                 <input type="submit" class="btn btn-outline-light btn-lg px-5" value="LOGIN" />
                  
-                <p class="text-white-50 mb-5">Pas encore de compte ? <a href="/register">Inscrivez-vous</a></p>
+                <p class="text-white-50 mb-5">Pas Encore de compte ? <a href="#" id="inscriptionLink">Inscrivez-vous ici</a></p>
               </div>
   
             </div>
@@ -64,6 +65,12 @@ function renderLoginForm() {
       </div>
       </div>
    ` 
+   const inscriptionLink = document.getElementById('inscriptionLink');
+   inscriptionLink.addEventListener('click', () => {
+    Navigate("/register");
+   });
   }
+
+
   
   export default LoginPage;

@@ -8,6 +8,7 @@ const Router = () => {
   onHistoryChange();
 };
 
+
 function onNavBarClick() {
   const navbarWrapper = document.querySelector('#navbarWrapper');
 
