@@ -4,8 +4,8 @@
 import UserLibrary from '../../Domain/UserLibrary';
 
 const LoginPage = () => {
+  
     renderLoginForm();
-
 };
 
 function renderLoginForm() {
@@ -53,7 +53,8 @@ function renderLoginForm() {
                 </div>
   
                 <input type="submit" class="btn btn-outline-light btn-lg px-5" value="LOGIN" />
-  
+                 
+                <p class="text-white-50 mb-5">Pas encore de compte ? <a href="/register">Inscrivez-vous</a></p>
               </div>
   
             </div>
