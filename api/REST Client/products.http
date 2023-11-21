@@ -46,12 +46,12 @@ POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-    "name": "Armani Code",
-    "price": 289.99,
-    "description": "Parfum pour homme aux odeurs de male alpha",
-    "categorie": "Cosmetic",
+    "name": "Prada Test",
+    "price": 489.99,
+    "description": "Sac pour femme",
+    "categorie": "Bags",
     "imgList": [],
-    "subcategory": ["Armani", "Man"],
+    "subcategory": ["Prada", "Man"],
     "model3D": "ArmaniCode"
 }
 

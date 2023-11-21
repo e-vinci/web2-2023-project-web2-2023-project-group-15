@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable import/first */
 /* eslint-disable import/order */
 /* eslint-disable import/no-extraneous-dependencies */
@@ -23,11 +24,11 @@ const defaultProducts = [
   {
     id: 1,
     name: 'Rolex Submarine',
-    price: 60000.0,
+    price: 60000,
     description: 'Rolex submarine test test test ',
-    categorie: categories.getCategorieWatches(),
+    categorie: 'Watches',
     imgList: [],
-    subcategory: [subcategory.getCategorieRolex(), subcategory.genderSubcategory.Mans],
+    subcategory: ['Rolex', 'Man'],
     model3D: 'rolexSubmarine',
   },
   {
@@ -36,9 +37,9 @@ const defaultProducts = [
     price: 9050.99,
     description:
       'La montre Ballon Bleu est née d`une nouvelle vision du rond qui consiste, pour les designers de Cartier, à donner un volume au cercle. Doublement convexe, sa forme réalise l`équilibre entre ligne et volume. Pour éviter toute rupture de lignes, la glace saphir bombée est parfaitement intégrée à la boîte comme le remontoir, avec sa bulle bleue et son protège-couronne intégré sous un arceau de métal à trois heures.',
-    categorie: categories.getCategorieWatches(),
+    categorie: 'Watches',
     imgList: [],
-    subcategory: [subcategory.getCategorieCartier(), subcategory.genderSubcategory.Womans],
+    subcategory: ['Cartier', 'Woman'],
     model3D: 'ballonBleu',
   },
   {
@@ -46,10 +47,50 @@ const defaultProducts = [
     name: 'Louis Vuitton Dubai',
     price: 6999.99,
     description: 'test sac louis vuitton femme',
-    categorie: categories.getCategorieBags(),
+    categorie: 'Bags',
     imgList: [],
-    subcategory: [subcategory.getCategorieLouisVuitton(), subcategory.genderSubcategory.Womans],
+    subcategory: ['Louis Vuitton', 'Woman'],
     model3D: 'LVDubai',
+  },
+  {
+    id: 4,
+    name: 'Armani Code',
+    price: 289.99,
+    description: 'Parfum pour homme aux odeurs de male alpha',
+    categorie: 'Cosmetic',
+    imgList: [],
+    subcategory: ['Armani', 'Man'],
+    model3D: 'ArmaniCode',
+  },
+  {
+    id: 5,
+    name: 'Channel N°5',
+    price: 489.99,
+    description: 'Sac pour femme',
+    categorie: 'Bags',
+    imgList: [],
+    subcategory: ['Channel', 'Woman'],
+    model3D: 'channelN5',
+  },
+  {
+    id: 6,
+    name: 'Sac Prada',
+    price: 489.99,
+    description: 'Sac pour femme',
+    categorie: 'Bags',
+    imgList: [],
+    subcategory: ['Prada', 'Woman'],
+    model3D: 'sacprada',
+  },
+  {
+    id: 7,
+    name: 'Grand Complications',
+    price: 489.99,
+    description: 'Montre Philiph pattek',
+    categorie: 'Bags',
+    imgList: [],
+    subcategory: ['Philiph pattek', 'Man'],
+    model3D: 'Grand Complications',
   },
 ];
 
@@ -82,7 +123,9 @@ function renderAllProductsByCategory(param) {
     const listOfCategories = readAllCategories();
     const categoriesArray = Object.values(listOfCategories);
     // eslint-disable-next-line max-len
-    const requestedCategory = categoriesArray.find((cat) => param?.toLowerCase().includes(cat.name.toLowerCase()));
+    const requestedCategory = categoriesArray.find((cat) =>
+      param?.toLowerCase().includes(cat.name.toLowerCase()),
+    );
     if (requestedCategory) {
       category = requestedCategory.name;
     }
@@ -107,7 +150,9 @@ function renderAllProductsByCategory(param) {
 // Ajouter une nouvelle fonction pour filtrer par catégorie
 function getAllProductsByCategory(products, category) {
   // eslint-disable-next-line max-len
-  return products.filter((product) => product.categorie.toLowerCase().includes(category.toLowerCase()));
+  return products.filter((product) =>
+    product.categorie.toLowerCase().includes(category.toLowerCase()),
+  );
 }
 
 function searchProductsByName(param) {
@@ -160,7 +205,6 @@ function createOneProduct(name, price, description, categorieParam, imgs, subcat
       categorieproduct = categorie.name;
     }
   });
-
   const parsedPrice = parseFloat(price);
 
   const createdProduct = {

@@ -6,7 +6,7 @@ import Navigate from "../Components/Router/Navigate";
 
 class ProductLibrary{
     
-    async createOrder(){
+    static async createOrder(){
         let  allProducts='';
         try {
             const reponse = await fetch(`/api/products/`);
@@ -15,11 +15,11 @@ class ProductLibrary{
             if (!reponse.ok) {
               throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
             }
-            allProducts =  reponse.json();
+            allProducts =  await reponse.json();
           } catch (err) {
             console.error('error: ', err);
           }
-          Navigate('/');
+          // Navigate('/');
           return allProducts;
     }
 }
