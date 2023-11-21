@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { getAuthenticatedUser } from "../../utils/auths";
 import { getCartTotal } from "../../utils/shoppingCart";
 

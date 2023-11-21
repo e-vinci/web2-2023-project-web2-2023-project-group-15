@@ -5,7 +5,7 @@
 import productLibrary from '../../Domain/ProductLibrary';
 //import {importAll} from '../../img/products';
 
-const AllProducts = productLibrary.prototype.createOrder();
+const AllProducts = await productLibrary.prototype.createOrder();
 
 const AllProductPage = () => {
     renderAllProductsCards()
@@ -19,6 +19,7 @@ function renderAllProductsCards(){
     container.innerHTML = addCardProduct(AllProducts);
     main.appendChild(container);
 }
+
 function addCardProduct(products){
     let allCards = '';
     products?.array.forEach(product => {
@@ -31,9 +32,6 @@ function addCardProduct(products){
                 <h2 class="price-product" > ${product.price} </h1>
             </div>
         `;
-        
     });
-
 }
-  
   export default AllProductPage;
