@@ -5,6 +5,7 @@ import AllProductPage from '../Pages/AllProductPage';
 import ProductPage from '../Pages/ProductPage';
 import UserPage from '../Pages/UserPage'
 import RegisterPage from '../Pages/RegisterPage';
+import LoginPage from '../Pages/LoginPage';
 import Logout from '../Logout/Logout';
 import AdminPage from '../Pages/AdminPage';
 import CheckoutPage from '../Pages/CheckoutPage';
@@ -17,7 +18,7 @@ const routes = {
   '/product':ProductPage,
   '/user':UserPage,
   '/logout': Logout,
-  '/login':RegisterPage,
+  '/login':LoginPage,
   '/register': RegisterPage,
   '/admin':AdminPage, 
   '/checkout': CheckoutPage
