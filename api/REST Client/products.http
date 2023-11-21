@@ -56,4 +56,18 @@ Content-Type: application/json
 }
 
 ### delete product
-DELETE {{baseUrl}}/products/2
+DELETE {{baseUrl}}/products/4
+
+### patch add product
+PATCH  {{baseUrl}}/products/4
+Content-Type: application/json
+
+{
+    "name": "Armani Code Patch",
+    "price": 289.99,
+    "description": "Le parfum qui vous rend unique.",
+    "categorie": "Cosmetic",
+    "imgList": [],
+    "subcategory": ["Armani", "Man"],
+    "model3D": "ArmaniCode"
+}

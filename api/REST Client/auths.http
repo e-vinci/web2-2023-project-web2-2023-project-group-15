@@ -38,3 +38,6 @@ Content-Type: application/json
     "email":"manager@manager",
     "password":"manager"
 }
+
+### get all info on user
+GET {{baseUrl}}/users/1

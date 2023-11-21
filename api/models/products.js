@@ -150,7 +150,7 @@ function readOneProduct(id) {
 }
 
 // eslint-disable-next-line max-len
-function createOneProduct(name, price, description, categorieParam, imgs, subcategories, model3D) {
+function createOneProduct(name, price, description, categorieParam, imgs, subcategories, modele) {
   const products = parse(jsonDbPath, defaultProducts);
 
   const categoriesBd = categories.readAllCategories();
@@ -171,7 +171,7 @@ function createOneProduct(name, price, description, categorieParam, imgs, subcat
     categorie: escape(categorieproduct),
     imgList: imgs,
     subcategory: subcategories,
-    model3d: model3D,
+    model3D: modele,
   };
 
   products.push(createdProduct);
@@ -201,7 +201,7 @@ function updateOneProduct(id, propertiesToUpdate) {
 
   const updatedProduct = { ...products[foundIndex], ...propertiesToUpdate };
 
-  products[foundIndex] = updateOneProduct;
+  products[foundIndex] = updatedProduct;
 
   serialize(jsonDbPath, products);
 

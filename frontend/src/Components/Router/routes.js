@@ -3,6 +3,7 @@ import NewPage from '../Pages/NewPage';
 import ShoppingCartPage from '../Pages/ShoppingCartPage';
 import AllProductPage from '../Pages/AllProductPage';
 import ProductPage from '../Pages/ProductPage';
+import UserPage from '../Pages/UserPage'
 import RegisterPage from '../Pages/RegisterPage';
 import LoginPage from '../Pages/LoginPage';
 import Logout from '../Logout/Logout';
@@ -15,6 +16,7 @@ const routes = {
   '/shoppingCart':ShoppingCartPage,
   '/allProducts':AllProductPage,
   '/product':ProductPage,
+  '/user':UserPage,
   '/logout': Logout,
   '/login':LoginPage,
   '/register': RegisterPage,

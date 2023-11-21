@@ -2,9 +2,10 @@
 /* eslint-disable no-unused-vars */
 
 import UserLibrary from '../../Domain/UserLibrary';
+import { clearPage } from '../../utils/render';
 
 const LoginPage = () => {
-  
+    clearPage();
     renderLoginForm();
 };
 
