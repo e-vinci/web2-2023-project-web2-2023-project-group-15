@@ -36,3 +36,6 @@ Content-Type: application/json
     "username":"manager",
     "password":"manager"
 }
+
+### get all info on user
+GET {{baseUrl}}/users/1

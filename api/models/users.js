@@ -94,8 +94,18 @@ function getNextId() {
   return nextId;
 }
 
+function getInfoByUserId(id) {
+  const idNumber = parseInt(id, 10);
+  const users = parse(jsonDbPath, defaultUsers);
+  const indexOfUsersFound = users.findIndex((user) => user.id === idNumber);
+  if (indexOfUsersFound < 0) return undefined;
+
+  return users[indexOfUsersFound];
+}
+
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
+  getInfoByUserId,
 };
