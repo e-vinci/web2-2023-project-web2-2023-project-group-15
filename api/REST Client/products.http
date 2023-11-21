@@ -46,14 +46,28 @@ POST {{baseUrl}}/products
 Content-Type: application/json
 
 {
-    "name": "Armani Code",
+    "name": "Prada Test",
+    "price": 489.99,
+    "description": "Sac pour femme",
+    "categorie": "Bags",
+    "imgList": [],
+    "subcategory": ["Prada", "Man"],
+    "model3D": "ArmaniCode"
+}
+
+### delete product
+DELETE {{baseUrl}}/products/4
+
+### patch add product
+PATCH  {{baseUrl}}/products/4
+Content-Type: application/json
+
+{
+    "name": "Armani Code Patch",
     "price": 289.99,
-    "description": "Parfum pour homme aux odeurs de male alpha",
+    "description": "Le parfum qui vous rend unique.",
     "categorie": "Cosmetic",
     "imgList": [],
     "subcategory": ["Armani", "Man"],
     "model3D": "ArmaniCode"
 }
-
-### delete product
-DELETE {{baseUrl}}/products/2
