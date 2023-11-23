@@ -4,6 +4,8 @@
 import UserLibrary from '../../Domain/UserLibrary';
 import { clearPage } from '../../utils/render';
 import Navigate from '../Router/Navigate';
+import fond from '../../img/login-register/fond.png';
+import degrade from '../../img/login-register/degrade.png';
 
 const LoginPage = () => {
     clearPage();
@@ -16,11 +18,9 @@ function renderLoginForm() {
     const maDiv = document.createElement('div');
     maDiv.className='row justify-content-around';
     maDiv.id = 'maDiv'
+    maDiv.style.backgroundImage = `url(${degrade})`;
     const maDiv2 = document.createElement('div');
-    maDiv2.className= 'col-5';
-    const form = document.createElement('form');
-    form.className='LoginForm'
-    maDiv2.appendChild(form);
+    maDiv2.className = 'col-5';
     maDiv.appendChild(maDiv2);
     container.appendChild(maDiv);
     main.appendChild(container); 
@@ -37,7 +37,7 @@ function renderLoginForm() {
     <div class="container-fluid py-3 h-100">
       <div class="row d-flex align-items-center h-100">
         <div class="col-12">
-          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover">
             <div class="card-body px-5 py-3 text-center">
   
               <div class="mb-md-5 mt-md-4 pb-1 ">

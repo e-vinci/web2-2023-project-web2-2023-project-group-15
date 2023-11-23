@@ -3,6 +3,8 @@
 import { getRememberMe, setRememberMe } from '../../utils/auths';
 import { clearPage, renderPageTitle } from '../../utils/render';
 import UserLibrary from '../../Domain/UserLibrary';
+import fond from '../../img/login-register/fond.png';
+import degrade from '../../img/login-register/degrade.png';
 
 const RegisterPage = () => {
   clearPage();
@@ -18,6 +20,7 @@ function renderRegisterForm() {
   const maDiv = document.createElement('div');
   maDiv.className='row justify-content-around';
   maDiv.id = 'maDiv'
+  maDiv.style.backgroundImage = `url(${degrade})`;
   const maDiv2 = document.createElement('div');
   maDiv2.className= 'col-5';
   const form = document.createElement('form');
@@ -36,7 +39,7 @@ function renderRegisterForm() {
   <div class="container-fluid py-3 h-100">
     <div class="row d-flex  align-items-center h-100">
       <div class="col-12 ">
-        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+      <div class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover">
           <div class="card-body px-5 py-2 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-1">
