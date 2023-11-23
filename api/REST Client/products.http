@@ -71,3 +71,6 @@ Content-Type: application/json
     "subcategory": ["Armani", "Man"],
     "model3D": "ArmaniCode"
 }
+
+### get Product 
+GET {{baseUrl}}/subCategories
