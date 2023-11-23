@@ -25,8 +25,6 @@ const AllProductPage = async () => {
     renderSearchBar();
     renderAllProductsCards();
 
-  
-
     function renderSearchBar(){
     const containerSearchBar = document.createElement('div');
     containerSearchBar.className="container-searchbar-products";
@@ -35,7 +33,6 @@ const AllProductPage = async () => {
     main.appendChild(containerSearchBar);
     }
 
-    
     function renderAllProductsCards(){
         const  container = document.createElement('div');
         container.className = "container-products";
@@ -62,6 +59,7 @@ const AllProductPage = async () => {
         });
         return allCards;
     }
+
     function AddCategories(){
         let htmlCategories ='';
         allSubCategories.forEach((subcategory)=>{

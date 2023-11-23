@@ -41,6 +41,7 @@ $h-hide-distance: $h-width + $h-padding;
   justify-content: space-between;
   border-bottom-style: solid;
   border-bottom-color: color.$primary-black ;
+  $regular-police: Perpetua Titling MT;
 }
 
 .logoDiv {
@@ -64,6 +65,7 @@ $h-hide-distance: $h-width + $h-padding;
   border-radius: 3px;
   border: 1px solid color.$primary-black;
   padding-top: 1%;
+  $regular-police: Perpetua Titling MT;
 }
 
 .containerIcons {

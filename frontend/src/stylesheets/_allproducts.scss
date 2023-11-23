@@ -60,6 +60,7 @@ h2{
 }
 
 .search-bar {
+   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -151,4 +152,114 @@ h2{
     margin: 2%;
 }
 
+//----------------------- Responsivite-------------------------------
 
+@include responsive.Phone{
+    .container-searchbar-products{
+        display: flex;
+        flex-direction: column;
+    }
+    .search-bar{
+        width: 100%;
+    }
+    
+    .search-bar button {
+        width: 30%;
+        border: 3px solid color.$primary-black;
+        border-radius: 3px;
+        font-size: smaller;
+    }
+    .search-bar input {
+        width: 70%;
+        border: 3px solid color.$primary-black;
+        border-radius: 3px;
+        font-size: smaller;
+    }
+    .product-filter {
+            width: 100%;
+            justify-content: space-between;
+    }
+    .dropbtn{
+        margin: 10%;
+        padding: 5px;
+        height: 20%;
+        font-size: 10px;
+    }
+    .dropdown-content a{
+        font-size: smaller;
+        padding: 10px 40px;
+    }
+}
+
+@include responsive.Tablet{
+    .container-searchbar-products{
+        display: flex;
+        flex-direction: column;
+    }
+    .search-bar{
+        width: 100%;
+    }
+    
+    .search-bar button {
+        width: 30%;
+        border: 3px solid color.$primary-black;
+        border-radius: 3px;
+        font-size: smaller;
+    }
+    .search-bar input {
+        width: 70%;
+        border: 3px solid color.$primary-black;
+        border-radius: 3px;
+        font-size: smaller;
+    }
+    .product-filter {
+            width: 100%;
+            justify-content: center;
+    }
+    .dropbtn{
+        margin: 10%;
+        padding: 5px;
+        height: 20%;
+        font-size: 10px;
+    }
+    .dropdown-content a{
+        font-size: smaller;
+        padding: 10px 40px;
+    }
+}
+@include responsive.LaptopOld{
+    .container-searchbar-products{
+        display: flex;
+        flex-direction: column;
+    }
+    .search-bar{
+        width: 100%;
+    }
+    
+    .search-bar button {
+        width: 30%;
+        border: 3px solid color.$primary-black;
+        border-radius: 3px;
+        font-size: smaller;
+    }
+    .search-bar input {
+        width: 70%;
+        border: 3px solid color.$primary-black;
+        border-radius: 3px;
+        font-size: smaller;
+    }
+    .product-filter {
+            width: 100%;
+            justify-content: center;
+    }
+    .dropbtn{
+        margin: 10%;
+        padding: 5px;
+        height: 20%;
+        font-size: 10px;
+    }
+    .dropdown-content a{
+        font-size: smaller;
+        padding: 10px 40px;
+    }
+}
