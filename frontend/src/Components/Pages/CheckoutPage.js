@@ -1,4 +1,5 @@
-// import { getAuthenticatedUser } from "../../utils/auths";
+
+import { getAuthenticatedUser } from "../../utils/auths";
 // import { getCartTotal } from "../../utils/shoppingCart";
 
 

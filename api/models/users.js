@@ -41,7 +41,7 @@ async function login(email, password) {
   return authenticatedUser;
 }
 
-async function register(firstname, lastname,email, password) {
+async function register(firstname, lastname, email, password) {
   const userFound = readOneUserFromUsername(email);
   if (userFound) return undefined;
 
@@ -54,7 +54,6 @@ async function register(firstname, lastname,email, password) {
   );
 
   const authenticatedUser = {
-    
     username: email,
     token,
   };
@@ -77,9 +76,9 @@ async function createOneUser(firtname, lastname, email, password) {
 
   const createdUser = {
     id: getNextId(),
-    firtname: firtname,
-    lastname, lastname,
-    email: email,
+    firtname,
+    lastname,
+    email,
     password: hashedPassword,
   };
 
@@ -108,9 +107,27 @@ function getInfoByUserId(id) {
   return users[indexOfUsersFound];
 }
 
+function updateUserInfo(id, propertiesToUpdate) {
+  const idNumber = parseInt(id, 10);
+  const users = parse(jsonDbPath, defaultUsers);
+  const foundIndex = users.findIndex((user) => user.id === idNumber);
+
+  if (foundIndex < 0) return undefined;
+
+  const updatedUser = { ...users[foundIndex], ...propertiesToUpdate };
+
+  users[foundIndex] = updatedUser;
+
+  serialize(jsonDbPath, users);
+
+  return updatedUser;
+}
+
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
   getInfoByUserId,
+  updateUserInfo,
+  defaultUsers,
 };
