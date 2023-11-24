@@ -89,11 +89,13 @@ const html = `
           <a href="#" class="btn btn-dark">Check</a>
         </div>
       </div>
-    </d iv>
+    </div>
   </div>
 
   <!-- Popular section -->
 
+  <div class="container-categorie-home"> 
+  <h1> Popular </h1>
   <div class="flex-container-popular">
 
       <div class="container-products-popular" id="container-products-popular">
@@ -183,7 +185,7 @@ const html = `
      </a>
     
   </div>
-
+</div>
 </div>
 
 </div>   `;
