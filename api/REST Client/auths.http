@@ -41,3 +41,16 @@ Content-Type: application/json
 
 ### get all info on user
 GET {{baseUrl}}/users/1
+
+### update user info
+PATCH {{baseUrl}}/users/1
+Content-Type: application/json
+
+{
+"id": 1,
+"firstname": "Luc",
+"lastname": "Dupont",
+"email": "Luc.Dupont@example.com",
+"password": "MotDePasse",
+"address": "123 rue de la rue, Bruxelles"
+}
