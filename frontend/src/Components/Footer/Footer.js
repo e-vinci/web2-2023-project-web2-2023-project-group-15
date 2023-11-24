@@ -10,8 +10,8 @@ const Footer = () => {
         <img src="${ShopInFooter}" alt="Grandioso Vinci" class="left-text">
         <img src="${GrandiosoVinciText}" alt="Grandioso Vinci" class="centered-image">
         <div class="right-text">
-          <span>Legal & Privacy</span>
-          <span>Cookies</span>
+          <span class="legal-privacy">Legal & Privacy</span>
+          <span class="cookies">Cookies</span>
         </div>
       </div>
    </footer>`;
