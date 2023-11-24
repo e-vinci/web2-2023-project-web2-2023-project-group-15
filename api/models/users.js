@@ -1,3 +1,7 @@
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable object-property-newline */
+/* eslint-disable no-dupe-keys */
+/* eslint-disable object-shorthand */
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const path = require('node:path');
@@ -41,7 +45,7 @@ async function login(email, password) {
   return authenticatedUser;
 }
 
-async function register(firstname, lastname,email, password) {
+async function register(firstname, lastname, email, password) {
   const userFound = readOneUserFromUsername(email);
   if (userFound) return undefined;
 
