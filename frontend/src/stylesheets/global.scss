@@ -3,5 +3,19 @@
 @import url('./_fonts.scss');
 @import url('./_responsive.scss');
 @import url('./_footer.scss');
+@import url('./_allproducts.scss');
 //@import url('./_navbar.scss');
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+main {
+    flex-grow: 1;
+}
