@@ -37,7 +37,7 @@ function renderLoginForm() {
     <div class="container-fluid py-3 h-100">
       <div class="row d-flex align-items-center h-100">
         <div class="col-12">
-          <div class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover">
+          <div class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover ">
             <div class="card-body px-5 py-3 text-center">
   
               <div class="mb-md-5 mt-md-4 pb-1 ">
