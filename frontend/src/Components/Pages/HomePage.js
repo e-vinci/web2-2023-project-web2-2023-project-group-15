@@ -1,5 +1,7 @@
 /* eslint-disable spaced-comment */
 import imgCaroussel1 from '../../img/home/carroulsel1.jpg';
+import imgCaroussel2 from '../../img/home/carroulsel2.png';
+import imgCaroussel3 from '../../img/home/carroulsel3.png';
 import imgBags from '../../img/home/home_categories_bags.png';
 import imgClothing from '../../img/home/home_categories_clothing.png';
 import imgCosmetics from '../../img/home/home_categories_cosmetics.png';
@@ -40,10 +42,10 @@ const html = `
       <img class="d-block w-100" src="${imgCaroussel1}" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${imgCaroussel1}" alt="Second slide">
+      <img class="d-block w-100" src="${imgCaroussel2}" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="${imgCaroussel1}" alt="Third slide">
+      <img class="d-block w-100" src="${imgCaroussel3}" alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
