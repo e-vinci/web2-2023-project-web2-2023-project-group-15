@@ -10,6 +10,12 @@ import imgWatches from '../../img/home/home_categories_watches.png';
 import popularImgWatchesBallonBleu from '../../img/products/2.png';
 import popularImgWatchesRolexSubmarinier from '../../img/products/1.png';
 import popularImgWatchesPPGrandComplications from '../../img/products/7.png';
+import popularImgBagsLVDubai from '../../img/products/3.png';
+import popularImgBagsPradaSaffiano from '../../img/products/6.png';
+import popularImgBagsPradaBP from '../../img/products/8.png';
+import popularImgCosmeticsArmaniCode from '../../img/products/4.png';
+import popularImgCosmeticsPenhaligons from '../../img/products/9.png';
+import popularImgCosmeticsChanel5 from '../../img/products/5.png';
 
 import '../../stylesheets/_home.scss';
 // Importe le fichier Bootstrap CSS
@@ -127,23 +133,23 @@ const html = `
         </a>
         <a class="link-products-popular" href="#" data-rui="" >
           <div class="product-card-popular" id="product-card">
-              <img class="product-img-popular" src=${popularImgWatchesBallonBleu} alt="Picture Watch Cartier"/>
-              <h1 class="title-product" >Ballon Bleu de Cartier</h1>
-              <h2 class="price-product" >9.050.99 €</h1>
+              <img class="product-img-popular" src=${popularImgBagsLVDubai} alt="Picture Bag Louis Vuitton"/>
+              <h1 class="title-product" >Louis Vuitton Dubai</h1>
+              <h2 class="price-product" >6.999.99 €</h1>
           </div>
         </a>
         <a class="link-products-popular" href="#" data-rui="" >
           <div class="product-card-popular" id="product-card">
-              <img class="product-img-popular" src=${popularImgWatchesRolexSubmarinier} alt="Picture Watch Rolex"/>
-              <h1 class="title-product" >Rolex Submariner</h1>
-              <h2 class="price-product" >25.190.00 €</h1>
+              <img class="product-img-popular" src=${popularImgBagsPradaSaffiano} alt="Picture Bag Prada Saffiano"/>
+              <h1 class="title-product" >Prada Saffiano Bag</h1>
+              <h2 class="price-product" >2.199.99 €</h1>
           </div>
         </a>
         <a class="link-products-popular" href="#" data-rui="">
           <div class="product-card-popular" id="product-card">
-              <img class="product-img-popular" src=${popularImgWatchesPPGrandComplications} alt="Picture Watch Patek Philippe"/>
-              <h1 class="title-product" >Patek Philippe Grand Complications </h1>
-              <h2 class="price-product" >89.650.99 €</h1>
+              <img class="product-img-popular" src=${popularImgBagsPradaBP} alt="Picture Bag Prada Backpack"/>
+              <h1 class="title-product" >Prada backpack</h1>
+              <h2 class="price-product" >3.580.99 €</h1>
           </div>
         </a>
      </div>
@@ -156,25 +162,26 @@ const html = `
      </a>
      <a class="link-products-popular" href="#" data-rui="" >
        <div class="product-card-popular" id="product-card">
-           <img class="product-img-popular" src=${popularImgWatchesBallonBleu} alt="Picture Watch Cartier"/>
-           <h1 class="title-product" >Ballon Bleu de Cartier</h1>
-           <h2 class="price-product" >9.050.99 €</h1>
+           <img class="product-img-popular" src=${popularImgCosmeticsArmaniCode} alt="Picture Perfum Armani Code"/>
+           <h1 class="title-product" >Armani code</h1>
+           <h2 class="price-product" >289,99 €</h1>
        </div>
      </a>
      <a class="link-products-popular" href="#" data-rui="" >
-       <div class="product-card-popular" id="product-card">
-           <img class="product-img-popular" src=${popularImgWatchesRolexSubmarinier} alt="Picture Watch Rolex"/>
-           <h1 class="title-product" >Rolex Submariner</h1>
-           <h2 class="price-product" >25.190.00 €</h1>
-       </div>
+     <div class="product-card-popular" id="product-card">
+         <img class="product-img-popular" src=${popularImgCosmeticsPenhaligons} alt="Picture Perfum Penhaligons"/>
+         <h1 class="title-product" >Penhaligon's</h1>
+         <h2 class="price-product" >489,99 €</h1>
+     </div>
      </a>
      <a class="link-products-popular" href="#" data-rui="">
        <div class="product-card-popular" id="product-card">
-           <img class="product-img-popular" src=${popularImgWatchesPPGrandComplications} alt="Picture Watch Patek Philippe"/>
-           <h1 class="title-product" >Patek Philippe Grand Complications </h1>
-           <h2 class="price-product" >89.650.99 €</h1>
+           <img class="product-img-popular" src=${popularImgCosmeticsChanel5} alt="Picture Perfum Chanel5"/>
+           <h1 class="title-product" >Chanel N°5</h1>
+           <h2 class="price-product" >229.99€</h1>
        </div>
      </a>
+    
   </div>
 
 </div>
