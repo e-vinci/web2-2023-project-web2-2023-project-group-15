@@ -21,3 +21,18 @@
     background-color: blue($color: #000000);
 }
 
+.popular-row {
+    display: flex;
+    padding: 5%;
+    justify-content: center;
+    align-items: center; 
+    background-color: blue($color: #000000);
+}
+
+.flex-container-popular {
+    background-image: url("../img/home/background_popular_home.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0%;
+}
+

@@ -1,13 +1,13 @@
 import imgCaroussel1 from '../../img/home/carroulsel1.jpg';
-import imgBags from '../../img/home/home_categories_bags.png'
-import imgClothing from '../../img/home/home_categories_clothing.png'
-import imgCosmetics from '../../img/home/home_categories_cosmetics.png'
-import imgWatches from '../../img/home/home_categories_watches.png'
-import popularImgWatches from '../../img/home/home_popular_category_watches.png'
-import popularImgBags from '../../img/home/home_popular_category_bags.png'
-import popularImgCosmetics from '../../img/home/home_popular_category_cosmetics.png'
+import imgBags from '../../img/home/home_categories_bags.png';
+import imgClothing from '../../img/home/home_categories_clothing.png';
+import imgCosmetics from '../../img/home/home_categories_cosmetics.png';
+import imgWatches from '../../img/home/home_categories_watches.png';
+import popularImgWatches from '../../img/home/home_popular_category_watches.png';
+import popularImgBags from '../../img/home/home_popular_category_bags.png';
+import popularImgCosmetics from '../../img/home/home_popular_category_cosmetics.png';
 
-import '../../stylesheets/_home.scss'
+import '../../stylesheets/_home.scss';
 // Importe le fichier Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -86,29 +86,116 @@ const html = `
 
   <!-- Popular section -->
 
-  <div class="popular-section">
+  <div class="flex-container-popular">
+
     <div class="popular-row">
-      <div class="popular-column">
-        <img class="category-img" src="${popularImgWatches}" alt="Bags">
-        <h5 class="category-title">Bags</h5>
-        <!-- Ajoutez ici vos trois produits pour la catégorie Bags -->
-      </div>
-      <div class="popular-column">
-        <img class="category-img" src="${popularImgBags}" alt="Cosmetics">
-        <h5 class="category-title">Cosmetics</h5>
-        <!-- Ajoutez ici vos trois produits pour la catégorie Cosmetics -->
-      </div>
-      <div class="popular-column">
-        <img class="category-img" src="${popularImgCosmetics}" alt="Clothing">
-        <h5 class="category-title">Clothing</h5>
-        <!-- Ajoutez ici vos trois produits pour la catégorie Clothing -->
+     
+      <div class="card text-center" style="width: 20rem;">
+        <img src="${popularImgWatches}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h4 class="card-title">Watches</h4>
+        </div>
       </div>
 
-    <!-- Ajoutez ici deux autres lignes avec le même format pour d'autres catégories -->
+      <div class="card" style="width: 18rem;">
+         <img src="..." class="card-img-top" alt="...">
+         <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+         </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+         <h5 class="card-title">Card title</h5>
+         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+         <h5 class="card-title">Card title</h5>
+         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+     </div>
+
+    </div>
+
+    <div class="popular-row">
+
+      <div class="card text-center" style="width: 20rem;">
+        <img src="${popularImgBags}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h4 class="card-title">Bags</h4>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+         <img src="..." class="card-img-top" alt="...">
+         <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+         </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+         <h5 class="card-title">Card title</h5>
+         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+         <h5 class="card-title">Card title</h5>
+         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+     </div>
+
+   </div>
+
+    <div class="popular-row">
+
+      <div class="card text-center" style="width: 20rem;">
+        <img src="${popularImgCosmetics}" class="card-img-top" alt="...">
+        <div class="card-body">
+        <h4 class="card-title">Cosmetics</h4>
+        </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+         <img src="..." class="card-img-top" alt="...">
+         <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+         </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+         <h5 class="card-title">Card title</h5>
+         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      </div>
+
+      <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+         <h5 class="card-title">Card title</h5>
+         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+     </div>
+
+    </div>  
 
   </div>
 
-</div>  `;
+</div>   `;
 const HomePage = () => {
   const main = document.querySelector('main');
   main.innerHTML = html;
