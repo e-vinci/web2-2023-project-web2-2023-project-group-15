@@ -96,7 +96,7 @@ const html = `
 
   <!-- Popular section -->
 
-  <div class="container-categorie-home"> 
+  <div> 
   <h1> Popular </h1>
   <div class="flex-container-popular">
 
