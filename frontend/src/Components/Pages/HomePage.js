@@ -1,126 +1,114 @@
+import imgCaroussel1 from '../../img/home/carroulsel1.jpg';
+import imgBags from '../../img/home/home_categories_bags.png'
+import imgClothing from '../../img/home/home_categories_clothing.png'
+import imgCosmetics from '../../img/home/home_categories_cosmetics.png'
+import imgWatches from '../../img/home/home_categories_watches.png'
+import popularImgWatches from '../../img/home/home_popular_category_watches.png'
+import popularImgBags from '../../img/home/home_popular_category_bags.png'
+import popularImgCosmetics from '../../img/home/home_popular_category_cosmetics.png'
+
+import '../../stylesheets/_home.scss'
+// Importe le fichier Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Importe le fichier Bootstrap JavaScript (avec les fonctionnalités JavaScript nécessaires, y compris jQuery)
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const html = `
+<div class="container-home">
 
-        <!-- Banniere de la HomePage -->
+ <!-- Banniere de la HomePage -->
 
-        <header class="bg-dark py-5 ">
-        <div class="container px-5">
-        <div class="row gx-5 align-items-center justify-content-center">
-            <div class="col-lg-8 col-xl-7 col-xxl-6">
-                <div class="my-5 text-center text-xl-start">
-                    <h1 class="display-5 fw-bolder text-white mb-2">HomePage</h1>
-                    <p class="lead fw-normal text-white-50 mb-4">A MODIFIER : Ici on met la photo de la homepage et aussi bouton</p>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
-                        <a class="btn btn-outline-light btn-lg px-4" href="#!">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
-        </div>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="${imgCaroussel1}" alt="First slide">
     </div>
-    </header>
-    
-    <!-- Section Articles Populair du site ( ou alors catégorie) -->
-    <!-- A mettre dans une boucle --> 
-
-    <section class="py-5">
-    <div class="container px-5 my-5">
-        <div class="row gx-5 justify-content-center">
-            <div class="col-lg-8 col-xl-6">
-                <div class="text-center">
-                    <h2 class="fw-bolder">Similar Products</h2>
-                    <p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row gx-5">
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Popular Item</h5>
-                            <!-- Product reviews-->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            <!-- Product price-->
-                            $40.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Popular Item</h5>
-                            <!-- Product reviews-->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            <!-- Product price-->
-                            $40.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder">Popular Item</h5>
-                            <!-- Product reviews-->
-                            <div class="d-flex justify-content-center small text-warning mb-2">
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                                <div class="bi-star-fill"></div>
-                            </div>
-                            <!-- Product price-->
-                            $40.00
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="${imgCaroussel1}" alt="Second slide">
     </div>
-</section>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="${imgCaroussel1}" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  </div>
 
-    `
+ <!-- Categories section -->
+
+  <div class="flex-container-categories">
+
+    <div class="card text-center mx-auto" style="width: 12rem;">
+      <img class="card-img-top" src="${imgBags}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Bags</h5>
+        <a href="#" class="btn btn-dark">Check</a>
+      </div>
+    </div>
+
+    <div class="card text-center mx-auto" style="width: 12rem;">
+      <img class="card-img-top" src="${imgCosmetics}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Cosmetics</h5>
+        <a href="#" class="btn btn-dark">Check</a>
+      </div>
+    </div>
+
+    <div class="card text-center mx-auto" style="width: 12rem;">
+      <img class="card-img-top" src="${imgClothing}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Clothing</h5>
+        <a href="#" class="btn btn-dark">Check</a>
+      </div>
+    </div>
+
+    <div class="card text-center mx-auto" style="width: 12rem;">
+      <img class="card-img-top" src="${imgWatches}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Watches</h5>
+        <a href="#" class="btn btn-dark">Check</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Popular section -->
+
+  <div class="popular-section">
+    <div class="popular-row">
+      <div class="popular-column">
+        <img class="category-img" src="${popularImgWatches}" alt="Bags">
+        <h5 class="category-title">Bags</h5>
+        <!-- Ajoutez ici vos trois produits pour la catégorie Bags -->
+      </div>
+      <div class="popular-column">
+        <img class="category-img" src="${popularImgBags}" alt="Cosmetics">
+        <h5 class="category-title">Cosmetics</h5>
+        <!-- Ajoutez ici vos trois produits pour la catégorie Cosmetics -->
+      </div>
+      <div class="popular-column">
+        <img class="category-img" src="${popularImgCosmetics}" alt="Clothing">
+        <h5 class="category-title">Clothing</h5>
+        <!-- Ajoutez ici vos trois produits pour la catégorie Clothing -->
+      </div>
+
+    <!-- Ajoutez ici deux autres lignes avec le même format pour d'autres catégories -->
+
+  </div>
+
+</div>  `;
 const HomePage = () => {
   const main = document.querySelector('main');
   main.innerHTML = html;
