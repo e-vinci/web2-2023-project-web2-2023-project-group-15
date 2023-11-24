@@ -48,42 +48,39 @@ const html = `
 
  <!-- Categories section -->
 
-  <div class="flex-container-categories">
-
-    <div class="card text-center mx-auto" style="width: 12rem;">
-      <img class="card-img-top" src="${imgBags}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Bags</h5>
-        <a href="#" class="btn btn-dark">Check</a>
+    <div class="container-categorie-home"> 
+      <h1> Categories </h1>
+      <div class="flex-container-categories">
+        <div class="card text-center mx-auto" >
+          <img class="card-img-top" src="${imgBags}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Bags</h5>
+            <a href="#" class="btn btn-dark">Check</a>
+          </div>
+        </div>
+        <div class="card text-center mx-auto" id="card-main-categorie">
+          <img class="card-img-top" src="${imgCosmetics}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Cosmetics</h5>
+          <a href="#" class="btn btn-dark">Check</a>
+        </div>
+      </div>
+      <div class="card text-center mx-auto" >
+        <img class="card-img-top" src="${imgClothing}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Clothing</h5>
+          <a href="#" class="btn btn-dark">Check</a>
+        </div>
+      </div>
+      <div class="card text-center mx-auto" >
+        <img class="card-img-top" src="${imgWatches}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Watches</h5>
+          <a href="#" class="btn btn-dark">Check</a>
+        </div>
       </div>
     </div>
-
-    <div class="card text-center mx-auto" style="width: 12rem;">
-      <img class="card-img-top" src="${imgCosmetics}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Cosmetics</h5>
-        <a href="#" class="btn btn-dark">Check</a>
-      </div>
-    </div>
-
-    <div class="card text-center mx-auto" style="width: 12rem;">
-      <img class="card-img-top" src="${imgClothing}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Clothing</h5>
-        <a href="#" class="btn btn-dark">Check</a>
-      </div>
-    </div>
-
-    <div class="card text-center mx-auto" style="width: 12rem;">
-      <img class="card-img-top" src="${imgWatches}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Watches</h5>
-        <a href="#" class="btn btn-dark">Check</a>
-      </div>
-    </div>
-
   </div>
-
   <!-- Popular section -->
 
   <div class="flex-container-popular">
