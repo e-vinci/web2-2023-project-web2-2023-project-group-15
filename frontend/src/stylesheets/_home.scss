@@ -1,5 +1,6 @@
 @use 'color';
 @use 'responsive';
+@use 'fonts';
 
 .container-home {
 }
@@ -9,15 +10,32 @@
     max-height: 100%;
 }
 
-.flex-container-categories {
+.container-categorie-home{
     display: flex;
-    flex-direction: row;
-    padding: 5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color : color.$primary-white;
     background-image: url("../img/home/background_categories_home.png");
     background-repeat: no-repeat;
     background-size: cover;
-    justify-content: center;
+    h1{ 
+        font-family: fonts.$regular-police;
+        width: 100%;
+        float: left;
+        margin-left: 5%;
+        margin-top: 2%;
+        font-size: 30px;
+    }
+    
+}
+
+.flex-container-categories {
+    display: flex;
+    flex-direction: wrap;
+    width: 100%;
+    justify-content: space-around;
+    padding: 5%;
     align-items: center; 
-    background-color: blue($color: #000000);
 }
 
