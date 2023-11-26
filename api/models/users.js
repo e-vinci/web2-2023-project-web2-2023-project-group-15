@@ -28,19 +28,24 @@ const defaultUsers = [
 
 async function login(email, password) {
   const userFound = readOneUserFromUsername(email);
+  console.log("userfound : ", userFound.firstname)
   if (!userFound) return undefined;
 
   const passwordMatch = await bcrypt.compare(password, userFound.password);
   if (!passwordMatch) return undefined;
 
   const token = jwt.sign(
-    { username: email }, // session data added to the payload (payload : part 2 of a JWT)
+    { email: email }, // session data added to the payload (payload : part 2 of a JWT)
     jwtSecret, // secret used for the signature (signature part 3 of a JWT)
     { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
   );
 
+  
   const authenticatedUser = {
-    username: email,
+    firstname: userFound.firstname,
+    lastname: userFound.lastname,
+    email: email,
+    address: userFound.address,
     token,
   };
 
@@ -53,13 +58,17 @@ async function register(firstname, lastname, email, password, address, birthdate
   await createOneUser(firstname, lastname, email, password, address, birthdate);
 
   const token = jwt.sign(
-    { username: email }, // session data added to the payload (payload : part 2 of a JWT)
+    { email: email }, // session data added to the payload (payload : part 2 of a JWT)
     jwtSecret, // secret used for the signature (signature part 3 of a JWT)
     { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
   );
 
   const authenticatedUser = {
-    username: email,
+    firstname: firstname,
+    lastname: lastname, 
+    address: address,
+    birthdate: birthdate,
+    email: email,
     token,
   };
 
