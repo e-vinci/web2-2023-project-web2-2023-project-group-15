@@ -3,9 +3,14 @@
  import { getAuthenticatedUser } from "../../utils/auths";
 import Navigate from "../Router/Navigate";
 
-// ${user.username}
+
 const ShoppingCartPage = () => {
-     const user = getAuthenticatedUser();
+    const user = getAuthenticatedUser();
+    if(user === undefined){
+      console.log("undifined user ");
+      Navigate('/login');
+    }
+
     const html = `
     <section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
