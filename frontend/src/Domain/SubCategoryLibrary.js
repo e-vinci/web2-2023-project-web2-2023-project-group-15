@@ -4,24 +4,24 @@ import Navigate from "../Components/Router/Navigate";
 
 
 
-class ProductLibrary{
+class SubCategoryLibrary{
     
-    static async getAllProducts(props){
-        let  allProducts='';
+    static async getAllSubCategories(){
+        let  allSubCategories='';
         try {
-            const reponse = await fetch(`/api/products/`,props);
+            const reponse = await fetch(`/api/subCategories/`);
             console.log("résultat reponse " , reponse)
       
             if (!reponse.ok) {
               throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
             }
-            allProducts =  await reponse.json();
+            allSubCategories =  await reponse.json();
           } catch (err) {
             console.error('error: ', err);
           }
-          // Navigate('/');
-          return allProducts;
+          return allSubCategories;
     }
+
     
 }
-export default ProductLibrary;
+export default SubCategoryLibrary;

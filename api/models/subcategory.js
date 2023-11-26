@@ -19,26 +19,34 @@ const genderSubcategory = {
 const defaultSubcategory = [
   {
     id: 1,
-    name: 'Rolex',
+    name: 'Mans',
   },
   {
     id: 2,
-    name: 'Gucci',
+    name: 'Womans',
   },
   {
     id: 3,
-    name: 'Louis Vuitton',
+    name: 'Rolex',
   },
   {
     id: 4,
-    name: 'Prada',
+    name: 'Gucci',
   },
   {
     id: 5,
-    name: 'Cartier',
+    name: 'Louis Vuitton',
   },
   {
     id: 6,
+    name: 'Prada',
+  },
+  {
+    id: 7,
+    name: 'Cartier',
+  },
+  {
+    id: 8,
     name: 'Armani',
   },
 ];

@@ -13,15 +13,17 @@
   }
   
   .left-text {
-    /* Ajoutez les styles nécessaires pour aligner le texte à gauche */
     color: white; /* Couleur du texte à gauche */
   }
   
   .right-text {
-    /* Ajoutez les styles nécessaires pour aligner le texte à droite */
+    display: flex;
+    justify-content: space-between;
     color: white; /* Couleur du texte à droite */
   }
-  
+  .legal-privacy{
+    padding-right: 20px ;
+  }
   .centered-image {
     display: block;
     margin: 0 auto; /* Ajustez les marges selon vos besoins */

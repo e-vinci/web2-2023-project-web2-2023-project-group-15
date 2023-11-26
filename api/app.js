@@ -12,7 +12,7 @@ const usersRouter = require('./routes/users');
 const productRouter = require('./routes/product');
 const cartRouter = require('./routes/cart');
 const categorieRouter = require('./routes/categorie');
-const sousCategorieRouter = require('./routes/sousCategories');
+const subCategorieRouter = require('./routes/subCategory');
 const authsRouter = require('./routes/auths');
 const orderRouter = require('./routes/order');
 
@@ -29,7 +29,7 @@ app.use('/users', usersRouter);
 app.use('/products', productRouter);
 app.use('/carts', cartRouter);
 app.use('/categories', categorieRouter);
-app.use('/sousCategories', sousCategorieRouter);
+app.use('/subCategories', subCategorieRouter);
 app.use('/auths', authsRouter);
 app.use('/order', orderRouter);
 

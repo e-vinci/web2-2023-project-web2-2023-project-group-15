@@ -3,8 +3,18 @@ import Navbar from "../Components/Navbar/Navbar";
 import Navigate from "../Components/Router/Navigate";
 import {  setAuthenticatedUser } from '../utils/auths';
 
-class UserLibrary{
+const calculateAge = (birthdate) => {
+  const today = new Date();
+  const birthDate = new Date(birthdate);
+  const age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      return age - 1;
+  }
+  return age;
+}
 
+class UserLibrary{
     async onRegister(e) {
 
         e.preventDefault();
@@ -13,6 +23,14 @@ class UserLibrary{
         const mail = document.querySelector('#registerUsername').value;
         const registerPassword = document.querySelector('#registerPassword').value;
         const registerConfPassword = document.querySelector('#registerConfPassword').value;
+        const address = document.querySelector('#address').value
+        const birthdate = document.querySelector('#birthdate').value
+
+        const age = calculateAge(birthdate);
+        if (age < 6) {
+            alert("Vous devez avoir au moins 6 ans pour vous inscrire.");
+            return;
+        }
       
         if(registerPassword !== registerConfPassword) {
           throw new Error(`The password is not the same`);
@@ -25,12 +43,13 @@ class UserLibrary{
             "lastname": lastname,
             "email": mail,
             "password": registerPassword,
+            "address": address,
+            "birthdate":birthdate
           }),
           headers: {
             'Content-Type': 'application/json',
           },
         };
-        
       
         const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
         const authenticatedUser = await response.json();
@@ -43,8 +62,7 @@ class UserLibrary{
           Navigate('/');
         }catch(error){
           alert(authenticatedUser);
-        }
-        
+        }  
     }
 
       async onLogin(e) { 
@@ -64,8 +82,7 @@ class UserLibrary{
             'Content-Type': 'application/json',
           },
         };
-        
-        
+            
         try {
           const response = await fetch(`${process.env.API_BASE_URL}/auths/login`, options);
       

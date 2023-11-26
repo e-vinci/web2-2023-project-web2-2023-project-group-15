@@ -1,3 +1,7 @@
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable object-property-newline */
+/* eslint-disable no-dupe-keys */
+/* eslint-disable object-shorthand */
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const path = require('node:path');
@@ -13,10 +17,12 @@ const jsonDbPath = path.join(__dirname, '/../data/users.json');
 const defaultUsers = [
   {
     id: 1,
-    firtname: 'admin',
+    firstname: 'admin',
     lastname: 'admin',
     email: 'admin@example.com',
     password: bcrypt.hashSync('admin', saltRounds),
+    address: 'ville, rue, numero',
+    birthdate: new Date(), // the month is 0-indexed
   },
 ];
 
@@ -41,11 +47,10 @@ async function login(email, password) {
   return authenticatedUser;
 }
 
-async function register(firstname, lastname, email, password) {
+async function register(firstname, lastname, email, password, address, birthdate) {
   const userFound = readOneUserFromUsername(email);
   if (userFound) return undefined;
-
-  await createOneUser(firstname, lastname, email, password);
+  await createOneUser(firstname, lastname, email, password, address, birthdate);
 
   const token = jwt.sign(
     { username: email }, // session data added to the payload (payload : part 2 of a JWT)
@@ -69,17 +74,22 @@ function readOneUserFromUsername(email) {
   return users[indexOfUserFound];
 }
 
-async function createOneUser(firtname, lastname, email, password) {
+async function createOneUser(firstname, lastname, email, password, address, birthdate) {
   const users = parse(jsonDbPath, defaultUsers);
 
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+  const trueDate = new Date(birthdate);
+  
+  console.log(trueDate);
   const createdUser = {
     id: getNextId(),
-    firtname,
-    lastname,
-    email,
+    firstname: firstname,
+    lastname, lastname,
+    email: email,
     password: hashedPassword,
+    address: address,
+    birthdate: trueDate,
   };
 
   users.push(createdUser);
@@ -107,9 +117,27 @@ function getInfoByUserId(id) {
   return users[indexOfUsersFound];
 }
 
+function updateUserInfo(id, propertiesToUpdate) {
+  const idNumber = parseInt(id, 10);
+  const users = parse(jsonDbPath, defaultUsers);
+  const foundIndex = users.findIndex((user) => user.id === idNumber);
+
+  if (foundIndex < 0) return undefined;
+
+  const updatedUser = { ...users[foundIndex], ...propertiesToUpdate };
+
+  users[foundIndex] = updatedUser;
+
+  serialize(jsonDbPath, users);
+
+  return updatedUser;
+}
+
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
   getInfoByUserId,
+  updateUserInfo,
+  defaultUsers,
 };
