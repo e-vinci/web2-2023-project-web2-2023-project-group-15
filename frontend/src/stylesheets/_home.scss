@@ -1,0 +1,112 @@
+@use 'color';
+@use 'responsive';
+@use 'fonts';
+
+.container-home {
+    background-color: color.$primary-black;
+}
+
+.img-carroulssel {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container-categorie-home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color : color.$primary-white;
+    background-image: url("../img/home/background_categories_home.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    h1{ 
+        font-family: fonts.$regular-police;
+        width: 100%;
+        float: left;
+        margin-left: 5%;
+        margin-top: 2%;
+        font-size: 30px;
+    }
+    
+}
+
+.flex-container-categories {
+    display: flex;
+    flex-direction: wrap;
+    width: 100%;
+    justify-content: space-around;
+    padding: 5%;
+    align-items: center; 
+}
+
+.popular-row {
+    display: flex;
+    padding: 5%;
+    justify-content: center;
+    align-items: center; 
+    background-color: blue($color: #000000);
+}
+
+.flex-container-popular {
+    padding: 3%;
+    background-image: url("../img/home/background_popular_home.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0%;
+}
+.container-products-popular{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: white;
+    border : 2px solid black;
+    border-radius: 5px;
+}
+#card-popular-products{
+    margin: 0% ;
+    padding: 0%;
+}
+.product-card-popular{
+    width: 300px;
+    height: 200px;
+    flex-grow: 1;
+    flex-basis: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 5% 5%;
+}
+.container-products-popular h1,h2 {
+    margin-top: 3%;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  
+    
+}
+h2{
+    font-size: 22px;
+}
+.link-products-popular{
+    text-decoration: none;
+    color: black;
+    border-left : 2px solid black;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.product-card-img{
+    background-image: url('../img/home/home_popular_category_watches.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 510px;
+    height: 300px;
+}

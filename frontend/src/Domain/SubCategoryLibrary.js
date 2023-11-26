@@ -6,7 +6,7 @@ import Navigate from "../Components/Router/Navigate";
 
 class SubCategoryLibrary{
     
-    static async createOrder(){
+    static async getAllSubCategories(){
         let  allSubCategories='';
         try {
             const reponse = await fetch(`/api/subCategories/`);
@@ -21,5 +21,7 @@ class SubCategoryLibrary{
           }
           return allSubCategories;
     }
+
+    
 }
 export default SubCategoryLibrary;

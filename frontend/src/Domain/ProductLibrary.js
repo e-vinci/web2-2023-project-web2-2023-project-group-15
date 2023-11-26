@@ -6,10 +6,10 @@ import Navigate from "../Components/Router/Navigate";
 
 class ProductLibrary{
     
-    static async createOrder(){
+    static async getAllProducts(props){
         let  allProducts='';
         try {
-            const reponse = await fetch(`/api/products/`);
+            const reponse = await fetch(`/api/products/`,props);
             console.log("résultat reponse " , reponse)
       
             if (!reponse.ok) {
@@ -22,5 +22,6 @@ class ProductLibrary{
           // Navigate('/');
           return allProducts;
     }
+    
 }
 export default ProductLibrary;

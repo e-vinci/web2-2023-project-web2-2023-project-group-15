@@ -19,8 +19,8 @@ let  i = 0;
 const AllProductPage = async () => {
     const main = document.querySelector('main');
     clearPage();
-    allProducts = await ProductLibrary.createOrder();
-    const allSubCategories = await SubCategoryLibrary.createOrder();
+    allProducts = await ProductLibrary.getAllProducts();
+    const allSubCategories = await SubCategoryLibrary.getAllSubCategories();
     console.log(allProducts);
     renderSearchBar();
     renderAllProductsCards();
