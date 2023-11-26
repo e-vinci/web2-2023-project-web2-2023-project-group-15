@@ -28,6 +28,7 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@paypal/paypal-js": "^7.1.0",
     "@popperjs/core": "^2.9.2",
     "bootstrap": "^5.0.1",
     "chart.js": "^4.4.0",
