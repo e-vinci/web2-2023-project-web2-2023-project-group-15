@@ -123,9 +123,7 @@ function renderAllProductsByCategory(param) {
     const listOfCategories = readAllCategories();
     const categoriesArray = Object.values(listOfCategories);
     // eslint-disable-next-line max-len
-    const requestedCategory = categoriesArray.find((cat) =>
-      param?.toLowerCase().includes(cat.name.toLowerCase()),
-    );
+    const requestedCategory = categoriesArray.find((cat) => param?.toLowerCase().includes(cat.name.toLowerCase()));
     if (requestedCategory) {
       category = requestedCategory.name;
     }
@@ -150,9 +148,7 @@ function renderAllProductsByCategory(param) {
 // Ajouter une nouvelle fonction pour filtrer par catégorie
 function getAllProductsByCategory(products, category) {
   // eslint-disable-next-line max-len
-  return products.filter((product) =>
-    product.categorie.toLowerCase().includes(category.toLowerCase()),
-  );
+  return products.filter((product) => product.categorie.toLowerCase().includes(category.toLowerCase()));
 }
 
 function searchProductsByName(param) {

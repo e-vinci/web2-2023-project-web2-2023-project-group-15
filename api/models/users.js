@@ -41,7 +41,7 @@ async function login(email, password) {
   return authenticatedUser;
 }
 
-async function register(firstname, lastname,email, password) {
+async function register(firstname, lastname, email, password) {
   const userFound = readOneUserFromUsername(email);
   if (userFound) return undefined;
 
@@ -54,7 +54,6 @@ async function register(firstname, lastname,email, password) {
   );
 
   const authenticatedUser = {
-    
     username: email,
     token,
   };
@@ -77,9 +76,9 @@ async function createOneUser(firtname, lastname, email, password) {
 
   const createdUser = {
     id: getNextId(),
-    firtname: firtname,
-    lastname, lastname,
-    email: email,
+    firtname,
+    lastname,
+    email,
     password: hashedPassword,
   };
 
