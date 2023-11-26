@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { getAuthenticatedUser } from "../../utils/auths";
 // import { getCartTotal } from "../../utils/shoppingCart";
- import Navigate from "../Router/Navigate";
+import Navigate from "../Router/Navigate";
+import OrderLibrary from "../../Domain/OrderLibrary";
 
-
-const CheckoutPage = () => {
+const CheckoutPage = async () => {
     const user = getAuthenticatedUser();
 
     if(user === undefined){
@@ -217,7 +217,9 @@ const CheckoutPage = () => {
       
       btnCheckout.addEventListener('click', async (e) => {
         e.preventDefault();
+        await OrderLibrary.prototype.createOrder();
         myModal.show();
+       
 
         setTimeout(() => {
           myModal.hide();

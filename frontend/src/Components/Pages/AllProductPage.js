@@ -8,11 +8,11 @@ import '../../stylesheets/_allproducts.scss';
 import { clearPage } from '../../utils/render';
 import { importAll } from '../../utils/utilsImages';
 
-
 const productsImgs = importAll(require.context('../../img/products',true,/\.png$/));
 
 let allProducts;
 let  i = 0;
+let btnAddToCart;
 
 const AllProductPage = async () => {
     clearPage();
@@ -28,6 +28,7 @@ const AllProductPage = async () => {
         container.id = "container-products";
         container.innerHTML = addCardProduct();
         main.appendChild(container);
+     
     }
     
     function addCardProduct(){
@@ -44,7 +45,11 @@ const AllProductPage = async () => {
             `;
             i+=1;
         });
+        
+
+        
         return allCards;
+
     }
     function modifyString(nom) {
         return nom.replace(/\s/g, '').toLowerCase();
