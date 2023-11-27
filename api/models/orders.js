@@ -14,7 +14,8 @@ const jsonDbPath = path.join(__dirname, '/../data/orders.json');
 const defaultOrders = [
   {
     id: 1,
-    userName: 'Renaux',
+    firstName: 'Maureen',
+    lastName: 'Renaux',
     totalPrice: 1500,
     date: '21/11/2023',
     payementMethod: 'paypal',
@@ -22,7 +23,8 @@ const defaultOrders = [
   },
   {
     id: 2,
-    userName: 'Simonis',
+    firstName: 'Tom',
+    lastName: 'Simonis',
     totalPrice: 3500,
     date: '11/06/2023',
     payementMethod: 'card',
@@ -30,7 +32,8 @@ const defaultOrders = [
   },
   {
     id: 3,
-    userName: 'Smeding',
+    firstName: 'Pepijn',
+    lastName: 'Smeding',
     totalPrice: 500,
     date: '2/08/2022',
     payementMethod: 'paypal',
@@ -38,7 +41,7 @@ const defaultOrders = [
   },
 ];
 
-function createOrder(userName, payementMethod) {
+function createOrder(firstName, lastName, payementMethod) {
   const orders = parse(jsonDbPath, defaultOrders);
 
   // const parsedPrice = parseFloat(totalPrice);
@@ -46,7 +49,8 @@ function createOrder(userName, payementMethod) {
 
   const newOrder = {
     id: orders.length + 1,
-    userName: escape(userName),
+    firstName: escape(firstName),
+    lastName: escape(lastName),
     // totalPrice: parsedPrice,
     // date,
     payementMethod: escape(payementMethod),
@@ -59,6 +63,12 @@ function createOrder(userName, payementMethod) {
   return newOrder;
 }
 
+function getAllOrders() {
+  const orders = parse(jsonDbPath, defaultOrders);
+  return orders;
+}
+
 module.exports = {
   createOrder,
+  getAllOrders,
 };

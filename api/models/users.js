@@ -28,7 +28,7 @@ const defaultUsers = [
 
 async function login(email, password) {
   const userFound = readOneUserFromUsername(email);
-  console.log("userfound : ", userFound.firstname)
+  console.log('userfound : ', userFound.firstname);
   if (!userFound) return undefined;
 
   const passwordMatch = await bcrypt.compare(password, userFound.password);
