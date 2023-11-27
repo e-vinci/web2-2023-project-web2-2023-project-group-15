@@ -165,8 +165,6 @@ const CheckoutPage = () => {
                         <div id="paypal-button-container" style="width: 200px"></div>
                       </div>
 
-
-
                         <button type="button" id="btnCheckout" class="btn btn-primary">Checkout</button>
 
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">

@@ -39,7 +39,6 @@ async function login(email, password) {
     jwtSecret, // secret used for the signature (signature part 3 of a JWT)
     { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
   );
-
   
   const authenticatedUser = {
     firstname: userFound.firstname,

@@ -10,7 +10,8 @@ class OrderLibrary{
 
         console.log(" ORDERLIBRARY TEST1 ");
         const user = getAuthenticatedUser();
-        const userName = user.username;
+        const firstName = user.firstname;
+        const lastName = user.lastname;
         // const totalPrice =  getCartTotal();
         let payementMethod;
 
@@ -33,7 +34,8 @@ class OrderLibrary{
             const options = {
                 method: 'POST',
                 body: JSON.stringify({
-                  "userName": userName,
+                  "firstName": firstName,
+                  "lastName" : lastName,
                   "payementMethod":payementMethod,
                 }),
                 headers: {
@@ -58,6 +60,22 @@ class OrderLibrary{
           console.log(" ORDERLIBRARY TEST3 ");
           return order;
     
+    }
+
+    async getAllOrder(){
+      let  allOrders;
+      try {
+          const reponse = await fetch(`/api/order/`);
+          console.log("résultat reponse " , reponse)
+    
+          if (!reponse.ok) {
+            throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
+          }
+          allOrders =  await reponse.json();
+        } catch (err) {
+          console.error('error: ', err);
+        }
+        return allOrders;
     }
 
 }
