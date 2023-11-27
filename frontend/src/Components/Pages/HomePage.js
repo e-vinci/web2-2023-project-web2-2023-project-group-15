@@ -6,7 +6,7 @@ import imgBags from '../../img/home/home_categories_bags.png';
 import imgClothing from '../../img/home/home_categories_clothing.png';
 import imgCosmetics from '../../img/home/home_categories_cosmetics.png';
 import imgWatches from '../../img/home/home_categories_watches.png';
-//import popularImgWatches from '../../img/home/home_popular_category_watches.png';
+import popularImgWatches from '../../img/home/home_popular_category_watches.png';
 //import popularImgBags from '../../img/home/home_popular_category_bags.png';
 //import popularImgCosmetics from '../../img/home/home_popular_category_cosmetics.png';
 import popularImgWatchesBallonBleu from '../../img/products/2.png';
@@ -101,11 +101,7 @@ const html = `
   <div class="flex-container-popular">
 
       <div class="container-products-popular" id="container-products-popular">
-              <a class="link-products" href="#" data-rui="" id="card-popular-products">
-                <div class="product-card-img" id="category-popular-img">
-                <h1> watches </h1>
-                </div>
-             </a>
+                <img class="product-img-popular" id="id="category-popular-img" src=${popularImgWatches} alt="Picture Watch Cartier"/>
              <a class="link-products-popular" href="#" data-rui="" >
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesBallonBleu} alt="Picture Watch Cartier"/>

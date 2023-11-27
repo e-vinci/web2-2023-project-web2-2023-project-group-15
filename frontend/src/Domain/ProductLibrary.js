@@ -2,14 +2,13 @@
 /* eslint-disable class-methods-use-this */
 import Navigate from "../Components/Router/Navigate";
 
-
-
 class ProductLibrary{
     
     static async getAllProducts(props){
         let  allProducts='';
+        const url ='/api/products?';
         try {
-            const reponse = await fetch(`/api/products/`,props);
+            const reponse = await fetch(url+props);
             console.log("résultat reponse " , reponse)
       
             if (!reponse.ok) {
@@ -19,9 +18,7 @@ class ProductLibrary{
           } catch (err) {
             console.error('error: ', err);
           }
-          // Navigate('/');
           return allProducts;
     }
-    
 }
 export default ProductLibrary;
