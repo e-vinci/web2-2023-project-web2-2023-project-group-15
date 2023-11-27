@@ -10,10 +10,11 @@ import { clearPage } from '../../utils/render';
 import { importAll } from '../../utils/utilsImages';
 import arrowDown from '../../img/icons/small_arrow_down.png';
 
-const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
+const productsImgs = importAll(require.context('../../img/products',true,/\.png$/));
 
 let allProducts;
-let i = 0;
+let  i = 0;
+let btnAddToCart;
 
 const AllProductPage = async () => {
   const main = document.querySelector('main');

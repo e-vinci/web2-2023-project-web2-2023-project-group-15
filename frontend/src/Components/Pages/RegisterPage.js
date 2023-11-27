@@ -71,6 +71,15 @@ function renderRegisterForm() {
               <label class="form-label" for="registerConfPassword"></label>
             </div>
 
+            <div class="form-outline form-white mb-2">
+              <input type="text" id="address" class="form-control form-control-lg" placeholder = "adresse" required = true/>
+              <label class="form-label" for="address"></label>
+            </div>
+            <div class="form-outline form-white mb-2">
+              <input type="date" id="birthdate" class="form-control form-control-lg" placeholder="birthdate" required=true />
+              <label class="form-label" for="birthdate"></label>
+            </div>
+
               <div class="mb-3 form-check">
                  <input type="checkbox" id="rememberme" class="form-check-input" checked="${getRememberMe()}"/>
               <label class="form-check-label" for="rememberme">Remember me</label>
