@@ -1,3 +1,6 @@
+/* eslint-disable func-names */
+/* eslint-disable no-shadow */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
 import { loadScript } from "@paypal/paypal-js";
 import { getAuthenticatedUser } from "../../utils/auths";
@@ -159,7 +162,7 @@ const CheckoutPage = () => {
                       </div>
                   
                       <div id="content2" class="payment-content">
-                        <div id="paypal-button" style="width: 200px"></div>
+                        <div id="paypal-button-container" style="width: 200px"></div>
                       </div>
 
 
@@ -261,7 +264,7 @@ function paypal() {
       .then((paypal) => {
         
   paypal.Buttons({
-    createOrder: function (data, actions) {
+    createOrder (_data, actions) {
       return actions.order.create({
         purchase_units: [{
           amount: {
@@ -270,9 +273,9 @@ function paypal() {
         }]
       });
     },
-    onApprove: function (data, actions) {
-      return actions.order.capture().then(function (details) {
-        alert('Transaction completed by ' + details.payer.name.given_name);
+    onApprove (_data, actions) {
+      return actions.order.capture().then((details) => {
+        alert(`Transaction completed by ${  details.payer.name.given_name}`);
       });
     }
   }).render('#paypal-button-container');
