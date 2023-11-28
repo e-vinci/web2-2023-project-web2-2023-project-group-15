@@ -12,7 +12,7 @@ class OrderLibrary{
         const user = getAuthenticatedUser();
         const firstName = user.firstname;
         const lastName = user.lastname;
-        // const totalPrice =  getCartTotal();
+        const totalPrice =  null;
         let payementMethod;
 
         const paypal = document.getElementById('paypal').checked;
@@ -37,6 +37,7 @@ class OrderLibrary{
                   "firstName": firstName,
                   "lastName" : lastName,
                   "payementMethod":payementMethod,
+                  "totalPrice" : totalPrice,
                 }),
                 headers: {
                   'Content-Type': 'application/json',
