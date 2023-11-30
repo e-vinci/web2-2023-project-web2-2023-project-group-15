@@ -17,48 +17,57 @@ const jsonDbPath = path.join(__dirname, '/../data/users.json');
 const defaultUsers = [
   {
     id: 1,
-    firtname: 'admin',
+    firstname: 'admin',
     lastname: 'admin',
     email: 'admin@example.com',
     password: bcrypt.hashSync('admin', saltRounds),
+    address: 'ville, rue, numero',
+    birthdate: new Date(), // the month is 0-indexed
   },
 ];
 
 async function login(email, password) {
   const userFound = readOneUserFromUsername(email);
+  console.log('userfound : ', userFound.firstname);
   if (!userFound) return undefined;
 
   const passwordMatch = await bcrypt.compare(password, userFound.password);
   if (!passwordMatch) return undefined;
 
   const token = jwt.sign(
-    { username: email }, // session data added to the payload (payload : part 2 of a JWT)
+    { email: email }, // session data added to the payload (payload : part 2 of a JWT)
     jwtSecret, // secret used for the signature (signature part 3 of a JWT)
     { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
   );
-
+  
   const authenticatedUser = {
-    username: email,
+    firstname: userFound.firstname,
+    lastname: userFound.lastname,
+    email: email,
+    address: userFound.address,
     token,
   };
 
   return authenticatedUser;
 }
 
-async function register(firstname, lastname, email, password) {
+async function register(firstname, lastname, email, password, address, birthdate) {
   const userFound = readOneUserFromUsername(email);
   if (userFound) return undefined;
-
-  await createOneUser(firstname, lastname, email, password);
+  await createOneUser(firstname, lastname, email, password, address, birthdate);
 
   const token = jwt.sign(
-    { username: email }, // session data added to the payload (payload : part 2 of a JWT)
+    { email: email }, // session data added to the payload (payload : part 2 of a JWT)
     jwtSecret, // secret used for the signature (signature part 3 of a JWT)
     { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
   );
 
   const authenticatedUser = {
-    username: email,
+    firstname: firstname,
+    lastname: lastname, 
+    address: address,
+    birthdate: birthdate,
+    email: email,
     token,
   };
 
@@ -73,17 +82,22 @@ function readOneUserFromUsername(email) {
   return users[indexOfUserFound];
 }
 
-async function createOneUser(firtname, lastname, email, password) {
+async function createOneUser(firstname, lastname, email, password, address, birthdate) {
   const users = parse(jsonDbPath, defaultUsers);
 
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+  const trueDate = new Date(birthdate);
+  
+  console.log(trueDate);
   const createdUser = {
     id: getNextId(),
-    firtname,
-    lastname,
-    email,
+    firstname: firstname,
+    lastname, lastname,
+    email: email,
     password: hashedPassword,
+    address: address,
+    birthdate: trueDate,
   };
 
   users.push(createdUser);

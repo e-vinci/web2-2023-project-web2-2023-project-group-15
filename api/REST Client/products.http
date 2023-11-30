@@ -39,7 +39,7 @@ GET {{baseUrl}}/products?brand=cartier
 GET {{baseUrl}}/products?brand=rolex
 
 ### get Products with not full name
-GET {{baseUrl}}/products?brand=LouisVuitton
+GET {{baseUrl}}/products?brand=louisvuitton
 
 ### post add product
 POST {{baseUrl}}/products

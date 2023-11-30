@@ -5,16 +5,19 @@ const router = express.Router();
 
 /* Register a user */
 router.post('/register', async (req, res) => {
-  const firstname = req?.body?.firstname?.length !== 0 ? req.body.firstname : undefined;
-  const lastname = req?.body?.lastname?.length !== 0 ? req.body.lastname : undefined;
-  const email = req?.body?.email?.length !== 0 ? req.body.email : undefined;
-  const password = req?.body?.password?.length !== 0 ? req.body.password : undefined;
+  const firstname = req?.body?.firstname;
+  const lastname = req?.body?.lastname;
+  const email = req?.body?.email;
+  const password = req?.body?.password;
+  const address = req?.body?.address;
+  const birthdate = req?.body?.birthdate;
+  
+  if (!email || !password || !firstname || !lastname || !address || !birthdate) return res.sendStatus(400); 
+  
+  const authenticatedUser = await register(firstname, lastname, email, password, address, birthdate);
+  
 
-  if (!email || !password || !firstname || !lastname ) return res.sendStatus(400); // 400 Bad Request
-
-  const authenticatedUser = await register(firstname, lastname, email, password);
-
-  if (!authenticatedUser) return res.sendStatus(401); // 409 Conflict
+  if (!authenticatedUser) return res.sendStatus(401);
 
   return res.json(authenticatedUser);
 });

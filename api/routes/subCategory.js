@@ -7,7 +7,7 @@ const router = express.Router();
 
 const {
   readAllSubCategories,
-} = require('../models/subCategory.js');
+} = require('../models/subcategory.js');
 
 router.get('/', (req, res) => {
   const subCategories = readAllSubCategories();
