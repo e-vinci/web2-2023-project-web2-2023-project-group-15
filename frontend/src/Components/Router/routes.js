@@ -8,6 +8,10 @@ import LoginPage from '../Pages/LoginPage';
 import Logout from '../Logout/Logout';
 import AdminPage from '../Pages/AdminPage';
 import CheckoutPage from '../Pages/CheckoutPage';
+import WatchesProducts from '../Pages/WatchesProducts';
+import CosmeticsProducts from '../Pages/CosmeticsProducts';
+import BagsProducts from '../Pages/BagsProducts';
+import ClothingProducts from '../Pages/ClothingProducts';
 
 const routes = {
   '/': HomePage,
@@ -19,8 +23,11 @@ const routes = {
   '/login':LoginPage,
   '/register': RegisterPage,
   '/admin':AdminPage, 
-  '/checkout': CheckoutPage
-
+  '/checkout': CheckoutPage , 
+  '/AllProducts=Watches': WatchesProducts,
+  '/AllProducts=Cosmetics': CosmeticsProducts,
+  '/AllProducts=Bags': BagsProducts,
+  '/AllProducts=Clothing': ClothingProducts
 };
 
 export default routes;
