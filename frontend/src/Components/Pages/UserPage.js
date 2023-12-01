@@ -1,6 +1,9 @@
 import { getAuthenticatedUser } from "../../utils/auths";
+import UserLibrary from "../../Domain/UserLibrary";
 
 const UserPage = () => {
+
+const userInfo = UserLibrary.getUserById
 
   const user = getAuthenticatedUser();
 
@@ -21,19 +24,19 @@ const UserPage = () => {
   
                                   <ul class="list-group mb-4">
                                       <li class="list-group-item">
-                                          <strong>Firstname:</strong> ${user.fistname}
+                                          <strong>Firstname:</strong> ${userInfo.fistname}
                                       </li>
                                       <li class="list-group-item">
-                                          <strong>Lastname:</strong> ${user.lastname}
+                                          <strong>Lastname:</strong> ${userInfo.lastname}
                                       </li>
                                       <li class="list-group-item">
-                                          <strong>birth date:</strong> ${user.birthdate}
+                                          <strong>birth date:</strong> ${userInfo.birthdate}
                                       </li>
                                       <li class="list-group-item">
                                           <strong>Email:</strong> ${user.username}
                                       </li>
                                       <li class="list-group-item">
-                                          <strong>Address:</strong> ${user.adress}
+                                          <strong>Address:</strong> ${userInfo.adress}
                                       </li>
                                       
                                   </ul>
