@@ -18,6 +18,7 @@ import popularImgBagsPradaBP from '../../img/products/8.png';
 import popularImgCosmeticsArmaniCode from '../../img/products/4.png';
 import popularImgCosmeticsPenhaligons from '../../img/products/9.png';
 import popularImgCosmeticsChanel5 from '../../img/products/5.png';
+import Navigate from '../Router/Navigate';
 
 import '../../stylesheets/_home.scss';
 // Importe le fichier Bootstrap CSS
@@ -67,28 +68,28 @@ const html = `
           <img class="card-img-top" src="${imgBags}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Bags</h5>
-            <a href="#linkBags" class="btn btn-dark">Check</a>
+            <a id="linkBags" data-uri="/AllProducts=Bags" href="#" class="btn btn-dark">Check</a>
           </div>
         </div>
         <div class="card text-center mx-auto" id="card-main-categorie">
           <img class="card-img-top" src="${imgCosmetics}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Cosmetics</h5>
-          <a href="#linkCosmetics" class="btn btn-dark">Check</a>
+          <a id="linkCosmetics" data-uri="/AllProducts=Cosmetics" href="" class="btn btn-dark">Check</a>
         </div>
       </div>
       <div class="card text-center mx-auto" >
         <img class="card-img-top" src="${imgClothing}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Clothing</h5>
-          <a href="#" class="btn btn-dark">Check</a>
+          <a id="linkClothing" data-uri="/AllProducts=Clothing" href="#" class="btn btn-dark">Check</a>
         </div>
       </div>
       <div class="card text-center mx-auto" >
         <img class="card-img-top" src="${imgWatches}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Watches</h5>
-          <a href="#linkWatches" class="btn btn-dark">Check</a>
+          <a id="linkWatches" data-uri="/AllProducts=Watches" href="#" class="btn btn-dark">Check</a>
         </div>
       </div>
     </div>
@@ -196,6 +197,7 @@ const html = `
 
     <!-- Discover More Button -->
     <div class="text-center mt-5 mb-4" id="btn-allProducts" >
+
       <button class="btn btn-dark btn-lg btn-custom" data-uri="/allProducts" >Discover More</button>
     </div>
 
@@ -203,9 +205,38 @@ const html = `
 </div>
 
 </div>   `;
+
+function callBagsCategory() {
+  const bagsButton = document.querySelector('#linkBags');
+  bagsButton.addEventListener('click', () => callOtherPage(bagsButton.getAttribute('data-uri')));
+}
+
+function callCosmeticsCategory() {
+  const cosmeticsButton = document.querySelector('#linkCosmetics');
+  cosmeticsButton.addEventListener('click', () => callOtherPage(cosmeticsButton.getAttribute('data-uri')));
+}
+
+function callClothingCategory() {
+  const clothingButton = document.querySelector('#linkClothing');
+  clothingButton.addEventListener('click', () => callOtherPage(clothingButton.getAttribute('data-uri')));
+}
+
+function callWatchesCategory() {
+  const watchesButton = document.querySelector('#linkWatches');
+  watchesButton.addEventListener('click', () => callOtherPage(watchesButton.getAttribute('data-uri')));
+}
+
+function callOtherPage (uri) {
+  Navigate(uri);
+}
+
 const HomePage = () => {
   const main = document.querySelector('main');
   main.innerHTML = html;
+  callBagsCategory();
+  callClothingCategory();
+  callWatchesCategory();
+  callCosmeticsCategory();
 };
 
 export default HomePage;
