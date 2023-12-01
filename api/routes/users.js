@@ -2,12 +2,26 @@ const express = require('express');
 
 const router = express.Router();
 
-const { getInfoByUserId, updateUserInfo } = require('../models/users');
+const { getInfoByUserId, updateUserInfo, getIdFromUsername } = require('../models/users');
 
 router.get('/:id', (req, res) => {
   const foundUser = getInfoByUserId(req.params.id);
 
   if (!foundUser) return res.sendStatus(404);
+
+  return res.json(foundUser);
+});
+
+router.get('/', (req, res) => {
+  console.log('test2');
+  const foundUser = getIdFromUsername(req.query.email);
+
+  console.log('foundUser:', foundUser);
+
+  if (!foundUser) {
+    console.log('User not found');
+    return res.sendStatus(404);
+  }
 
   return res.json(foundUser);
 });
