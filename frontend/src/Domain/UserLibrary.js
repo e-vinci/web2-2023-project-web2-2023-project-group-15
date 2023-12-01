@@ -104,7 +104,24 @@ class UserLibrary{
           alert(error.message);
         }
     }
-      
+
+    static async getUserFromUsername(email){
+      let  user='';
+      const url ='/api/users?email='
+      try {
+          const reponse = await fetch(url+email);
+          console.log("résultat reponse " , reponse)
+    
+          if (!reponse.ok) {
+            throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
+          }
+          user =  await reponse.json();
+        } catch (err) {
+          console.error('error: ', err);
+        }
+        return user;
+  }
+
 
 }
 export default UserLibrary;

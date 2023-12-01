@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const { getInfoByUserId, updateUserInfo, getIdFromUsername } = require('../models/users');
+const { getInfoByUserId, updateUserInfo, getUserFromUsername } = require('../models/users');
 
 router.get('/:id', (req, res) => {
   const foundUser = getInfoByUserId(req.params.id);
@@ -13,13 +13,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  console.log('test2');
-  const foundUser = getIdFromUsername(req.query.email);
-
-  console.log('foundUser:', foundUser);
+  const foundUser = getUserFromUsername(req.query.email);
 
   if (!foundUser) {
-    console.log('User not found');
     return res.sendStatus(404);
   }
 
