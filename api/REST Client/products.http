@@ -5,6 +5,12 @@ GET {{baseUrl}}/products
 ### get Product 
 GET {{baseUrl}}/products/4
 
+### get Product order bu price
+GET {{baseUrl}}/products?order=price
+
+### get Product order bu price desc
+GET {{baseUrl}}/products?order=-price
+
 ### get Product order bu name asc
 GET {{baseUrl}}/products?order=name
 

@@ -11,7 +11,7 @@ const {
   searchProductsByName,
   renderAllProductsByCategory,
   readOneProduct,
-  sortProductsByName,
+  sortProductsByOrder,
   defaultProducts,
   deleteOneProduct,
 } = require('../models/products');
@@ -33,7 +33,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   let allProductsPotentiallyOrdered;
   const products = parse(jsonDbPath, defaultProducts);
-  if (req?.query?.order) allProductsPotentiallyOrdered = sortProductsByName(req.query.order);
+  if (req?.query?.order) allProductsPotentiallyOrdered = sortProductsByOrder(req.query.order);
   // eslint-disable-next-line max-len
   else if (req?.query?.category) allProductsPotentiallyOrdered = renderAllProductsByCategory(req.query.category);
   else if (req?.query?.name) allProductsPotentiallyOrdered = searchProductsByName(req.query.name);
