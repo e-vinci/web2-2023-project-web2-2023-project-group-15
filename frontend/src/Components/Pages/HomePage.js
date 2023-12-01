@@ -196,13 +196,18 @@ const html = `
 
     <!-- Discover More Button -->
     <div class="text-center mt-5 mb-4" id="btn-allProducts" >
-      <button class="btn btn-dark btn-lg btn-custom" data-uri="/allProducts" >Discover More</button>
+      <a href="#"  >
+        <button class="btn btn-dark btn-lg btn-custom">Discover More</button>
+      </a>
     </div>
 
 </div>
 </div>
 
 </div>   `;
+
+
+
 const HomePage = () => {
   const main = document.querySelector('main');
   main.innerHTML = html;
