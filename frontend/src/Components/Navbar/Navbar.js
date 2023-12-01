@@ -115,6 +115,11 @@ function renderNavbar() {
   const navbar = document.querySelector('#navbarWrapper');
 
   navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar : anonymousUserNavbar;
+
+
+  console.log('navbar:',isAuthenticated)
+
+  if(isAuthenticated()){
   const btnUser = document.getElementById('user');
   const userEmail =  user.email;
   console.log(userEmail)
@@ -123,6 +128,8 @@ function renderNavbar() {
     console.log('btnUser email = ' , userEmail)
     Navigate('/user?email=' , userEmail )
   })
+ }
+
 }
 
 
