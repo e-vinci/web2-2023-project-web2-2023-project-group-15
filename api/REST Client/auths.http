@@ -46,7 +46,7 @@ GET {{baseUrl}}/users/1
 
 
 ### get all info on user
-GET {{baseUrl}}/users?email=pepijn.smeding@gmail.com
+GET {{baseUrl}}/users?email=Jean.Dupont@example.com
 
 ### update user info
 PATCH {{baseUrl}}/users/1
