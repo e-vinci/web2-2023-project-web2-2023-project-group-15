@@ -5,6 +5,12 @@ GET {{baseUrl}}/products
 ### get Product 
 GET {{baseUrl}}/products/4
 
+### get Product order bu price
+GET {{baseUrl}}/products?order=price
+
+### get Product order bu price desc
+GET {{baseUrl}}/products?order=-price
+
 ### get Product order bu name asc
 GET {{baseUrl}}/products?order=name
 
@@ -30,7 +36,7 @@ GET {{baseUrl}}/products?category=cosmetics
 GET {{baseUrl}}/products?name=rolex
 
 ### get Products with not full name
-GET {{baseUrl}}/products?name=lo
+GET {{baseUrl}}/products?name=rolex
 
 ### get Products with not full name
 GET {{baseUrl}}/products?brand=cartier
@@ -39,7 +45,7 @@ GET {{baseUrl}}/products?brand=cartier
 GET {{baseUrl}}/products?brand=rolex
 
 ### get Products with not full name
-GET {{baseUrl}}/products?brand=LouisVuitton
+GET {{baseUrl}}/products?brand=louisvuitton
 
 ### post add product
 POST {{baseUrl}}/products

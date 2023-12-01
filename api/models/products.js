@@ -94,17 +94,23 @@ const defaultProducts = [
   },
 ];
 
-function sortProductsByName(param) {
+function sortProductsByOrder(param) {
   const orderByTitle = param?.includes('name') ? param : undefined;
 
   let orderedProducts;
   const products = parse(jsonDbPath, defaultProducts);
 
-  orderedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
-  if (orderByTitle === '-name') {
-    orderedProducts = orderedProducts.reverse();
+  if (orderByTitle) {
+    orderedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
+    if (orderByTitle === '-name') {
+      orderedProducts = orderedProducts.reverse();
+    }
+  } else if (param?.includes('price')) {
+    orderedProducts = [...products].sort((a, b) => a.price - b.price);
+    if (param?.includes('-price')) {
+      orderedProducts = orderedProducts.reverse();
+    }
   }
-
   const allProductsPotentiallyOrdered = orderedProducts ?? products;
   return allProductsPotentiallyOrdered;
 }
@@ -123,9 +129,7 @@ function renderAllProductsByCategory(param) {
     const listOfCategories = readAllCategories();
     const categoriesArray = Object.values(listOfCategories);
     // eslint-disable-next-line max-len
-    const requestedCategory = categoriesArray.find((cat) =>
-      param?.toLowerCase().includes(cat.name.toLowerCase()),
-    );
+    const requestedCategory = categoriesArray.find((cat) => param?.toLowerCase().includes(cat.name.toLowerCase()));
     if (requestedCategory) {
       category = requestedCategory.name;
     }
@@ -150,9 +154,7 @@ function renderAllProductsByCategory(param) {
 // Ajouter une nouvelle fonction pour filtrer par catégorie
 function getAllProductsByCategory(products, category) {
   // eslint-disable-next-line max-len
-  return products.filter((product) =>
-    product.categorie.toLowerCase().includes(category.toLowerCase()),
-  );
+  return products.filter((product) => product.categorie.toLowerCase().includes(category.toLowerCase()));
 }
 
 function searchProductsByName(param) {
@@ -275,7 +277,7 @@ function getAllWomenProducts() {
 }
 
 module.exports = {
-  sortProductsByName,
+  sortProductsByOrder,
   searchProductsByName,
   renderAllProductsByCategory,
   readOneProduct,

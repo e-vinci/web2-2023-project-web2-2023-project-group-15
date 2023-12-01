@@ -6,9 +6,9 @@ import imgBags from '../../img/home/home_categories_bags.png';
 import imgClothing from '../../img/home/home_categories_clothing.png';
 import imgCosmetics from '../../img/home/home_categories_cosmetics.png';
 import imgWatches from '../../img/home/home_categories_watches.png';
-//import popularImgWatches from '../../img/home/home_popular_category_watches.png';
-//import popularImgBags from '../../img/home/home_popular_category_bags.png';
-//import popularImgCosmetics from '../../img/home/home_popular_category_cosmetics.png';
+import popularImgWatches from '../../img/home/home_popular_category_watches.png';
+import popularImgBags from '../../img/home/home_popular_category_bags.png';
+import popularImgCosmetics from '../../img/home/home_popular_category_cosmetics.png';
 import popularImgWatchesBallonBleu from '../../img/products/2.png';
 import popularImgWatchesRolexSubmarinier from '../../img/products/1.png';
 import popularImgWatchesPPGrandComplications from '../../img/products/7.png';
@@ -67,14 +67,14 @@ const html = `
           <img class="card-img-top" src="${imgBags}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Bags</h5>
-            <a href="#" class="btn btn-dark">Check</a>
+            <a href="#linkBags" class="btn btn-dark">Check</a>
           </div>
         </div>
         <div class="card text-center mx-auto" id="card-main-categorie">
           <img class="card-img-top" src="${imgCosmetics}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Cosmetics</h5>
-          <a href="#" class="btn btn-dark">Check</a>
+          <a href="#linkCosmetics" class="btn btn-dark">Check</a>
         </div>
       </div>
       <div class="card text-center mx-auto" >
@@ -88,7 +88,7 @@ const html = `
         <img class="card-img-top" src="${imgWatches}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Watches</h5>
-          <a href="#" class="btn btn-dark">Check</a>
+          <a href="#linkWatches" class="btn btn-dark">Check</a>
         </div>
       </div>
     </div>
@@ -97,15 +97,13 @@ const html = `
   <!-- Popular section -->
 
   <div> 
-  <h1> Popular </h1>
   <div class="flex-container-popular">
+  <h1> Popular </h1>
 
-      <div class="container-products-popular" id="container-products-popular">
-              <a class="link-products" href="#" data-rui="" id="card-popular-products">
-                <div class="product-card-img" id="category-popular-img">
-                <h1> watches </h1>
-                </div>
-             </a>
+          <div class="container-products-popular" id="container-products-popular">
+                <img class="product-card-img"  src=${popularImgWatches} alt="Picture Watch Cartier"/>
+
+                <!--WATCHES 1-->
              <a class="link-products-popular" href="#" data-rui="" >
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesBallonBleu} alt="Picture Watch Cartier"/>
@@ -113,6 +111,8 @@ const html = `
                     <h2 class="price-product" >9.050.99 €</h1>
                 </div>
              </a>
+
+             <!--WATCHES 2-->
              <a class="link-products-popular" href="#" data-rui="" >
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesRolexSubmarinier} alt="Picture Watch Rolex"/>
@@ -120,6 +120,8 @@ const html = `
                     <h2 class="price-product" >25.190.00 €</h1>
                 </div>
              </a>
+
+             <!--WATCHES 3-->
              <a class="link-products-popular" href="#" data-rui="">
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesPPGrandComplications} alt="Picture Watch Patek Philippe"/>
@@ -130,11 +132,9 @@ const html = `
        </div>
 
       <div class="container-products-popular" id="container-products-popular">
-        <a class="link-products" href="#" data-rui="" id="card-popular-products">
-          <div class="product-card-img" id="category-popular-img">
-          <h1> watches </h1>
-          </div>
-        </a>
+      <img class="product-card-img" src=${popularImgBags} alt="Picture Watch Cartier"/>
+
+        <!--BAGS 1-->
         <a class="link-products-popular" href="#" data-rui="" >
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsLVDubai} alt="Picture Bag Louis Vuitton"/>
@@ -142,6 +142,8 @@ const html = `
               <h2 class="price-product" >6.999.99 €</h1>
           </div>
         </a>
+
+        <!--BAGS 2-->
         <a class="link-products-popular" href="#" data-rui="" >
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsPradaSaffiano} alt="Picture Bag Prada Saffiano"/>
@@ -149,6 +151,8 @@ const html = `
               <h2 class="price-product" >2.199.99 €</h1>
           </div>
         </a>
+
+        <!--BAGS 3-->
         <a class="link-products-popular" href="#" data-rui="">
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsPradaBP} alt="Picture Bag Prada Backpack"/>
@@ -159,11 +163,9 @@ const html = `
      </div>
 
      <div class="container-products-popular" id="container-products-popular">
-     <a class="link-products" href="#" data-rui="" id="card-popular-products">
-       <div class="product-card-img" id="category-popular-img">
-       <h1> watches </h1>
-       </div>
-     </a>
+     <img class="product-card-img" src=${popularImgCosmetics} alt="Picture Watch Cartier"/>
+
+     <!--COSMETICS 1-->
      <a class="link-products-popular" href="#" data-rui="" >
        <div class="product-card-popular" id="product-card">
            <img class="product-img-popular" src=${popularImgCosmeticsArmaniCode} alt="Picture Perfum Armani Code"/>
@@ -171,6 +173,8 @@ const html = `
            <h2 class="price-product" >289,99 €</h1>
        </div>
      </a>
+
+     <!--COSMETICS 2-->
      <a class="link-products-popular" href="#" data-rui="" >
      <div class="product-card-popular" id="product-card">
          <img class="product-img-popular" src=${popularImgCosmeticsPenhaligons} alt="Picture Perfum Penhaligons"/>
@@ -178,6 +182,8 @@ const html = `
          <h2 class="price-product" >489,99 €</h1>
      </div>
      </a>
+
+     <!--COSMETICS 3-->
      <a class="link-products-popular" href="#" data-rui="">
        <div class="product-card-popular" id="product-card">
            <img class="product-img-popular" src=${popularImgCosmeticsChanel5} alt="Picture Perfum Chanel5"/>
@@ -187,6 +193,12 @@ const html = `
      </a>
     
   </div>
+
+    <!-- Discover More Button -->
+    <div class="text-center mt-5 mb-4">
+      <button class="btn btn-dark btn-lg btn-custom">Discover More</button>
+    </div>
+
 </div>
 </div>
 
