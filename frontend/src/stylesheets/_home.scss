@@ -109,29 +109,8 @@ h2 {
   height: 15.6%;
 }
 
-#discoverBtn {
-  background-color: #000;
-  color: #fff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#discoverBtn:hover {
-  background-color: #333;
-}
-
-#discoverBtn.clicked {
-  animation: scaleAnimation 0.3s ease-out;
-}
-
-@keyframes scaleAnimation {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.9);
-  }
+.btn-custom {
+  width: 250px; 
+  height: 70px; 
+  font-size: 25px; 
 }

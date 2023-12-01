@@ -97,8 +97,8 @@ const html = `
   <!-- Popular section -->
 
   <div> 
-  <h1> Popular </h1>
   <div class="flex-container-popular">
+  <h1> Popular </h1>
 
           <div class="container-products-popular" id="container-products-popular">
                 <img class="product-card-img"  src=${popularImgWatches} alt="Picture Watch Cartier"/>
@@ -194,10 +194,10 @@ const html = `
     
   </div>
 
-  <!-- Discover More Button -->
-  <div class="text-center mt-5 mb-4">
-    <button class="btn btn-dark btn-lg">Discover More</button>
-  </div>
+    <!-- Discover More Button -->
+    <div class="text-center mt-5 mb-4">
+      <button class="btn btn-dark btn-lg btn-custom">Discover More</button>
+    </div>
 
 </div>
 </div>
