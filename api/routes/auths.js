@@ -11,11 +11,12 @@ router.post('/register', async (req, res) => {
   const password = req?.body?.password;
   const address = req?.body?.address;
   const birthdate = req?.body?.birthdate;
-  
-  if (!email || !password || !firstname || !lastname || !address || !birthdate) return res.sendStatus(400); 
-  
+
+  // eslint-disable-next-line max-len
+  if (!email || !password || !firstname || !lastname || !address || !birthdate) return res.sendStatus(400);
+
+  // eslint-disable-next-line max-len
   const authenticatedUser = await register(firstname, lastname, email, password, address, birthdate);
-  
 
   if (!authenticatedUser) return res.sendStatus(401);
 
@@ -32,7 +33,6 @@ router.post('/login', async (req, res) => {
   const authenticatedUser = await login(email, password);
 
   if (!authenticatedUser) return res.sendStatus(401); // 401 Unauthorized
-
 
   return res.json(authenticatedUser);
 });
