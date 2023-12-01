@@ -125,10 +125,8 @@ function getInfoByUserId(id) {
   return users[indexOfUsersFound];
 }
 
-function getIdFromUsername(email) {
-  console.log('test 0');
+function getUserFromUsername(email) {
   const users = parse(jsonDbPath, defaultUsers);
-  console.log(`email:${email}`);
   const userFound = users.filter((user) => user.email.toLowerCase().includes(email.toLowerCase()));
   
   return userFound;
@@ -156,6 +154,6 @@ module.exports = {
   readOneUserFromUsername,
   getInfoByUserId,
   updateUserInfo,
-  getIdFromUsername,
+  getUserFromUsername,
   defaultUsers,
 };

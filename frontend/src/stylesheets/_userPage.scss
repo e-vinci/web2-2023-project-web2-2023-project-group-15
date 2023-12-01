@@ -1,0 +1,11 @@
+@use 'color';
+@use 'responsive';
+@use 'fonts';
+
+.background {
+    padding: 3%;
+    background-image: url('../img/user/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 0%;
+  }

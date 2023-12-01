@@ -1,14 +1,36 @@
-import { getAuthenticatedUser } from "../../utils/auths";
+// import { getAuthenticatedUser } from "../../utils/auths";
 import UserLibrary from "../../Domain/UserLibrary";
+import '../../stylesheets/_userPage.scss';
 
-const UserPage = () => {
+const  UserPage = async () => {
 
-const userInfo = UserLibrary.getUserById
+  // eslint-disable-next-line no-unused-vars
+  const url = window.location.search;
+  const email = url.split('=');
+  console.log('email : ' , email[1]);
+  /*
+  const userEmail = getAuthenticatedUser();
+  const url = `email=${userEmail.email}`
+  */
+ 
+   const user = await getUserFromUsername(email[1]);
 
-  const user = getAuthenticatedUser();
+  console.log(`le user trouver: ${user}`);
+  console.log(`le user trouver prenom: ${user[0].firstname}`);
+
+  async function getUserFromUsername(url_) {
+    console.log(url_);
+    const userFound = await UserLibrary.getUserFromUsername(url_);
+    console.log('userfound ' , userFound);
+    console.log('first name of found user:', userFound[0].firstname)
+    return userFound;
+    
+  }
+
+  
 
   const html = `
-  <section class="h-100 h-custom" style="background-color: #d2c9ff;">
+  <section class="background">
   <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12">
@@ -24,19 +46,19 @@ const userInfo = UserLibrary.getUserById
   
                                   <ul class="list-group mb-4">
                                       <li class="list-group-item">
-                                          <strong>Firstname:</strong> ${userInfo.fistname}
+                                          <strong>Firstname:</strong> ${user.firstname}
                                       </li>
                                       <li class="list-group-item">
-                                          <strong>Lastname:</strong> ${userInfo.lastname}
+                                          <strong>Lastname:</strong> ${user.lastname}
                                       </li>
                                       <li class="list-group-item">
-                                          <strong>birth date:</strong> ${userInfo.birthdate}
+                                          <strong>birth date:</strong> ${user.birthdate}
                                       </li>
                                       <li class="list-group-item">
-                                          <strong>Email:</strong> ${user.username}
+                                          <strong>Email:</strong> ${user.email}
                                       </li>
                                       <li class="list-group-item">
-                                          <strong>Address:</strong> ${userInfo.adress}
+                                          <strong>Address:</strong> ${user.address}
                                       </li>
                                       
                                   </ul>
