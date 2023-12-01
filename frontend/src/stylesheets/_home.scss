@@ -106,11 +106,15 @@ h2 {
 
 .product-card-img {
   width: 25.3%;
-  height: 15.6%;
+  height: 25.6%;
 }
 
 .btn-custom {
   width: 250px; 
   height: 70px; 
   font-size: 25px; 
+}
+
+#btn-allProducts {
+  font-family: fonts.$regular-police;
 }
