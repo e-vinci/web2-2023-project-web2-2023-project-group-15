@@ -195,8 +195,8 @@ const html = `
   </div>
 
     <!-- Discover More Button -->
-    <div class="text-center mt-5 mb-4">
-      <button class="btn btn-dark btn-lg btn-custom">Discover More</button>
+    <div class="text-center mt-5 mb-4" id="btn-allProducts" >
+      <button class="btn btn-dark btn-lg btn-custom" data-uri="/allProducts" >Discover More</button>
     </div>
 
 </div>
