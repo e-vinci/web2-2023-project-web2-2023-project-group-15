@@ -2,13 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
-const { getInfoByUserId, updateUserInfo, getIdFromUsername } = require('../models/users');
+const { getInfoByUserId, updateUserInfo, getUserFromUsername } = require('../models/users');
 
 router.get('/', (req, res) => {
-  console.log('test2');
-  const foundIndex = getIdFromUsername('admin');
-
-  console.log('foundIndex:', foundIndex);
+  const foundIndex = getUserFromUsername(req.query.email);
 
   if (!foundIndex) {
     console.log('User not found');

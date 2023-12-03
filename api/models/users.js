@@ -137,9 +137,9 @@ function getInfoByUserId(id) {
 
 function getUserFromUsername(email) {
   const users = parse(jsonDbPath, defaultUsers);
-  const userFound = users.filter((user) => user.email.toLowerCase().includes(email.toLowerCase()));
+  const indexOfUserFound = users.findIndex((user) => user.email === email);
   
-  return userFound;
+  return users[indexOfUserFound];
 }
 
 function updateUserInfo(id, propertiesToUpdate) {
