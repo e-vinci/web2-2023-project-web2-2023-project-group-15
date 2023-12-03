@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable object-property-newline */
 /* eslint-disable no-dupe-keys */
@@ -44,17 +45,21 @@ async function login(email, password) {
     firstname: userFound.firstname,
     lastname: userFound.lastname,
     email: email,
-    address: userFound.address,
+    street: userFound.street,
+    city: userFound.city,
+    zipcode: userFound.zipcode,
+    country: userFound.country,
+    birthdate: userFound.birthdate,
     token,
   };
 
   return authenticatedUser;
 }
 
-async function register(firstname, lastname, email, password, address, birthdate) {
+async function register(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
   const userFound = readOneUserFromUsername(email);
   if (userFound) return undefined;
-  await createOneUser(firstname, lastname, email, password, address, birthdate);
+  await createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password);
 
   const token = jwt.sign(
     { email: email }, // session data added to the payload (payload : part 2 of a JWT)
@@ -65,9 +70,12 @@ async function register(firstname, lastname, email, password, address, birthdate
   const authenticatedUser = {
     firstname: firstname,
     lastname: lastname, 
-    address: address,
-    birthdate: birthdate,
     email: email,
+    street: street,
+    city: city,
+    zipcode: zipcode,
+    country: country,
+    birthdate: birthdate,
     token,
   };
 
@@ -82,24 +90,26 @@ function readOneUserFromUsername(email) {
   return users[indexOfUserFound];
 }
 
-async function createOneUser(firstname, lastname, email, password, address, birthdate) {
+async function createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
   const users = parse(jsonDbPath, defaultUsers);
+  console.log('model user');
 
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  const trueDate = new Date(birthdate);
-  
-  console.log(trueDate);
   const createdUser = {
     id: getNextId(),
     firstname: firstname,
     lastname, lastname,
     email: email,
+    street: street,
+    city: city,
+    zipcode: zipcode,
+    country: country,
+    birthdate: birthdate,
     password: hashedPassword,
-    address: address,
-    birthdate: trueDate,
   };
-
+  console.log('utilisateur : ');
+  console.log(createdUser);
   users.push(createdUser);
 
   serialize(jsonDbPath, users);
@@ -125,6 +135,16 @@ function getInfoByUserId(id) {
   return users[indexOfUsersFound];
 }
 
+function getIdFromUsername(firstname) {
+  console.log('test');
+  const users = parse(jsonDbPath, defaultUsers);
+  console.log(firstname);
+  const indexOfUserFound = users.findIndex((user) => user.firstname === firstname);
+  if (indexOfUserFound < 0) return undefined;
+
+  return users[indexOfUserFound];
+}
+
 function updateUserInfo(id, propertiesToUpdate) {
   const idNumber = parseInt(id, 10);
   const users = parse(jsonDbPath, defaultUsers);
@@ -148,4 +168,5 @@ module.exports = {
   getInfoByUserId,
   updateUserInfo,
   defaultUsers,
+  getIdFromUsername,
 };

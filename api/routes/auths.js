@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const express = require('express');
 const { register, login } = require('../models/users');
 
@@ -9,13 +10,20 @@ router.post('/register', async (req, res) => {
   const lastname = req?.body?.lastname;
   const email = req?.body?.email;
   const password = req?.body?.password;
-  const address = req?.body?.address;
+  const street = req?.body?.street;
+  const city = req?.body?.city;
+  const zipcode = req?.body?.zipcode;
+  const country = req?.body?.country;
   const birthdate = req?.body?.birthdate;
-  
-  if (!email || !password || !firstname || !lastname || !address || !birthdate) return res.sendStatus(400); 
-  
-  const authenticatedUser = await register(firstname, lastname, email, password, address, birthdate);
-  
+  console.log('auths.js');
+  console.log(country);
+  console.log(zipcode);
+  console.log(city);
+  console.log(street);
+
+  if (!firstname || !lastname || !email || !street || !city || !zipcode || !country || !birthdate || !password) return res.sendStatus(400);
+  console.log('on passe le if');
+  const authenticatedUser = await register(firstname, lastname, email, street, city, zipcode, country, birthdate, password);
 
   if (!authenticatedUser) return res.sendStatus(401);
 
@@ -32,7 +40,6 @@ router.post('/login', async (req, res) => {
   const authenticatedUser = await login(email, password);
 
   if (!authenticatedUser) return res.sendStatus(401); // 401 Unauthorized
-
 
   return res.json(authenticatedUser);
 });

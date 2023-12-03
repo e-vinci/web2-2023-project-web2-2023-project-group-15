@@ -2,7 +2,21 @@ const express = require('express');
 
 const router = express.Router();
 
-const { getInfoByUserId, updateUserInfo } = require('../models/users');
+const { getInfoByUserId, updateUserInfo, getIdFromUsername } = require('../models/users');
+
+router.get('/', (req, res) => {
+  console.log('test2');
+  const foundIndex = getIdFromUsername('admin');
+
+  console.log('foundIndex:', foundIndex);
+
+  if (!foundIndex) {
+    console.log('User not found');
+    return res.sendStatus(404);
+  }
+
+  return res.json(foundIndex);
+});
 
 router.get('/:id', (req, res) => {
   const foundUser = getInfoByUserId(req.params.id);
