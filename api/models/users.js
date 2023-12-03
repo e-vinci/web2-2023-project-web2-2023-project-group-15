@@ -135,14 +135,11 @@ function getInfoByUserId(id) {
   return users[indexOfUsersFound];
 }
 
-function getIdFromUsername(firstname) {
-  console.log('test');
+function getUserFromUsername(email) {
   const users = parse(jsonDbPath, defaultUsers);
-  console.log(firstname);
-  const indexOfUserFound = users.findIndex((user) => user.firstname === firstname);
-  if (indexOfUserFound < 0) return undefined;
-
-  return users[indexOfUserFound];
+  const userFound = users.filter((user) => user.email.toLowerCase().includes(email.toLowerCase()));
+  
+  return userFound;
 }
 
 function updateUserInfo(id, propertiesToUpdate) {
@@ -167,6 +164,6 @@ module.exports = {
   readOneUserFromUsername,
   getInfoByUserId,
   updateUserInfo,
+  getUserFromUsername,
   defaultUsers,
-  getIdFromUsername,
 };

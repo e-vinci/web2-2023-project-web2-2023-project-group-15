@@ -94,17 +94,23 @@ const defaultProducts = [
   },
 ];
 
-function sortProductsByName(param) {
+function sortProductsByOrder(param) {
   const orderByTitle = param?.includes('name') ? param : undefined;
 
   let orderedProducts;
   const products = parse(jsonDbPath, defaultProducts);
 
-  orderedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
-  if (orderByTitle === '-name') {
-    orderedProducts = orderedProducts.reverse();
+  if (orderByTitle) {
+    orderedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
+    if (orderByTitle === '-name') {
+      orderedProducts = orderedProducts.reverse();
+    }
+  } else if (param?.includes('price')) {
+    orderedProducts = [...products].sort((a, b) => a.price - b.price);
+    if (param?.includes('-price')) {
+      orderedProducts = orderedProducts.reverse();
+    }
   }
-
   const allProductsPotentiallyOrdered = orderedProducts ?? products;
   return allProductsPotentiallyOrdered;
 }
@@ -271,7 +277,7 @@ function getAllWomenProducts() {
 }
 
 module.exports = {
-  sortProductsByName,
+  sortProductsByOrder,
   searchProductsByName,
   renderAllProductsByCategory,
   readOneProduct,

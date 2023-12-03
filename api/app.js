@@ -8,7 +8,7 @@ const corsOptions = {
   origin: ['http://localhost:8080', 'https://e-baron.github.io'],
 };
 
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/user');
 const productRouter = require('./routes/product');
 const cartRouter = require('./routes/cart');
 const categorieRouter = require('./routes/categorie');
@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 app.use(cors(corsOptions));
 
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 app.use('/products', productRouter);
 app.use('/carts', cartRouter);
 app.use('/categories', categorieRouter);
