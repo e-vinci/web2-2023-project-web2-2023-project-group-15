@@ -8,7 +8,6 @@ class OrderLibrary{
    
      async createOrder(){
 
-        console.log(" ORDERLIBRARY TEST1 ");
         const user = getAuthenticatedUser();
         const firstName = user.firstname;
         const lastName = user.lastname;

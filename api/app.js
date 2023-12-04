@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 
 app.use('/user', usersRouter);
-app.use('/products', productRouter);
+app.use('/product', productRouter);
 app.use('/carts', cartRouter);
 app.use('/categories', categorieRouter);
 app.use('/subCategories', subCategorieRouter);

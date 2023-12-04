@@ -11,12 +11,13 @@ import '../../stylesheets/_allproducts.scss';
 import { clearPage } from '../../utils/render';
 import { importAll } from '../../utils/utilsImages';
 import arrowDown from '../../img/icons/small_arrow_down.png';
+import Navigate from '../Router/Navigate';
 //import { Dropdown } from 'bootstrap';
 
 const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
 
 let i = 0;
-let btnAddToCart;
+
 const AllProductPage = async () => {
   clearPage();
 
@@ -59,6 +60,17 @@ const AllProductPage = async () => {
     const filter = document.getElementById('filter-products');
     filter.innerHTML = AddCategories();
     container.innerHTML = await addCardProduct();
+
+    const productLinks = container.querySelectorAll('.link-products');
+
+    productLinks.forEach((link) => {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const productId = link.dataset.rui.split('/').pop(); 
+        Navigate(`/product?id=${productId}`);
+      });
+    });
+
     const categoryItemsDropdown = document.querySelectorAll('.category-item');
 
     categoryItemsDropdown.forEach((item) => {
@@ -100,7 +112,7 @@ const AllProductPage = async () => {
     let allCards = '';
     products?.forEach((product) => {
       allCards += `
-            <a class="link-products" href="#" data-rui="/products/${product.id}">
+            <a class="link-products" id="viewProduct" href="#" data-rui="/product/${product.id}">
                 <div class="product-card" id="product-card">
                     <img class="product-img" src=${productsImgs[product.id - 1]} alt="${
         product.name
@@ -112,6 +124,7 @@ const AllProductPage = async () => {
             `;
       i += 1;
     });
+
     return allCards;
   }
   // generate the html for the search bar

@@ -192,7 +192,8 @@ function readOneProduct(id) {
   const products = parse(jsonDbPath, defaultProducts);
   const indexOfProdcutsFound = products.findIndex((product) => product.id === idNumber);
   if (indexOfProdcutsFound < 0) return undefined;
-
+  console.log('model readOneProduct', products);
+  console.log(products[indexOfProdcutsFound]);
   return products[indexOfProdcutsFound];
 }
 

@@ -1,29 +1,9 @@
 // import { addItemToCart } from "../../utils/shoppingCart";
+import ProductLibrary from "../../Domain/ProductLibrary";
 
 const html = `
         <!-- Product section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
-                    <div class="col-md-6">
-                        <div class="small mb-1">SKU: BST-498</div>
-                        <h1 class="display-5 fw-bolder">Shop item template</h1>
-                        <div class="fs-5 mb-5">
-                            <span class="text-decoration-line-through">$45.00</span>
-                            <span>$40.00</span>
-                        </div>
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button" id="addToCart">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section class="py-5" id="showProduct">
         </section>
         <!-- Related items section-->
         <section class="py-5 bg-light">
@@ -133,10 +113,44 @@ const html = `
         </section>
         `
 
-const ProductPage = () => {
+const ProductPage = async () => {
     const main = document.querySelector('main');
     main.innerHTML = html;
 
+    const url = window.location.search;
+    const id = url.split('=');
+
+    const product = await ProductLibrary.prototype.getProductById(id[1])
+    console.log("le produit est ", product);
+    
+    const productName = product.name;
+    const productPrice = product.price;
+    const productDescription = product.description;
+    const showProduct = document.getElementById("showProduct");
+
+    const htlm2=`
+                <div class="container px-4 px-lg-5 my-5">
+                    <div class="row gx-4 gx-lg-5 align-items-center">
+                        <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                        <div class="col-md-6">
+                            <h1 class="display-5 fw-bolder">${productName}</h1>
+                            <div class="fs-5 mb-5">
+                                <span class="text-decoration-line-through">${productPrice}</span>
+                                <span>${productPrice}</span>
+                            </div>
+                            <p class="lead">${productDescription}</p>
+                            <div class="d-flex">
+                                <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                                <button class="btn btn-outline-dark flex-shrink-0" type="button" id="addToCart">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+    showProduct.innerHTML = htlm2;
     const btnAddToCart = document.getElementById('addToCart')
 
     
