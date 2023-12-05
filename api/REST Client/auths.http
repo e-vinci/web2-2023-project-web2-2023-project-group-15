@@ -1,5 +1,9 @@
 @baseUrl = http://localhost:3000
 
+
+ ### get all info on user
+GET {{baseUrl}}/users
+
 ### Try to login an unknow user
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
@@ -17,6 +21,8 @@ Content-Type: application/json
     "email":"admin@example.com",
     "password":"admin"
 }
+
+
 
 
 ### Create the manager user

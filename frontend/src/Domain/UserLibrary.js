@@ -23,8 +23,13 @@ class UserLibrary{
         const mail = document.querySelector('#registerUsername').value;
         const registerPassword = document.querySelector('#registerPassword').value;
         const registerConfPassword = document.querySelector('#registerConfPassword').value;
-        const address = document.querySelector('#address').value
-        const birthdate = document.querySelector('#birthdate').value
+        const birthdate = document.querySelector('#birthdate').value;
+        const countryName = document.querySelector('#countryName').value;
+        const zipCode = document.querySelector('#zipCode').value;
+        const cityName = document.querySelector('#cityName').value;
+        const streetName = document.querySelector('#streetName').value;
+       
+
 
         const age = calculateAge(birthdate);
         if (age < 6) {
@@ -36,22 +41,27 @@ class UserLibrary{
           throw new Error(`The password is not the same`);
         }
       
+      
         const options = {
           method: 'POST',
           body: JSON.stringify({
             "firstname": firstname,
             "lastname": lastname,
             "email": mail,
-            "password": registerPassword,
-            "address": address,
-            "birthdate":birthdate
+            "street" : streetName,
+            "city" : cityName,
+            "zipcode" : zipCode,
+            "country" : countryName,
+            "birthdate":birthdate,
+            "password": registerPassword
           }),
           headers: {
             'Content-Type': 'application/json',
           },
         };
-      
+        console.log(options);
         const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
+        console.log(response)
         const authenticatedUser = await response.json();
       
         try{
@@ -108,7 +118,6 @@ class UserLibrary{
     static async getUserFromUsername(email){
       let  user='';
       const url ='/api/user?email='
-      console.log('library : ' , email)
       try {
           const reponse = await fetch(url+email);
           console.log("résultat reponse " , reponse)

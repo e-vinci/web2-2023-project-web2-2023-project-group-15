@@ -1,4 +1,5 @@
 // import { addItemToCart } from "../../utils/shoppingCart";
+import { useParams } from 'react-router-dom';
 
 const html = `
         <!-- Product section-->
@@ -136,6 +137,7 @@ const html = `
 const ProductPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = html;
+    const { productName } = useParams();
 
     const btnAddToCart = document.getElementById('addToCart')
 
@@ -143,6 +145,7 @@ const ProductPage = () => {
     btnAddToCart.addEventListener('click', async (e) => {
         e.preventDefault();
        // addItemToCart(products.id, products.name, products.price,1);
+
       }); 
   };
   

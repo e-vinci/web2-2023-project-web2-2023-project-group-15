@@ -56,7 +56,7 @@ const CheckoutPage = () => {
 
                         <div class="mb-3">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                        <input type="text" class="form-control" id="address" value="${user.street}" required>
                         <div class="invalid-feedback">
                           Please enter your shipping address.
                         </div>

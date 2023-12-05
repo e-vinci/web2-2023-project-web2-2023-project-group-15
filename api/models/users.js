@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable object-property-newline */
 /* eslint-disable no-dupe-keys */
@@ -22,13 +23,12 @@ const defaultUsers = [
     email: 'admin@example.com',
     password: bcrypt.hashSync('admin', saltRounds),
     address: 'ville, rue, numero',
-    birthdate: new Date(), // the month is 0-indexed
+    birthdate: new Date(), 
   },
 ];
 
 async function login(email, password) {
   const userFound = readOneUserFromUsername(email);
-  console.log('userfound : ', userFound.firstname);
   if (!userFound) return undefined;
 
   const passwordMatch = await bcrypt.compare(password, userFound.password);
@@ -44,17 +44,22 @@ async function login(email, password) {
     firstname: userFound.firstname,
     lastname: userFound.lastname,
     email: email,
-    address: userFound.address,
+    street: userFound.street,
+    city: userFound.city,
+    zipcode: userFound.zipcode,
+    country: userFound.country,
+    birthdate: userFound.birthdate,
     token,
   };
 
   return authenticatedUser;
 }
 
-async function register(firstname, lastname, email, password, address, birthdate) {
+async function register(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
   const userFound = readOneUserFromUsername(email);
-  if (userFound) return undefined;
-  await createOneUser(firstname, lastname, email, password, address, birthdate);
+
+ 
+  await createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password);
 
   const token = jwt.sign(
     { email: email }, // session data added to the payload (payload : part 2 of a JWT)
@@ -65,11 +70,16 @@ async function register(firstname, lastname, email, password, address, birthdate
   const authenticatedUser = {
     firstname: firstname,
     lastname: lastname, 
-    address: address,
-    birthdate: birthdate,
     email: email,
+    street: street,
+    city: city,
+    zipcode: zipcode,
+    country: country,
+    birthdate: birthdate,
     token,
   };
+
+
 
   return authenticatedUser;
 }
@@ -78,28 +88,27 @@ function readOneUserFromUsername(email) {
   const users = parse(jsonDbPath, defaultUsers);
   const indexOfUserFound = users.findIndex((user) => user.email === email);
   if (indexOfUserFound < 0) return undefined;
-
   return users[indexOfUserFound];
 }
 
-async function createOneUser(firstname, lastname, email, password, address, birthdate) {
+async function createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
   const users = parse(jsonDbPath, defaultUsers);
+  
 
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  const trueDate = new Date(birthdate);
-  
-  console.log(trueDate);
   const createdUser = {
     id: getNextId(),
     firstname: firstname,
     lastname, lastname,
     email: email,
+    street: street,
+    city: city,
+    zipcode: zipcode,
+    country: country,
+    birthdate: birthdate,
     password: hashedPassword,
-    address: address,
-    birthdate: trueDate,
   };
-
   users.push(createdUser);
 
   serialize(jsonDbPath, users);
@@ -127,9 +136,9 @@ function getInfoByUserId(id) {
 
 function getUserFromUsername(email) {
   const users = parse(jsonDbPath, defaultUsers);
-  const userFound = users.filter((user) => user.email.toLowerCase().includes(email.toLowerCase()));
+  const indexOfUserFound = users.findIndex((user) => user.email === email);
   
-  return userFound;
+  return users[indexOfUserFound];
 }
 
 function updateUserInfo(id, propertiesToUpdate) {

@@ -18,6 +18,7 @@ import popularImgBagsPradaBP from '../../img/products/8.png';
 import popularImgCosmeticsArmaniCode from '../../img/products/4.png';
 import popularImgCosmeticsPenhaligons from '../../img/products/9.png';
 import popularImgCosmeticsChanel5 from '../../img/products/5.png';
+import Navigate from '../Router/Navigate';
 
 import '../../stylesheets/_home.scss';
 // Importe le fichier Bootstrap CSS
@@ -25,6 +26,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Importe le fichier Bootstrap JavaScript (avec les fonctionnalités JavaScript nécessaires, y compris jQuery)
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+
 
 const html = `
 <div class="container-home">
@@ -67,28 +69,28 @@ const html = `
           <img class="card-img-top" src="${imgBags}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Bags</h5>
-            <a href="#linkBags" class="btn btn-dark">Check</a>
+            <a id="linkBags" data-uri="/AllProducts=Bags" href="#" class="btn btn-dark">Check</a>
           </div>
         </div>
         <div class="card text-center mx-auto" id="card-main-categorie">
           <img class="card-img-top" src="${imgCosmetics}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Cosmetics</h5>
-          <a href="#linkCosmetics" class="btn btn-dark">Check</a>
+          <a id="linkCosmetics" data-uri="/AllProducts=Cosmetics" href="" class="btn btn-dark">Check</a>
         </div>
       </div>
       <div class="card text-center mx-auto" >
         <img class="card-img-top" src="${imgClothing}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Clothing</h5>
-          <a href="#" class="btn btn-dark">Check</a>
+          <a id="linkClothing" data-uri="/AllProducts=Clothing" href="#" class="btn btn-dark">Check</a>
         </div>
       </div>
       <div class="card text-center mx-auto" >
         <img class="card-img-top" src="${imgWatches}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Watches</h5>
-          <a href="#linkWatches" class="btn btn-dark">Check</a>
+          <a id="linkWatches" data-uri="/AllProducts=Watches" href="#" class="btn btn-dark">Check</a>
         </div>
       </div>
     </div>
@@ -104,7 +106,7 @@ const html = `
                 <img class="product-card-img"  src=${popularImgWatches} alt="Picture Watch Cartier"/>
 
                 <!--WATCHES 1-->
-             <a class="link-products-popular" href="#" data-rui="" >
+             <a class="link-products-popular" href="#" data-rui="" data-product-name="ballon-bleu">
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesBallonBleu} alt="Picture Watch Cartier"/>
                     <h1 class="title-product" >Ballon Bleu de Cartier</h1>
@@ -113,7 +115,7 @@ const html = `
              </a>
 
              <!--WATCHES 2-->
-             <a class="link-products-popular" href="#" data-rui="" >
+             <a class="link-products-popular" href="#" data-rui="" data-product-name="rolex-submariner">
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesRolexSubmarinier} alt="Picture Watch Rolex"/>
                     <h1 class="title-product" >Rolex Submariner</h1>
@@ -122,7 +124,7 @@ const html = `
              </a>
 
              <!--WATCHES 3-->
-             <a class="link-products-popular" href="#" data-rui="">
+             <a class="link-products-popular" href="#" data-rui="" data-product-name="patek">
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesPPGrandComplications} alt="Picture Watch Patek Philippe"/>
                     <h1 class="title-product" >Patek Philippe Grand Complications </h1>
@@ -135,7 +137,7 @@ const html = `
       <img class="product-card-img" src=${popularImgBags} alt="Picture Watch Cartier"/>
 
         <!--BAGS 1-->
-        <a class="link-products-popular" href="#" data-rui="" >
+        <a class="link-products-popular" href="#" data-rui="" data-product-name="louis">
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsLVDubai} alt="Picture Bag Louis Vuitton"/>
               <h1 class="title-product" >Louis Vuitton Dubai</h1>
@@ -144,7 +146,7 @@ const html = `
         </a>
 
         <!--BAGS 2-->
-        <a class="link-products-popular" href="#" data-rui="" >
+        <a class="link-products-popular" href="#" data-rui="" data-product-name="prada" >
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsPradaSaffiano} alt="Picture Bag Prada Saffiano"/>
               <h1 class="title-product" >Prada Saffiano Bag</h1>
@@ -153,7 +155,7 @@ const html = `
         </a>
 
         <!--BAGS 3-->
-        <a class="link-products-popular" href="#" data-rui="">
+        <a class="link-products-popular" href="#" data-rui="" data-product-name="backback">
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsPradaBP} alt="Picture Bag Prada Backpack"/>
               <h1 class="title-product" >Prada backpack</h1>
@@ -166,7 +168,7 @@ const html = `
      <img class="product-card-img" src=${popularImgCosmetics} alt="Picture Watch Cartier"/>
 
      <!--COSMETICS 1-->
-     <a class="link-products-popular" href="#" data-rui="" >
+     <a class="link-products-popular" href="#" data-rui="" data-product-name="armani" >
        <div class="product-card-popular" id="product-card">
            <img class="product-img-popular" src=${popularImgCosmeticsArmaniCode} alt="Picture Perfum Armani Code"/>
            <h1 class="title-product" >Armani code</h1>
@@ -175,7 +177,7 @@ const html = `
      </a>
 
      <!--COSMETICS 2-->
-     <a class="link-products-popular" href="#" data-rui="" >
+     <a class="link-products-popular" href="#" data-rui="" data-product-name="penhaligon">
      <div class="product-card-popular" id="product-card">
          <img class="product-img-popular" src=${popularImgCosmeticsPenhaligons} alt="Picture Perfum Penhaligons"/>
          <h1 class="title-product" >Penhaligon's</h1>
@@ -184,7 +186,7 @@ const html = `
      </a>
 
      <!--COSMETICS 3-->
-     <a class="link-products-popular" href="#" data-rui="">
+     <a class="link-products-popular" href="#" data-rui="" data-product-name="chanel">
        <div class="product-card-popular" id="product-card">
            <img class="product-img-popular" src=${popularImgCosmeticsChanel5} alt="Picture Perfum Chanel5"/>
            <h1 class="title-product" >Chanel N°5</h1>
@@ -196,9 +198,8 @@ const html = `
 
     <!-- Discover More Button -->
     <div class="text-center mt-5 mb-4" id="btn-allProducts" >
-      <a href="#"  >
-        <button class="btn btn-dark btn-lg btn-custom">Discover More</button>
-      </a>
+
+      <button class="btn btn-dark btn-lg btn-custom" data-uri="/allProducts" >Discover More</button>
     </div>
 
 </div>
@@ -206,11 +207,47 @@ const html = `
 
 </div>   `;
 
+function callBagsCategory() {
+  const bagsButton = document.querySelector('#linkBags');
+  bagsButton.addEventListener('click', () => callOtherPage(bagsButton.getAttribute('data-uri')));
+}
+
+function callCosmeticsCategory() {
+  const cosmeticsButton = document.querySelector('#linkCosmetics');
+  cosmeticsButton.addEventListener('click', () => callOtherPage(cosmeticsButton.getAttribute('data-uri')));
+}
+
+function callClothingCategory() {
+  const clothingButton = document.querySelector('#linkClothing');
+  clothingButton.addEventListener('click', () => callOtherPage(clothingButton.getAttribute('data-uri')));
+}
+
+function callWatchesCategory() {
+  const watchesButton = document.querySelector('#linkWatches');
+  watchesButton.addEventListener('click', () => callOtherPage(watchesButton.getAttribute('data-uri')));
+}
+
+
+function callOtherPage(productName) {
+  const productLink = document.querySelector(`[data-product-name="${productName}"]`);
+  productLink.addEventListener('click', () => Navigate(`/product/${productName}`));
+}
+
+
+// Appel des fonctions pour chaque produit populaire
+callPopularProduct('ballon-bleu');
+callPopularProduct('rolex-submariner');
+// Ajoutez les autres produits populaires de la même manière
+
 
 
 const HomePage = () => {
   const main = document.querySelector('main');
   main.innerHTML = html;
+  callBagsCategory();
+  callClothingCategory();
+  callWatchesCategory();
+  callCosmeticsCategory();
 };
 
 export default HomePage;

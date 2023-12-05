@@ -1,5 +1,7 @@
 /* eslint-disable spaced-comment */
 const express = require('express');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
@@ -17,6 +19,8 @@ const authsRouter = require('./routes/auths');
 const orderRouter = require('./routes/order');
 
 const app = express();
+
+app.use(helmet());
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const express = require('express');
 const { register, login } = require('../models/users');
 
@@ -9,14 +10,15 @@ router.post('/register', async (req, res) => {
   const lastname = req?.body?.lastname;
   const email = req?.body?.email;
   const password = req?.body?.password;
-  const address = req?.body?.address;
+  const street = req?.body?.street;
+  const city = req?.body?.city;
+  const zipcode = req?.body?.zipcode;
+  const country = req?.body?.country;
   const birthdate = req?.body?.birthdate;
+  
 
-  // eslint-disable-next-line max-len
-  if (!email || !password || !firstname || !lastname || !address || !birthdate) return res.sendStatus(400);
-
-  // eslint-disable-next-line max-len
-  const authenticatedUser = await register(firstname, lastname, email, password, address, birthdate);
+  if (!firstname || !lastname || !email || !street || !city || !zipcode || !country || !birthdate || !password) return res.sendStatus(400);
+  const authenticatedUser = await register(firstname, lastname, email, street, city, zipcode, country, birthdate, password);
 
   if (!authenticatedUser) return res.sendStatus(401);
 

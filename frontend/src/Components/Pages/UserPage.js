@@ -13,16 +13,12 @@ const  UserPage = async () => {
   const url = `email=${userEmail.email}`
   */
  
-   const user = await getUserFromUsername(email[1]);
+  const user = await getUserFromUsername(email[1]);
 
-  console.log(`le user trouver: ${user}`);
-  console.log(`le user trouver prenom: ${user[0].firstname}`);
 
   async function getUserFromUsername(url_) {
     console.log(url_);
     const userFound = await UserLibrary.getUserFromUsername(url_);
-    console.log('userfound ' , userFound);
-    console.log('first name of found user:', userFound[0].firstname)
     return userFound;
     
   }

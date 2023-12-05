@@ -5,6 +5,7 @@ import { clearPage, renderPageTitle } from '../../utils/render';
 import UserLibrary from '../../Domain/UserLibrary';
 import fond from '../../img/login-register/fond.png';
 import degrade from '../../img/login-register/degrade.png';
+import '../../stylesheets/_register.scss';
 
 const RegisterPage = () => {
   clearPage();
@@ -37,63 +38,111 @@ function renderRegisterForm() {
   form.innerHTML=
   ` 
   <div class="container-fluid py-3 h-100">
-    <div class="row d-flex  align-items-center h-100">
-      <div class="col-12 ">
+  <div class="row d-flex align-items-center h-100">
+    <div class="col-12">
       <div class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover">
-          <div class="card-body px-5 py-2 text-center">
-
-            <div class="mb-md-5 mt-md-4 pb-1">
-
-              <h2 class="fw-bold mb-2 text-uppercase">SIGN UP</h2>
-              
-              <div class="form-outline form-white mb-2">
-              <input type="text" id="firstname" class="form-control form-control-lg" placeholder = "firstname" required = true/>
-              <label class="form-label" for="firstname"></label>
+        <div class="card-body px-5 py-2 text-center">
+          <div class="mb-md-5 mt-md-4 pb-1">
+            <h2 >SIGN UP</h2>
+            </br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group last mb-3">
+                  <input type="text" id="firstname" class="form-control" placeholder="Firstname" required=true />
+                  <label class="form-label" for="firstname"></label>
+                </div>
               </div>
-
-              <div class="form-outline form-white mb-2">
-              <input type="text" id="lastname" class="form-control form-control-lg" placeholder = "lastname" required = true/>
-              <label class="form-label" for="lastname"></label>
+              <div class="col-md-6">
+                <div class="form-group last mb-3">
+                  <input type="text" id="lastname" class="form-control" placeholder="Lastname" required=true />
+                  <label class="form-label" for="lastname"></label>
+                </div>
               </div>
-
-              <div class="form-outline form-white mb-2">
-                <input type="email" id="registerUsername" class="form-control form-control-lg" placeholder = "email" required = true/>
-                <label class="form-label" for="registerUsername"></label>
-              </div>
-
-              <div class="form-outline form-white mb-2">
-                <input type="password" id="registerPassword" class="form-control form-control-lg" placeholder = "password" required = true/>
-                <label class="form-label" for="registerPassword"></label>
-              </div>
-
-            <div class="form-outline form-white mb-2">
-              <input type="password" id="registerConfPassword" class="form-control form-control-lg" placeholder = "confirm your password" required = true/>
-              <label class="form-label" for="registerConfPassword"></label>
             </div>
 
-            <div class="form-outline form-white mb-2">
-              <input type="text" id="address" class="form-control form-control-lg" placeholder = "adresse" required = true/>
-              <label class="form-label" for="address"></label>
-            </div>
-            <div class="form-outline form-white mb-2">
-              <input type="date" id="birthdate" class="form-control form-control-lg" placeholder="birthdate" required=true />
-              <label class="form-label" for="birthdate"></label>
-            </div>
-
-              <div class="mb-3 form-check">
-                 <input type="checkbox" id="rememberme" class="form-check-input" checked="${getRememberMe()}"/>
-              <label class="form-check-label" for="rememberme">Remember me</label>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group last mb-3">
+                  <input type="email" id="registerUsername" class="form-control" placeholder="Email" required=true />
+                  <label class="form-label" for="registerUsername"></label>
+                </div>
               </div>
-
-              <input type="submit" class="btn btn-outline-light btn-lg px-5" value="SIGN UP" />
-            
             </div>
 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group last mb-2">
+                  <input type="text" class="form-control" placeholder="Street" id="streetName" required=true />
+                  <label class="form-label" for="Street"></label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group last mb-2">
+                  <input type="text" class="form-control" placeholder="City" id="cityName" required=true />
+                  <label class="form-label" for="City"></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group last mb-2">
+                  <input type="text" class="form-control" placeholder="Zip code" id="zipCode" required=true />
+                  <label class="form-label" for="Zipcode"></label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group last mb-2">
+                  <input type="text" class="form-control" placeholder="Country" id="countryName" required=true />
+                  <label class="form-label" for="Country"></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group last mb-3">
+                  <input type="date" id="birthdate" class="form-control" placeholder="birthdate" required=true />
+                  <label class="form-label" for="birthdate"></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group last mb-3">
+                  <input type="password" class="form-control" placeholder="Password" id="registerPassword" required=true />
+                  <label class="form-label" for="Password"></label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group last mb-3">
+                  <input type="password" class="form-control" placeholder="Confirm password" id="registerConfPassword" required=true />
+                  <label class="form-label" for="registerConfPassword"></label>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div class="d-flex mb-5 mt-4 align-items-center">
+            <div class="d-flex align-items-center">
+              <div class="mb-3 form-check">
+                <input type="checkbox" id="rememberme" class="form-check-input" checked="${getRememberMe()}" />
+                <label class="form-check-label" for="rememberme" style="font:1em CenturyGothic">Remember me</label>
+              </div>
+              <div class="control__indicator"></div>
+            </div>
+          </div>
+
+          <input type="submit" class="btn btn-outline-light btn-lg px-5" style="font:1em CenturyGothic" value="SIGN UP" />
         </div>
       </div>
-      </div>
+    </div>
   </div>
+</div>
+
+
+  
 `
   form.addEventListener('submit', UserLibrary.prototype.onRegister);
  
