@@ -6,6 +6,7 @@ import profileIcon from '../../img/navbar/profileIcon.svg';
 import shoppingCart from '../../img/navbar/shoppingCart.svg';
 import GrandiosoVinciText from '../../img/navbar/GrandiosoVinci.svg';
 import logo from '../../img/navbar/logo.svg';
+import userLogout from '../../img/logout/userLogout.svg';
 import { getAuthenticatedUser, isAuthenticated } from '../../utils/auths';
 import Navigate from '../Router/Navigate';
 
@@ -109,6 +110,14 @@ function renderNavbar() {
          </div>
       </a>
     </div>
+
+    <li class="nav-item">
+      <a class="nav-link" href="/logout" data-uri="/logout">
+    <img src="${userLogout}" alt="Logout" width="30" height="30">
+    Logout
+      </a>
+</li>
+
   </div>
   `;
  
@@ -116,16 +125,11 @@ function renderNavbar() {
 
   navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar : anonymousUserNavbar;
 
-
-  console.log('navbar:',isAuthenticated)
-
   if(isAuthenticated()){
   const btnUser = document.getElementById('user');
   const userEmail =  user.email;
-  console.log(userEmail)
   btnUser.addEventListener('click' , async (e) =>{
     e.preventDefault();
-    console.log('btnUser email = ' , userEmail)
     Navigate('/user?email=' , userEmail )
   })
  }

@@ -27,6 +27,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Importe le fichier Bootstrap JavaScript (avec les fonctionnalités JavaScript nécessaires, y compris jQuery)
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
+
 const html = `
 <div class="container-home">
 
@@ -105,7 +106,7 @@ const html = `
                 <img class="product-card-img"  src=${popularImgWatches} alt="Picture Watch Cartier"/>
 
                 <!--WATCHES 1-->
-             <a class="link-products-popular" href="#" data-rui="" >
+             <a class="link-products-popular" href="#" data-rui="" data-product-name="ballon-bleu">
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesBallonBleu} alt="Picture Watch Cartier"/>
                     <h1 class="title-product" >Ballon Bleu de Cartier</h1>
@@ -114,7 +115,7 @@ const html = `
              </a>
 
              <!--WATCHES 2-->
-             <a class="link-products-popular" href="#" data-rui="" >
+             <a class="link-products-popular" href="#" data-rui="" data-product-name="rolex-submariner">
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesRolexSubmarinier} alt="Picture Watch Rolex"/>
                     <h1 class="title-product" >Rolex Submariner</h1>
@@ -123,7 +124,7 @@ const html = `
              </a>
 
              <!--WATCHES 3-->
-             <a class="link-products-popular" href="#" data-rui="">
+             <a class="link-products-popular" href="#" data-rui="" data-product-name="patek">
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesPPGrandComplications} alt="Picture Watch Patek Philippe"/>
                     <h1 class="title-product" >Patek Philippe Grand Complications </h1>
@@ -136,7 +137,7 @@ const html = `
       <img class="product-card-img" src=${popularImgBags} alt="Picture Watch Cartier"/>
 
         <!--BAGS 1-->
-        <a class="link-products-popular" href="#" data-rui="" >
+        <a class="link-products-popular" href="#" data-rui="" data-product-name="louis">
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsLVDubai} alt="Picture Bag Louis Vuitton"/>
               <h1 class="title-product" >Louis Vuitton Dubai</h1>
@@ -145,7 +146,7 @@ const html = `
         </a>
 
         <!--BAGS 2-->
-        <a class="link-products-popular" href="#" data-rui="" >
+        <a class="link-products-popular" href="#" data-rui="" data-product-name="prada" >
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsPradaSaffiano} alt="Picture Bag Prada Saffiano"/>
               <h1 class="title-product" >Prada Saffiano Bag</h1>
@@ -154,7 +155,7 @@ const html = `
         </a>
 
         <!--BAGS 3-->
-        <a class="link-products-popular" href="#" data-rui="">
+        <a class="link-products-popular" href="#" data-rui="" data-product-name="backback">
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsPradaBP} alt="Picture Bag Prada Backpack"/>
               <h1 class="title-product" >Prada backpack</h1>
@@ -167,7 +168,7 @@ const html = `
      <img class="product-card-img" src=${popularImgCosmetics} alt="Picture Watch Cartier"/>
 
      <!--COSMETICS 1-->
-     <a class="link-products-popular" href="#" data-rui="" >
+     <a class="link-products-popular" href="#" data-rui="" data-product-name="armani" >
        <div class="product-card-popular" id="product-card">
            <img class="product-img-popular" src=${popularImgCosmeticsArmaniCode} alt="Picture Perfum Armani Code"/>
            <h1 class="title-product" >Armani code</h1>
@@ -176,7 +177,7 @@ const html = `
      </a>
 
      <!--COSMETICS 2-->
-     <a class="link-products-popular" href="#" data-rui="" >
+     <a class="link-products-popular" href="#" data-rui="" data-product-name="penhaligon">
      <div class="product-card-popular" id="product-card">
          <img class="product-img-popular" src=${popularImgCosmeticsPenhaligons} alt="Picture Perfum Penhaligons"/>
          <h1 class="title-product" >Penhaligon's</h1>
@@ -185,7 +186,7 @@ const html = `
      </a>
 
      <!--COSMETICS 3-->
-     <a class="link-products-popular" href="#" data-rui="">
+     <a class="link-products-popular" href="#" data-rui="" data-product-name="chanel">
        <div class="product-card-popular" id="product-card">
            <img class="product-img-popular" src=${popularImgCosmeticsChanel5} alt="Picture Perfum Chanel5"/>
            <h1 class="title-product" >Chanel N°5</h1>
@@ -226,9 +227,19 @@ function callWatchesCategory() {
   watchesButton.addEventListener('click', () => callOtherPage(watchesButton.getAttribute('data-uri')));
 }
 
-function callOtherPage (uri) {
-  Navigate(uri);
+
+function callOtherPage(productName) {
+  const productLink = document.querySelector(`[data-product-name="${productName}"]`);
+  productLink.addEventListener('click', () => Navigate(`/product/${productName}`));
 }
+
+
+// Appel des fonctions pour chaque produit populaire
+callPopularProduct('ballon-bleu');
+callPopularProduct('rolex-submariner');
+// Ajoutez les autres produits populaires de la même manière
+
+
 
 const HomePage = () => {
   const main = document.querySelector('main');
