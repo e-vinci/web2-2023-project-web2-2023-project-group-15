@@ -148,14 +148,14 @@ function renderNavbar() {
  
   const navbar = document.querySelector('#navbarWrapper');
   navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar : anonymousUserNavbar;
-  const btnUser = document.getElementById('user');
-  const userEmail =  user.email;
-  console.log(userEmail)
-  btnUser.addEventListener('click' , async (e) =>{
-    e.preventDefault();
-    console.log('btnUser email = ' , userEmail)
-    Navigate('/user?email=' , userEmail )
-  })
+//   const btnUser = document.getElementById('user');
+//   const userEmail =  user.email;
+//   console.log(userEmail)
+//   btnUser.addEventListener('click' , async (e) =>{
+//     e.preventDefault();
+//     console.log('btnUser email = ' , userEmail)
+//     Navigate('/user?email=' , userEmail )
+//   })
 }
 
 
