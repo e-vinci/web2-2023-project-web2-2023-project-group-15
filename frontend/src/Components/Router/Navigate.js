@@ -14,7 +14,8 @@
     // eslint-disable-next-line no-param-reassign
     toUri += id;
   }
-   const fromUri = window.location.pathname;
+
+  const fromUri = window.location.pathname;
    if (fromUri === toUri) return;
  
    window.history.pushState({}, '', usePathPrefix(toUri));

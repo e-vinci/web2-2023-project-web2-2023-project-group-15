@@ -6,6 +6,19 @@
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
+var Module = require('module');
+var fs     = require('fs');
+
+// const popularImgWatchesBallonBleu = require ('../productsImages/2.png');
+// const popularImgWatchesRolexSubmarinier =  require ('../productsImages/1.png');
+// const popularImgWatchesPPGrandComplications = require ('../productsImages/7.png');
+// const popularImgBagsLVDubai = require( '../productsImages/3.png');
+// const popularImgBagsPradaSaffiano = require('../productsImages/6.png');
+// const popularImgBagsPradaBP = require('../productsImages/8.png');
+// const popularImgCosmeticsArmaniCode = require('../productsImages/4.png');
+// const popularImgCosmeticsPenhaligons = require( '../productsImages/9.png');
+// const popularImgCosmeticsChanel5 = require( '../productsImages/5.png');
+
 const path = require('node:path');
 const escape = require('escape-html');
 
