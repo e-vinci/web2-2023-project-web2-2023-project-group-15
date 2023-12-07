@@ -17,7 +17,11 @@ const routes = {
   '/': HomePage,
   '/shoppingCart':ShoppingCartPage,
   '/allProducts':AllProductPage,
+<<<<<<< HEAD
   '/product':ProductPage,
+=======
+  '/product/':ProductPage,
+>>>>>>> 65df8e2bc4cf99989014f5051b79566aa6d12019
   '/user':UserPage,
   '/logout': Logout,
   '/login':LoginPage,

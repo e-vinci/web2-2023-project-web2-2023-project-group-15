@@ -20,5 +20,40 @@ class ProductLibrary{
           }
           return allProducts;
     }
+
+    static async renderAllProductsByCategory(param){
+      let productByCatgeries ='';
+      const url = `api/products?category=${param}`
+        try{
+          const response = await fetch(url)
+
+          if (!response.ok) {
+            throw new Error(`fetch error : ${response.status}${response.statusText}`);
+          }
+          productByCatgeries = response.json();
+        }catch (err) {
+          console.error('error: ', err);
+        }
+        return productByCatgeries;
+    }
+
+    static async getProductByName(param){
+      let product = '';
+      const url = 'api/products?name='
+      try{
+        const response = await fetch(url+param);
+      
+        if (!response.ok) {
+          throw new Error(`fetch error : ${response.status}${response.statusText}`);
+        }
+        product = response.json();
+        console.log(product);
+      }catch (err) {
+        console.error('error: ', err);
+      }
+
+      return product[0];
+    }
+
 }
 export default ProductLibrary;

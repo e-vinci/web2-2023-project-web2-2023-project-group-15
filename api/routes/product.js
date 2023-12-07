@@ -46,7 +46,8 @@ router.get('/', (req, res) => {
 // Read the product identified by an id in the menu
 router.get('/:id', (req, res) => {
   const foundProduct = readOneProduct(req.params.id);
-
+  console.log(foundProduct.imgList[0]);
+  console.log(foundProduct);
   if (!foundProduct) return res.sendStatus(404);
 
   return res.json(foundProduct);

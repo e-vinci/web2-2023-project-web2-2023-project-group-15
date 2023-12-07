@@ -57,4 +57,5 @@ module.exports = {
   getCategorieCosmetics,
   getCategorieWatches,
   readAllCategories,
+  getCategorieClothing
 };
