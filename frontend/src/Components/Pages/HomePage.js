@@ -235,8 +235,8 @@ function callOtherPage(productName) {
 
 
 // Appel des fonctions pour chaque produit populaire
-callPopularProduct('ballon-bleu');
-callPopularProduct('rolex-submariner');
+//callPopularProduct('ballon-bleu');
+//callPopularProduct('rolex-submariner');
 // Ajoutez les autres produits populaires de la même manière
 
 
@@ -249,5 +249,6 @@ const HomePage = () => {
   callWatchesCategory();
   callCosmeticsCategory();
 };
+
 
 export default HomePage;
