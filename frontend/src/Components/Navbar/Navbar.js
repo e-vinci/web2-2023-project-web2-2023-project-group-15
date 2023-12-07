@@ -2,15 +2,13 @@
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
 import '../../stylesheets/_navbar.scss';
-import profileIcon from '../../img/navbar/profileIcon.svg';
-import shoppingCart from '../../img/navbar/shoppingCart.svg';
 import GrandiosoVinciText from '../../img/navbar/GrandiosoVinci.svg';
 import logo from '../../img/navbar/logo.svg';
 import userLogout from '../../img/logout/userLogout.svg';
 import { getAuthenticatedUser, isAuthenticated } from '../../utils/auths';
 import Navigate from '../Router/Navigate';
 
-
+const main = document.querySelector('main');
 /**
  * Render the Navbar which is styled by using Bootstrap
  * Each item in the Navbar is tightly coupled with the Router configuration :
@@ -54,8 +52,8 @@ function renderNavbar() {
           </svg>
         </a>
       </div>
-      <a href="#about" class="navMenu">
-        <div class="menu">
+      <a href="#about" class="navMenu" id="menuOpenModal" role="button" data-target="#costumModal1" data-toggle="modal"  >
+        <div class="menu" data-toggle="modal" >
           <div class="menu__container">
             <div class="menu__inner"></div>
             <div class="menu__hidden"></div>
@@ -65,8 +63,6 @@ function renderNavbar() {
     </div>
   </div>
   `;
-  
-  
   const authenticatedUserNavbar = `
   <div class="flex-container">
     <div class="logoDiv">
@@ -85,7 +81,7 @@ function renderNavbar() {
       </div>
       <div data-uri="/user" class="iconDiv" id="user" >
         <a href="#home" class="icon" id="profileIcon" >
-          <svg data-uri="/login"  class="profileIcon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <svg data-uri="/user/${user?.id}"  class="profileIcon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
             <path data-uri="/login" class="profileIcon" d="M6.66669 30C6.66669 28.2319 7.36907 26.5362 8.61931 25.2859C9.86955 24.0357 11.5652 23.3333 13.3334 23.3333H26.6667C28.4348 23.3333 30.1305 24.0357 31.3807 25.2859C32.631 26.5362 33.3334 28.2319 33.3334 30C33.3334 30.884 32.9822 31.7319 32.357 32.357C31.7319 32.9821 30.8841 33.3333 30 33.3333H10C9.11597 33.3333 8.26812 32.9821 7.643 32.357C7.01788 31.7319 6.66669 30.884 6.66669 30Z M20 16.6667C22.7614 16.6667 25 14.4281 25 11.6667C25 8.90523 22.7614 6.66666 20 6.66666C17.2386 6.66666 15 8.90523 15 11.6667C15 14.4281 17.2386 16.6667 20 16.6667Z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
           </svg>
         </a>
@@ -101,8 +97,8 @@ function renderNavbar() {
           <span id="numberOfArticles">0</span>
         </a>
       </div>
-      <a href="#about" class="navMenu">
-        <div class="menu">
+      <a href="#about" class="navMenu" role="button" data-target="#costumModal1" data-toggle="modal" >
+        <div class="menu" >
           <div class="menu__container">
             <div class="menu__inner"></div>
             <div class="menu__hidden"></div>
@@ -120,9 +116,47 @@ function renderNavbar() {
 
   </div>
   `;
+
+
+  const modal = ` <a href="#costumModal1"  class="btn btn-default" >
+  fadeIn
+</a>
+<div id="costumModal1" class="modal" data-easein="fadeIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  ×
+              </button>
+              <h4 class="modal-title" id="costumModalLabel">
+                  Modal Header
+              </h4>
+          </div>
+          <div class="modal-body">
+              <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
+                  Close
+              </button>
+              <button class="btn btn-primary">
+                  Save changes
+              </button>
+          </div>
+      </div>
+  </div>
+</div>`;
+
+  
  
   const navbar = document.querySelector('#navbarWrapper');
-
   navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar : anonymousUserNavbar;
 
   if(isAuthenticated()){
