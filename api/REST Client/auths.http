@@ -1,0 +1,68 @@
+@baseUrl = http://localhost:3000
+
+
+ ### get all info on user
+GET {{baseUrl}}/users
+
+### Try to login an unknow user
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "email": "unknown",
+    "password":"admin"
+}
+
+### Login the default admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "email":"admin@example.com",
+    "password":"admin"
+}
+
+
+
+
+### Create the manager user
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "firstname": "manager",
+    "lastname": "manager",
+    "email":"manager@manager",
+    "password":"manager",
+    "address": "rue neuve 1000, louvain n10 ",
+    "birthdate": "2000, 08, 22"
+}
+
+### Login the manager user
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "email":"manager@manager",
+    "password":"manager"
+}
+
+### get all info on user
+GET {{baseUrl}}/users/1
+
+
+### get all info on user
+GET {{baseUrl}}/users?email=Jean.Dupont@example.com
+
+### update user info
+PATCH {{baseUrl}}/users/1
+Content-Type: application/json
+
+{
+"id": 1,
+"firstname": "Jean",
+"lastname": "Dupont",
+"email": "Jean.Dupont@example.com",
+"password": "MotDePasse",
+"address": "123 rue de la rue, Bruxelles"
+}

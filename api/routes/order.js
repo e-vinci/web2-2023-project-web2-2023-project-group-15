@@ -1,0 +1,39 @@
+/* eslint-disable max-len */
+/* eslint-disable spaced-comment */
+const express = require('express');
+//const path = require('node:path');
+
+// const { parse } = require('../utils/json');
+
+const {
+  createOrder,
+  getAllOrders,
+} = require('../models/orders');
+
+// const jsonDbPath = path.join(__dirname, '/../data/orders.json');
+
+const router = express.Router();
+
+router.get('/', (req, res) => {
+  const orders = getAllOrders();
+  return res.json(orders);
+});
+
+router.post('/addOrder', (req, res) => {
+  console.log('ROUTER ORDER TEST1');
+  const firstName = req?.body?.firstName?.length !== 0 ? req.body.firstName : undefined;
+  const lastName = req?.body?.lastName?.length !== 0 ? req.body.lastName : undefined;
+
+  // const totalPrice = req?.body?.price > 0 ? req.body.price : undefined;
+  // const date = req?.body?.date?.length !== 0 ? req.body.date : undefined;
+  const payementMethod = req?.body?.payementMethod?.length !== 0 ? req.body.payementMethod : undefined;
+
+  if (!firstName || !lastName || !payementMethod) {
+    return res.sendStatus(400).json({ error: 'Paramètres invalides' }); // error code '400 Bad request'
+  }
+  const newOrder = createOrder(firstName, lastName, payementMethod);
+  console.log('ROUTER ORDER TEST2');
+  return res.json(newOrder);
+});
+
+module.exports = router;
