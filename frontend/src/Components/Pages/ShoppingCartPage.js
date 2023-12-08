@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
- import { loadCart, countProductCart, getCartTotal } from "../../utils/shoppingCart";
+ import { loadCart, countProductCart, getCartTotal , removeItemFromCart, addItemToCart } from "../../utils/shoppingCart";
  import { getAuthenticatedUser } from "../../utils/auths";
 import Navigate from "../Router/Navigate";
 import { importAll } from '../../utils/utilsImages';
@@ -52,17 +52,17 @@ const ShoppingCartPage = () => {
           <h6 class="text-black mb-0">${productList[i].name}</h6>
         </div>
         <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-          <button class="btn btn-link px-2"
-            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+          <button class="btn btn-link px-2" id="minusOne">
+            <input type="hidden" id="minusOneProductName" value="${productList[i].name}">
             <i class="fas fa-minus"></i>
           </button>
 
           <input id="form1" min="0" name="quantity" value="${productList[i].count}" type="number"
             class="form-control form-control-sm" />
 
-          <button class="btn btn-link px-2"
-            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-            <i class="fas fa-plus"></i>
+          <button class="btn px-2" >
+           
+            <i class="fas fa-plus" id="addOne"></i>
           </button>
         </div>
         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
@@ -147,7 +147,14 @@ const ShoppingCartPage = () => {
     btnCheckout.addEventListener('click', async (e) => {
       e.preventDefault();
       Navigate('/checkout')
-    })
+    });
+
+    const btnAddOne = document.getElementById('addOne');
+    btnAddOne.addEventListener('click', async (e) =>{
+      e.preventDefault();
+      const name = document.getElementById('addOneProductName');
+      console.log("plus 1 " , name);
+    });
 
   };
   

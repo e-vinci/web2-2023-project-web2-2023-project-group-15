@@ -10,6 +10,7 @@ import { clearPage } from '../../utils/render';
 import Navigate from '../Router/Navigate';
 import { countProductCart } from '../../utils/shoppingCart';
 
+
 const main = document.querySelector('main');
 /**
  * Render the Navbar which is styled by using Bootstrap

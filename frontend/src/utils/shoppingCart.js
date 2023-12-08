@@ -105,6 +105,9 @@ return sum;
 
 function countProductCart(){
   const user = getAuthenticatedUser();
+  if(user === undefined){
+    return 0;
+  }
   const cart = loadCart(user.email);
   const {length} = cart.objects;
   
