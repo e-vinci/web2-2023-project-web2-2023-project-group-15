@@ -277,14 +277,6 @@ function callCosm3(){
 
 
 
-<<<<<<< HEAD
-// Appel des fonctions pour chaque produit populaire
-//callPopularProduct('ballon-bleu');
-//callPopularProduct('rolex-submariner');
-// Ajoutez les autres produits populaires de la même manière
-
-=======
->>>>>>> 65df8e2bc4cf99989014f5051b79566aa6d12019
 
 
 const HomePage = () => {
