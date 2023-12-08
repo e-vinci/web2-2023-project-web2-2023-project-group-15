@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-unused-vars */
-// import { addItemToCart } from "../../utils/shoppingCart";
+import { addItemToCart } from "../../utils/shoppingCart";
 import ProductLibrary from "../../Domain/ProductLibrary";
 import { importAll } from '../../utils/utilsImages';
-
+import Navigate from "../Router/Navigate";
 import '../../stylesheets/_product.scss';
 
 
@@ -151,7 +151,7 @@ const ProductPage = async () => {
                             </div>
                             <p class="lead">${productDescription}</p>
                             <div class="d-flex">
-                                <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                                <input class="form-control text-center me-3" id="productQuantity" type="num" value="1" style="max-width: 3rem" />
                                 <button class="btn btn-outline-dark flex-shrink-0" type="button" id="addToCart">
                                     <i class="bi-cart-fill me-1"></i>
                                     Add to cart
@@ -163,11 +163,16 @@ const ProductPage = async () => {
 
     showProduct.innerHTML = htlm2;
     const btnAddToCart = document.getElementById('addToCart')
-   
+    
+    
     
     btnAddToCart.addEventListener('click', async (e) => {
         e.preventDefault();
-       // addItemToCart(products.id, products.name, products.price,1);
+        console.log("ajout panier")
+        const quantity = document.querySelector('#productQuantity').value;
+        console.log(quantity)
+        addItemToCart(id[1],productName,productPrice,parseInt(quantity,10));
+        Navigate('/shoppingCart');
       }); 
   };
   
