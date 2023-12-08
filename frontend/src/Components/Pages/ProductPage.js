@@ -1,5 +1,14 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-vars */
 // import { addItemToCart } from "../../utils/shoppingCart";
 import ProductLibrary from "../../Domain/ProductLibrary";
+import { importAll } from '../../utils/utilsImages';
+
+import '../../stylesheets/_product.scss';
+
+
+const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
+// eslint-disable-next-line import/no-extraneous-dependencies
 
 const html = `
         <!-- Product section-->
@@ -127,11 +136,13 @@ const ProductPage = async () => {
     const productPrice = product.price;
     const productDescription = product.description;
     const showProduct = document.getElementById("showProduct");
-
     const htlm2=`
                 <div class="container px-4 px-lg-5 my-5">
                     <div class="row gx-4 gx-lg-5 align-items-center">
-                        <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                    <div class="col-md-6">
+                    <img class="img-product" src="${productsImgs[id[1]-1]}" alt="..." />
+                    </div>
+                   
                         <div class="col-md-6">
                             <h1 class="display-5 fw-bolder">${productName}</h1>
                             <div class="fs-5 mb-5">
@@ -152,7 +163,7 @@ const ProductPage = async () => {
 
     showProduct.innerHTML = htlm2;
     const btnAddToCart = document.getElementById('addToCart')
-
+   
     
     btnAddToCart.addEventListener('click', async (e) => {
         e.preventDefault();
@@ -161,3 +172,8 @@ const ProductPage = async () => {
   };
   
   export default ProductPage;
+
+
+
+
+ 

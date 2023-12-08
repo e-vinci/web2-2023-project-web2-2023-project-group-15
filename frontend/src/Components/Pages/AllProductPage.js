@@ -81,8 +81,12 @@ const AllProductPage = async () => {
         console.log(` ${itemClicked.value} clicked`);
         if (itemClicked.value === 'Mans' || itemClicked.value === 'Womans') {
           url = `category=${stringModifier(itemClicked.value)}`;
-        } else if (itemClicked.value === 'Name' || itemClicked.value === 'Price'){
+        } else if (itemClicked.value === 'A-Z Names' || itemClicked.value === 'Lowest Price'){
           url = `order=${stringModifier(itemClicked.value)}`;
+        }else if(itemClicked.value === 'Z-A Names'){
+          url = `order=-name`;
+        }else if(itemClicked.value === 'Highest Price'){
+          url = `order=-price`;
         }else{
           url = `brand=${stringModifier(itemClicked.value)}`;
         }
@@ -140,8 +144,10 @@ const AllProductPage = async () => {
             <div class="dropdown">
                 <button class="dropbtn">Order Products by : <img class="product-img" src=${arrowDown} alt="$arrow down "/>  </button>
                 <div class="dropdown-content">
-                  <input  class="category-item" id="linkOrder" type="button" value="Name">
-                  <input class="category-item"  id="linkOrder" type="button" value="Price">
+                  <input  class="category-item" id="linkOrder" type="button" value="Highest Price">
+                  <input  class="category-item" id="linkOrder" type="button" value="Lowest Price">
+                  <input class="category-item"  id="linkOrder" type="button" value="A-Z Names">
+                  <input class="category-item"  id="linkOrder" type="button" value="Z-A Names">
                 </div>
             </div>
         </div>

@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
-import Navigate from "../Components/Router/Navigate";
 
 class ProductLibrary{
     
@@ -36,6 +35,22 @@ class ProductLibrary{
             console.error('error: ', err);
           }
           return product;
+    }
+
+    static async renderAllProductsByCategory(param){
+      let productByCatgeries ='';
+      const url = `api/products?category=${param}`
+        try{
+          const response = await fetch(url)
+
+          if (!response.ok) {
+            throw new Error(`fetch error : ${response.status}${response.statusText}`);
+          }
+          productByCatgeries = response.json();
+        }catch (err) {
+          console.error('error: ', err);
+        }
+        return productByCatgeries;
     }
 }
 export default ProductLibrary;

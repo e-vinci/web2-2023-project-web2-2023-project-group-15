@@ -28,10 +28,7 @@ class UserLibrary{
         const zipCode = document.querySelector('#zipCode').value;
         const cityName = document.querySelector('#cityName').value;
         const streetName = document.querySelector('#streetName').value;
-        console.log(countryName)
-        console.log(zipCode)
-        console.log(cityName)
-        console.log(streetName)
+       
 
 
         const age = calculateAge(birthdate);
@@ -44,7 +41,7 @@ class UserLibrary{
           throw new Error(`The password is not the same`);
         }
       
-        console.log("date naissance" , birthdate)
+      
         const options = {
           method: 'POST',
           body: JSON.stringify({
@@ -56,13 +53,13 @@ class UserLibrary{
             "zipcode" : zipCode,
             "country" : countryName,
             "birthdate":birthdate,
-            "password": registerPassword,
+            "password": registerPassword
           }),
           headers: {
             'Content-Type': 'application/json',
           },
         };
-      
+        console.log(options);
         const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
         console.log(response)
         const authenticatedUser = await response.json();
@@ -123,7 +120,6 @@ class UserLibrary{
       const url ='/api/user?email='
       try {
           const reponse = await fetch(url+email);
-          console.log("résultat reponse " , reponse)
     
           if (!reponse.ok) {
             throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
@@ -132,8 +128,8 @@ class UserLibrary{
         } catch (err) {
           console.error('error: ', err);
         }
-        return user;
-  }
+      return user;
+    }
 
 
 }
