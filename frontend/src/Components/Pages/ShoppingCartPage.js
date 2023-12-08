@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
- import { loadCart, countProductCart, getCartTotal , removeItemFromCart, addItemToCart } from "../../utils/shoppingCart";
- import { getAuthenticatedUser } from "../../utils/auths";
+import { loadCart, countProductCart, getCartTotal , removeItemFromCart, addItemToCart } from "../../utils/shoppingCart";
+import { getAuthenticatedUser } from "../../utils/auths";
 import Navigate from "../Router/Navigate";
 import { importAll } from '../../utils/utilsImages';
+import '../../stylesheets/_shoppingCart.scss';
 
 const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
 
@@ -18,8 +19,8 @@ const ShoppingCartPage = () => {
 
     console.log(countProductCart())
     let html = `
-    <section class="h-100 h-custom" style="background-color: #d2c9ff;">
-    <div class="container py-5 h-100">
+    <section class="h-100 h-custom" >
+    <div class="">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
           <div class="card card-registration card-registration-2" style="border-radius: 15px;">
@@ -37,45 +38,56 @@ const ShoppingCartPage = () => {
     const productList = product.objects;
     console.log(productList)
 
-    for(let i = 0; i < productList.length; i += 1){
-
-      html += `<hr class="my-4">
-  
-      <div class="row mb-4 d-flex justify-content-between align-items-center">
-        <div class="col-md-2 col-lg-2 col-xl-2">
-          <img
-            src="${productsImgs[productList[i].id - 1]}"
-            class="img-fluid rounded-3" alt="Cotton T-shirt">
-        </div>
-        <div class="col-md-3 col-lg-3 col-xl-3">
-          <h6 class="text-muted">Shirt</h6>
-          <h6 class="text-black mb-0">${productList[i].name}</h6>
-        </div>
-        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-          <button class="btn btn-link px-2" id="minusOne">
-            <input type="hidden" id="minusOneProductName" value="${productList[i].name}">
-            <i class="fas fa-minus"></i>
-          </button>
-
-          <input id="form1" min="0" name="quantity" value="${productList[i].count}" type="number"
-            class="form-control form-control-sm" />
-
-          <button class="btn px-2" >
-           
-            <i class="fas fa-plus" id="addOne"></i>
-          </button>
-        </div>
-        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-          <h6 class="mb-0">${productList[i].price} €</h6>
-        </div>
-        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-          <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-        </div>
-      </div>`
-
+    if(productList.length === 0){ 
+      html +=`
+      <h3>Your shopping cart is empty</h3>
+      <picture>
+      <source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f62d/512.webp" type="image/webp">
+      <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f62d/512.gif" alt="😭" width="42" height="42">
+    </picture>`
     }
+    else{
+      for(let i = 0; i < productList.length; i += 1){
 
-
+        html += `<hr class="my-4">
+    
+        <div class="row mb-4 d-flex justify-content-between align-items-center">
+          <div class="col-md-2 col-lg-2 col-xl-2">
+            <img
+              src="${productsImgs[productList[i].id - 1]}"
+              class="img-fluid rounded-3" alt="Cotton T-shirt">
+          </div>
+          <div class="col-md-3 col-lg-3 col-xl-3">
+            <h6 class="text-muted">Shirt</h6>
+            <h6 class="text-black mb-0">${productList[i].name}</h6>
+          </div>
+          <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+            <button class="btn btn-link px-2" id="minusOne">
+              <input type="hidden" id="minusOneProductName" value="${productList[i].name}">
+              <i class="fas fa-minus"></i>
+            </button>
+  
+            <input id="form1" min="0" name="quantity" value="${productList[i].count}" type="number"
+              class="form-control form-control-sm" />
+  
+            <button class="btn px-2" >
+             
+              <i class="fas fa-plus" id="addOne"></i>
+            </button>
+          </div>
+          <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+            <h6 class="mb-0">${productList[i].price} €</h6>
+          </div>
+          <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+          </div>
+        </div>`
+  
+      }
+  
+  
+    }
+    
   html +=`
   <div class="pt-5">
   <h6 class="mb-0"><a class="text-body" id="backToShop"><i
@@ -143,6 +155,8 @@ const ShoppingCartPage = () => {
     Navigate('/allProducts')
     }); 
 
+    if(productList.length !== 0){
+
     const btnCheckout = document.getElementById('btnCheckout');
     btnCheckout.addEventListener('click', async (e) => {
       e.preventDefault();
@@ -155,6 +169,9 @@ const ShoppingCartPage = () => {
       const name = document.getElementById('addOneProductName');
       console.log("plus 1 " , name);
     });
+
+    }
+    
 
   };
   

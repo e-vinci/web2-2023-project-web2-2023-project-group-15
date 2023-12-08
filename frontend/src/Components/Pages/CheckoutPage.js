@@ -100,7 +100,7 @@ const CheckoutPage = () => {
                         <hr class="mb-4">
 
                         <ul class="list-group mb-3">
-                          <li class="list-group-item d-flex justify-content-between">
+                          <li class="list-group-item d-flex justify-content-between" id="totalPrice" value="${getCartTotal()}">
                             <span>Total (USD)</span>
                             <strong>${getCartTotal()} €</strong>
                           </li>
