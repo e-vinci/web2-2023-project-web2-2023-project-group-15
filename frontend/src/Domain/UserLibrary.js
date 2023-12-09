@@ -131,6 +131,67 @@ class UserLibrary{
       return user;
     }
 
+  
+  static async getUserFromId(id){
+    let  user='';
+    const url ='/api/user/'
+    try {
+        const reponse = await fetch(url+id);
+        console.log("résultat reponse " , reponse)
+  
+        if (!reponse.ok) {
+          throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
+        }
+        user =  await reponse.json();
+      } catch (err) {
+        console.error('error: ', err);
+      }
+      return user;
+}
+
+
+static async onChangeInfo(e){
+
+      e.preventDefault();
+        const firstname = document.querySelector('#firstname').value;
+        const lastname = document.querySelector('#lastname').value;
+        const mail = document.querySelector('#registerUsername').value;
+        const registerPassword = document.querySelector('#registerPassword').value;
+        const registerConfPassword = document.querySelector('#registerConfPassword').value;
+        const countryName = document.querySelector('#countryName').value;
+        const zipCode = document.querySelector('#zipCode').value;
+        const cityName = document.querySelector('#cityName').value;
+        const streetName = document.querySelector('#streetName').value;
+
+        if(registerPassword !== registerConfPassword) {
+          throw new Error(`The password is not the same`);
+        }
+
+        const options = {
+          method: 'PATCH',
+          body: JSON.stringify({
+            "firstname": firstname,
+            "lastname": lastname,
+            "email": mail,
+            "street" : streetName,
+            "city" : cityName,
+            "zipcode" : zipCode,
+            "country" : countryName,
+            "password": registerPassword
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+       
+        const response = await fetch(``, options);
+        
+        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+    }
+
+    
+  
 
 }
 export default UserLibrary;

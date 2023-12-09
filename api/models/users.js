@@ -56,9 +56,9 @@ async function login(email, password) {
 }
 
 async function register(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
+  // eslint-disable-next-line no-unused-vars
   const userFound = readOneUserFromUsername(email);
 
- 
   await createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password);
 
   const token = jwt.sign(
@@ -79,8 +79,6 @@ async function register(firstname, lastname, email, street, city, zipcode, count
     token,
   };
 
-
-
   return authenticatedUser;
 }
 
@@ -94,7 +92,6 @@ function readOneUserFromUsername(email) {
 async function createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
   const users = parse(jsonDbPath, defaultUsers);
   
-
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
   const createdUser = {
