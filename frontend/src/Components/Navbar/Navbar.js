@@ -2,15 +2,16 @@
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
 import '../../stylesheets/_navbar.scss';
-import profileIcon from '../../img/navbar/profileIcon.svg';
-import shoppingCart from '../../img/navbar/shoppingCart.svg';
 import GrandiosoVinciText from '../../img/navbar/GrandiosoVinci.svg';
 import logo from '../../img/navbar/logo.svg';
 import userLogout from '../../img/logout/userLogout.svg';
 import { getAuthenticatedUser, isAuthenticated } from '../../utils/auths';
+import { clearPage } from '../../utils/render';
 import Navigate from '../Router/Navigate';
+import { countProductCart } from '../../utils/shoppingCart';
 
 
+const main = document.querySelector('main');
 /**
  * Render the Navbar which is styled by using Bootstrap
  * Each item in the Navbar is tightly coupled with the Router configuration :
@@ -19,6 +20,35 @@ import Navigate from '../Router/Navigate';
  */
 const Navbar = () => {
 renderNavbar();
+const menu  = document.querySelector('.menu');
+
+function OpenModal() {
+  
+  const modal = document.getElementById('modal');
+  modal.style.display = 'flex';
+
+  function closeModal(){
+    modal.style.display = 'none';
+  }
+
+  const closeButton = modal.querySelector('.close');
+  const modalLink = modal.querySelector('.modal-link');
+
+  closeButton.addEventListener('click', () => {
+   closeModal();
+  });
+
+  modalLink.addEventListener('click', () => {
+    closeModal();
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+}
+menu.addEventListener('click',OpenModal);
 
 };
 
@@ -54,8 +84,8 @@ function renderNavbar() {
           </svg>
         </a>
       </div>
-      <a href="#about" class="navMenu">
-        <div class="menu">
+      <a href="#about" class="navMenu" id="menuOpenModal" role="button" data-target="#costumModal1" data-toggle="modal"  >
+        <div class="menu" data-toggle="modal" >
           <div class="menu__container">
             <div class="menu__inner"></div>
             <div class="menu__hidden"></div>
@@ -65,8 +95,6 @@ function renderNavbar() {
     </div>
   </div>
   `;
-  
-  
   const authenticatedUserNavbar = `
   <div class="flex-container">
     <div class="logoDiv">
@@ -85,24 +113,36 @@ function renderNavbar() {
       </div>
       <div data-uri="/user" class="iconDiv" id="user" >
         <a href="#home" class="icon" id="profileIcon" >
-          <svg data-uri="/login"  class="profileIcon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <svg data-uri="/user/${user?.id}"  class="profileIcon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
             <path data-uri="/login" class="profileIcon" d="M6.66669 30C6.66669 28.2319 7.36907 26.5362 8.61931 25.2859C9.86955 24.0357 11.5652 23.3333 13.3334 23.3333H26.6667C28.4348 23.3333 30.1305 24.0357 31.3807 25.2859C32.631 26.5362 33.3334 28.2319 33.3334 30C33.3334 30.884 32.9822 31.7319 32.357 32.357C31.7319 32.9821 30.8841 33.3333 30 33.3333H10C9.11597 33.3333 8.26812 32.9821 7.643 32.357C7.01788 31.7319 6.66669 30.884 6.66669 30Z M20 16.6667C22.7614 16.6667 25 14.4281 25 11.6667C25 8.90523 22.7614 6.66666 20 6.66666C17.2386 6.66666 15 8.90523 15 11.6667C15 14.4281 17.2386 16.6667 20 16.6667Z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
           </svg>
         </a>
         <span >${user?.firstname}</span>
       </div>
-
+      <div data-uri="/logout" class="iconDiv" id="user" >
+      <a href="#home" class="icon" id="profileIcon" >
+      <svg  xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" width="40" height="40" viewBox="0 0 256 256" xml:space="preserve" class="profileIcon">
+      <g style="stroke: none;  stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+        <path d="M 36.137 34.78 c -9.589 0 -17.39 -7.801 -17.39 -17.39 C 18.747 7.801 26.548 0 36.137 0 s 17.39 7.801 17.39 17.39 C 53.527 26.979 45.726 34.78 36.137 34.78 z M 36.137 7 c -5.729 0 -10.39 4.661 -10.39 10.39 s 4.661 10.39 10.39 10.39 s 10.39 -4.661 10.39 -10.39 S 41.866 7 36.137 7 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        <path d="M 11.721 90 c -1.933 0 -3.5 -1.567 -3.5 -3.5 V 61.756 c 0 -11.14 9.063 -20.203 20.203 -20.203 h 15.427 c 6.92 0 13.29 3.505 17.039 9.375 c 1.084 1.698 1.904 3.539 2.438 5.471 c 0.516 1.862 -0.577 3.791 -2.44 4.306 c -1.86 0.519 -3.791 -0.576 -4.306 -2.44 c -0.349 -1.258 -0.884 -2.459 -1.593 -3.568 c -2.456 -3.847 -6.62 -6.143 -11.138 -6.143 H 28.424 c -7.28 0 -13.203 5.923 -13.203 13.203 V 86.5 C 15.221 88.433 13.654 90 11.721 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        <path d="M 60.554 90 c -1.933 0 -3.5 -1.567 -3.5 -3.5 v -2.236 c 0 -1.933 1.567 -3.5 3.5 -3.5 s 3.5 1.567 3.5 3.5 V 86.5 C 64.054 88.433 62.486 90 60.554 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        <path d="M 80.754 68.741 l -8.515 -8.515 c -1.367 -1.367 -3.582 -1.367 -4.949 0 c -1.367 1.366 -1.367 3.583 0 4.949 l 2.54 2.54 H 36.137 c -1.933 0 -3.5 1.567 -3.5 3.5 s 1.567 3.5 3.5 3.5 h 33.693 l -2.541 2.541 c -1.367 1.367 -1.367 3.583 0 4.949 c 0.684 0.684 1.579 1.025 2.475 1.025 s 1.792 -0.342 2.475 -1.025 l 8.515 -8.516 C 82.121 72.323 82.121 70.107 80.754 68.741 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+      </g>
+      </svg>
+      </a>
+      <span >Logout</span>
+    </div>
 
       <div  data-uri="/shoppingCart" class="iconDiv" id="shoppingCartDiv"  >
         <a  class="icon" >
           <svg  id="shoppingCart" class="profileIcon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
           <path  d="M11.6667 36.6667C10.75 36.6667 9.96499 36.34 9.31166 35.6867C8.65832 35.0333 8.33221 34.2489 8.33332 33.3333C8.33332 32.4167 8.65999 31.6317 9.31332 30.9783C9.96666 30.325 10.7511 29.9989 11.6667 30C12.5833 30 13.3683 30.3267 14.0217 30.98C14.675 31.6333 15.0011 32.4178 15 33.3333C15 34.25 14.6733 35.035 14.02 35.6883C13.3667 36.3417 12.5822 36.6678 11.6667 36.6667ZM28.3333 36.6667C27.4167 36.6667 26.6317 36.34 25.9783 35.6867C25.325 35.0333 24.9989 34.2489 25 33.3333C25 32.4167 25.3267 31.6317 25.98 30.9783C26.6333 30.325 27.4178 29.9989 28.3333 30C29.25 30 30.035 30.3267 30.6883 30.98C31.3417 31.6333 31.6678 32.4178 31.6667 33.3333C31.6667 34.25 31.34 35.035 30.6867 35.6883C30.0333 36.3417 29.2489 36.6678 28.3333 36.6667ZM10.25 10L14.25 18.3333H25.9167L30.5 10H10.25ZM8.66666 6.66668H33.25C33.8889 6.66668 34.375 6.95168 34.7083 7.52168C35.0417 8.09168 35.0555 8.66779 34.75 9.25001L28.8333 19.9167C28.5278 20.4722 28.1178 20.9028 27.6033 21.2083C27.0889 21.5139 26.5267 21.6667 25.9167 21.6667H13.5L11.6667 25H31.6667V28.3333H11.6667C10.4167 28.3333 9.47221 27.7845 8.83332 26.6867C8.19443 25.5889 8.16666 24.4989 8.74999 23.4167L11 19.3333L4.99999 6.66668H1.66666V3.33334H7.08332L8.66666 6.66668Z" data-uri="/shoppingCart" />
           </svg>
-          <span id="numberOfArticles">0</span>
+          <span id="numberOfArticles">${countProductCart()}</span>
         </a>
       </div>
-      <a href="#about" class="navMenu">
-        <div class="menu">
+      <a href="#about" class="navMenu" id="menu" role="button" data-target="#costumModal1" data-toggle="modal" >
+        <div class="menu" >
           <div class="menu__container">
             <div class="menu__inner"></div>
             <div class="menu__hidden"></div>
@@ -110,20 +150,40 @@ function renderNavbar() {
          </div>
       </a>
     </div>
-
-    <li class="nav-item">
-      <a class="nav-link" href="/logout" data-uri="/logout">
-    <img src="${userLogout}" alt="Logout" width="30" height="30">
-    Logout
-      </a>
-</li>
-
   </div>
   `;
- 
-  const navbar = document.querySelector('#navbarWrapper');
 
-  navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar : anonymousUserNavbar;
+  const modalHtml = `
+  <div class="modal" id="modal"> 
+    <span class="close">X</span>
+    <div class="tex-modal-container">
+      <a class="modal-link"  data-uri="/" >Home</a>
+      <a class="modal-link"  data-uri="/login"> Login </a>
+      <a class="modal-link"  data-uri="/register" > Sign Up </a>
+      <a class="modal-link"  data-uri="/allProducts" > See Products </a> 
+      <div>
+  </div>
+  `;
+  const modalHtmlConnected = `
+  <div class="modal" id="modal"> 
+    <span class="close">X</span>
+    <div class="tex-modal-container">
+    <h1 class="greetings" > Welcome ${user?.firstname} !</h1>
+      <a class="modal-link" data-uri="/" >Home</a>
+      <a class="modal-link" data-uri="/user/${user?.id}" >My Page</a>
+      <a class="modal-link" data-uri="/logout" > Log Out </a>
+      <a class="modal-link" data-uri="/allProducts" > See Products </a> 
+      <div>
+  </div>
+  `;
+
+
+
+ 
+  
+  const navbar = document.querySelector('#navbarWrapper');
+  navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar + modalHtmlConnected : anonymousUserNavbar + modalHtml;
+
 
   if(isAuthenticated()){
   const btnUser = document.getElementById('user');

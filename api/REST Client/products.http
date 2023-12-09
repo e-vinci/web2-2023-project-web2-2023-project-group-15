@@ -3,7 +3,7 @@
 GET {{baseUrl}}/products
 
 ### get Product 
-GET {{baseUrl}}/products/4
+GET {{baseUrl}}/products/1
 
 ### get Product order bu price
 GET {{baseUrl}}/products?order=price

@@ -120,7 +120,6 @@ class UserLibrary{
       const url ='/api/user?email='
       try {
           const reponse = await fetch(url+email);
-          console.log("résultat reponse " , reponse)
     
           if (!reponse.ok) {
             throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
@@ -129,8 +128,8 @@ class UserLibrary{
         } catch (err) {
           console.error('error: ', err);
         }
-        return user;
-  }
+      return user;
+    }
 
   
   static async getUserFromId(id){

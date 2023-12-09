@@ -1,5 +1,6 @@
 @use 'color';
 @use 'responsive';
+@use 'fonts';
 
 $h-padding: 15px;
 $h-width: 36px;
@@ -54,6 +55,7 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .logoTextDiv {
+  margin-top: 1%;
   margin-right: 35%;
   cursor: pointer;
 }
@@ -79,14 +81,23 @@ $h-hide-distance: $h-width + $h-padding;
 }
 
 .iconDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   height: 100%;
-  padding-top: 3.5%;
-
+  font-family: fonts.$regular-police;
+  font-size: 14px;
+  padding: 5px 5px;
+  color : color.$primary-black;
+}
+.iconDiv span{
+ 
 }
 
 .icon {
-  margin: 28px;
-  padding-top: 10%;
+  margin: 20px;
+  padding-top: 5%;
   vertical-align: middle;
   text-decoration: none;
   flex: 1;
@@ -109,6 +120,7 @@ $h-hide-distance: $h-width + $h-padding;
 
 .iconDiv:hover {
   background-color: rgb(0, 0, 0);
+  color: color.$primary-white;
   cursor: pointer;
   .profileIcon {
     fill: transparent;
@@ -230,7 +242,47 @@ $h-hide-distance: $h-width + $h-padding;
   }
 
 }
+//-----------------Modal----------------------------------//
 
+.modal{
+  flex-direction: column;
+  background-color: color.$primary-black;
+  font-family: fonts.$regular-police ;
+  color: color.$primary-white;
+}
+.close{
+  padding: 3%;
+  font-family: fonts.$regular-police ;
+  color: color.$primary-white;
+  float: right;
+  text-decoration: none;
+  font-size: 40px;
+}
+.close:hover{
+  color: orange;
+  cursor: pointer;
+}
+.tex-modal-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 40px;
+}
+.modal-link{
+  margin: 2%;
+  padding: 5px;
+  cursor: pointer;
+}
+.greetings{
+  font-family: fonts.$regular-police ;
+  font-size: 30px;
+}
+.modal-link:hover{
+  border-bottom: solid 1px white;
+  transition: all 0.5ms;
+}
 
 //-----------------Responsive----------------------------------//
 @include responsive.BigScreen{
@@ -298,6 +350,14 @@ $h-hide-distance: $h-width + $h-padding;
   .containerIcons {
     margin-right: 10%;
   }
+  .tex-modal-container{
+    padding-top: 15%;
+    font-size: 25px;
+  }
+  .close{
+    font-size: 30px;
+  }
+ 
 }
 @include responsive.Phone {
   .profileIcon {
@@ -323,6 +383,13 @@ $h-hide-distance: $h-width + $h-padding;
   .logoSVG {
     width: 40px;
     height: 40px;
+  }
+  .tex-modal-container{
+    padding-top: 30%;
+    font-size: 20px;
+  }
+  .close{
+    font-size: 25px;
   }
 }
 
