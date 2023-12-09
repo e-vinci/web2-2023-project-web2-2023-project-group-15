@@ -117,7 +117,7 @@ class UserLibrary{
 
     static async getUserFromUsername(email){
       let  user='';
-      const url ='/api/user?email='
+      const url =`${process.env.API_BASE_URL}/user?email=`
       try {
           const reponse = await fetch(url+email);
     
