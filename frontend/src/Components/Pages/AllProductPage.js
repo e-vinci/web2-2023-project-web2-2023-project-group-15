@@ -18,6 +18,7 @@ const productsImgs = importAll(require.context('../../img/products', true, /\.pn
 let i = 0;
 let btnAddToCart;
 const AllProductPage = async () => {
+  // eslint-disable-next-line no-restricted-globals
   clearPage();
 
   const main = document.querySelector('main');

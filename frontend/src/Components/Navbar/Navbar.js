@@ -6,6 +6,7 @@ import GrandiosoVinciText from '../../img/navbar/GrandiosoVinci.svg';
 import logo from '../../img/navbar/logo.svg';
 import userLogout from '../../img/logout/userLogout.svg';
 import { getAuthenticatedUser, isAuthenticated } from '../../utils/auths';
+import { clearPage } from '../../utils/render';
 import Navigate from '../Router/Navigate';
 
 const main = document.querySelector('main');
@@ -17,6 +18,35 @@ const main = document.querySelector('main');
  */
 const Navbar = () => {
 renderNavbar();
+const menu  = document.querySelector('.menu');
+
+function OpenModal() {
+  
+  const modal = document.getElementById('modal');
+  modal.style.display = 'flex';
+
+  function closeModal(){
+    modal.style.display = 'none';
+  }
+
+  const closeButton = modal.querySelector('.close');
+  const modalLink = modal.querySelector('.modal-link');
+
+  closeButton.addEventListener('click', () => {
+   closeModal();
+  });
+
+  modalLink.addEventListener('click', () => {
+    closeModal();
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+}
+menu.addEventListener('click',OpenModal);
 
 };
 
@@ -87,7 +117,19 @@ function renderNavbar() {
         </a>
         <span >${user?.firstname}</span>
       </div>
-
+      <div data-uri="/logout" class="iconDiv" id="user" >
+      <a href="#home" class="icon" id="profileIcon" >
+      <svg  xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" width="40" height="40" viewBox="0 0 256 256" xml:space="preserve" class="profileIcon">
+      <g style="stroke: none;  stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+        <path d="M 36.137 34.78 c -9.589 0 -17.39 -7.801 -17.39 -17.39 C 18.747 7.801 26.548 0 36.137 0 s 17.39 7.801 17.39 17.39 C 53.527 26.979 45.726 34.78 36.137 34.78 z M 36.137 7 c -5.729 0 -10.39 4.661 -10.39 10.39 s 4.661 10.39 10.39 10.39 s 10.39 -4.661 10.39 -10.39 S 41.866 7 36.137 7 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        <path d="M 11.721 90 c -1.933 0 -3.5 -1.567 -3.5 -3.5 V 61.756 c 0 -11.14 9.063 -20.203 20.203 -20.203 h 15.427 c 6.92 0 13.29 3.505 17.039 9.375 c 1.084 1.698 1.904 3.539 2.438 5.471 c 0.516 1.862 -0.577 3.791 -2.44 4.306 c -1.86 0.519 -3.791 -0.576 -4.306 -2.44 c -0.349 -1.258 -0.884 -2.459 -1.593 -3.568 c -2.456 -3.847 -6.62 -6.143 -11.138 -6.143 H 28.424 c -7.28 0 -13.203 5.923 -13.203 13.203 V 86.5 C 15.221 88.433 13.654 90 11.721 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        <path d="M 60.554 90 c -1.933 0 -3.5 -1.567 -3.5 -3.5 v -2.236 c 0 -1.933 1.567 -3.5 3.5 -3.5 s 3.5 1.567 3.5 3.5 V 86.5 C 64.054 88.433 62.486 90 60.554 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+        <path d="M 80.754 68.741 l -8.515 -8.515 c -1.367 -1.367 -3.582 -1.367 -4.949 0 c -1.367 1.366 -1.367 3.583 0 4.949 l 2.54 2.54 H 36.137 c -1.933 0 -3.5 1.567 -3.5 3.5 s 1.567 3.5 3.5 3.5 h 33.693 l -2.541 2.541 c -1.367 1.367 -1.367 3.583 0 4.949 c 0.684 0.684 1.579 1.025 2.475 1.025 s 1.792 -0.342 2.475 -1.025 l 8.515 -8.516 C 82.121 72.323 82.121 70.107 80.754 68.741 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+      </g>
+      </svg>
+      </a>
+      <span >Logout</span>
+    </div>
 
       <div  data-uri="/shoppingCart" class="iconDiv" id="shoppingCartDiv"  >
         <a  class="icon" >
@@ -97,7 +139,7 @@ function renderNavbar() {
           <span id="numberOfArticles">0</span>
         </a>
       </div>
-      <a href="#about" class="navMenu" role="button" data-target="#costumModal1" data-toggle="modal" >
+      <a href="#about" class="navMenu" id="menu" role="button" data-target="#costumModal1" data-toggle="modal" >
         <div class="menu" >
           <div class="menu__container">
             <div class="menu__inner"></div>
@@ -106,58 +148,40 @@ function renderNavbar() {
          </div>
       </a>
     </div>
+  </div>
+  `;
 
-    <li class="nav-item">
-      <a class="nav-link" href="/logout" data-uri="/logout">
-    <img src="${userLogout}" alt="Logout" width="30" height="30">
-    Logout
-      </a>
-</li>
-
+  const modalHtml = `
+  <div class="modal" id="modal"> 
+    <span class="close">X</span>
+    <div class="tex-modal-container">
+      <a class="modal-link"  data-uri="/" >Home</a>
+      <a class="modal-link"  data-uri="/login"> Login </a>
+      <a class="modal-link"  data-uri="/register" > Sign Up </a>
+      <a class="modal-link"  data-uri="/allProducts" > See Products </a> 
+      <div>
+  </div>
+  `;
+  const modalHtmlConnected = `
+  <div class="modal" id="modal"> 
+    <span class="close">X</span>
+    <div class="tex-modal-container">
+    <h1 class="greetings" > Welcome ${user?.firstname} !</h1>
+      <a class="modal-link" data-uri="/" >Home</a>
+      <a class="modal-link" data-uri="/user/${user?.id}" >My Page</a>
+      <a class="modal-link" data-uri="/logout" > Log Out </a>
+      <a class="modal-link" data-uri="/allProducts" > See Products </a> 
+      <div>
   </div>
   `;
 
 
-  const modal = ` <a href="#costumModal1"  class="btn btn-default" >
-  fadeIn
-</a>
-<div id="costumModal1" class="modal" data-easein="fadeIn" tabindex="-1" role="dialog" aria-labelledby="costumModalLabel" aria-hidden="false">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                  ×
-              </button>
-              <h4 class="modal-title" id="costumModalLabel">
-                  Modal Header
-              </h4>
-          </div>
-          <div class="modal-body">
-              <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-          </div>
-          <div class="modal-footer">
-              <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">
-                  Close
-              </button>
-              <button class="btn btn-primary">
-                  Save changes
-              </button>
-          </div>
-      </div>
-  </div>
-</div>`;
 
-  
  
+  
   const navbar = document.querySelector('#navbarWrapper');
-  navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar : anonymousUserNavbar;
+  navbar.innerHTML = isAuthenticated() ? authenticatedUserNavbar + modalHtmlConnected : anonymousUserNavbar + modalHtml;
+
 
   if(isAuthenticated()){
   const btnUser = document.getElementById('user');

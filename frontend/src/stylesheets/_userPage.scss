@@ -8,4 +8,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     margin-bottom: 0%;
+    font-family: fonts.$regular-police;
+  }
+
+  @include responsive.BigScreen{
+    .background{
+      height: 930px;
+    }
   }
