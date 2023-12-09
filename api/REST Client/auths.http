@@ -48,21 +48,21 @@ Content-Type: application/json
 }
 
 ### get all info on user
-GET {{baseUrl}}/users/1
+GET {{baseUrl}}/user/3
 
 
 ### get all info on user
-GET {{baseUrl}}/users?email=Jean.Dupont@example.com
+GET {{baseUrl}}/user?email=Luc.Dupont@example.com
 
 ### update user info
-PATCH {{baseUrl}}/users/1
+PATCH {{baseUrl}}/user/1
 Content-Type: application/json
 
 {
-"id": 1,
-"firstname": "Jean",
+"firstname": "Luc",
 "lastname": "Dupont",
-"email": "Jean.Dupont@example.com",
+"email": "Luc.Dupont@example.com",
 "password": "MotDePasse",
+"birthdate": "2001-11-13",
 "address": "123 rue de la rue, Bruxelles"
 }

@@ -12,6 +12,7 @@ import WatchesProducts from '../Pages/WatchesProducts';
 import CosmeticsProducts from '../Pages/CosmeticsProducts';
 import BagsProducts from '../Pages/BagsProducts';
 import ClothingProducts from '../Pages/ClothingProducts';
+import changePersonalInfoPage from '../Pages/changePersonalInfoPage';
 
 const routes = {
   '/': HomePage,
@@ -27,7 +28,8 @@ const routes = {
   '/AllProducts=Watches': WatchesProducts,
   '/AllProducts=Cosmetics': CosmeticsProducts,
   '/AllProducts=Bags': BagsProducts,
-  '/AllProducts=Clothing': ClothingProducts
+  '/AllProducts=Clothing': ClothingProducts,
+  '/changePersonalInfoPage': changePersonalInfoPage,
 };
 
 export default routes;

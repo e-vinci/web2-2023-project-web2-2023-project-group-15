@@ -1,36 +1,62 @@
 // import { getAuthenticatedUser } from "../../utils/auths";
-import UserLibrary from "../../Domain/UserLibrary";
+import UserLibrary from '../../Domain/UserLibrary';
 import '../../stylesheets/_userPage.scss';
 
-const  UserPage = async () => {
+function popupChangeInfo(userId) {
+  const modifyInfoBtn = document.querySelector('#modifyInfoBtn');
+  modifyInfoBtn.addEventListener('click', () => openPopup(userId));
+}
 
+function openPopup(userId) {
+  // Specify the URL of the page you want to load in the pop-up window
+  const popupUrl = `/changePersonalInfoPage?id=${userId}`; // Replace with your actual URL
+
+  // Specify the dimensions of the pop-up window
+  const popupWidth = 800;
+  const popupHeight = 600;
+
+  // Calculate the position to center the pop-up window on the screen
+  const left = (window.innerWidth - popupWidth) / 2;
+  const top = (window.innerHeight - popupHeight) / 2;
+
+  // Open the pop-up window
+  const popupWindow = window.open(
+    popupUrl,
+    '_blank',
+    `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`,
+  );
+
+  // Focus on the pop-up window (optional)
+  if (popupWindow) {
+    popupWindow.focus();
+  }
+}
+
+const UserPage = async () => {
   // eslint-disable-next-line no-unused-vars
   const url = window.location.search;
   const email = url.split('=');
-  console.log('email : ' , email[1]);
+  console.log('email : ', email[1]);
   /*
   const userEmail = getAuthenticatedUser();
   const url = `email=${userEmail.email}`
   */
- 
-  const user = await getUserFromUsername(email[1]);
 
+  const user = await getUserFromUsername(email[1]);
 
   async function getUserFromUsername(url_) {
     console.log(url_);
     const userFound = await UserLibrary.getUserFromUsername(url_);
     return userFound;
-    
   }
-
-  
 
   const html = `
   <section class="background">
   <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12">
-              <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+              <div class="backgroundForm
+              " style="border-radius: 15px;">
                   <div class="card-body p-0">
                       <div class="row g-0">
                           <div class="col-lg-8">
@@ -48,19 +74,39 @@ const  UserPage = async () => {
                                           <strong>Lastname:</strong> ${user.lastname}
                                       </li>
                                       <li class="list-group-item">
+                                      <strong>Email:</strong> ${user.email}
+                                      </li>
+
+                                      <li class="list-group-item">
+                                          <strong>street:</strong> ${user.street}
+                                      </li>
+
+                                      <li class="list-group-item">
+                                      <strong>city:</strong> ${user.city}
+                                      </li>
+
+                                      <li class="list-group-item">
+                                      <strong>zipcode:</strong> ${user.zipcode}
+                                      </li>
+
+                                      <li class="list-group-item">
+                                      <strong>country:</strong> ${user.country}
+                                      </li>
+
+                                      <li class="list-group-item">
                                           <strong>birth date:</strong> ${user.birthdate}
                                       </li>
-                                      <li class="list-group-item">
-                                          <strong>Email:</strong> ${user.email}
-                                      </li>
-                                      <li class="list-group-item">
-                                          <strong>Address:</strong> ${user.address}
+
+                                      <li class="list-group-item" type="password">
+                                          <strong>password:</strong> ${user.password}
                                       </li>
                                       
                                   </ul>
   
-                                  <button type="button" class="btn btn-primary" data-toggle="modal"
+                                  <button type="button" id="modifyInfoBtn" class="btn btn-outline-dark" data-toggle="modal"
                                       data-target="#modifyPersonalInfoModal">Modify Personal Information</button>
+
+                                      <a href="/logout" class="btn btn-outline-dark">Logout</a>
   
                                  
                               </div>
@@ -83,10 +129,7 @@ const  UserPage = async () => {
   
                                   <hr class="my-4">
   
-                                  <div class="d-flex justify-content-between mb-5">
-                                      <h5 class="text-uppercase">Total spent</h5>
-                                      <h5>€ 109.00</h5>
-                                  </div>
+                                  
                                   <a href="/" class="btn btn-outline-dark">Place New Order</a>
   
                                   </div>
@@ -102,9 +145,11 @@ const  UserPage = async () => {
   
   `;
 
+
+
   const main = document.querySelector('main');
   main.innerHTML = html;
-
+  popupChangeInfo(user.id);
 };
 
 export default UserPage;

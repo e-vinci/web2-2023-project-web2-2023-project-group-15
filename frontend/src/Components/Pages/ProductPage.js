@@ -1,5 +1,5 @@
 // import { addItemToCart } from "../../utils/shoppingCart";
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 const html = `
         <!-- Product section-->
@@ -137,7 +137,7 @@ const html = `
 const ProductPage = () => {
     const main = document.querySelector('main');
     main.innerHTML = html;
-    const { productName } = useParams();
+    // const { productName } = useParams();
 
     const btnAddToCart = document.getElementById('addToCart')
 
