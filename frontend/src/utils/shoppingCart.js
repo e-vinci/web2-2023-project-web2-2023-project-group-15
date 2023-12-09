@@ -29,7 +29,6 @@ function saveCart(cart) {
 
 // Show shoppingCart
 function loadCart(emailUser) {
-    console.log("Lemial du user load cart est ", emailUser);
     let string = "shoppingCart";
     string+=emailUser
   
@@ -37,8 +36,8 @@ function loadCart(emailUser) {
   if(localStorage.getItem(string) === null){ // If no ShoppingCart -> Create one
     shoppingCart(emailUser);
   }
+
   const cart = JSON.parse(localStorage.getItem(string));
-  console.log("la carte est : " , cart)
   if(cart.email === emailUser){
   return cart;
 }
@@ -70,7 +69,7 @@ function addItemToCart(id, name, price, count) {
     console.log("la carte aprés ajout est " , cart)
     saveCart(cart);
     }else{
-        Navigate("login");
+        Navigate('/login');
     }
   };
 
@@ -106,13 +105,17 @@ return sum;
 
 function countProductCart(){
   const user = getAuthenticatedUser();
+  if(user === undefined){
+    return 0;
+  }
   const cart = loadCart(user.email);
   const {length} = cart.objects;
-  let count = 0;
+  
+  let price = 0 ;
   for (let i = 0; i < length; i += 1) {
-     count += cart.objects[i].count;
+     price += parseInt(cart.objects[i].count, 10);
   }
-  return count;
+  return price;
 
 }
 

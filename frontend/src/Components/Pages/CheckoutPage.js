@@ -4,7 +4,7 @@
 /* eslint-disable no-unused-vars */
 import { loadScript } from "@paypal/paypal-js";
 import { getAuthenticatedUser } from "../../utils/auths";
-// import { getCartTotal } from "../../utils/shoppingCart";
+import { getCartTotal } from "../../utils/shoppingCart";
 import Navigate from "../Router/Navigate";
 import OrderLibrary from "../../Domain/OrderLibrary";
 
@@ -100,9 +100,9 @@ const CheckoutPage = () => {
                         <hr class="mb-4">
 
                         <ul class="list-group mb-3">
-                          <li class="list-group-item d-flex justify-content-between">
+                          <li class="list-group-item d-flex justify-content-between" id="totalPrice" value="${getCartTotal()}">
                             <span>Total (USD)</span>
-                            <strong>$20</strong>
+                            <strong>${getCartTotal()} €</strong>
                           </li>
                         </ul>
 

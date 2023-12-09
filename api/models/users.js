@@ -132,7 +132,7 @@ function getInfoByUserId(id) {
   if (indexOfUsersFound < 0) return undefined;
 
   return users[indexOfUsersFound];
-}
+} 
 
 function getUserFromUsername(email) {
   const users = parse(jsonDbPath, defaultUsers);
@@ -140,7 +140,7 @@ function getUserFromUsername(email) {
   
   return users[indexOfUserFound];
 }
-
+ 
 function updateUserInfo(id, propertiesToUpdate) {
   const idNumber = parseInt(id, 10);
   const users = parse(jsonDbPath, defaultUsers);

@@ -6,8 +6,8 @@
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
-var Module = require('module');
-var fs     = require('fs');
+// var Module = require('module');
+// var fs     = require('fs');
 
 // const popularImgWatchesBallonBleu = require ('../productsImages/2.png');
 // const popularImgWatchesRolexSubmarinier =  require ('../productsImages/1.png');
@@ -205,7 +205,8 @@ function readOneProduct(id) {
   const products = parse(jsonDbPath, defaultProducts);
   const indexOfProdcutsFound = products.findIndex((product) => product.id === idNumber);
   if (indexOfProdcutsFound < 0) return undefined;
-
+  console.log('model readOneProduct', products);
+  console.log(products[indexOfProdcutsFound]);
   return products[indexOfProdcutsFound];
 }
 

@@ -8,11 +8,10 @@ class OrderLibrary{
    
      async createOrder(){
 
-        console.log(" ORDERLIBRARY TEST1 ");
         const user = getAuthenticatedUser();
         const firstName = user.firstname;
         const lastName = user.lastname;
-        const totalPrice =  null;
+        const totalPrice =  document.getElementById('totalPrice').value;
         let payementMethod;
 
         const paypal = document.getElementById('paypal').checked;
