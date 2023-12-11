@@ -15,7 +15,6 @@ router.post('/register', async (req, res) => {
   const zipcode = req?.body?.zipcode;
   const country = req?.body?.country;
   const birthdate = req?.body?.birthdate;
-  
 
   if (!firstname || !lastname || !email || !street || !city || !zipcode || !country || !birthdate || !password) return res.sendStatus(400);
   const authenticatedUser = await register(firstname, lastname, email, street, city, zipcode, country, birthdate, password);

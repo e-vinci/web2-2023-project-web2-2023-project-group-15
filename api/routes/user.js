@@ -1,5 +1,9 @@
 const express = require('express');
 
+const bcrypt = require('bcrypt');
+
+const saltRounds = 10;
+
 const router = express.Router();
 
 const { getInfoByUserId, updateUserInfo, getUserFromUsername } = require('../models/users');
@@ -38,7 +42,7 @@ router.patch('/onChange/:id', (req, res) => {
 
   const country = req?.body.country;
 
-  const password = req?.body.password;
+  const password = bcrypt.hashSync(req?.body.password, saltRounds);
 
   // eslint-disable-next-line max-len
   if (!firstname && !lastname && !email && !street && !city && !zipcode && !country && !password) return res.sendStatus(400);
