@@ -9,7 +9,7 @@ class SubCategoryLibrary{
     static async getAllSubCategories(){
         let  allSubCategories='';
         try {
-            const reponse = await fetch(`/api/subCategories/`);
+            const reponse = await fetch(`${process.env.API_BASE_URL}/subCategories/`);
             console.log("résultat reponse " , reponse)
       
             if (!reponse.ok) {
