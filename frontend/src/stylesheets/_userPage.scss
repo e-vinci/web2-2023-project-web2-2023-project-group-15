@@ -11,6 +11,10 @@
     font-family: fonts.$regular-police;
   }
 
+.backgroundForm {
+  background-image: url('../img/user/backgroundForm.png');
+}
+
   @include responsive.BigScreen{
     .background{
       height: 930px;

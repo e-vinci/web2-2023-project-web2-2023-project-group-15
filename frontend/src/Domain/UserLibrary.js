@@ -150,18 +150,17 @@ class UserLibrary{
 }
 
 
-static async onChangeInfo(e){
+ async onChangeInfo(id){
 
-      e.preventDefault();
-        const firstname = document.querySelector('#firstname').value;
-        const lastname = document.querySelector('#lastname').value;
-        const mail = document.querySelector('#registerUsername').value;
-        const registerPassword = document.querySelector('#registerPassword').value;
-        const registerConfPassword = document.querySelector('#registerConfPassword').value;
-        const countryName = document.querySelector('#countryName').value;
-        const zipCode = document.querySelector('#zipCode').value;
-        const cityName = document.querySelector('#cityName').value;
-        const streetName = document.querySelector('#streetName').value;
+        const firstname = document.querySelector('#firstname_').value;
+        const lastname = document.querySelector('#lastname_').value;
+        const mail = document.querySelector('#registerUsername_').value;
+        const registerPassword = document.querySelector('#registerPassword_').value;
+        const registerConfPassword = document.querySelector('#registerConfPassword_').value;
+        const countryName = document.querySelector('#countryName_').value;
+        const zipCode = document.querySelector('#zipCode_').value;
+        const cityName = document.querySelector('#cityName_').value;
+        const streetName = document.querySelector('#streetName_').value;
 
         if(registerPassword !== registerConfPassword) {
           throw new Error(`The password is not the same`);
@@ -184,7 +183,7 @@ static async onChangeInfo(e){
           },
         };
        
-        const response = await fetch(``, options);
+        const response = await fetch(`/api/user/onChange/${id}`, options);
         
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 

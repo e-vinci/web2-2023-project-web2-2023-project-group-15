@@ -23,23 +23,32 @@ router.get('/:id', (req, res) => {
   return res.json(foundUser);
 });
 
-router.patch('/:id', (req, res) => {
+router.patch('/onChange/:id', (req, res) => {
   const firstname = req?.body.firstname;
+
   const lastname = req?.body.lastname;
-  const birthdate = req?.body.birthdate;
+
   const email = req?.body.email;
+
+  const street = req?.body.street;
+
+  const city = req?.body.city;
+
+  const zipcode = req?.body.zipcode;
+
+  const country = req?.body.country;
+
   const password = req?.body.password;
-  const adress = req?.body.adress;
 
   // eslint-disable-next-line max-len
-  if (!firstname && !lastname && !birthdate && !email && !adress) return res.sendStatus(400);
+  if (!firstname && !lastname && !email && !street && !city && !zipcode && !country && !password) return res.sendStatus(400);
 
   // eslint-disable-next-line max-len
-  if (firstname?.length === 0 || lastname?.length === 0 || birthdate?.length === 0 || email?.length === 0 || adress?.length === 0) return res.sendStatus(400);
+  if (firstname?.length === 0 || lastname?.length === 0 || email?.length === 0 || street?.length === 0 || city?.length === 0 || zipcode?.length === 0 || country?.length === 0) return res.sendStatus(400);
 
   // eslint-disable-next-line max-len
   const updatedUser = updateUserInfo(req.params.id, {
-    firstname, lastname, birthdate, email, password, adress,
+    firstname, lastname, email, street, city, zipcode, country, password,
   });
 
   if (!updatedUser) return res.sendStatus(404);

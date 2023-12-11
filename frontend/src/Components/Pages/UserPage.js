@@ -30,6 +30,17 @@ function openPopup(userId) {
   if (popupWindow) {
     popupWindow.focus();
   }
+
+  window.addEventListener('message', (event) => {
+    // Check if the message is from the popup window
+    if (event.source === popupWindow) {
+      // Check the message data to determine if it's a close request
+      if (event.data === 'closePopup') {
+        // Close the popup window
+        popupWindow.close();
+      }
+    }
+  });
 }
 
 const UserPage = async () => {

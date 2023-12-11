@@ -55,14 +55,16 @@ GET {{baseUrl}}/user/3
 GET {{baseUrl}}/user?email=Luc.Dupont@example.com
 
 ### update user info
-PATCH {{baseUrl}}/user/1
+PATCH {{baseUrl}}/user/onChange/3
 Content-Type: application/json
 
 {
-"firstname": "Luc",
-"lastname": "Dupont",
-"email": "Luc.Dupont@example.com",
-"password": "MotDePasse",
-"birthdate": "2001-11-13",
-"address": "123 rue de la rue, Bruxelles"
+"firstname": "Pepijn",
+"lastname": "Smeding",
+"email": "pepijn.smeding@student.vinci.be",
+"street": "kapucijnendreef, 36",
+"city": "Overijse",
+"zipcode": "3090",
+"country": "Belgium",
+"password": "$2b$10$fsaTwXuGCUwqNCJ9G7.62.muH2zXb9p88wtLvaWdykwX2AyQlC/g6"
 }
