@@ -1,8 +1,45 @@
+@use 'color';
+@use 'responsive';
+@use 'fonts';
+
 h2{
     
-    font:  3em "CenturyGothic";     
+    font: 30px fonts.$regular-police;     
 }
 
 input{
-    font:  1em "CenturyGothic"; 
+    font: 15px fonts.$regular-police;   
 }
+#background-sign-up{
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 750px !important;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+.register-container{
+
+}
+
+@include responsive.BigScreen{
+    #background-sign-up{
+        height: 800px !important;
+        margin-bottom: 5%;
+        margin-top: 8%;
+    }
+  }
+  @include responsive.Phone{
+    #background-sign-up{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100% !important;
+        width: 300px;
+        margin-bottom: 5%;
+        margin-top: 8%;
+    }
+    #input-register{
+        padding: 0;
+        margin: 0;
+    }
+  }

@@ -37,10 +37,10 @@ function renderRegisterForm() {
 
   form.innerHTML=
   ` 
-  <div class="container-fluid py-3 h-100">
+  <div class="container-fluid py-3 h-100" id="register-container">
   <div class="row d-flex align-items-center h-100">
-    <div class="col-12">
-      <div class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover">
+    <div class="col-12 ">
+      <div id="background-sign-up" class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover" >
         <div class="card-body px-5 py-2 text-center">
           <div class="mb-md-5 mt-md-4 pb-1">
             <h2 >SIGN UP</h2>
@@ -48,7 +48,7 @@ function renderRegisterForm() {
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group last mb-3">
-                  <input type="text" id="firstname" class="form-control" placeholder="Firstname" required=true />
+                  <input id="input-register" type="text" id="firstname" class="form-control" placeholder="Firstname" required=true />
                   <label class="form-label" for="firstname"></label>
                 </div>
               </div>
