@@ -69,7 +69,6 @@ router.post('/', (req, res) => {
   return res.json(createdProd);
 });
 
-// Delete a pizza from the menu based on its id
 router.delete('/:id', (req, res) => {
   const deletedProduct = deleteOneProduct(req.params.id);
 
@@ -78,7 +77,6 @@ router.delete('/:id', (req, res) => {
   return res.json(deletedProduct);
 });
 
-// Update a pizza based on its id and new values for its parameters
 router.patch('/:id', (req, res) => {
   const name = req?.body?.name?.length !== 0 ? req.body.name : undefined;
   const price = req?.body?.price > 0 ? req.body.price : undefined;

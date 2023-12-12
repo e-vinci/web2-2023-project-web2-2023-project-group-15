@@ -15,11 +15,9 @@ const ShoppingCartPage = () => {
     const user = getAuthenticatedUser();
 
     if(user === undefined){
-      console.log("undifined user ");
       Navigate('/login');
     }
 
-    console.log(countProductCart())
     let html = `
     <section class="h-100 h-custom" >
     <div class="">
@@ -34,11 +32,12 @@ const ShoppingCartPage = () => {
                       <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
                       <h6 class="mb-0 text-muted">${countProductCart()} items</h6>
                     </div>
+                    
                     `;
 
     const product = loadCart(user.email);
     const productList = product.objects;
-    console.log(productList)
+    
 
     if(productList.length === 0){ 
       html +=`
@@ -65,9 +64,10 @@ const ShoppingCartPage = () => {
           </div>
           <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
       
-          <button id="minus">-</button>
+          <button class="minus">-</button>
           <input class="form-control text-center me-3" id="productQuantity" type="num" value="${productList[i].count}" style="max-width: 3rem" />
-          <button id="add">+</button>
+          <input type="hidden" value="${productList[i].name}"/>
+          <button class="add">+</button>
 
           </div>
           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
@@ -152,33 +152,47 @@ const ShoppingCartPage = () => {
 
     if(productList.length !== 0){
 
-    const btnCheckout = document.getElementById('btnCheckout');
-    btnCheckout.addEventListener('click', async (e) => {
-      e.preventDefault();
-      Navigate('/checkout')
-    });
+      const btnCheckout = document.getElementById('btnCheckout');
+      btnCheckout.addEventListener('click', async (e) => {
+        e.preventDefault();
+        Navigate('/checkout')
+      });
 
-    let nb = parseInt(document.querySelector('#productQuantity').value,10) ;
-    const btnAddOne = document.getElementById('add');
-    btnAddOne.addEventListener('click' , async (e) => {
-      e.preventDefault();
-      nb += 1; 
-      document.querySelector('#productQuantity').value = nb;
-    });
-
-    const btnMinusOne = document.getElementById('minus');
-    btnMinusOne.addEventListener('click' , async (e) => {
-      e.preventDefault();
-      nb -= 1; 
-      if(nb === 0){
-        removeItemFromCart();
-        
-      }
-      else{
-        document.querySelector('#productQuantity').value = nb;
-      }
       
-    })
+      const btnAddOne = document.getElementsByClassName('add');
+      for (let y = 0; y <  btnAddOne.length; y += 1) {
+        
+        let nb = parseInt(document.querySelector('#productQuantity').value,10);
+
+
+        btnAddOne[y].addEventListener('click' , async (e) => {
+          e.preventDefault();
+          nb += 1; 
+          document.querySelector('#productQuantity').value = nb;
+          addItemToCart(productList[y].id,productList[y].name,productList[y].price,productList[y].count);
+          ShoppingCartPage();
+          Navbar();
+          
+         
+        });
+      }
+    
+      const btnMinusOne = document.getElementsByClassName('minus');
+      for (let y = 0; y <  btnMinusOne.length; y += 1) {
+
+        let nb = parseInt(document.querySelector('#productQuantity').value,10);
+
+        btnMinusOne[y].addEventListener('click' , async (e) => {
+          e.preventDefault();
+          nb -= 1; 
+          document.querySelector('#productQuantity').value = nb;
+          removeItemFromCart(productList[y].name);
+          ShoppingCartPage();
+          Navbar();
+          
+        })
+      }
+    
 
     }
     

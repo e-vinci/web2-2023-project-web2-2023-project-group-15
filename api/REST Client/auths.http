@@ -48,21 +48,23 @@ Content-Type: application/json
 }
 
 ### get all info on user
-GET {{baseUrl}}/users/1
+GET {{baseUrl}}/user/3
 
 
 ### get all info on user
-GET {{baseUrl}}/users?email=Jean.Dupont@example.com
+GET {{baseUrl}}/user?email=Luc.Dupont@example.com
 
 ### update user info
-PATCH {{baseUrl}}/users/1
+PATCH {{baseUrl}}/user/onChange/3
 Content-Type: application/json
 
 {
-"id": 1,
-"firstname": "Jean",
-"lastname": "Dupont",
-"email": "Jean.Dupont@example.com",
-"password": "MotDePasse",
-"address": "123 rue de la rue, Bruxelles"
+"firstname": "Pepijn",
+"lastname": "Smeding",
+"email": "pepijn.smeding@student.vinci.be",
+"street": "kapucijnendreef, 36",
+"city": "Overijse",
+"zipcode": "3090",
+"country": "Belgium",
+"password": "$2b$10$fsaTwXuGCUwqNCJ9G7.62.muH2zXb9p88wtLvaWdykwX2AyQlC/g6"
 }

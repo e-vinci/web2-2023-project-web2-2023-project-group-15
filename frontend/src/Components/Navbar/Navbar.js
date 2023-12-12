@@ -21,35 +21,31 @@ const main = document.querySelector('main');
 const Navbar = () => {
 renderNavbar();
 const menu  = document.querySelector('.menu');
+const modal = document.getElementById('modal');
+const modalLinkAll = modal.querySelectorAll('.modal-link');
+
 
 function OpenModal() {
-  
-  const modal = document.getElementById('modal');
   modal.style.display = 'flex';
 
-  function closeModal(){
-    modal.style.display = 'none';
-  }
-
   const closeButton = modal.querySelector('.close');
-  const modalLink = modal.querySelector('.modal-link');
-
+  
   closeButton.addEventListener('click', () => {
    closeModal();
   });
-
-  modalLink.addEventListener('click', () => {
+}
+modalLinkAll.forEach(link => {
+  link.addEventListener('click', () => {
     closeModal();
   });
+});
 
-  window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
+
+function closeModal(){
+  modal.style.display = 'none';
 }
-menu.addEventListener('click',OpenModal);
 
+menu.addEventListener('click',OpenModal);
 };
 
 function renderNavbar() {

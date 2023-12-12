@@ -122,7 +122,7 @@ const ProductPage = async () => {
       e.preventDefault();
       const showProductId= btnShowProduct.value;
       console.log(showProductId);
-     // Navigate('/product?id=',showProductId );
+     Navigate('/product?id=',showProductId );
     }); 
 
 }; 

@@ -5,7 +5,7 @@ class ProductLibrary{
     
     static async getAllProducts(props){
         let  allProducts='';
-        const url ='/api/product?';
+        const url =`${process.env.API_BASE_URL}/product?`;
         try {
             const reponse = await fetch(url+props);
             console.log("résultat reponse " , reponse)
@@ -22,7 +22,7 @@ class ProductLibrary{
 
     async getProductById(id){
       let  product='';
-        const url = '/api/product/getProduct'
+        const url = `${process.env.API_BASE_URL}/product/getProduct`
         try {
             const reponse = await fetch(url+id);
             console.log("résultat reponse " , reponse)
@@ -39,7 +39,7 @@ class ProductLibrary{
 
      async renderAllProductsByCategory(param){
       let productByCatgeries ='';
-      const url = `/api/product?category=${param}`
+      const url = `${process.env.API_BASE_URL}/product?category=${param}`
         try{
           const response = await fetch(url)
 

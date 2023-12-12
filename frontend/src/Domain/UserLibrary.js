@@ -117,7 +117,7 @@ class UserLibrary{
 
     static async getUserFromUsername(email){
       let  user='';
-      const url ='/api/user?email='
+      const url =`${process.env.API_BASE_URL}/user?email=`
       try {
           const reponse = await fetch(url+email);
     
@@ -131,6 +131,66 @@ class UserLibrary{
       return user;
     }
 
+  
+  static async getUserFromId(id){
+    let  user='';
+    const url ='/api/user/'
+    try {
+        const reponse = await fetch(url+id);
+        console.log("résultat reponse " , reponse)
+  
+        if (!reponse.ok) {
+          throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
+        }
+        user =  await reponse.json();
+      } catch (err) {
+        console.error('error: ', err);
+      }
+      return user;
+}
+
+
+ async onChangeInfo(id){
+
+        const firstname = document.querySelector('#firstname_').value;
+        const lastname = document.querySelector('#lastname_').value;
+        const mail = document.querySelector('#registerUsername_').value;
+        const registerPassword = document.querySelector('#registerPassword_').value;
+        const registerConfPassword = document.querySelector('#registerConfPassword_').value;
+        const countryName = document.querySelector('#countryName_').value;
+        const zipCode = document.querySelector('#zipCode_').value;
+        const cityName = document.querySelector('#cityName_').value;
+        const streetName = document.querySelector('#streetName_').value;
+
+        if(registerPassword !== registerConfPassword) {
+          throw new Error(`The password is not the same`);
+        }
+
+        const options = {
+          method: 'PATCH',
+          body: JSON.stringify({
+            "firstname": firstname,
+            "lastname": lastname,
+            "email": mail,
+            "street" : streetName,
+            "city" : cityName,
+            "zipcode" : zipCode,
+            "country" : countryName,
+            "password": registerPassword
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+       
+        const response = await fetch(`/api/user/onChange/${id}`, options);
+        
+        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+    }
+
+    
+  
 
 }
 export default UserLibrary;

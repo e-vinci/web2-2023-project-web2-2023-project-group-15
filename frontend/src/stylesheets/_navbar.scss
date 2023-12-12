@@ -245,6 +245,8 @@ $h-hide-distance: $h-width + $h-padding;
 //-----------------Modal----------------------------------//
 
 .modal{
+  background-image: url('../img/navbar/background-modal.jpg');
+  background-size: cover;
   flex-direction: column;
   background-color: color.$primary-black;
   font-family: fonts.$regular-police ;
@@ -257,9 +259,10 @@ $h-hide-distance: $h-width + $h-padding;
   float: right;
   text-decoration: none;
   font-size: 40px;
+  color: #fff;
+  border: none;
 }
 .close:hover{
-  color: orange;
   cursor: pointer;
 }
 .tex-modal-container{
@@ -363,8 +366,11 @@ $h-hide-distance: $h-width + $h-padding;
   .profileIcon {
     width: 30px;
     height: 30px;
+    
   }
-
+  #logout{
+    display: none;
+  }
   #researchBar {
     display: none;
   }

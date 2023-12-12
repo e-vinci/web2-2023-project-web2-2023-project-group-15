@@ -118,3 +118,61 @@ h2 {
 #btn-allProducts {
   font-family: fonts.$regular-police;
 }
+#imgCaroussel{
+  height:765px; 
+  widht:100%;
+}
+//----------------------Reponsivite------------------------------
+
+@include responsive.Phone{
+  #imgCaroussel{
+    height:300px; 
+    widht:100%;
+  }
+  .flex-container-categories{
+    display: flex !important;
+    flex-direction: column;
+  }
+  .card {
+    height: 300px;
+    width: 150px;
+    margin: 5%;
+  }
+  .btn-custom {
+    width: 200px; 
+    height: 50px; 
+    font-size: 17px; 
+  }
+}
+@include responsive.BigScreen{
+  #imgCaroussel{
+    height:1020px; 
+    widht:100%;
+  }
+}
+@include responsive.Tablet{
+  #imgCaroussel{
+    height:500px; 
+    widht:100%;
+  }
+  .flex-container-categories{
+    display: flex !important;
+    flex-direction: column;
+  }
+  .card {
+    height: 300px;
+    width: 150px;
+    margin: 5%;
+  }
+  .btn-custom {
+    width: 250px; 
+    height: 50px; 
+    font-size: 22px; 
+  }
+}
+@include responsive.LaptopOld{
+  #imgCaroussel{
+    height:500px; 
+    widht:100%;
+  }
+}
