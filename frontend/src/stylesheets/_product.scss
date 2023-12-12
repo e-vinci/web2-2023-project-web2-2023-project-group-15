@@ -1,7 +1,18 @@
-// Styles SCSS
+
 .img-product {
-    width: 50%; 
-    height: 50%; 
+  width: 400px;
+  height: 560px;
+ 
    
-  }
+}
+
+.product{
+  width: 400px;
+  height: 300px;
+  flex-direction: column;
+  text-align: center;   
+  justify-content: left;
   
+  
+}
+

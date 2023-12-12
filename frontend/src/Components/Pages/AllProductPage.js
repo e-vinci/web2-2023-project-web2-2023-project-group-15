@@ -115,7 +115,7 @@ const AllProductPage = async () => {
   async function addCardProduct(url) {
     const products = await getAllproducts(url);
     let allCards = '';
-    products?.forEach((product) => {
+    products?.forEach((product) => { 
       allCards += `
             <a class="link-products" id="viewProduct" href="#" data-rui="/product/${product.id}">
                 <div class="product-card" id="product-card">

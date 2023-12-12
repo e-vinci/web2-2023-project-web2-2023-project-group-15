@@ -2,6 +2,7 @@
 import { loadCart, countProductCart, getCartTotal , removeItemFromCart, addItemToCart } from "../../utils/shoppingCart";
 import { getAuthenticatedUser } from "../../utils/auths";
 import Navigate from "../Router/Navigate";
+import Navbar from "../Navbar/Navbar";
 import { importAll } from '../../utils/utilsImages';
 import '../../stylesheets/_shoppingCart.scss';
 
@@ -10,6 +11,7 @@ const productsImgs = importAll(require.context('../../img/products', true, /\.pn
 
 const ShoppingCartPage = () => {
 
+    Navbar();
     const user = getAuthenticatedUser();
 
     if(user === undefined){
@@ -62,18 +64,11 @@ const ShoppingCartPage = () => {
             <h6 class="text-black mb-0">${productList[i].name}</h6>
           </div>
           <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-            <button class="btn btn-link px-2" id="minusOne">
-              <input type="hidden" id="minusOneProductName" value="${productList[i].name}">
-              <i class="fas fa-minus"></i>
-            </button>
-  
-            <input id="form1" min="0" name="quantity" value="${productList[i].count}" type="number"
-              class="form-control form-control-sm" />
-  
-            <button class="btn px-2" >
-             
-              <i class="fas fa-plus" id="addOne"></i>
-            </button>
+      
+          <button id="minus">-</button>
+          <input class="form-control text-center me-3" id="productQuantity" type="num" value="${productList[i].count}" style="max-width: 3rem" />
+          <button id="add">+</button>
+
           </div>
           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
             <h6 class="mb-0">${productList[i].price} €</h6>
@@ -163,12 +158,27 @@ const ShoppingCartPage = () => {
       Navigate('/checkout')
     });
 
-    const btnAddOne = document.getElementById('addOne');
-    btnAddOne.addEventListener('click', async (e) =>{
+    let nb = parseInt(document.querySelector('#productQuantity').value,10) ;
+    const btnAddOne = document.getElementById('add');
+    btnAddOne.addEventListener('click' , async (e) => {
       e.preventDefault();
-      const name = document.getElementById('addOneProductName');
-      console.log("plus 1 " , name);
+      nb += 1; 
+      document.querySelector('#productQuantity').value = nb;
     });
+
+    const btnMinusOne = document.getElementById('minus');
+    btnMinusOne.addEventListener('click' , async (e) => {
+      e.preventDefault();
+      nb -= 1; 
+      if(nb === 0){
+        removeItemFromCart();
+        
+      }
+      else{
+        document.querySelector('#productQuantity').value = nb;
+      }
+      
+    })
 
     }
     
