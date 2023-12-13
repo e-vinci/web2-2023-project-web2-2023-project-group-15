@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable spaced-comment */
 import imgCaroussel1 from '../../img/animations/test.gif';
 import imgCaroussel2 from '../../img/animations/test2.gif';
@@ -26,7 +27,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Importe le fichier Bootstrap JavaScript (avec les fonctionnalités JavaScript nécessaires, y compris jQuery)
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-
 
 const html = `
 <div class="container-home">
@@ -199,7 +199,7 @@ const html = `
     <!-- Discover More Button -->
     <div class="text-center mt-5 mb-4" id="btn-allProducts" >
 
-      <button class="btn btn-dark btn-lg btn-custom" data-uri="/allProducts" >Discover More</button>
+      <button class="btn btn-dark btn-lg btn-custom" data-uri="/allProducts" id="discoverMoreBtn">Discover More</button>
     </div>
 
 </div>
@@ -207,16 +207,19 @@ const html = `
 
 </div>   `;
 
+/*
 function callBagsCategory() {
   const bagsButton = document.querySelector('#linkBags');
-  bagsButton.addEventListener('click', () =>  {
-    console.log(bagsButton.getAttribute('data-uri'))
-    Navigate(bagsButton.getAttribute('data-uri')) });
+  bagsButton.addEventListener('click', () => {
+    Navigate(bagsButton.getAttribute('data-uri'));
+  });
 }
 
 function callCosmeticsCategory() {
   const cosmeticsButton = document.querySelector('#linkCosmetics');
-  cosmeticsButton.addEventListener('click', () => Navigate(cosmeticsButton.getAttribute('data-uri')));
+  cosmeticsButton.addEventListener('click', () =>
+    Navigate(cosmeticsButton.getAttribute('data-uri')),
+  );
 }
 
 function callClothingCategory() {
@@ -229,73 +232,89 @@ function callWatchesCategory() {
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callWatches1(){
+function callWatches1() {
   const watchesButton = document.querySelector('#w1');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callWatches2(){
+function callWatches2() {
   const watchesButton = document.querySelector('#w2');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callWatches3(){
+function callWatches3() {
   const watchesButton = document.querySelector('#w3');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callBags1(){
+function callBags1() {
   const watchesButton = document.querySelector('#b1');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callBags2(){
+function callBags2() {
   const watchesButton = document.querySelector('#b2');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callBags3(){
+function callBags3() {
   const watchesButton = document.querySelector('#b3');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callCosm1(){
+function callCosm1() {
   const watchesButton = document.querySelector('#c1');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callCosm2(){
+function callCosm2() {
   const watchesButton = document.querySelector('#c2');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
 
-function callCosm3(){
+function callCosm3() {
   const watchesButton = document.querySelector('#c3');
   watchesButton.addEventListener('click', () => Navigate(watchesButton.getAttribute('data-uri')));
 }
-
-
-
-
-
+*/
 
 const HomePage = () => {
   const main = document.querySelector('main');
   main.innerHTML = html;
-  callBagsCategory();
-  callClothingCategory();
-  callWatchesCategory();
-  callCosmeticsCategory();
-  callWatches1();
-  callWatches2();
-  callWatches3();
-  callBags1();
-  callBags2();
-  callBags3();
-  callCosm1();
-  callCosm2();
-  callCosm3();
-  
+
+  const bagsButton = document.querySelector('#linkBags');
+  bagsButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const url = bagsButton.getAttribute('data-uri');
+    Navigate(url);
+  });
+
+  const cosmeticsButton = document.querySelector('#linkCosmetics');
+  cosmeticsButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const url = cosmeticsButton.getAttribute('data-uri');
+    Navigate(url);
+  });
+
+  const clothingButton = document.querySelector('#linkClothing');
+  clothingButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const url = clothingButton.getAttribute('data-uri');
+    Navigate(url);
+  });
+
+  const watchesButton = document.querySelector('#linkWatches');
+  watchesButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const url = watchesButton.getAttribute('data-uri');
+    Navigate(url);
+  });
+
+  const discoverBtn = document.querySelector('#discoverMoreBtn');
+  discoverBtn.addEventListener('click', () => {
+    const url = discoverBtn.getAttribute('data-uri');
+    Navigate(url);
+  })
 };
 
 export default HomePage;
