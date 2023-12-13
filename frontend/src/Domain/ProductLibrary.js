@@ -37,9 +37,9 @@ class ProductLibrary{
           return product;
     }
 
-    static async renderAllProductsByCategory(param){
+     async renderAllProductsByCategory(param){
       let productByCatgeries ='';
-      const url = `${process.env.API_BASE_URL}/products?category=${param}`
+      const url = `${process.env.API_BASE_URL}/product?category=${param}`
         try{
           const response = await fetch(url)
 
