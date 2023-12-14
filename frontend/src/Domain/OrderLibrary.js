@@ -44,6 +44,7 @@ class OrderLibrary{
               };
             console.log(" ORDERLIBRARY TEST2 ");
 
+            // const reponse = await fetch(`${process.env.API_BASE_URL}/order/addOrder`, options);
             const reponse = await fetch(`${process.env.API_BASE_URL}/order/addOrder`, options);
             console.log("résultat reponse " , reponse)
       

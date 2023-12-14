@@ -12,6 +12,8 @@ import { clearPage } from '../../utils/render';
 import { importAll } from '../../utils/utilsImages';
 import arrowDown from '../../img/icons/small_arrow_down.png';
 import Navigate from '../Router/Navigate';
+
+
 //import { Dropdown } from 'bootstrap';
 
 const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
