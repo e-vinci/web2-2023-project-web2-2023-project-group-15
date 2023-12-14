@@ -69,30 +69,30 @@ const html = `
           <img class="card-img-top" src="${imgBags}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Bags</h5>
-            <a id="linkBags" data-uri="/AllProducts=Bags" href="#" class="btn btn-dark">Check</a>
+            <a id="linkBags" data-uri="/allProductsCategory?category=Bags" href="#" class="btn btn-dark">Check</a>
           </div>
         </div>
         <div class="card text-center mx-auto" id="card-main-categorie">
           <img class="card-img-top" src="${imgCosmetics}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Cosmetics</h5>
-          <a id="linkCosmetics" data-uri="/AllProducts=Cosmetics" href="" class="btn btn-dark">Check</a>
+          <a id="linkCosmetics" data-uri="/allProductsCategory?category=Cosmetics" href="" class="btn btn-dark">Check</a>
         </div>
       </div>
       <div class="card text-center mx-auto" >
         <img class="card-img-top" src="${imgClothing}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Clothing</h5>
-          <a id="linkClothing" data-uri="/AllProducts=Clothing" href="#" class="btn btn-dark">Check</a>
+          <a id="linkClothing" data-uri="/allProductsCategory?category=Clothing" href="#" class="btn btn-dark">Check</a>
         </div>
       </div>
-      <div class="card text-center mx-auto" >
-        <img class="card-img-top" src="${imgWatches}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Watches</h5>
-          <a id="linkWatches" data-uri="/AllProducts=Watches" href="#" class="btn btn-dark">Check</a>
+        <div class="card text-center mx-auto" >
+          <img class="card-img-top" src="${imgWatches}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Watches</h5>
+            <a id="linkWatches" data-uri="/allProductsCategory?category=Watches" href="#" class="btn btn-dark">Check</a>
+          </div>
         </div>
-      </div>
     </div>
   </div>
 
