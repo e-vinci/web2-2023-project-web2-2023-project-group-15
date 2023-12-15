@@ -6,6 +6,15 @@
   background-color: color.$primary-black;
 }
 
+a{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #000000;
+}
+
 .img-carroulssel {
   max-width: 100%;
   max-height: 100%;

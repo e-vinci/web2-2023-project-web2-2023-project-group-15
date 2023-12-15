@@ -1,8 +1,9 @@
 @use 'color';
 @use 'responsive';
+@use 'fonts';
 
 .footer-container {
-    background-color: black; /* Définit la couleur de fond en noir */
+    background-color: black; 
   }
   
   .footer-content {
@@ -11,22 +12,38 @@
     bottom: 0;
     justify-content: space-between;
     align-items: center;
-    padding: 20px; /* Ajustez les marges intérieures selon vos besoins */
+    padding: 20px; 
   }
   
   .left-text {
-    color: white; /* Couleur du texte à gauche */
+    color: white; 
   }
   
   .right-text {
     display: flex;
     justify-content: space-between;
-    color: white; /* Couleur du texte à droite */
+    color: white; 
   }
   .legal-privacy{
     padding-right: 20px ;
   }
   .centered-image {
     display: block;
-    margin: 0 auto; /* Ajustez les marges selon vos besoins */
+    margin: 0 auto; 
+  }
+
+  .textPrivacy {
+    font-family: fonts.$regular-police;
+    max-width: 1200px; /* Choisissez la largeur maximale que vous préférez */
+    margin: 0 auto; /* Pour centrer le contenu horizontalement */
+  }
+  
+  .titlePrivacy{
+    font-family: fonts.$regular-police;
+    margin: 2%;
+  }
+
+  #legalPrivacyLink {
+    cursor: pointer;
+
   }
