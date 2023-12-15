@@ -125,7 +125,7 @@ const changePersonalInfoPage = async () => {
     if (!validateForm()) {
       e.preventDefault();
     }else
-     UserLibrary.prototype.onChangeInfo.call(this, user.id);
+     UserLibrary.prototype.onChangeInfo(user.id);
      window.opener.postMessage('closePopup', '*');
   })
 };
