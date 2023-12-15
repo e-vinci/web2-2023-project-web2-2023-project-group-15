@@ -15,6 +15,7 @@ import CheckoutPage from '../Pages/CheckoutPage';
 import changePersonalInfoPage from '../Pages/changePersonalInfoPage';
 import AllProductsCategory from '../Pages/AllProductsCategory';
 import animationProducts from '../Pages/3dProduct';
+import legalAndPrivacy from '../Pages/LegalAndPrivacy';
 
 const routes = {
   '/': HomePage,
@@ -34,6 +35,7 @@ const routes = {
   '/changePersonalInfoPage': changePersonalInfoPage,
   '/product3d' : animationProducts,
   '/allProductsCategory': AllProductsCategory,
+  '/privacy': legalAndPrivacy,
 };
 
 export default routes;
