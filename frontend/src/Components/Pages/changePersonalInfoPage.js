@@ -128,7 +128,7 @@ const changePersonalInfoPage = async () => {
 
 
     
-    // window.opener.postMessage('closePopup', '*');
+    window.opener.postMessage('closePopup', '*');
   })
 };
   
