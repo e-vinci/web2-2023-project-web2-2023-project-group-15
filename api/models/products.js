@@ -76,7 +76,7 @@ const defaultProducts = [
     categorie: 'Cosmetic',
     imgList: [],
     subcategory: ['Armani', 'Man'],
-    model3D: 'genericparfum',
+    model3D: 'notavailable',
   },
   {
     id: 5,
@@ -127,7 +127,7 @@ const defaultProducts = [
     categorie: 'Cosmetic',
     imgList: [],
     subcategory: ['Penhaligons', 'Man'],
-    model3D: 'genericparfum',
+    model3D: 'notavailable',
   },
   {
     id: 10,
@@ -137,7 +137,7 @@ const defaultProducts = [
     categorie: 'Clothing',
     imgList: [],
     subcategory: ['Louis Vuitton', 'Woman'],
-    model3D: 'louisVuittonPuffer',
+    model3D: 'notavailable',
   },
   {
     id: 11,

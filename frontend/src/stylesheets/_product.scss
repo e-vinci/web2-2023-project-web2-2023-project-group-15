@@ -76,9 +76,24 @@ h1{
   font-weight: 400; 
 }
 .btn-back:hover{
+  height: 70px;
+  width: 300px;
   background-color: rgb(255, 255, 255);
   color: #000000;
   border-color: #000000;
+  }
+  .div3D{
+    display: flex;
+    flex-direction: column;
+    height: 950px;
+    text-align: center;
+    background-image: url('../img/login-register/degrade.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .product-unavailable{
+    text-align: center;
+    padding-top: 10%;
   }
 //----------------------- Responsivite-------------------------------
 

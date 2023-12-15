@@ -49,7 +49,7 @@ const lvBag = new Lvbag();
 const topLight = new THREE.DirectionalLight(0xffffff, 10);
 const hemisphereLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 10 );
 
-
+let unavailableHtml ='';
 let model = '';
 // scene.add( directionalLight );
 // scene.add( hemisphereLight ) ;
@@ -78,16 +78,15 @@ if(nameproduct ==='pradaBag'){
   }else if (nameproduct === 'lvBackpack'){
     model = backpack;
     camera.position.set(9,8,14);
-  }else if (nameproduct === 'genericparfum'){
-    model = genericparfum;
-    camera.position.set(9,8,14);
   }else if (nameproduct === 'LVDubai'){
     model = lvBag;
-  
     camera.position.set(9,8,14);
+  }else if (nameproduct === 'notavailable'){
+    model = '';
+    unavailableHtml = ` <div> 
+    <h1 class="product-unavailable"> Sorry the version 3D of this product is unavailable at the moment </h1>
+     </div> `;
   }
-
-  model;
 // model = gucciBag;
 scene.background = new THREE.Color('white');
 scene.add(model);
@@ -125,15 +124,23 @@ const html = `  <div class="container-btn-back" > <button class="btn-back" >Back
 const main = document.querySelector('main');
 main.innerHTML = '';
 const div = document.createElement('div');
+
 div.innerHTML = html;
 if (div) {
 div.appendChild(renderer.domElement);
 main.appendChild(div);
+if(unavailableHtml !== ''){
+  div.className="div3D";
+  scene.remove(model);
+  div.innerHTML =  unavailableHtml + html;
+}
+
 const btn = document.querySelector('.btn-back');
 btn.addEventListener('click', ()=>{
   scene.remove(model);
   window.history.back();
 });
+
 
 window.addEventListener('beforeunload', (e) => {
   e.preventDefault();
