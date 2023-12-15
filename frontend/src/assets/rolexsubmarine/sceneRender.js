@@ -1,16 +1,15 @@
 import { Group } from 'three';
-import Racerwatch from './modelRender';
-import Light from '../light'
+import Model from './modelRender';
 
 export default class sceneCutioVolareWatch extends Group {
     constructor() {
       super();
   
-      const race = new Racerwatch();
-      const light = new Light();
+      const model = new Model();
+   
     
   
-      this.add(race,light);
+      this.add(model);
     }
   
     update(timeStamp) {
