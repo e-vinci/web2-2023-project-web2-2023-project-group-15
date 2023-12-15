@@ -14,6 +14,7 @@ import CheckoutPage from '../Pages/CheckoutPage';
 // import ClothingProducts from '../Pages/ClothingProducts';
 import changePersonalInfoPage from '../Pages/changePersonalInfoPage';
 import AllProductsCategory from '../Pages/AllProductsCategory';
+import animationProducts from '../Pages/3dProduct';
 
 const routes = {
   '/': HomePage,
@@ -31,6 +32,7 @@ const routes = {
   // '/AllProducts=Bags': BagsProducts,
   // '/AllProducts=Clothing': ClothingProducts,
   '/changePersonalInfoPage': changePersonalInfoPage,
+  '/product3d' : animationProducts,
   '/allProductsCategory': AllProductsCategory,
 };
 

@@ -128,7 +128,6 @@ function renderNavbar() {
       </a>
       <span >Logout</span>
     </div>
-
       <div  data-uri="/shoppingCart" class="iconDiv" id="shoppingCartDiv"  >
         <a  class="icon" data-uri="/shoppingCart" >
           <svg  id="shoppingCart" class="profileIcon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
