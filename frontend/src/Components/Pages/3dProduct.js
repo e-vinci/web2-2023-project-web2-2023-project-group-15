@@ -8,6 +8,10 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import Racer from '../../assets/cutioVolareWatch/sceneRender';
 import Invicta from '../../assets/invictaWatch/sceneRender';
 import Rolex from '../../assets/rolexsubmarine/sceneRender';
+import PradaBag from '../../assets/pradaBag/sceneRender';
+import Channel5 from '../../assets/channel5/sceneRender';
+import Patek from '../../assets/grandComplications/sceneRender';
+import Puffer from '../../assets/louisVuittonPuffer/sceneRender';
 import '../../stylesheets/_product.scss';
 
 
@@ -29,6 +33,10 @@ renderer.gammaFactor = 2.2;
 renderer.physicallyCorrectLights = true;
 const racer = new Racer();
 const rolex = new Rolex();
+const pradaBag = new PradaBag();
+const channel5 = new Channel5();
+const patek = new Patek();
+const puffer = new Puffer();
 const topLight = new THREE.DirectionalLight(0xffffff, 10);
 const hemisphereLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 10 );
 
@@ -36,19 +44,39 @@ const hemisphereLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 10 );
 let model = '';
 // scene.add( directionalLight );
 // scene.add( hemisphereLight ) ;
-model = racer;
+
+if(nameproduct ==='pradaBag'){
+  model = pradaBag;
+  scene.background = new THREE.Color('white');
+  camera.position.set(0 ,15 , 10)
+}else if(nameproduct === 'rolexSubmarine'){
+  model = rolex;
+  scene.background = new THREE.Color('black');
+  camera.position.set(9,8,14);
+  }else if (nameproduct ==='channelN5'){
+  model = channel5;
+  scene.background = new THREE.Color('white');
+  camera.position.set(0 ,15 , 10)
+  }else if(nameproduct === 'GrandComplications'){
+    model = patek;
+    scene.background = new THREE.Color('black');
+    camera.position.set(9,8,14);
+  }else if(nameproduct === 'louisVuittonPuffer'){
+    model = puffer;
+    scene.background = new THREE.Color('white');
+    camera.position.set(9,8,14);
+  }
+// model = gucciBag;
 
 scene.add(model);
 scene.add(topLight);
-if(model === racer){
-  scene.background = new THREE.Color('white');
-}else{
-scene.background = new THREE.Color('black');
-}
+scene.add(hemisphereLight);
+  
+
 // camera
 
-camera.position.set(9,8,14);
-camera.lookAt(new Vector3(0,0,0));
+// 
+
 
 // renderer
 renderer.setPixelRatio(window.devicePixelRatio);
@@ -78,6 +106,8 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 const main = document.querySelector('main');
 main.innerHTML = '';
-main.appendChild(renderer.domElement);
+const div = document.createElement('div');
+div.appendChild(renderer.domElement);
+main.appendChild(div);
 };
 export default animationProducts;

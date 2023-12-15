@@ -18,6 +18,7 @@ import Navigate from '../Router/Navigate';
 
 const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
 
+
 let i = 0;
 
 const AllProductPage = async () => {
@@ -121,7 +122,7 @@ const AllProductPage = async () => {
       allCards += `
             <a class="link-products" id="viewProduct" href="#" data-rui="/product/${product.id}">
                 <div class="product-card" id="product-card">
-                    <img class="product-img" src=${productsImgs[product.id - 1]} alt="${
+                    <img class="product-img" src=${productsImgs[product.id -1]} alt="${
         product.name
       } picture "/>
                     <h1 class="title-product" > ${product.name} </h1>
