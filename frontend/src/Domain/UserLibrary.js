@@ -134,7 +134,7 @@ class UserLibrary{
   
   static async getUserFromId(id){
     let  user='';
-    const url ='/api/user/'
+    const url =`${process.env.API_BASE_URL}/user/`
     try {
         const reponse = await fetch(url+id);
         console.log("résultat reponse " , reponse)
@@ -183,7 +183,7 @@ class UserLibrary{
           },
         };
        
-        const response = await fetch(`/api/user/onChange/${id}`, options);
+        const response = await fetch(`${process.env.API_BASE_URL}/user/onChange/${id}`, options);
         
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 

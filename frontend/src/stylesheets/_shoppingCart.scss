@@ -1,3 +1,8 @@
+@use 'fonts';
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+
 h1{
     
     font:  2em "CenturyGothic";     
@@ -14,5 +19,90 @@ p{
     
     font:  2em "CenturyGothic";     
 }
+.minus{
+    background-color: white;
+    border: none;
+   
+}
+.add{
+    background-color: white;
+    border: none;
+   
+}
+input{
+  border: none;
+}
+
+
+
+.arrow-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#arrow_2 .arrow {
+    $size: 10px;
+    $width: 2px;
+    
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: transform 0.3s;
+      
+    span {
+      
+      width: 3em;
+      opacity: 0;
+      transition: opacity 0.3s 0s;
+      padding: 0 0.5em;
+    }
+    
+    &:hover span {
+      opacity: 1;
+      transition: opacity 0.3s 0.1s;
+    }
+    
+    &:before {
+      content: '';
+      display: block;
+      border: solid ;
+      border-width: $width $width 0 0;
+      position: absolute;
+      
+      width: $size;
+      height: $size;
+    }
+    
+    &.arrow--left:before {
+      transform: rotate(-135deg);
+      right: 0;
+      transition: right 0.3s 0.2s;
+    }
+    &.arrow--left:hover:before {
+      right: 100%;
+      transition: right 0.3s;
+    }
+      
+   
+  }
+
+.shoppingCart-modal{
+
+  .modal{
+      background-image: none;
+      background-color: none;
+      color: black;
+      background: transparent;
+      font: 10px fonts.$regular-police;  
+  }
+
+  .h5{
+      font: 15px fonts.$regular-police;  
+  }
+}
+  
+
+  
+  
 
 

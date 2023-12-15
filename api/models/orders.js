@@ -34,9 +34,20 @@ const defaultOrders = [
     id: 3,
     firstName: 'Pepijn',
     lastName: 'Smeding',
+    buyerId: 3,
     totalPrice: 500,
     date: '2/08/2022',
     payementMethod: 'paypal',
+
+  },
+  {
+    id: 4,
+    firstName: 'Pepijn',
+    lastName: 'Smeding',
+    buyerId: 3,
+    totalPrice: 1500,
+    date: '12/08/2022',
+    payementMethod: 'card',
 
   },
 ];
@@ -68,7 +79,22 @@ function getAllOrders() {
   return orders;
 }
 
+function getOrdersOfUser(id) {
+  const idNumber = parseInt(id, 10);
+  const orders = parse(jsonDbPath, defaultOrders);
+  const ordersFound = [];
+  orders.forEach((order) => {
+    // eslint-disable-next-line no-cond-assign, no-param-reassign
+    if (order.buyerId = id) {
+      ordersFound.push(order);
+    }
+  });
+
+  return ordersFound;
+}
+
 module.exports = {
   createOrder,
   getAllOrders,
+  getOrdersOfUser,
 };

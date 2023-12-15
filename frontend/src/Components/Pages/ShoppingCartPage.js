@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { loadCart, countProductCart, getCartTotal , removeItemFromCart, addItemToCart } from "../../utils/shoppingCart";
+import { loadCart, countProductCart, getCartTotal , removeItemFromCart, addItemToCart, deleteItem } from "../../utils/shoppingCart";
 import { getAuthenticatedUser } from "../../utils/auths";
 import Navigate from "../Router/Navigate";
 import Navbar from "../Navbar/Navbar";
@@ -51,32 +51,51 @@ const ShoppingCartPage = () => {
       for(let i = 0; i < productList.length; i += 1){
 
         html += `<hr class="my-4">
-    
+
         <div class="row mb-4 d-flex justify-content-between align-items-center">
           <div class="col-md-2 col-lg-2 col-xl-2">
-            <img
-              src="${productsImgs[productList[i].id - 1]}"
-              class="img-fluid rounded-3" alt="Cotton T-shirt">
+            <img src="${productsImgs[productList[i].id - 1]}" class="img-fluid rounded-3">
           </div>
           <div class="col-md-3 col-lg-3 col-xl-3">
-            <h6 class="text-muted">Shirt</h6>
+            <h6 class="text-muted">Category</h6>
             <h6 class="text-black mb-0">${productList[i].name}</h6>
           </div>
           <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-      
-          <button class="minus">-</button>
-          <input class="form-control text-center me-3" id="productQuantity" type="num" value="${productList[i].count}" style="max-width: 3rem" />
-          <input type="hidden" value="${productList[i].name}"/>
-          <button class="add">+</button>
-
+            <button class="minus">-</button>
+            <input class="form text-center" id="productQuantity" type="num" value="${productList[i].count}" style="max-width: 3rem" />
+            <button class="add">+</button>
           </div>
           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
             <h6 class="mb-0">${productList[i].price} €</h6>
           </div>
-          <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+          <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+            <button class="delete btn btn-outline-danger"><i class="bi bi-trash3"></i></button>
           </div>
-        </div>`
+        
+          <div class="shoppingCart-modal">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Purchase successfully completed</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Thank you for your purchase</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">No</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+        `
   
       }
   
@@ -84,50 +103,49 @@ const ShoppingCartPage = () => {
     }
     
   html +=`
-  <div class="pt-5">
-  <h6 class="mb-0"><a class="text-body" id="backToShop"><i
-        class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
-</div>
-</div>
-</div>
-<div class="col-lg-4 bg-grey">
-<div class="p-5">
-<h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-<hr class="my-4">
-
-
-
-<h5 class="text-uppercase mb-3">Shipping</h5>
-
-<div class="mb-4 pb-2">
-  <select class="select">
-    <option value="1">Standard-Delivery- €5.00</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-    <option value="4">Four</option>
-  </select>
-</div>
-
-<h5 class="text-uppercase mb-3">Give code</h5>
-
-<div class="mb-5">
-  <div class="form-outline">
-    <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
-    <label class="form-label" for="form3Examplea2">Enter your code</label>
+ 
+  <div id="arrow_2" class="arrow-wrapper">
+  <div class="arrow arrow--left">
+    <span><button id="backToShop" >Back to shop </button></span>
   </div>
 </div>
 
-<hr class="my-4">
+</div>
+</div>
+<div class="col-lg-4 bg-grey">
+  <div class="p-5">
+    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+    <hr class="my-4">
 
-<div class="d-flex justify-content-between mb-5">
-  <h5 class="text-uppercase">Total price</h5>
-  <h5>${getCartTotal()}€</h5>
-  
-</div>
+    <h5 class="text-uppercase mb-3">Shipping</h5>
 
-<button id="btnCheckout" type="button" class="btn btn-dark btn-block btn-lg"
-  data-mdb-ripple-color="dark">Checkout </button>
+    <div class="mb-4 pb-2">
+      <select class="select">
+        <option value="1">Standard-Delivery- €5.00</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        <option value="4">Four</option>
+      </select>
+    </div>
 
+    <h5 class="text-uppercase mb-3">Give code</h5>
+
+    <div class="mb-5">
+      <div class="form-outline">
+        <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="d-flex justify-content-between mb-5">
+      <h5 class="text-uppercase">Total price</h5>
+      <h5>${getCartTotal()}€</h5>
+    </div>
+
+    <button id="btnCheckout" type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Checkout </button>
+
+  </div>
 </div>
 </div>
 </div>
@@ -135,8 +153,8 @@ const ShoppingCartPage = () => {
 </div>
 </div>
 </div>
-</div>
-</section>`;
+</section>
+`;
 
 
 
@@ -149,6 +167,7 @@ const ShoppingCartPage = () => {
       e.preventDefault();
     Navigate('/allProducts')
     }); 
+  
 
     if(productList.length !== 0){
 
@@ -192,6 +211,24 @@ const ShoppingCartPage = () => {
           
         })
       }
+        // eslint-disable-next-line no-undef
+        const myModal = new bootstrap.Modal(document.getElementById('myModal'));
+
+        const btnDelete = document.getElementsByClassName('delete');
+        for (let y = 0; y < btnDelete.length; y += 1) {
+            btnDelete[y].addEventListener('click', async (e) => {
+                e.preventDefault();
+                console.log("modal " , myModal);
+                myModal.show();
+                setTimeout(() => {
+                    myModal.hide();
+                }, 3000);
+                deleteItem(productList[y].name)
+                ShoppingCartPage();
+                Navbar();
+            })
+        }
+
     
 
     }

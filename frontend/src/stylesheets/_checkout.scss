@@ -1,0 +1,32 @@
+@use 'fonts';
+
+.checkout-modal{
+
+    .modal{
+        background-image: none;
+        background-color: none;
+        color: black;
+        background: transparent;
+        font: 10px fonts.$regular-police;  
+    }
+
+    .h5{
+        font: 15px fonts.$regular-police;  
+    }
+}
+
+.checkout-button{
+    color: white;
+    font: 25px fonts.$regular-police;
+    background-color: black;
+    border-radius: 8px;
+    padding: 15px 27px;
+    text-align: center;
+    text-decoration: none;
+    
+}
+
+
+
+
+ 

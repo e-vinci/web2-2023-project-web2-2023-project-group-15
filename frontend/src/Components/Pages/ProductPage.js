@@ -113,7 +113,7 @@ const ProductPage = async () => {
             <!-- Product actions-->
             
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" >
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto"  id="showProduct"  value="${similarProducts[i].id}">Show Product</a></div>
+                <div class="text-center"><a class="showProduct btn btn-outline-dark mt-auto"    value="${similarProducts[i].id}">Show Product</a></div>
             </div>
            
         </div>
@@ -123,14 +123,16 @@ const ProductPage = async () => {
      
     showSimilarProduct.innerHTML = html3;
 
-    const btnShowProduct = document.querySelector('#showProduct');
-    btnShowProduct.addEventListener('click', async (e) => {
-      console.log("halooo")
-        e.preventDefault();
-        const showProductId= btnShowProduct.value;
-        console.log(showProductId);
-       Navigate('/product?id=',showProductId );
-      }); 
+  const btnShowProduct = document.getElementsByClassName('showProduct');
+  for (let y = 0; y <  btnShowProduct.length; y += 1) {
+    btnShowProduct[y].addEventListener('click', async (e) => {
+        console.log("halooo")
+          e.preventDefault();
+          console.log(similarProducts[y].id);
+         Navigate('/product?id=',similarProducts[y].id );
+        }); 
+  }
+  
 
     const btnList = document.querySelectorAll('.btn-2');
     btnList.forEach((btn) =>{

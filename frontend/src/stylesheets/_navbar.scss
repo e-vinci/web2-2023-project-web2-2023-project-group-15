@@ -243,48 +243,53 @@ $h-hide-distance: $h-width + $h-padding;
 
 }
 //-----------------Modal----------------------------------//
+.navbar-modal{
 
-.modal{
-  background-image: url('../img/navbar/background-modal.jpg');
-  background-size: cover;
-  flex-direction: column;
-  background-color: color.$primary-black;
-  font-family: fonts.$regular-police ;
-  color: color.$primary-white;
-}
-.close{
-  padding: 3%;
-  font-family: fonts.$regular-police ;
-  color: color.$primary-white;
-  float: right;
-  text-decoration: none;
-  font-size: 40px;
-  color: #fff;
-  border: none;
-}
-.close:hover{
-  cursor: pointer;
-}
-.tex-modal-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 40px;
-}
-.modal-link{
-  margin: 2%;
-  padding: 5px;
-  cursor: pointer;
-}
-.greetings{
-  font-family: fonts.$regular-police ;
-  font-size: 30px;
-}
-.modal-link:hover{
-  border-bottom: solid 1px white;
-  transition: all 0.5ms;
+  .modal{
+    background-image: url('../img/navbar/background-modal.jpg');
+    background-size: cover;
+    flex-direction: column;
+    background-color: color.$primary-black;
+    font-family: fonts.$regular-police ;
+    color: color.$primary-white;
+  }
+  
+  .close{
+    padding: 3%;
+    font-family: fonts.$regular-police ;
+    color: color.$primary-white;
+    float: right;
+    text-decoration: none;
+    font-size: 40px;
+    color: #fff;
+    border: none;
+  }
+  .close:hover{
+    cursor: pointer;
+  }
+  .tex-modal-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+  }
+  .modal-link{
+    margin: 2%;
+    padding: 5px;
+    cursor: pointer;
+  }
+  .greetings{
+    font-family: fonts.$regular-police ;
+    font-size: 30px;
+  }
+  .modal-link:hover{
+    border-bottom: solid 1px white;
+    transition: all 0.5ms;
+  }
+  
+
 }
 
 //-----------------Responsive----------------------------------//
