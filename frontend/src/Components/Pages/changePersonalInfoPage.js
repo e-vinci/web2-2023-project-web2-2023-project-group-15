@@ -121,12 +121,12 @@ const changePersonalInfoPage = async () => {
 
 
   const btnChange = document.querySelector('#BtnChange');
-  btnChange.addEventListener('click',  (e) => {
+  btnChange.addEventListener('click', async  (e) => {
     if (!validateForm()) {
       e.preventDefault();
     }else
-     UserLibrary.prototype.onChangeInfo.call(this, user.id);
-     window.opener.postMessage('closePopup', '*');
+      await UserLibrary.prototype.onChangeInfo(user.id);
+       window.opener.postMessage('closePopup', '*');
   })
 };
   
