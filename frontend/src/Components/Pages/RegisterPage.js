@@ -48,7 +48,7 @@ function renderRegisterForm() {
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group last mb-3">
-                  <input id="input-register" type="text" id="firstname" class="form-control" placeholder="Firstname" required=true />
+                  <input  type="text" id="firstname" class="form-control" placeholder="Firstname" required=true />
                   <label class="form-label" for="firstname"></label>
                 </div>
               </div>

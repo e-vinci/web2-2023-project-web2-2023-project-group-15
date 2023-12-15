@@ -2,6 +2,7 @@
 import { loadCart, countProductCart, getCartTotal , removeItemFromCart, addItemToCart } from "../../utils/shoppingCart";
 import { getAuthenticatedUser } from "../../utils/auths";
 import Navigate from "../Router/Navigate";
+import Navbar from "../Navbar/Navbar";
 import { importAll } from '../../utils/utilsImages';
 import '../../stylesheets/_shoppingCart.scss';
 
@@ -10,14 +11,13 @@ const productsImgs = importAll(require.context('../../img/products', true, /\.pn
 
 const ShoppingCartPage = () => {
 
+    Navbar();
     const user = getAuthenticatedUser();
 
     if(user === undefined){
-      console.log("undifined user ");
       Navigate('/login');
     }
 
-    console.log(countProductCart())
     let html = `
     <section class="h-100 h-custom" >
     <div class="">
@@ -32,11 +32,12 @@ const ShoppingCartPage = () => {
                       <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
                       <h6 class="mb-0 text-muted">${countProductCart()} items</h6>
                     </div>
+                    
                     `;
 
     const product = loadCart(user.email);
     const productList = product.objects;
-    console.log(productList)
+    
 
     if(productList.length === 0){ 
       html +=`
@@ -62,18 +63,12 @@ const ShoppingCartPage = () => {
             <h6 class="text-black mb-0">${productList[i].name}</h6>
           </div>
           <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-            <button class="btn btn-link px-2" id="minusOne">
-              <input type="hidden" id="minusOneProductName" value="${productList[i].name}">
-              <i class="fas fa-minus"></i>
-            </button>
-  
-            <input id="form1" min="0" name="quantity" value="${productList[i].count}" type="number"
-              class="form-control form-control-sm" />
-  
-            <button class="btn px-2" >
-             
-              <i class="fas fa-plus" id="addOne"></i>
-            </button>
+      
+          <button class="minus">-</button>
+          <input class="form-control text-center me-3" id="productQuantity" type="num" value="${productList[i].count}" style="max-width: 3rem" />
+          <input type="hidden" value="${productList[i].name}"/>
+          <button class="add">+</button>
+
           </div>
           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
             <h6 class="mb-0">${productList[i].price} €</h6>
@@ -157,18 +152,47 @@ const ShoppingCartPage = () => {
 
     if(productList.length !== 0){
 
-    const btnCheckout = document.getElementById('btnCheckout');
-    btnCheckout.addEventListener('click', async (e) => {
-      e.preventDefault();
-      Navigate('/checkout')
-    });
+      const btnCheckout = document.getElementById('btnCheckout');
+      btnCheckout.addEventListener('click', async (e) => {
+        e.preventDefault();
+        Navigate('/checkout')
+      });
 
-    const btnAddOne = document.getElementById('addOne');
-    btnAddOne.addEventListener('click', async (e) =>{
-      e.preventDefault();
-      const name = document.getElementById('addOneProductName');
-      console.log("plus 1 " , name);
-    });
+      
+      const btnAddOne = document.getElementsByClassName('add');
+      for (let y = 0; y <  btnAddOne.length; y += 1) {
+        
+        let nb = parseInt(document.querySelector('#productQuantity').value,10);
+
+
+        btnAddOne[y].addEventListener('click' , async (e) => {
+          e.preventDefault();
+          nb += 1; 
+          document.querySelector('#productQuantity').value = nb;
+          addItemToCart(productList[y].id,productList[y].name,productList[y].price,productList[y].count);
+          ShoppingCartPage();
+          Navbar();
+          
+         
+        });
+      }
+    
+      const btnMinusOne = document.getElementsByClassName('minus');
+      for (let y = 0; y <  btnMinusOne.length; y += 1) {
+
+        let nb = parseInt(document.querySelector('#productQuantity').value,10);
+
+        btnMinusOne[y].addEventListener('click' , async (e) => {
+          e.preventDefault();
+          nb -= 1; 
+          document.querySelector('#productQuantity').value = nb;
+          removeItemFromCart(productList[y].name);
+          ShoppingCartPage();
+          Navbar();
+          
+        })
+      }
+    
 
     }
     
