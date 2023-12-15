@@ -116,12 +116,8 @@ const changePersonalInfoPage = async () => {
     </section>
 
     `;
-
-
-
-
   const btnChange = document.querySelector('#BtnChange');
-  btnChange.addEventListener('click', async  (e) => {
+  btnChange.addEventListener('click',   (e) => {
     if (!validateForm()) {
       e.preventDefault();
     }else

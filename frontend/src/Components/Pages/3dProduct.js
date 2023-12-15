@@ -29,7 +29,7 @@ const animationProducts = async () => {
   console.log(`nameProduct${  nameproduct}`);
 
 const scene = new Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight);
 const renderer = new WebGLRenderer({antialias: true , alpha : true});
 renderer.gammaOutput = true;
 renderer.gammaFactor = 2.2;
@@ -57,14 +57,12 @@ let model = '';
 if(nameproduct ==='pradaBag'){
   model = pradaBag;
   scene.background = new THREE.Color('white');
-  camera.position.set(0 ,15 , 10)
+  camera.position.set(9,8,14);
 }else if(nameproduct === 'rolexSubmarine'){
   model = rolex;
-  scene.background = new THREE.Color('black');
   camera.position.set(9,8,14);
   }else if (nameproduct ==='channelN5'){
   model = channel5;
-  scene.background = new THREE.Color('white');
   camera.position.set(0 ,15 , 10)
   }else if(nameproduct === 'GrandComplications'){
     model = patek;
@@ -72,28 +70,26 @@ if(nameproduct ==='pradaBag'){
     camera.position.set(9,8,14);
   }else if(nameproduct === 'canadaGoosePuffer'){
     model = goose;
-    scene.background = new THREE.Color('white');
     camera.position.set(9,8,14);
   }
   else if(nameproduct === 'ballonBleu'){
     model = genericwatch;
-    scene.background = new THREE.Color('white');
     camera.position.set(9,8,14);
   }else if (nameproduct === 'lvBackpack'){
     model = backpack;
-    scene.background = new THREE.Color('white');
     camera.position.set(9,8,14);
   }else if (nameproduct === 'genericparfum'){
     model = genericparfum;
-    scene.background = new THREE.Color('white');
     camera.position.set(9,8,14);
   }else if (nameproduct === 'LVDubai'){
     model = lvBag;
-    scene.background = new THREE.Color('black');
+  
     camera.position.set(9,8,14);
   }
-// model = gucciBag;
 
+  model;
+// model = gucciBag;
+scene.background = new THREE.Color('white');
 scene.add(model);
 scene.add(topLight);
 scene.add(hemisphereLight);
@@ -125,11 +121,27 @@ window.addEventListener('resize', windowResizeHanlder);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 // dom
-
+const html = `  <div class="container-btn-back" > <button class="btn-back" >Back to product</button>  </div>` ;
 const main = document.querySelector('main');
 main.innerHTML = '';
 const div = document.createElement('div');
+div.innerHTML = html;
+if (div) {
 div.appendChild(renderer.domElement);
 main.appendChild(div);
+const btn = document.querySelector('.btn-back');
+btn.addEventListener('click', ()=>{
+  scene.remove(model);
+  window.history.back();
+});
+
+window.addEventListener('beforeunload', (e) => {
+  e.preventDefault();
+  scene.remove(model);
+});
+}
+
+
+
 };
 export default animationProducts;
