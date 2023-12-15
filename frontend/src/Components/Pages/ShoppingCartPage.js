@@ -58,7 +58,7 @@ const ShoppingCartPage = () => {
           </div>
           <div class="col-md-3 col-lg-3 col-xl-3">
             <h6 class="text-muted">Category</h6>
-            <h6 class="text-black mb-0">${productList[i].name}</h6>
+            <a class="productName" href=""><h6 class="text-black mb-0">${productList[i].name}</h6></a>
           </div>
           <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
             <button class="minus">-</button>
@@ -177,7 +177,15 @@ const ShoppingCartPage = () => {
         Navigate('/checkout')
       });
 
+      const btnProduct = document.getElementsByClassName('productName');
+      for (let y = 0; y <  btnProduct.length; y += 1) {
       
+        btnProduct[y].addEventListener('click' , async (e) => {
+          e.preventDefault();
+          Navigate(`/product?id=${productList[y].id}`);
+        });
+      }
+
       const btnAddOne = document.getElementsByClassName('add');
       for (let y = 0; y <  btnAddOne.length; y += 1) {
         
