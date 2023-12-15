@@ -11,3 +11,7 @@ Content-Type: application/json
     "payementMethod": "paypal"
 
 }
+
+
+### get all orders of user
+GET {{baseUrl}}/order/getOrdersOfUser/3

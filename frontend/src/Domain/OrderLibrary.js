@@ -78,5 +78,22 @@ class OrderLibrary{
         return allOrders;
     }
 
+    static async getOrdersFromUserId(id){
+      let  orders='';
+      const url =`${process.env.API_BASE_URL}/order/getOrdersOfUser/`
+      try {
+          const reponse = await fetch(url+id);
+          console.log("résultat reponse " , reponse)
+    
+          if (!reponse.ok) {
+            throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
+          }
+          orders =  await reponse.json();
+        } catch (err) {
+          console.error('error: ', err);
+        }
+        return orders;
+  }
+
 }
 export default OrderLibrary;

@@ -8,6 +8,7 @@ const express = require('express');
 const {
   createOrder,
   getAllOrders,
+  getOrdersOfUser,
 } = require('../models/orders');
 
 // const jsonDbPath = path.join(__dirname, '/../data/orders.json');
@@ -34,6 +35,14 @@ router.post('/addOrder', (req, res) => {
   const newOrder = createOrder(firstName, lastName, payementMethod);
   console.log('ROUTER ORDER TEST2');
   return res.json(newOrder);
+});
+
+router.get('/getOrdersOfUser/:id', (req, res) => {
+  const foundOrders = getOrdersOfUser(req.params.id);
+
+  if (!foundOrders) return res.sendStatus(404);
+
+  return res.json(foundOrders);
 });
 
 module.exports = router;

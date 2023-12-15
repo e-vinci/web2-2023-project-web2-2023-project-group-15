@@ -1,5 +1,6 @@
 // import { getAuthenticatedUser } from "../../utils/auths";
 import UserLibrary from '../../Domain/UserLibrary';
+import OrderLibrary from '../../Domain/OrderLibrary';
 import '../../stylesheets/_userPage.scss';
 
 function popupChangeInfo(userId) {
@@ -55,12 +56,15 @@ const UserPage = async () => {
 
   const user = await getUserFromUsername(email[1]);
 
-  async function getUserFromUsername(url_) {
-    console.log(url_);
-    const userFound = await UserLibrary.getUserFromUsername(url_);
+  async function getUserFromUsername(email_) {
+    console.log(email_);
+    const userFound = await UserLibrary.getUserFromUsername(email_);
     return userFound;
   }
 
+  
+  const { id } = user;
+  addOrder(id);
   const html = `
   <section class="background">
   <div class="container py-5 h-100">
@@ -123,29 +127,17 @@ const UserPage = async () => {
                               </div>
                           </div>
                           <div class="col-lg-4 bg-grey">
-                              <div class="p-5">
-                                  <h3 class="fw-bold mb-5 mt-2 pt-1">Past Orders</h3>
-                                  <hr class="my-4">
-  
-                                  <ul class="list-group mb-4">
-                                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                          Order #123
-                                          <span class="badge bg-primary">€ 44.00</span>
-                                      </li>
-                                      <li class="list-group-item d-flex justify-content-between align-items-center">
-                                          Order #456
-                                          <span class="badge bg-primary">€ 65.00</span>
-                                      </li>
-                                  </ul>
-  
-                                  <hr class="my-4">
-  
-                                  
-                                  <a href="/" class="btn btn-outline-dark">Place New Order</a>
-  
-                                  </div>
+                          <div class="p-5">
+                            <h3 class="fw-bold mb-5 mt-2 pt-1">Past Orders</h3>
+                            <hr class="my-4">
+                
+                            ${await addOrder(id)}
+                
+                            <hr class="my-4">
+                
+                            <a href="/" class="btn btn-outline-dark">Place New Order</a>
                           </div>
-                      </div>
+                        </div>
                   </div>
               </div>
           </div>
@@ -156,11 +148,36 @@ const UserPage = async () => {
   
   `;
 
-
-
   const main = document.querySelector('main');
   main.innerHTML = html;
   popupChangeInfo(user.id);
 };
+
+async function addOrder(id) {
+  const orders = await getOrdersFromoId(id);
+
+  async function getOrdersFromoId(id_) {
+    console.log(`id of users orders: ${id_}`);
+    const OrdersFound = await OrderLibrary.getOrdersFromUserId(id_);
+    return OrdersFound;
+  }
+
+  console.log(`les orders: ${orders}`);
+
+  let allOrders = '';
+  orders?.forEach((order) => {
+    allOrders += `
+
+
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Order #${order.id}
+                        <span class="badge bg-primary">€ ${order.totalPrice}</span>
+                    </li>
+            `;
+  });
+
+  return `<ul class="list-group mb-4">${allOrders}</ul>`;
+}
 
 export default UserPage;
