@@ -5,6 +5,16 @@
 .main{
     font-family: fonts.$regular-police;
 }
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #000000;
+}
+
 .container-products{
     display: flex;
     flex-wrap: wrap;
