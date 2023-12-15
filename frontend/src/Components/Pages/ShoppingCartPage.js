@@ -106,7 +106,7 @@ const ShoppingCartPage = () => {
  
   <div id="arrow_2" class="arrow-wrapper">
   <div class="arrow arrow--left">
-    <span>Back to shop</span>
+    <span><button id="backToShop" >Back to shop </button></span>
   </div>
 </div>
 
@@ -161,13 +161,13 @@ const ShoppingCartPage = () => {
     const main = document.querySelector('main');
 
     main.innerHTML = html;
-/*
+
     const btnBackToShop = document.getElementById('backToShop');
     btnBackToShop.addEventListener('click', async (e) => {
       e.preventDefault();
     Navigate('/allProducts')
     }); 
-  */
+  
 
     if(productList.length !== 0){
 
