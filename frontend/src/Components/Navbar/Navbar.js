@@ -50,6 +50,7 @@ menu.addEventListener('click',OpenModal);
 
 function renderNavbar() {
   const user =  getAuthenticatedUser();
+  const userId = user?.id;
   const anonymousUserNavbar = `
   <div class="flex-container">
     <div class="logoDiv">
@@ -109,8 +110,8 @@ function renderNavbar() {
       </div>
       <div data-uri="/user" class="iconDiv" id="user" >
         <a href="#home" class="icon" id="profileIcon" >
-          <svg data-uri="/user/${user?.id}"  class="profileIcon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <path data-uri="/login" class="profileIcon" d="M6.66669 30C6.66669 28.2319 7.36907 26.5362 8.61931 25.2859C9.86955 24.0357 11.5652 23.3333 13.3334 23.3333H26.6667C28.4348 23.3333 30.1305 24.0357 31.3807 25.2859C32.631 26.5362 33.3334 28.2319 33.3334 30C33.3334 30.884 32.9822 31.7319 32.357 32.357C31.7319 32.9821 30.8841 33.3333 30 33.3333H10C9.11597 33.3333 8.26812 32.9821 7.643 32.357C7.01788 31.7319 6.66669 30.884 6.66669 30Z M20 16.6667C22.7614 16.6667 25 14.4281 25 11.6667C25 8.90523 22.7614 6.66666 20 6.66666C17.2386 6.66666 15 8.90523 15 11.6667C15 14.4281 17.2386 16.6667 20 16.6667Z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+          <svg  class="profileIcon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path  class="profileIcon" d="M6.66669 30C6.66669 28.2319 7.36907 26.5362 8.61931 25.2859C9.86955 24.0357 11.5652 23.3333 13.3334 23.3333H26.6667C28.4348 23.3333 30.1305 24.0357 31.3807 25.2859C32.631 26.5362 33.3334 28.2319 33.3334 30C33.3334 30.884 32.9822 31.7319 32.357 32.357C31.7319 32.9821 30.8841 33.3333 30 33.3333H10C9.11597 33.3333 8.26812 32.9821 7.643 32.357C7.01788 31.7319 6.66669 30.884 6.66669 30Z M20 16.6667C22.7614 16.6667 25 14.4281 25 11.6667C25 8.90523 22.7614 6.66666 20 6.66666C17.2386 6.66666 15 8.90523 15 11.6667C15 14.4281 17.2386 16.6667 20 16.6667Z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
           </svg>
         </a>
         <span >${user?.firstname}</span>
@@ -168,9 +169,9 @@ function renderNavbar() {
       <div class="tex-modal-container">
       <h1 class="greetings" > Welcome ${user?.firstname} !</h1>
         <a class="modal-link" data-uri="/" >Home</a>
-        <a class="modal-link" data-uri="/user/${user?.id}" >My Page</a>
-        <a class="modal-link" data-uri="/logout" > Log Out </a>
         <a class="modal-link" data-uri="/allProducts" > See Products </a> 
+        <a class="modal-link" data-uri="/logout" > Log Out </a>
+        
         <div>
     </div>
   </div>

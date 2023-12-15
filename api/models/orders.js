@@ -85,7 +85,7 @@ function getOrdersOfUser(id) {
   const ordersFound = [];
   orders.forEach((order) => {
     // eslint-disable-next-line no-cond-assign, no-param-reassign
-    if (order.buyerId = id) {
+    if (order.buyerId === idNumber) {
       ordersFound.push(order);
     }
   });
