@@ -57,8 +57,8 @@ const changePersonalInfoPage = async () => {
 <div class="row">
   <div class="col-md-12">
     <div class="form-group last mb-3">
-      <input type="email" id="registerUsername_" class="form-control" placeholder="${user.email}" required=true />
-      <label class="form-label" for="registerUsername"></label>
+      <input type="email" id="Username_" class="form-control" placeholder="${user.email}" required=true />
+      <label class="form-label" for="Username"></label>
     </div>
   </div>
 </div>
@@ -108,7 +108,7 @@ const changePersonalInfoPage = async () => {
   </div>
 </div>
 </div>
-
+<div class="control__indicator"></div>
 <div class="d-flex mb-5 mt-4 align-items-center">
   <input type="submit" id="BtnChange" class="btn btn-outline-light btn-lg px-5" style="font:1em CenturyGothic" value="Confirm Change" />
 </div>
@@ -121,17 +121,27 @@ const changePersonalInfoPage = async () => {
 
 
   const btnChange = document.querySelector('#BtnChange');
-  btnChange.addEventListener('click', async (e) => {
-    e.preventDefault();
-    console.log("testtt")
-    UserLibrary.prototype.onChangeInfo(user.id);
-
-
-    
-    window.opener.postMessage('closePopup', '*');
+  btnChange.addEventListener('click',  (e) => {
+    if (!validateForm()) {
+      e.preventDefault();
+    }else
+     UserLibrary.prototype.onChangeInfo.call(this, user.id);
+     window.opener.postMessage('closePopup', '*');
   })
 };
   
+function validateForm() {
+  const requiredInputs = document.querySelectorAll('[required=true]');
 
+  // eslint-disable-next-line no-restricted-syntax
+  for (const input of requiredInputs) {
+    if (!input.value.trim()) {
+      alert('Please fill out all required fields.');
+      return false;
+    }
+  }
+
+  return true;
+}
 
 export default changePersonalInfoPage;

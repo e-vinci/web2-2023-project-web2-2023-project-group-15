@@ -149,7 +149,7 @@ function openPopup(userId) {
       // Check the message data to determine if it's a close request
       if (event.data === 'closePopup') {
         // Close the popup window
-        alert('Info change successful!');
+        // alert('Info change successful!');
         popupWindow.close();
       }
     }

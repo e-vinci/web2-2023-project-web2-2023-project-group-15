@@ -154,7 +154,7 @@ class UserLibrary{
 
         const firstname = document.querySelector('#firstname_').value;
         const lastname = document.querySelector('#lastname_').value;
-        const mail = document.querySelector('#registerUsername_').value;
+        const mail = document.querySelector('#Username_').value;
         const registerPassword = document.querySelector('#registerPassword_').value;
         const registerConfPassword = document.querySelector('#registerConfPassword_').value;
         const countryName = document.querySelector('#countryName_').value;
