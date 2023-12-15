@@ -96,7 +96,7 @@ const defaultProducts = [
     categorie: 'Bags',
     imgList: [],
     subcategory: ['Prada', 'Woman'],
-    model3D: 'sacprada',
+    model3D: 'pradaBag',
   },
   {
     id: 7,
@@ -106,7 +106,7 @@ const defaultProducts = [
     categorie: 'Watches',
     imgList: [],
     subcategory: ['Philiph pattek', 'Man'],
-    model3D: 'Grand Complications',
+    model3D: 'GrandComplications',
   },
   {
     id: 8,
@@ -127,6 +127,19 @@ const defaultProducts = [
     imgList: [],
     subcategory: ['Philiph pattek', 'Man'],
     model3D: 'Grand Complications',
+  },
+  {
+    id: 10,
+    name: 'Louis VUitton Puffer',
+    price: 489.99,
+    description: 'Montre - Grey embossed Louis Vuitton monogram'
+     + '- Down filled' 
+    + ' - Drawstrings around cuffs and hem'
+    + ' - Detachable hoodie pattek',
+    categorie: 'Clothing',
+    imgList: [],
+    subcategory: ['Louis Vuitton', 'Woman'],
+    model3D: 'louisVuittonPuffer',
   },
 ];
 
