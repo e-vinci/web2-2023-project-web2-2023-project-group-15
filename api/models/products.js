@@ -76,7 +76,7 @@ const defaultProducts = [
     categorie: 'Cosmetic',
     imgList: [],
     subcategory: ['Armani', 'Man'],
-    model3D: 'ArmaniCode',
+    model3D: 'genericparfum',
   },
   {
     id: 5,
@@ -90,7 +90,7 @@ const defaultProducts = [
   },
   {
     id: 6,
-    name: 'Sac Prada',
+    name: 'Classic Prada bag',
     price: 489.99,
     description: 'Sac pour femme',
     categorie: 'Bags',
@@ -102,7 +102,8 @@ const defaultProducts = [
     id: 7,
     name: 'Grand Complications',
     price: 489.99,
-    description: 'Montre Philiph pattek',
+    description: 'Mouvement mécanique extra-plat à remontage automatique. Calibre 240 Q. Jour, date, mois, année'
+    + ' bissextile et indication 24 heures par aiguilles.',
     categorie: 'Watches',
     imgList: [],
     subcategory: ['Philiph pattek', 'Man'],
@@ -110,13 +111,13 @@ const defaultProducts = [
   },
   {
     id: 8,
-    name: 'Prada Backpack',
+    name: 'Louis Vuitton BackPack',
     price: 799.99,
     description: 'Sac prada made in Italy',
     categorie: 'Bags',
     imgList: [],
     subcategory: ['Prada', 'Woman'],
-    model3D: 'pradaBP',
+    model3D: 'lvBackpack',
   },
   {
     id: 9,
@@ -125,21 +126,28 @@ const defaultProducts = [
     description: 'Montre Philiph pattek',
     categorie: 'Cosmetic',
     imgList: [],
-    subcategory: ['Philiph pattek', 'Man'],
-    model3D: 'Grand Complications',
+    subcategory: ['Penhaligons', 'Man'],
+    model3D: 'genericparfum',
   },
   {
     id: 10,
     name: 'Louis VUitton Puffer',
     price: 489.99,
-    description: 'Montre - Grey embossed Louis Vuitton monogram'
-     + '- Down filled' 
-    + ' - Drawstrings around cuffs and hem'
-    + ' - Detachable hoodie pattek',
+    description: 'Montre - Grey embossed Louis Vuitton monogram - Down filled  - Drawstrings around cuffs and hem - Detachable hoodie pattek',
     categorie: 'Clothing',
     imgList: [],
     subcategory: ['Louis Vuitton', 'Woman'],
     model3D: 'louisVuittonPuffer',
+  },
+  {
+    id: 11,
+    name: 'Canda Goose Puffer',
+    price: 489.99,
+    description: 'LAWRENCE PUFFER JACKET',
+    categorie: 'Clothing',
+    imgList: [],
+    subcategory: ['Canada Goose', 'Man'],
+    model3D: 'canadaGoosePuffer',
   },
 ];
 
