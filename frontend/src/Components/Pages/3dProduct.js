@@ -5,16 +5,15 @@
 import { WebGLRenderer,PerspectiveCamera , Scene, Vector3 } from 'three';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import GenericWatch from '../../assets/cutioVolareWatch/sceneRender';
+import Seiko from '../../assets/tagheuer/sceneRender';
 import Rolex from '../../assets/rolexsubmarine/sceneRender';
 import PradaBag from '../../assets/pradaBag/sceneRender';
 import Channel5 from '../../assets/channel5/sceneRender';
 import Patek from '../../assets/grandComplications/sceneRender';
-import Puffer from '../../assets/louisVuittonPuffer/sceneRender';
 import Goose from '../../assets/canadaGoosePuffer/sceneRender'
 import Backpack from '../../assets/lvBackPack/sceneRender';
-import GenericParfum from '../../assets/genericparfum/sceneRender';
 import Lvbag from '../../assets/lvbag/sceneRender';
+import Hoodie from '../../assets/balenciagaDefender/sceneRender';
 import '../../stylesheets/_product.scss';
 
 
@@ -35,19 +34,18 @@ renderer.gammaOutput = true;
 renderer.gammaFactor = 2.2;
 renderer.physicallyCorrectLights = true;
 
-const genericwatch = new GenericWatch();
+const seiko = new Seiko();
 const rolex = new Rolex();
 const pradaBag = new PradaBag();
 const channel5 = new Channel5();
 const patek = new Patek();
-const puffer = new Puffer();
 const goose = new Goose();
 const backpack = new Backpack();
-const genericparfum = new GenericParfum();
+const hoodie = new Hoodie();
 const lvBag = new Lvbag();
 
 const topLight = new THREE.DirectionalLight(0xffffff, 10);
-const hemisphereLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 10 );
+const light = new THREE.HemisphereLight( 0xffffbb, 0xffffff, 10 );
 
 let unavailableHtml ='';
 let model = '';
@@ -72,8 +70,8 @@ if(nameproduct ==='pradaBag'){
     model = goose;
     camera.position.set(9,8,14);
   }
-  else if(nameproduct === 'ballonBleu'){
-    model = genericwatch;
+  else if(nameproduct === 'seikoCoutura'){
+    model = seiko;
     camera.position.set(9,8,14);
   }else if (nameproduct === 'lvBackpack'){
     model = backpack;
@@ -81,6 +79,9 @@ if(nameproduct ==='pradaBag'){
   }else if (nameproduct === 'LVDubai'){
     model = lvBag;
     camera.position.set(9,8,14);
+  }else if(nameproduct === 'balenciagaDefender'){
+      model = hoodie;
+      camera.position.set(9,8,14);
   }else if (nameproduct === 'notavailable'){
     model = '';
     unavailableHtml = ` <div> 
@@ -91,10 +92,11 @@ if(nameproduct ==='pradaBag'){
 scene.background = new THREE.Color('white');
 scene.add(model);
 scene.add(topLight);
-scene.add(hemisphereLight);
+scene.add(light);
+scene.add(camera);
 
 // camera
-camera.lookAt(model);
+
 // 
 
 // renderer

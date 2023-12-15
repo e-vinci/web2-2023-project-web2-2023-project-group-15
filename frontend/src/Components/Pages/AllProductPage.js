@@ -65,23 +65,15 @@ const AllProductPage = async () => {
     filter.innerHTML = AddCategories();
     container.innerHTML = await addCardProduct();
 
-    const productLinks = container.querySelectorAll('.link-products');
-
-    productLinks.forEach((link) => {
-      link.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const productId = link.dataset.rui.split('/').pop(); 
-        Navigate(`/product?id=${productId}`);
-      });
-    });
+    
 
     const categoryItemsDropdown = document.querySelectorAll('.category-item');
 
     categoryItemsDropdown.forEach((item) => {
-      
       item.addEventListener('click', async (e) => {
         let url = '';
         const itemClicked = e.target;
+        container.innerHTML ='';
         console.log(` ${itemClicked.value} clicked`);
         if (itemClicked.value === 'Mans' || itemClicked.value === 'Womans') {
           url = `category=${stringModifier(itemClicked.value)}`;
@@ -102,6 +94,15 @@ const AllProductPage = async () => {
       container.innerHTML = await addCardProduct(url);
     })
     main.appendChild(container);
+
+    const productLinks = document.querySelectorAll('.link-products');
+    productLinks.forEach((link) => {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = link.getAttribute('data-uri');
+        Navigate(url);
+      });
+    });
   }
   // add an categorie to the drop down menu
   function AddCategories() {
@@ -120,7 +121,7 @@ const AllProductPage = async () => {
     let allCards = '';
     products?.forEach((product) => { 
       allCards += `
-            <a class="link-products" id="viewProduct" href="#" data-rui="/product/${product.id}">
+            <a class="link-products" id="viewProduct" data-uri="/product?id=${product.id}">
                 <div class="product-card" id="product-card">
                     <img class="product-img" src=${productsImgs[product.id -1]} alt="${
         product.name
