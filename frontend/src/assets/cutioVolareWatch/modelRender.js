@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { Object3D } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import MODEL from './watchRacer.glb';
+import MODEL from './model.glb';
 
 export default class RacerWatch extends Object3D {
   constructor() {
@@ -9,7 +9,7 @@ export default class RacerWatch extends Object3D {
     
     super();
    
-    this.name = 'Racer Watch';
+    this.name = 'Cutio VOlare Watch';
 
     loader.load(MODEL, (gltf)=>{
       this.add(gltf.scene);

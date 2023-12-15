@@ -1,9 +1,31 @@
+@use 'color';
+@use 'responsive';
+@use 'fonts';
 
+h1{
+  font-family: fonts.$regular-police;
+}
+.addToCart{
+  font-family: fonts.$regular-police;
+}
+
+.lead{
+  font-family: fonts.$regular-police;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.price-product-single{
+  font-family: fonts.$regular-police;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.container-img-product{
+  object-fit: contain;
+}
 .img-product {
   width: 400px;
   height: 560px;
  
-   
 }
 
 .product{
@@ -12,7 +34,39 @@
   flex-direction: column;
   text-align: center;   
   justify-content: left;
-  
-  
+}
+.container-btn-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin-top: 10%;
+}
+.btn-2{
+  font-family: fonts.$regular-police;
+  background-color: #ffffff; /* Green */
+  border: 2px solid black;
+  color: rgb(0, 0, 0);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+ 
+}
+.btn-2:hover{
+  background-color: #000000;
+  color: white;
 }
 
+//----------------------- Responsivite-------------------------------
+
+@include responsive.Phone{
+  .container-img-product{
+    object-fit: contain;
+  }
+  .img-product {
+   
+  }
+}

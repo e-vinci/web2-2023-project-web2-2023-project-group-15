@@ -38,7 +38,10 @@ const defaultProducts = [
     id: 1,
     name: 'Rolex Submarine',
     price: 60000,
-    description: 'Rolex submarine test test test ',
+    description: 'Launched in 1953, the Rolex Submariner is the first divers’ wristwatch to be waterproof to a '
+    + 'depth of 100 metres (330 feet) – now 300 metres (1,000 feet). Its major features, such as the graduated rotatable'
+     + 'bezel, the luminescent display, the large hands and hour markers, have been a driving force in the creation'
+      + 'of the long line of Rolex divers’ watches which followed. ',
     categorie: 'Watches',
     imgList: [],
     subcategory: ['Rolex', 'Man'],

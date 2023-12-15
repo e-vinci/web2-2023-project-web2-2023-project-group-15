@@ -5,8 +5,10 @@ import ProductLibrary from "../../Domain/ProductLibrary";
 import { importAll } from '../../utils/utilsImages';
 import Navigate from "../Router/Navigate";
 import '../../stylesheets/_product.scss';
+import icon from '../../img/products/3dicon.svg';
 
 
+const productsImgsBig = importAll(require.context('../../img/productBig', true, /\.png$/));
 const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
 // eslint-disable-next-line import/no-extraneous-dependencies
 
@@ -40,20 +42,24 @@ const ProductPage = async () => {
     const productPrice = product.price;
     const productDescription = product.description;
     const showProduct = document.getElementById("showProduct");
-    console.log(product.categorie);
+    const troisDProduct = product.model3D;
    
     const html2=`
                 <div class="container px-4 px-lg-5 my-5">
                     <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6">
-                    <img class="img-product" src="${productsImgs[id[1]-1]}" alt="..." />
+                    <div class="col-md-6" id="container-img-product">
+                    <img class="img-product" src="${productsImgsBig[id[1]-1]}" alt="..." />
+                    <div class="container-btn-2" > <button class="btn-2" data-uri="/product3d?product=${troisDProduct}">
+                     3D product 
+                     <img src="${icon}"  alt="${icon}" picture"/>
+                     </button>  </div>
                     </div>
                    
                         <div class="col-md-6">
                             <h1 class="display-5 fw-bolder">${productName}</h1>
                             <div class="fs-5 mb-5">
-                                <span class="text-decoration-line-through">${productPrice}</span>
-                                <span>${productPrice}</span>
+                                <span class="text-decoration-line-through">${productPrice} €</span>
+                                <span class="price-product-single" > ${productPrice} €</span>
                             </div>
                             <p class="lead">${productDescription}</p>
                             <div class="d-flex">
@@ -78,6 +84,7 @@ const ProductPage = async () => {
         addItemToCart(id[1],productName,productPrice,parseInt(quantity,10));
         Navigate('/shoppingCart');
       }); 
+  
   
 
     const similarProducts = await ProductLibrary.prototype.renderAllProductsByCategory(product.categorie);
@@ -116,16 +123,28 @@ const ProductPage = async () => {
      
     showSimilarProduct.innerHTML = html3;
 
-  const btnShowProduct = document.querySelector('#showProduct');
-  btnShowProduct.addEventListener('click', async (e) => {
-    console.log("halooo")
-      e.preventDefault();
-      const showProductId= btnShowProduct.value;
-      console.log(showProductId);
-     Navigate('/product?id=',showProductId );
-    }); 
+    const btnShowProduct = document.querySelector('#showProduct');
+    btnShowProduct.addEventListener('click', async (e) => {
+      console.log("halooo")
+        e.preventDefault();
+        const showProductId= btnShowProduct.value;
+        console.log(showProductId);
+       Navigate('/product?id=',showProductId );
+      }); 
+
+    const btnList = document.querySelectorAll('.btn-2');
+    btnList.forEach((btn) =>{
+        btn.addEventListener('click', (e) => {
+        const urlNavigate = btn.getAttribute('data-uri');
+        Navigate(urlNavigate);
+      });
+    });
+    
 
 }; 
+
+
+
   export default ProductPage;
 
 

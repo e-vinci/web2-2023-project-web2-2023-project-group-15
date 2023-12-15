@@ -9,18 +9,27 @@ import ProductLibrary from '../../Domain/ProductLibrary';
 import '../../stylesheets/_allproducts.scss';
 import { clearPage } from '../../utils/render';
 import { importAll } from '../../utils/utilsImages';
+import Navigate from '../Router/Navigate';
 
 const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
 let i = 0;
-const nameCategoryURL = window.location.search;
-const urlParams = new URLSearchParams(nameCategoryURL);
-const nameCategory =  urlParams.get('category');
+
 // Mettez à jour la fonction AllProductPage pour accepter les paramètres de requête
 const AllProductsCategory = async (queryParams) => {
+  const nameCategoryURL = window.location.search;
+const urlParams = new URLSearchParams(nameCategoryURL);
+const nameCategory =  urlParams.get('category');
+
   clearPage();
+
+
   console.log(`nameCategoy : ${  nameCategory}` );
   const main = document.querySelector('main');
   renderAllProductsCards();
+
+
+  
+
 
   async function getAllproducts(url) {
     const allProducts = await ProductLibrary.getAllProducts(url);
@@ -37,6 +46,16 @@ const AllProductsCategory = async (queryParams) => {
     container.innerHTML = '';
     container.innerHTML = await addCardProduct(url);
     main.appendChild(container);
+
+    const productLinks = container.querySelectorAll('.link-products');
+
+  productLinks.forEach((link) => {
+    link.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const productId = link.dataset.rui.split('/').pop(); 
+      Navigate(`/product?id=${productId}`);
+    });
+  });
   }
 
   async function addCardProduct(url) {
