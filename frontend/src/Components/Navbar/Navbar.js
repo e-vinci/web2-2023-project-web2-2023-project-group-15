@@ -150,26 +150,30 @@ function renderNavbar() {
   `;
 
   const modalHtml = `
-  <div class="modal" id="modal"> 
-    <span class="close">X</span>
-    <div class="tex-modal-container">
-      <a class="modal-link"  data-uri="/" >Home</a>
-      <a class="modal-link"  data-uri="/login"> Login </a>
-      <a class="modal-link"  data-uri="/register" > Sign Up </a>
-      <a class="modal-link"  data-uri="/allProducts" > See Products </a> 
-      <div>
+  <div class="navbar-modal">
+    <div class="modal" id="modal"> 
+      <span class="close">X</span>
+      <div class="tex-modal-container">
+        <a class="modal-link"  data-uri="/" >Home</a>
+        <a class="modal-link"  data-uri="/login"> Login </a>
+        <a class="modal-link"  data-uri="/register" > Sign Up </a>
+        <a class="modal-link"  data-uri="/allProducts" > See Products </a> 
+        <div>
+    </div>
   </div>
   `;
   const modalHtmlConnected = `
-  <div class="modal" id="modal"> 
-    <span class="close">X</span>
-    <div class="tex-modal-container">
-    <h1 class="greetings" > Welcome ${user?.firstname} !</h1>
-      <a class="modal-link" data-uri="/" >Home</a>
-      <a class="modal-link" data-uri="/user/${user?.id}" >My Page</a>
-      <a class="modal-link" data-uri="/logout" > Log Out </a>
-      <a class="modal-link" data-uri="/allProducts" > See Products </a> 
-      <div>
+  <div class="navbar-modal">
+    <div class="modal" id="modal"> 
+      <span class="close">X</span>
+      <div class="tex-modal-container">
+      <h1 class="greetings" > Welcome ${user?.firstname} !</h1>
+        <a class="modal-link" data-uri="/" >Home</a>
+        <a class="modal-link" data-uri="/user/${user?.id}" >My Page</a>
+        <a class="modal-link" data-uri="/logout" > Log Out </a>
+        <a class="modal-link" data-uri="/allProducts" > See Products </a> 
+        <div>
+    </div>
   </div>
   `;
 

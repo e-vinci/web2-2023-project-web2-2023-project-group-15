@@ -86,9 +86,23 @@ function addItemToCart(id, name, price, count) {
         }
         break;
       }
-  }
-  saveCart(cart);
-}
+    }
+    saveCart(cart);
+  };
+
+  // deletethe item from the cart
+  function deleteItem(name){
+    const user = getAuthenticatedUser();
+    const cart = loadCart(user.email);
+    // eslint-disable-next-line no-restricted-syntax, guard-for-in, no-unreachable-loop
+    for(const item in cart.objects) {
+      if(cart.objects[item].name === name) {
+        cart.objects.splice(item,1);
+      }
+      break;
+    }
+    saveCart(cart);
+  };
 
 // Get the total price 
 function getCartTotal(){
@@ -100,7 +114,7 @@ function getCartTotal(){
     sum += cart.objects[i].price * cart.objects[i].count; 
 }
 return sum;
-}
+};
 
 
 function countProductCart(){
@@ -116,7 +130,6 @@ function countProductCart(){
      price += parseInt(cart.objects[i].count, 10);
   }
   return price;
-
 }
 
 // constructeur d'objet pour panier
@@ -128,4 +141,4 @@ function Item(id, name, price, count) {
 }
 
 
-export { shoppingCart, loadCart, deleteCart,saveCart ,addItemToCart,removeItemFromCart,getCartTotal,countProductCart, Item };
+export { shoppingCart, loadCart, deleteCart,saveCart ,addItemToCart,removeItemFromCart,deleteItem, getCartTotal,countProductCart, Item };
