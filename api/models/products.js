@@ -112,7 +112,7 @@ const defaultProducts = [
   {
     id: 8,
     name: 'Louis Vuitton Christopher',
-    price: 799.99,
+    price: 2750,
     description: 'The Christopher MM conjures up the rugged spirit of a hiking pack in Monogram canvas. Its equally chic at work and play and evokes a fine lifestyle.',
     categorie: 'Bags',
     imgList: [],
