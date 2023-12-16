@@ -75,7 +75,7 @@ class UserLibrary{
         }  
     }
 
-      async onLogin(e) { 
+    async onLogin(e) { 
         
         e.preventDefault();
       
@@ -152,15 +152,15 @@ class UserLibrary{
 
  async onChangeInfo(id){
 
-        const firstname = document.querySelector('#firstname_').value;
-        const lastname = document.querySelector('#lastname_').value;
-        const mail = document.querySelector('#Username_').value;
-        const registerPassword = document.querySelector('#registerPassword_').value;
-        const registerConfPassword = document.querySelector('#registerConfPassword_').value;
-        const countryName = document.querySelector('#countryName_').value;
-        const zipCode = document.querySelector('#zipCode_').value;
-        const cityName = document.querySelector('#cityName_').value;
-        const streetName = document.querySelector('#streetName_').value;
+        const firstname = document.querySelector('#_firstname_').value;
+        const lastname = document.querySelector('#_lastname_').value;
+        const mail = document.querySelector('#_Username_').value;
+        const registerPassword = document.querySelector('#_registerPassword_').value;
+        const registerConfPassword = document.querySelector('#_registerConfPassword_').value;
+        const countryName = document.querySelector('#_countryName_').value;
+        const zipCode = document.querySelector('#_zipCode_').value;
+        const cityName = document.querySelector('#_cityName_').value;
+        const streetName = document.querySelector('#_streetName_').value;
 
         if(registerPassword !== registerConfPassword) {
           throw new Error(`The password is not the same`);

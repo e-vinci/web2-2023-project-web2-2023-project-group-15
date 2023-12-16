@@ -39,8 +39,9 @@ async function login(email, password) {
     jwtSecret, // secret used for the signature (signature part 3 of a JWT)
     { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
   );
-  
+  console.log("id de l'user apres login ", userFound.id);
   const authenticatedUser = {
+    id: userFound.id,
     firstname: userFound.firstname,
     lastname: userFound.lastname,
     email: email,
@@ -58,6 +59,7 @@ async function login(email, password) {
 async function register(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
   // eslint-disable-next-line no-unused-vars
   const userFound = readOneUserFromUsername(email);
+  if (!userFound) return undefined;
 
   await createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password);
 

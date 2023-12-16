@@ -65,7 +65,14 @@ const AllProductPage = async () => {
     filter.innerHTML = AddCategories();
     container.innerHTML = await addCardProduct();
 
-    
+    let productLinks = container.querySelectorAll('.link-products');
+    productLinks.forEach((link) => {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = link.getAttribute('data-uri');
+        Navigate(url);
+      });
+    });
 
     const categoryItemsDropdown = document.querySelectorAll('.category-item');
 
@@ -87,6 +94,15 @@ const AllProductPage = async () => {
           url = `brand=${stringModifier(itemClicked.value)}`;
         }
         container.innerHTML = await addCardProduct(url);
+
+        productLinks = container.querySelectorAll('.link-products');
+        productLinks.forEach((link) => {
+          link.addEventListener('click', async (a) => {
+            e.preventDefault();
+            const url2 = link.getAttribute('data-uri');
+            Navigate(url2);
+          });
+        });
       });
     });
     submitSearchBar.addEventListener('click', async ()=> {
@@ -95,14 +111,7 @@ const AllProductPage = async () => {
     })
     main.appendChild(container);
 
-    const productLinks = document.querySelectorAll('.link-products');
-    productLinks.forEach((link) => {
-      link.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const url = link.getAttribute('data-uri');
-        Navigate(url);
-      });
-    });
+   
   }
   // add an categorie to the drop down menu
   function AddCategories() {
