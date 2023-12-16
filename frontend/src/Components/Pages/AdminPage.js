@@ -197,15 +197,15 @@ const recentTransactions = document.getElementById('recentTransactions');
     (async function() {
 
       const data = [
-        { year: 2010, count: 10 },
-        { year: 2011, count: 20 },
-        { year: 2012, count: 15 },
-        { year: 2013, count: 25 },
-        { year: 2014, count: 22 },
-        { year: 2015, count: 30 },
-        { year: 2016, count: 28 },
+        { year: 2010, count: await countOrdersByYear(2010,orders) },
+        { year: 2011, count: await countOrdersByYear(2011,orders) },
+        { year: 2012, count: await countOrdersByYear(2012,orders) },
+        { year: 2013, count: await countOrdersByYear(2013,orders) },
+        { year: 2014, count: await countOrdersByYear(2014,orders) },
+        { year: 2015, count: await countOrdersByYear(2015,orders) },
+        { year: 2016, count: await countOrdersByYear(2016,orders) },
       ];
-    
+      console.log(data)
       // eslint-disable-next-line no-new
       new Chart(
         document.getElementById('myChart'),
@@ -229,37 +229,52 @@ const recentTransactions = document.getElementById('recentTransactions');
 
   async function getAnnualTotalPriceOrder(orders){
    
-    let sumPrice = 0;
+    let sumAnnualPrice = 0;
 
     orders.forEach((item) => {
 
       if( item.totalPrice !== undefined){
-        sumPrice += item.totalPrice;
+        sumAnnualPrice += item.totalPrice;
       }
 
     });
    
-    return sumPrice;
+    return sumAnnualPrice;
     
   }
 
   async function getMonthlyTotalPriceOrder(orders, month){
    
-    let sumPrice = 0;
+    let sumMonthlyPrice = 0;
 
     orders.forEach((item) => {
 
       if( item.totalPrice !== undefined){
         if(item.month === month){
-            sumPrice += item.totalPrice;
+            sumMonthlyPrice += item.totalPrice;
         }
         
       }
 
     });
    
-    return sumPrice;
+    return sumMonthlyPrice;
     
+  }
+
+  async function countOrdersByYear(year, orders){
+
+    let count = 0;
+
+    orders.forEach((item) => {
+
+     if(item.year === year){
+        count += 1;
+     }  
+
+    });
+   
+    return count;
   }
 
   
