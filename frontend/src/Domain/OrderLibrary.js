@@ -2,6 +2,7 @@
 import { getAuthenticatedUser } from "../utils/auths";
 import {getCartTotal} from "../utils/shoppingCart";
 // import Navigate from "../Components/Router/Navigate";
+import { renderPopUp } from "../utils/popUp";
 
 class OrderLibrary{
 
@@ -10,8 +11,10 @@ class OrderLibrary{
 
         const user = getAuthenticatedUser();
         const {id} = user;
-        const firstName = user.firstname;
-        const lastName = user.lastname;
+        const firstName = document.getElementById('firstName').value;
+        console.log(firstName);
+        const lastName = document.getElementById('lastName');
+        console.log(lastName.value)
         const totalPrice =  getCartTotal();
                 
         const date= new Date();
@@ -35,6 +38,13 @@ class OrderLibrary{
         }
         if(debit === true) {
           payementMethod = 'debit';
+        }
+
+        if(firstName.trim() === '' || firstName === undefined|| lastName.trim() === '' || lastName === undefined || payementMethod === undefined){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">Please, complete all the fields!</div>`;
+          renderPopUp();
+          throw new Error();
         }
         
         let order;
@@ -109,6 +119,8 @@ class OrderLibrary{
         }
         return orders;
   }
+
+
 
 }
 export default OrderLibrary;

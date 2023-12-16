@@ -2,6 +2,7 @@
 import Navbar from "../Components/Navbar/Navbar";
 import Navigate from "../Components/Router/Navigate";
 import {  setAuthenticatedUser } from '../utils/auths';
+import { renderPopUp } from "../utils/popUp";
 
 const calculateAge = (birthdate) => {
   const today = new Date();
@@ -18,31 +19,45 @@ class UserLibrary{
     async onRegister(e) {
 
         e.preventDefault();
-        const firstname = document.querySelector('#firstname').value;
-        const lastname = document.querySelector('#lastname').value;
-        const mail = document.querySelector('#registerUsername').value;
-        const registerPassword = document.querySelector('#registerPassword').value;
-        const registerConfPassword = document.querySelector('#registerConfPassword').value;
-        const birthdate = document.querySelector('#birthdate').value;
-        const countryName = document.querySelector('#countryName').value;
-        const zipCode = document.querySelector('#zipCode').value;
-        const cityName = document.querySelector('#cityName').value;
-        const streetName = document.querySelector('#streetName').value;
-       
+        const firstname = document.getElementById('firstname').value;
+        const lastname = document.getElementById('lastname').value;
+        const mail = document.getElementById('registerUsername').value;
+        const registerPassword = document.getElementById('registerPassword').value;
+        const registerConfPassword = document.getElementById('registerConfPassword').value;
+        const birthdate = document.getElementById('birthdate').value;
+        const countryName = document.getElementById('countryName').value;
+        const zipCode = document.getElementById('zipCode').value;
+        const cityName = document.getElementById('cityName').value;
+        const streetName = document.getElementById('streetName').value;
+        
 
 
         const age = calculateAge(birthdate);
+
         if (age < 6) {
-            alert("Vous devez avoir au moins 6 ans pour vous inscrire.");
-            return;
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">You must be at least 6 years old to sign up.</div>`;
+          renderPopUp();
+          return;
         }
       
-        if(registerPassword !== registerConfPassword) {
-          throw new Error(`The password is not the same`);
+        if(registerPassword.trim() !== registerConfPassword.trim()) {
+          console.log(registerPassword)
+          console.log(registerConfPassword)
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">Passwords do not match!</div>`;
+          renderPopUp();
+          return;
+        }
+
+        if(firstname.trim() === ''  || lastname.trim() === '' || mail.trim() === '' || registerPassword.trim() === '' ||birthdate.trim() === '' || countryName.trim() === ''|| zipCode.trim() === '' || cityName.trim() === ''|| streetName.trim() === ''){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">Please, complete all the fields!</div>`;
+          renderPopUp();
+          return;
         }
       
-      
-        const options = {
+          const options = {
           method: 'POST',
           body: JSON.stringify({
             "firstname": firstname,
@@ -72,7 +87,14 @@ class UserLibrary{
           Navigate('/');
         }catch(error){
           alert(authenticatedUser);
-        }  
+          const message = document.getElementById('message');
+          message.innerHTML += `<div id="popUp">An error has occurred.Please try again</div>`;
+          renderPopUp();
+          
+          
+        
+        }
+        
     }
 
     async onLogin(e) { 
