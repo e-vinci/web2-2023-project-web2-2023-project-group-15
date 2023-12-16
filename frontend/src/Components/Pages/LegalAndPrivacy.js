@@ -33,6 +33,10 @@ const content = `
 
         <li>These conditions are governed by French law. French courts are territorially competent to hear any dispute relating to the use of the Site. </li>
     </ul>
+    <h2 class="titlePrivacy">Credits :</h2>
+    <ul>
+        <li>All 3D models used on this site come from https://sketchfab.com/ and are the property of the users who put them online.</li>
+    </ul>
 </div>
 `;
 
