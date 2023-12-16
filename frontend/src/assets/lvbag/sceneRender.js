@@ -5,11 +5,8 @@ import Model from './modelRender';
 export default class Goose extends Group {
     constructor() {
       super();
-  
       const model = new Model();
-  
-    
-  
+      
       this.add(model);
     }
   

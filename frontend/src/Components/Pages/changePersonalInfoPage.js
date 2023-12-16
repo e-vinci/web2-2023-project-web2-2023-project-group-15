@@ -119,7 +119,7 @@ async function renderRegisterForm() {
     `;
   
   const btnChange = document.querySelector('#BtnChange');
-  btnChange.addEventListener('click', async (e) => {
+  btnChange.addEventListener('click',  (e) => {
     const mail = document.querySelector('#_Username_').value
     console.log(`test de redirection  email:${mail}`)
     if (!validateForm()) {

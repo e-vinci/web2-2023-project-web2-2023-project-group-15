@@ -155,9 +155,9 @@ function renderNavbar() {
       <span class="close">X</span>
       <div class="tex-modal-container">
         <a class="modal-link"  data-uri="/" >Home</a>
+        <a class="modal-link"  data-uri="/allProducts" > See Products </a> 
         <a class="modal-link"  data-uri="/login"> Login </a>
         <a class="modal-link"  data-uri="/register" > Sign Up </a>
-        <a class="modal-link"  data-uri="/allProducts" > See Products </a> 
         <div>
     </div>
   </div>
