@@ -3,46 +3,6 @@ import UserLibrary from '../../Domain/UserLibrary';
 import OrderLibrary from '../../Domain/OrderLibrary';
 import '../../stylesheets/_userPage.scss';
 
-function popupChangeInfo(userId) {
-  const modifyInfoBtn = document.querySelector('#modifyInfoBtn');
-  modifyInfoBtn.addEventListener('click', () => openPopup(userId));
-}
-
-function openPopup(userId) {
-  // Specify the URL of the page you want to load in the pop-up window
-  const popupUrl = `/changePersonalInfoPage?id=${userId}`; // Replace with your actual URL
-
-  // Specify the dimensions of the pop-up window
-  const popupWidth = 800;
-  const popupHeight = 600;
-
-  // Calculate the position to center the pop-up window on the screen
-  const left = (window.innerWidth - popupWidth) / 2;
-  const top = (window.innerHeight - popupHeight) / 2;
-
-  // Open the pop-up window
-  const popupWindow = window.open(
-    popupUrl,
-    '_blank',
-    `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`,
-  );
-
-  // Focus on the pop-up window (optional)
-  if (popupWindow) {
-    popupWindow.focus();
-  }
-
-  window.addEventListener('message', (event) => {
-    // Check if the message is from the popup window
-    if (event.source === popupWindow) {
-      // Check the message data to determine if it's a close request
-      if (event.data === 'closePopup') {
-        // Close the popup window
-        popupWindow.close();
-      }
-    }
-  });
-}
 
 const UserPage = async () => {
   // eslint-disable-next-line no-unused-vars
@@ -153,6 +113,49 @@ const UserPage = async () => {
   popupChangeInfo(user.id);
 };
 
+
+function popupChangeInfo(userId) {
+  const modifyInfoBtn = document.querySelector('#modifyInfoBtn');
+  modifyInfoBtn.addEventListener('click', () => openPopup(userId));
+}
+
+function openPopup(userId) {
+  // Specify the URL of the page you want to load in the pop-up window
+  const popupUrl = `/changePersonalInfoPage?id=${userId}`; // Replace with your actual URL
+
+  // Specify the dimensions of the pop-up window
+  const popupWidth = 800;
+  const popupHeight = 600;
+
+  // Calculate the position to center the pop-up window on the screen
+  const left = (window.innerWidth - popupWidth) / 2;
+  const top = (window.innerHeight - popupHeight) / 2;
+
+  // Open the pop-up window
+  const popupWindow = window.open(
+    popupUrl,
+    '_blank',
+    `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`,
+  );
+
+  // Focus on the pop-up window (optional)
+  if (popupWindow) {
+    popupWindow.focus();
+  }
+
+  window.addEventListener('message', (event) => {
+    // Check if the message is from the popup window
+    if (event.source === popupWindow) {
+      // Check the message data to determine if it's a close request
+      if (event.data === 'closePopup') {
+        // Close the popup window
+        // alert('Info change successful!');
+        popupWindow.close();
+      }
+    }
+  });
+}
+
 async function addOrder(id) {
   const orders = await getOrdersFromoId(id);
 
@@ -172,7 +175,7 @@ async function addOrder(id) {
                     
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                             Order #${order.id}
-                        <span class="badge bg-primary">€ ${order.totalPrice}</span>
+                        <span class="badge bg-dark text-white">€ ${order.totalPrice}</span>
                     </li>
             `;
   });

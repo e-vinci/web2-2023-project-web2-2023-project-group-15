@@ -11,8 +11,9 @@ export default class louisVuittonPuffer extends Object3D {
    
     this.name = 'Puffer louis Vuitton';
     loader.load(MODEL, (gltf)=>{
-      const obj = gltf.scene.children[0];
-      this.add(obj);
+      const obj = gltf.scene;
+      obj.scale.set(100,100,100);
+      this.add(gltf.scene);
       
     });
   }

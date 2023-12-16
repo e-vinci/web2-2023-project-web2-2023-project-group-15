@@ -50,6 +50,7 @@ menu.addEventListener('click',OpenModal);
 
 function renderNavbar() {
   const user =  getAuthenticatedUser();
+  const userId = user?.id;
   const anonymousUserNavbar = `
   <div class="flex-container">
     <div class="logoDiv">
@@ -109,15 +110,15 @@ function renderNavbar() {
       </div>
       <div data-uri="/user" class="iconDiv" id="user" >
         <a href="#home" class="icon" id="profileIcon" >
-          <svg data-uri="/user/${user?.id}"  class="profileIcon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-            <path data-uri="/login" class="profileIcon" d="M6.66669 30C6.66669 28.2319 7.36907 26.5362 8.61931 25.2859C9.86955 24.0357 11.5652 23.3333 13.3334 23.3333H26.6667C28.4348 23.3333 30.1305 24.0357 31.3807 25.2859C32.631 26.5362 33.3334 28.2319 33.3334 30C33.3334 30.884 32.9822 31.7319 32.357 32.357C31.7319 32.9821 30.8841 33.3333 30 33.3333H10C9.11597 33.3333 8.26812 32.9821 7.643 32.357C7.01788 31.7319 6.66669 30.884 6.66669 30Z M20 16.6667C22.7614 16.6667 25 14.4281 25 11.6667C25 8.90523 22.7614 6.66666 20 6.66666C17.2386 6.66666 15 8.90523 15 11.6667C15 14.4281 17.2386 16.6667 20 16.6667Z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+          <svg  class="profileIcon"  viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path  class="profileIcon" d="M6.66669 30C6.66669 28.2319 7.36907 26.5362 8.61931 25.2859C9.86955 24.0357 11.5652 23.3333 13.3334 23.3333H26.6667C28.4348 23.3333 30.1305 24.0357 31.3807 25.2859C32.631 26.5362 33.3334 28.2319 33.3334 30C33.3334 30.884 32.9822 31.7319 32.357 32.357C31.7319 32.9821 30.8841 33.3333 30 33.3333H10C9.11597 33.3333 8.26812 32.9821 7.643 32.357C7.01788 31.7319 6.66669 30.884 6.66669 30Z M20 16.6667C22.7614 16.6667 25 14.4281 25 11.6667C25 8.90523 22.7614 6.66666 20 6.66666C17.2386 6.66666 15 8.90523 15 11.6667C15 14.4281 17.2386 16.6667 20 16.6667Z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
           </svg>
         </a>
         <span >${user?.firstname}</span>
       </div>
       <div data-uri="/logout" class="iconDiv" id="user" >
-      <a href="#home" class="icon" id="profileIcon" >
-      <svg  xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" width="40" height="40" viewBox="0 0 256 256" xml:space="preserve" class="profileIcon">
+      <a data-uri="/logout" href="#home" class="icon" id="profileIcon" >
+      <svg data-uri="/logout" xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" width="40" height="40" viewBox="0 0 256 256" xml:space="preserve" class="profileIcon">
       <g style="stroke: none;  stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
         <path d="M 36.137 34.78 c -9.589 0 -17.39 -7.801 -17.39 -17.39 C 18.747 7.801 26.548 0 36.137 0 s 17.39 7.801 17.39 17.39 C 53.527 26.979 45.726 34.78 36.137 34.78 z M 36.137 7 c -5.729 0 -10.39 4.661 -10.39 10.39 s 4.661 10.39 10.39 10.39 s 10.39 -4.661 10.39 -10.39 S 41.866 7 36.137 7 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
         <path d="M 11.721 90 c -1.933 0 -3.5 -1.567 -3.5 -3.5 V 61.756 c 0 -11.14 9.063 -20.203 20.203 -20.203 h 15.427 c 6.92 0 13.29 3.505 17.039 9.375 c 1.084 1.698 1.904 3.539 2.438 5.471 c 0.516 1.862 -0.577 3.791 -2.44 4.306 c -1.86 0.519 -3.791 -0.576 -4.306 -2.44 c -0.349 -1.258 -0.884 -2.459 -1.593 -3.568 c -2.456 -3.847 -6.62 -6.143 -11.138 -6.143 H 28.424 c -7.28 0 -13.203 5.923 -13.203 13.203 V 86.5 C 15.221 88.433 13.654 90 11.721 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
@@ -154,9 +155,9 @@ function renderNavbar() {
       <span class="close">X</span>
       <div class="tex-modal-container">
         <a class="modal-link"  data-uri="/" >Home</a>
+        <a class="modal-link"  data-uri="/allProducts" > See Products </a> 
         <a class="modal-link"  data-uri="/login"> Login </a>
         <a class="modal-link"  data-uri="/register" > Sign Up </a>
-        <a class="modal-link"  data-uri="/allProducts" > See Products </a> 
         <div>
     </div>
   </div>
@@ -168,9 +169,9 @@ function renderNavbar() {
       <div class="tex-modal-container">
       <h1 class="greetings" > Welcome ${user?.firstname} !</h1>
         <a class="modal-link" data-uri="/" >Home</a>
-        <a class="modal-link" data-uri="/user/${user?.id}" >My Page</a>
-        <a class="modal-link" data-uri="/logout" > Log Out </a>
         <a class="modal-link" data-uri="/allProducts" > See Products </a> 
+        <a class="modal-link" data-uri="/logout" > Log Out </a>
+        
         <div>
     </div>
   </div>

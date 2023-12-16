@@ -12,7 +12,7 @@ export default class RacerWatch extends Object3D {
     this.name = 'Gucci Bag';
     loader.load(MODEL, (gltf)=>{
       const obj = gltf.scene;
-      obj.scale.set(3,3,3);
+      obj.scale.set(2.6,2.6,2.6);
       this.add(obj);
       
     });

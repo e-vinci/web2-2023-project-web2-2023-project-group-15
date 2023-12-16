@@ -58,7 +58,6 @@ const ProductPage = async () => {
                         <div class="col-md-6">
                             <h1 class="display-5 fw-bolder">${productName}</h1>
                             <div class="fs-5 mb-5">
-                                <span class="text-decoration-line-through">${productPrice} €</span>
                                 <span class="price-product-single" > ${productPrice} €</span>
                             </div>
                             <p class="lead">${productDescription}</p>

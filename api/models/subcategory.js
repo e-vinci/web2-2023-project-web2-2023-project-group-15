@@ -31,23 +31,31 @@ const defaultSubcategory = [
   },
   {
     id: 4,
-    name: 'Gucci',
-  },
-  {
-    id: 5,
     name: 'Louis Vuitton',
   },
   {
-    id: 6,
+    id: 5,
     name: 'Prada',
   },
   {
+    id: 6,
+    name: 'Seiko',
+  },
+  {
     id: 7,
-    name: 'Cartier',
+    name: 'Tom Ford',
   },
   {
     id: 8,
-    name: 'Armani',
+    name: 'Channel',
+  },
+  {
+    id: 9,
+    name: 'Philiph Pattek',
+  },
+  {
+    id: 10,
+    name: 'Penhaligons',
   },
 ];
 
