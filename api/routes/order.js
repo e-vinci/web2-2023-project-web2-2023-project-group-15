@@ -11,8 +11,6 @@ const {
   getOrdersOfUser,
 } = require('../models/orders');
 
-// const jsonDbPath = path.join(__dirname, '/../data/orders.json');
-
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -22,18 +20,19 @@ router.get('/', (req, res) => {
 
 router.post('/addOrder', (req, res) => {
   console.log('ROUTER ORDER TEST1');
-  const buyerId = req?.body?.id?.length !== 0 ? req.body.id : undefined;
-  console.log(buyerId);
+  const buyerId = req?.body?.buyerId?.length !== 0 ? req.body.buyerId : undefined;
   const firstName = req?.body?.firstName?.length !== 0 ? req.body.firstName : undefined;
   const lastName = req?.body?.lastName?.length !== 0 ? req.body.lastName : undefined;
-  // const totalPrice = req?.body?.price > 0 ? req.body.price : undefined;
-  // const date = req?.body?.date?.length !== 0 ? req.body.date : undefined;
+  const totalPrice = req?.body?.totalPrice > 0 ? req.body.totalPrice : undefined;
   const payementMethod = req?.body?.payementMethod?.length !== 0 ? req.body.payementMethod : undefined;
+  const day = req?.body?.day?.length !== 0 ? req.body.day : undefined;
+  const month = req?.body?.month?.length !== 0 ? req.body.month : undefined;
+  const year = req?.body?.year?.length !== 0 ? req.body.year : undefined;
 
-  if (!buyerId || !firstName || !lastName || !payementMethod) {
+  if (!buyerId || !firstName || !lastName || !totalPrice || !payementMethod || !day || !month || !year) {
     return res.sendStatus(400).json({ error: 'Paramètres invalides' }); // error code '400 Bad request'
   }
-  const newOrder = createOrder(buyerId, firstName, lastName, payementMethod);
+  const newOrder = createOrder(buyerId, firstName, lastName, totalPrice, payementMethod, day, month, year);
   console.log('ROUTER ORDER TEST2');
   return res.json(newOrder);
 });

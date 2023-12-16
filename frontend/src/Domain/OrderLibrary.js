@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import { getAuthenticatedUser } from "../utils/auths";
-// import {getCartTotal} from "../utils/shoppingCart";
+import {getCartTotal} from "../utils/shoppingCart";
 // import Navigate from "../Components/Router/Navigate";
 
 class OrderLibrary{
@@ -10,10 +10,17 @@ class OrderLibrary{
 
         const user = getAuthenticatedUser();
         const {id} = user;
-        console.log("id user est : " , id);
         const firstName = user.firstname;
         const lastName = user.lastname;
-        const totalPrice =  document.getElementById('totalPrice').value;
+        const totalPrice =  getCartTotal();
+                
+        const date= new Date();
+
+        
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; 
+        const day = date.getDate();
+
         let payementMethod;
 
         const paypal = document.getElementById('paypal').checked;
@@ -38,8 +45,12 @@ class OrderLibrary{
                   "buyerId" : id,
                   "firstName": firstName,
                   "lastName" : lastName,
-                  "payementMethod":payementMethod,
                   "totalPrice" : totalPrice,
+                  "payementMethod":payementMethod,
+                  "day" : day,
+                  "month" : month,
+                  "year" : year,
+                  
                 }),
                 headers: {
                   'Content-Type': 'application/json',
