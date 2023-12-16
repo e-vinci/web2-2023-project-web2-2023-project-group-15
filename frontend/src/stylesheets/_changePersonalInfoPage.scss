@@ -11,6 +11,15 @@
     font-family: fonts.$regular-police;
   }
 
+  .backgroundForm2 {
+    background-image: url('../img/user/background.png');
+  }
+
+  .titleChangeInfo{
+    color: #FFFF;
+    padding-bottom: 15px;
+  }
+
 
   @include responsive.BigScreen{
     .background{

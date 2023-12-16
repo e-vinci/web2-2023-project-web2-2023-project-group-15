@@ -2,6 +2,7 @@
 import UserLibrary from '../../Domain/UserLibrary';
 import OrderLibrary from '../../Domain/OrderLibrary';
 import '../../stylesheets/_userPage.scss';
+import Navigate from '../Router/Navigate';
 
 
 const UserPage = async () => {
@@ -30,8 +31,7 @@ const UserPage = async () => {
   <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12">
-              <div class="backgroundForm
-              " style="border-radius: 15px;">
+              <div class="backgroundForm" style="border-radius: 15px;">
                   <div class="card-body p-0">
                       <div class="row g-0">
                           <div class="col-lg-8">
@@ -78,7 +78,7 @@ const UserPage = async () => {
                                       
                                   </ul>
   
-                                  <button type="button" id="modifyInfoBtn" class="btn btn-outline-dark" data-toggle="modal"
+                                  <button type="button" id="modifyInfoBtn" href="/"class="btn btn-outline-dark" data-toggle="modal"
                                       data-target="#modifyPersonalInfoModal">Modify Personal Information</button>
 
                                       <a href="/logout" class="btn btn-outline-dark">Logout</a>
@@ -110,10 +110,15 @@ const UserPage = async () => {
 
   const main = document.querySelector('main');
   main.innerHTML = html;
-  popupChangeInfo(user.id);
+  ChangeInfopage(user.id)
 };
 
-
+function ChangeInfopage(userId) {
+  const modifyInfoBtn = document.querySelector('#modifyInfoBtn');
+  modifyInfoBtn.addEventListener('click', () => Navigate(`/changePersonalInfoPage?id=${userId}`));
+}
+/*
+// eslint-disable-next-line no-unused-vars
 function popupChangeInfo(userId) {
   const modifyInfoBtn = document.querySelector('#modifyInfoBtn');
   modifyInfoBtn.addEventListener('click', () => openPopup(userId));
@@ -154,7 +159,7 @@ function openPopup(userId) {
       }
     }
   });
-}
+} */
 
 async function addOrder(id) {
   const orders = await getOrdersFromoId(id);
