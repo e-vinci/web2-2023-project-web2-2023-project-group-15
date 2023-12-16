@@ -96,8 +96,6 @@ const ProductPage = async () => {
         html3 += `
         <div class="col mb-5" >
         <div class="product" >
-            <!-- Sale badge-->
-            <!-- Product image-->
             <img class="product-img" src="${productsImgs[similarProducts[i].id -1]}"  />
             <!-- Product details-->
             <div class="card-body p-4">
@@ -105,14 +103,13 @@ const ProductPage = async () => {
                     <!-- Product name-->
                     <h5 class="fw-bolder">${similarProducts[i].name}</h5>
                     <!-- Product price-->
-                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                    $25.00
+                    <span class="text ">${similarProducts[i].price}€</span>
                 </div>
             </div>
             <!-- Product actions-->
             
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" >
-                <div class="text-center"><a class="showProduct btn btn-outline-dark mt-auto"    value="${similarProducts[i].id}">Show Product</a></div>
+                <div class="text-center"><a class="showProduct btn btn-outline-dark mt-auto"value="${similarProducts[i].id}">Show Product</a></div>
             </div>
            
         </div>

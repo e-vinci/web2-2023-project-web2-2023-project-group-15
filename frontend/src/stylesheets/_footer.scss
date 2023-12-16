@@ -3,6 +3,9 @@
 @use 'fonts';
 
 .footer-container {
+  position: fixed;
+    bottom: 0px;
+    width: 100%;
     background-color: black; 
   }
   
@@ -46,4 +49,12 @@
   #legalPrivacyLink {
     cursor: pointer;
 
+  }
+  @include responsive.Phone{
+    .footer-container {
+      position: relative;
+        bottom: 0px;
+        width: 100%;
+        background-color: black; 
+      }
   }

@@ -17,8 +17,8 @@ input{
     margin-bottom: 2%;
     margin-top: 2%;
 }
-.register-container{
-
+#login-container{
+    height: 1000px;
 }
 
 @include responsive.BigScreen{
