@@ -65,7 +65,7 @@ const AllProductPage = async () => {
     filter.innerHTML = AddCategories();
     container.innerHTML = await addCardProduct();
 
-    const productLinks = container.querySelectorAll('.link-products');
+    let productLinks = container.querySelectorAll('.link-products');
 
     productLinks.forEach((link) => {
       link.addEventListener('click', async (e) => {
@@ -95,6 +95,15 @@ const AllProductPage = async () => {
           url = `brand=${stringModifier(itemClicked.value)}`;
         }
         container.innerHTML = await addCardProduct(url);
+
+        productLinks = container.querySelectorAll('.link-products');
+          productLinks.forEach((link) => {
+            link.addEventListener('click', async (a) => {
+              a.preventDefault();
+              const productId = link.dataset.rui.split('/').pop(); 
+              Navigate(`/product?id=${productId}`);
+            });
+          });
       });
     });
     submitSearchBar.addEventListener('click', async ()=> {

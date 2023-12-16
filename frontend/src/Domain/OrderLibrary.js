@@ -9,6 +9,8 @@ class OrderLibrary{
      async createOrder(){
 
         const user = getAuthenticatedUser();
+        const {id} = user;
+        console.log("id user est : " , id);
         const firstName = user.firstname;
         const lastName = user.lastname;
         const totalPrice =  document.getElementById('totalPrice').value;
@@ -33,6 +35,7 @@ class OrderLibrary{
             const options = {
                 method: 'POST',
                 body: JSON.stringify({
+                  "buyerId" : id,
                   "firstName": firstName,
                   "lastName" : lastName,
                   "payementMethod":payementMethod,

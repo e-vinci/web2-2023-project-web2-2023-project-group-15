@@ -52,7 +52,7 @@ const defaultOrders = [
   },
 ];
 
-function createOrder(firstName, lastName, payementMethod) {
+function createOrder(buyerId, firstName, lastName, payementMethod) {
   const orders = parse(jsonDbPath, defaultOrders);
 
   // const parsedPrice = parseFloat(totalPrice);
@@ -60,6 +60,7 @@ function createOrder(firstName, lastName, payementMethod) {
 
   const newOrder = {
     id: orders.length + 1,
+    buyerId,
     firstName: escape(firstName),
     lastName: escape(lastName),
     // totalPrice: parsedPrice,

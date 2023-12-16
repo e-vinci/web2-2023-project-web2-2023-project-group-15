@@ -22,17 +22,18 @@ router.get('/', (req, res) => {
 
 router.post('/addOrder', (req, res) => {
   console.log('ROUTER ORDER TEST1');
+  const buyerId = req?.body?.id?.length !== 0 ? req.body.id : undefined;
+  console.log(buyerId);
   const firstName = req?.body?.firstName?.length !== 0 ? req.body.firstName : undefined;
   const lastName = req?.body?.lastName?.length !== 0 ? req.body.lastName : undefined;
-
   // const totalPrice = req?.body?.price > 0 ? req.body.price : undefined;
   // const date = req?.body?.date?.length !== 0 ? req.body.date : undefined;
   const payementMethod = req?.body?.payementMethod?.length !== 0 ? req.body.payementMethod : undefined;
 
-  if (!firstName || !lastName || !payementMethod) {
+  if (!buyerId || !firstName || !lastName || !payementMethod) {
     return res.sendStatus(400).json({ error: 'Paramètres invalides' }); // error code '400 Bad request'
   }
-  const newOrder = createOrder(firstName, lastName, payementMethod);
+  const newOrder = createOrder(buyerId, firstName, lastName, payementMethod);
   console.log('ROUTER ORDER TEST2');
   return res.json(newOrder);
 });
