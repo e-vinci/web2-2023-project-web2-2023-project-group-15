@@ -1,8 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import Navbar from "../Components/Navbar/Navbar";
 import Navigate from "../Components/Router/Navigate";
-import {  setAuthenticatedUser } from '../utils/auths';
+import {  setAuthenticatedUser, isStrongPassword } from '../utils/auths';
 import { renderPopUp } from "../utils/popUp";
+
 
 const calculateAge = (birthdate) => {
   const today = new Date();
@@ -34,6 +35,8 @@ class UserLibrary{
 
         const age = calculateAge(birthdate);
 
+        
+
         if (age < 6) {
           const message = document.getElementById('message');
           message.innerHTML = `<div id="popUp">You must be at least 6 years old to sign up.</div>`;
@@ -56,6 +59,8 @@ class UserLibrary{
           renderPopUp();
           return;
         }
+
+        if(!isStrongPassword(registerPassword.trim())) return;
       
           const options = {
           method: 'POST',
@@ -88,7 +93,7 @@ class UserLibrary{
         }catch(error){
           alert(authenticatedUser);
           const message = document.getElementById('message');
-          message.innerHTML += `<div id="popUp">An error has occurred.Please try again</div>`;
+          message.innerHTML = `<div id="popUp">An error has occurred.Please try again</div>`;
           renderPopUp();
           
           
@@ -97,12 +102,20 @@ class UserLibrary{
         
     }
 
+  
     async onLogin(e) { 
         
         e.preventDefault();
       
-        const mail = document.querySelector('#loginUsername').value;
-        const password = document.querySelector('#loginPassword').value;
+        const mail = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        if(mail.trim() === ' ' || password.trim() === ' '){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">Please, complete all the fields!</div>`;
+          renderPopUp();
+          return;
+        }
       
         const options = {
           method: 'POST',
@@ -129,7 +142,9 @@ class UserLibrary{
             Navbar();     
             Navigate('/');
           } else {
-            alert('Login failed: Server response is not in JSON format.');
+            const message = document.getElementById('message');
+            message.innerHTML = `<div id="popUp">An error has occurred.Please try again</div>`;
+            renderPopUp();
           }
         } catch (error) {
         

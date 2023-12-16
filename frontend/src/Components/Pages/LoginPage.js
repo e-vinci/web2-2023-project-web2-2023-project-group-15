@@ -62,6 +62,8 @@ function renderLoginForm() {
             </div>
           </div>
         </div>
+        <div id="message">
+        </div>
       </div>
       </div>
    ` 

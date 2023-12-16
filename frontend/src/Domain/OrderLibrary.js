@@ -78,6 +78,9 @@ class OrderLibrary{
             
             order =  reponse.json();
           } catch (err) {
+            const message = document.getElementById('message');
+            message.innerHTML = `<div id="popUp">An error has occurred.Please try again</div>`;
+            renderPopUp();
             console.error('error: ', err);
           }
 
