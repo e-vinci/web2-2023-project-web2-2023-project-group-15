@@ -10,10 +10,7 @@ const UserPage = async () => {
   const url = window.location.search;
   const email = url.split('=');
   console.log('email : ', email[1]);
-  /*
-  const userEmail = getAuthenticatedUser();
-  const url = `email=${userEmail.email}`
-  */
+
 
   const user = await getUserFromUsername(email[1]);
 
@@ -117,49 +114,6 @@ function ChangeInfopage(userId) {
   const modifyInfoBtn = document.querySelector('#modifyInfoBtn');
   modifyInfoBtn.addEventListener('click', () => Navigate(`/changePersonalInfoPage?id=${userId}`));
 }
-/*
-// eslint-disable-next-line no-unused-vars
-function popupChangeInfo(userId) {
-  const modifyInfoBtn = document.querySelector('#modifyInfoBtn');
-  modifyInfoBtn.addEventListener('click', () => openPopup(userId));
-}
-
-function openPopup(userId) {
-  // Specify the URL of the page you want to load in the pop-up window
-  const popupUrl = `/changePersonalInfoPage?id=${userId}`; // Replace with your actual URL
-
-  // Specify the dimensions of the pop-up window
-  const popupWidth = 800;
-  const popupHeight = 600;
-
-  // Calculate the position to center the pop-up window on the screen
-  const left = (window.innerWidth - popupWidth) / 2;
-  const top = (window.innerHeight - popupHeight) / 2;
-
-  // Open the pop-up window
-  const popupWindow = window.open(
-    popupUrl,
-    '_blank',
-    `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`,
-  );
-
-  // Focus on the pop-up window (optional)
-  if (popupWindow) {
-    popupWindow.focus();
-  }
-
-  window.addEventListener('message', (event) => {
-    // Check if the message is from the popup window
-    if (event.source === popupWindow) {
-      // Check the message data to determine if it's a close request
-      if (event.data === 'closePopup') {
-        // Close the popup window
-        // alert('Info change successful!');
-        popupWindow.close();
-      }
-    }
-  });
-} */
 
 async function addOrder(id) {
   const orders = await getOrdersFromoId(id);
