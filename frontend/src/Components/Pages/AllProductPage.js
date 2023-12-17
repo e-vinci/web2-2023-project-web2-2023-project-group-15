@@ -18,7 +18,6 @@ import Navigate from '../Router/Navigate';
 
 const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
 
-
 let i = 0;
 
 const AllProductPage = async () => {

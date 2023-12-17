@@ -7,7 +7,6 @@ export default class sceneCutioVolareWatch extends Group {
       super();
   
       const race = new Racerwatch();
-    
   
       this.add(race);
     }

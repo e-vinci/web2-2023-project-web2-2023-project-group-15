@@ -1,9 +1,9 @@
 ### Read all Products with File variable
 @baseUrl = http://localhost:3000
-GET {{baseUrl}}/products
+GET {{baseUrl}}/product
 
 ### get Product 
-GET {{baseUrl}}/products/1
+GET {{baseUrl}}product/getProduct/1
 
 ### get Product order bu price
 GET {{baseUrl}}/products?order=price
