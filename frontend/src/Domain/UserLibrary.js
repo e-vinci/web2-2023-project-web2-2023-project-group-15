@@ -145,6 +145,15 @@ class UserLibrary{
           renderPopUp();
           return;
         }
+
+        const user = UserLibrary.prototype.emailAlreadyExist(mail);
+        
+        if(user === undefined){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">This email does not exist </div>`;
+          renderPopUp();
+          return;
+        }
       
         const options = {
           method: 'POST',
