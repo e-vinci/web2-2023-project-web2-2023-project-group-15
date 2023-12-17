@@ -48,13 +48,13 @@ function renderRegisterForm() {
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group last mb-3">
-                  <input  type="text" id="firstname" class="form-control" placeholder="Firstname" required=true />
+                  <input  type="text" id="firstname" class="form-control" placeholder="Firstname"  />
                   <label class="form-label" for="firstname"></label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group last mb-3">
-                  <input type="text" id="lastname" class="form-control" placeholder="Lastname" required=true />
+                  <input type="text" id="lastname" class="form-control" placeholder="Lastname" />
                   <label class="form-label" for="lastname"></label>
                 </div>
               </div>
@@ -63,7 +63,7 @@ function renderRegisterForm() {
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group last mb-3">
-                  <input type="email" id="registerUsername" class="form-control" placeholder="Email" required=true />
+                  <input type="email" id="registerUsername" class="form-control" placeholder="Email"  />
                   <label class="form-label" for="registerUsername"></label>
                 </div>
               </div>
@@ -72,13 +72,13 @@ function renderRegisterForm() {
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group last mb-2">
-                  <input type="text" class="form-control" placeholder="Street" id="streetName" required=true />
+                  <input type="text" class="form-control" placeholder="Street" id="streetName"  />
                   <label class="form-label" for="Street"></label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group last mb-2">
-                  <input type="text" class="form-control" placeholder="City" id="cityName" required=true />
+                  <input type="text" class="form-control" placeholder="City" id="cityName" />
                   <label class="form-label" for="City"></label>
                 </div>
               </div>
@@ -87,13 +87,13 @@ function renderRegisterForm() {
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group last mb-2">
-                  <input type="text" class="form-control" placeholder="Zip code" id="zipCode" required=true />
+                  <input type="text" class="form-control" placeholder="Zip code" id="zipCode"/>
                   <label class="form-label" for="Zipcode"></label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group last mb-2">
-                  <input type="text" class="form-control" placeholder="Country" id="countryName" required=true />
+                  <input type="text" class="form-control" placeholder="Country" id="countryName"  />
                   <label class="form-label" for="Country"></label>
                 </div>
               </div>
@@ -102,7 +102,7 @@ function renderRegisterForm() {
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group last mb-3">
-                  <input type="date" id="birthdate" class="form-control" placeholder="birthdate" required=true />
+                  <input type="date" id="birthdate" class="form-control" placeholder="birthdate"/>
                   <label class="form-label" for="birthdate"></label>
                 </div>
               </div>
@@ -111,13 +111,13 @@ function renderRegisterForm() {
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group last mb-3">
-                  <input type="password" class="form-control" placeholder="Password" id="registerPassword" required=true />
+                  <input type="password" class="form-control" placeholder="Password" id="registerPassword"  />
                   <label class="form-label" for="Password"></label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group last mb-3">
-                  <input type="password" class="form-control" placeholder="Confirm password" id="registerConfPassword" required=true />
+                  <input type="password" class="form-control" placeholder="Confirm password" id="registerConfPassword"  />
                   <label class="form-label" for="registerConfPassword"></label>
                 </div>
               </div>
@@ -137,6 +137,9 @@ function renderRegisterForm() {
           <input type="submit" class="btn btn-outline-light btn-lg px-5" style="font:1em CenturyGothic" value="SIGN UP" />
         </div>
       </div>
+    </div>
+    </div>
+    <div id="message">
     </div>
   </div>
 </div>

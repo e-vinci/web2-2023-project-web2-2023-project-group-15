@@ -64,7 +64,14 @@ const AllProductPage = async () => {
     filter.innerHTML = AddCategories();
     container.innerHTML = await addCardProduct();
 
-    
+    let productLinks = container.querySelectorAll('.link-products');
+    productLinks.forEach((link) => {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = link.getAttribute('data-uri');
+        Navigate(url);
+      });
+    });
 
     const categoryItemsDropdown = document.querySelectorAll('.category-item');
 
@@ -86,6 +93,15 @@ const AllProductPage = async () => {
           url = `brand=${stringModifier(itemClicked.value)}`;
         }
         container.innerHTML = await addCardProduct(url);
+
+        productLinks = container.querySelectorAll('.link-products');
+        productLinks.forEach((link) => {
+          link.addEventListener('click', async (a) => {
+            e.preventDefault();
+            const url2 = link.getAttribute('data-uri');
+            Navigate(url2);
+          });
+        });
       });
     });
     submitSearchBar.addEventListener('click', async ()=> {
@@ -94,14 +110,7 @@ const AllProductPage = async () => {
     })
     main.appendChild(container);
 
-    const productLinks = document.querySelectorAll('.link-products');
-    productLinks.forEach((link) => {
-      link.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const url = link.getAttribute('data-uri');
-        Navigate(url);
-      });
-    });
+   
   }
   // add an categorie to the drop down menu
   function AddCategories() {
@@ -125,7 +134,7 @@ const AllProductPage = async () => {
                     <img class="product-img" src=${productsImgs[product.id -1]} alt="${
         product.name
       } picture "/>
-                    <h1 class="title-product" > ${product.name} </h1>
+                    <h1 class="product-title" > ${product.name} </h1>
                     <h2 class="price-product" > ${product.price}€ </h1>
                 </div>
             </a>
@@ -146,7 +155,7 @@ const AllProductPage = async () => {
     <div class="product-filter">
         <div class="order-products">
             <div class="dropdown">
-                <button class="dropbtn">Order Products by : <img class="product-img" src=${arrowDown} alt="$arrow down "/>  </button>
+                <button class="dropbtn">Order Products by : <img  src=${arrowDown} alt="$arrow down "/>  </button>
                 <div class="dropdown-content">
                   <input  class="category-item" id="linkOrder" type="button" value="Highest Price">
                   <input  class="category-item" id="linkOrder" type="button" value="Lowest Price">
@@ -157,7 +166,7 @@ const AllProductPage = async () => {
         </div>
         <div class="order-products">
             <div class="dropdown">
-                <button class="dropbtn">Filter products by :  <img class="product-img" src=${arrowDown} alt="$arrow down "/>  </button>
+                <button class="dropbtn">Filter products by :  <img  src=${arrowDown} alt="$arrow down "/>  </button>
                 <div class="dropdown-content" id="filter-products">
                 </div>
             </div>

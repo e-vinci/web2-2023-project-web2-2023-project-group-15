@@ -109,8 +109,8 @@ const html = `
              <a class="link-products-popular" href="#" data-uri="/product?id=2" id="w1">
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesBallonBleu} alt="Picture Watch Cartier"/>
-                    <h1 class="title-product" >Ballon Bleu de Cartier</h1>
-                    <h2 class="price-product" >9.050.99 €</h2>
+                    <h1 class="title-product" >Seiko Coutura</h1>
+                    <h2 class="price-product" >999.99 €</h2>
                 </div>
              </a>
 
@@ -119,7 +119,7 @@ const html = `
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesRolexSubmarinier} alt="Picture Watch Rolex"/>
                     <h1 class="title-product" >Rolex Submariner</h1>
-                    <h2 class="price-product" >25.190.00 €</h1>
+                    <h2 class="price-product" >13500 €</h1>
                 </div>
              </a>
 
@@ -128,7 +128,7 @@ const html = `
                 <div class="product-card-popular" id="product-card">
                     <img class="product-img-popular" src=${popularImgWatchesPPGrandComplications} alt="Picture Watch Patek Philippe"/>
                     <h1 class="title-product" >Patek Philippe Grand Complications</h1>
-                    <h2 class="price-product" >89.650.99 €</h1>
+                    <h2 class="price-product" >44999.99 €</h1>
                 </div>
              </a>
        </div>
@@ -140,7 +140,7 @@ const html = `
         <a class="link-products-popular" href="#" data-uri="/product?id=3" id="b1">
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsLVDubai} alt="Picture Bag Louis Vuitton"/>
-              <h1 class="title-product" >Louis Vuitton Dubai</h1>
+              <h1 class="title-product" >Louis Vuitton Bag</h1>
               <h2 class="price-product" >6.999.99 €</h1>
           </div>
         </a>
@@ -149,8 +149,8 @@ const html = `
         <a class="link-products-popular" href="#" data-uri="/product?id=6" id="b2">
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsPradaSaffiano} alt="Picture Bag Prada Saffiano"/>
-              <h1 class="title-product" >Prada Saffiano Bag</h1>
-              <h2 class="price-product" >2.199.99 €</h1>
+              <h1 class="title-product" >Classic Prada bag</h1>
+              <h2 class="price-product" >2500 €</h1>
           </div>
         </a>
 
@@ -158,8 +158,8 @@ const html = `
         <a class="link-products-popular" href="#" data-uri="/product?id=8" id="b3">
           <div class="product-card-popular" id="product-card">
               <img class="product-img-popular" src=${popularImgBagsPradaBP} alt="Picture Bag Prada Backpack"/>
-              <h1 class="title-product" >Prada backpack</h1>
-              <h2 class="price-product" >3.580.99 €</h1>
+              <h1 class="title-product" >Louis Vuitton Christopher</h1>
+              <h2 class="price-product" >2750 €</h1>
           </div>
         </a>
      </div>
@@ -171,7 +171,7 @@ const html = `
      <a class="link-products-popular" href="#" data-uri="/product?id=4" id="c1">
        <div class="product-card-popular" id="product-card">
            <img class="product-img-popular" src=${popularImgCosmeticsArmaniCode} alt="Picture Perfum Armani Code"/>
-           <h1 class="title-product" >Armani code</h1>
+           <h1 class="title-product" >Tom Ford TOBACCO</h1>
            <h2 class="price-product" >289,99 €</h1>
        </div>
      </a>
@@ -181,7 +181,7 @@ const html = `
      <div class="product-card-popular" id="product-card">
          <img class="product-img-popular" src=${popularImgCosmeticsPenhaligons} alt="Picture Perfum Penhaligons"/>
          <h1 class="title-product" >Penhaligon's</h1>
-         <h2 class="price-product" >489,99 €</h1>
+         <h2 class="price-product" >299.99 €</h1>
      </div>
      </a>
 
@@ -190,7 +190,7 @@ const html = `
        <div class="product-card-popular" id="product-card">
            <img class="product-img-popular" src=${popularImgCosmeticsChanel5} alt="Picture Perfum Chanel5"/>
            <h1 class="title-product" >Chanel N°5</h1>
-           <h2 class="price-product" >229.99€</h1>
+           <h2 class="price-product" >289.99 €</h1>
        </div>
      </a>
     

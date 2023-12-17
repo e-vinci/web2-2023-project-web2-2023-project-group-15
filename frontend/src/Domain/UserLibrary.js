@@ -1,7 +1,10 @@
 /* eslint-disable class-methods-use-this */
+// eslint-disable-next-line import/no-unresolved
 import Navbar from "../Components/Navbar/Navbar";
 import Navigate from "../Components/Router/Navigate";
-import {  setAuthenticatedUser } from '../utils/auths';
+import {  setAuthenticatedUser, isStrongPassword  } from '../utils/auths';
+import { renderPopUp } from "../utils/popUp";
+
 
 const calculateAge = (birthdate) => {
   const today = new Date();
@@ -14,35 +17,80 @@ const calculateAge = (birthdate) => {
   return age;
 }
 
+
+
 class UserLibrary{
+
+
+  async emailAlreadyExist(email){
+    let  user='';
+    const url =`${process.env.API_BASE_URL}/auths/getUserByEmail`
+    try {
+        const reponse = await fetch(url+email);
+        if (!reponse.ok) {
+          return undefined;
+        }
+        user =  await reponse.json();
+      } catch (err) {
+        console.error('error: ', err);
+        return undefined;
+      }
+    return user;
+  }
+
     async onRegister(e) {
 
         e.preventDefault();
-        const firstname = document.querySelector('#firstname').value;
-        const lastname = document.querySelector('#lastname').value;
-        const mail = document.querySelector('#registerUsername').value;
-        const registerPassword = document.querySelector('#registerPassword').value;
-        const registerConfPassword = document.querySelector('#registerConfPassword').value;
-        const birthdate = document.querySelector('#birthdate').value;
-        const countryName = document.querySelector('#countryName').value;
-        const zipCode = document.querySelector('#zipCode').value;
-        const cityName = document.querySelector('#cityName').value;
-        const streetName = document.querySelector('#streetName').value;
-       
+        const firstname = document.getElementById('firstname').value;
+        const lastname = document.getElementById('lastname').value;
+        const mail = document.getElementById('registerUsername').value;
+        const registerPassword = document.getElementById('registerPassword').value;
+        const registerConfPassword = document.getElementById('registerConfPassword').value;
+        const birthdate = document.getElementById('birthdate').value;
+        const countryName = document.getElementById('countryName').value;
+        const zipCode = document.getElementById('zipCode').value;
+        const cityName = document.getElementById('cityName').value;
+        const streetName = document.getElementById('streetName').value;
+        
 
 
         const age = calculateAge(birthdate);
+
+        
+
         if (age < 6) {
-            alert("Vous devez avoir au moins 6 ans pour vous inscrire.");
-            return;
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">You must be at least 6 years old to sign up.</div>`;
+          renderPopUp();
+          return;
         }
       
-        if(registerPassword !== registerConfPassword) {
-          throw new Error(`The password is not the same`);
+        if(registerPassword.trim() !== registerConfPassword.trim()) {
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">Passwords do not match!</div>`;
+          renderPopUp();
+          return;
         }
-      
-      
-        const options = {
+
+        if(firstname.trim() === ''  || lastname.trim() === '' || mail.trim() === '' || registerPassword.trim() === '' ||birthdate.trim() === '' || countryName.trim() === ''|| zipCode.trim() === '' || cityName.trim() === ''|| streetName.trim() === ''){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">Please, complete all the fields!</div>`;
+          renderPopUp();
+          return;
+        }
+        const user = await UserLibrary.prototype.emailAlreadyExist(mail);
+        
+        
+        if(user !== undefined){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">This email already belongs to an account </div>`;
+          renderPopUp();
+          return;
+        }
+        
+        if(!isStrongPassword(registerPassword.trim())) return;
+
+          const options = {
           method: 'POST',
           body: JSON.stringify({
             "firstname": firstname,
@@ -59,9 +107,9 @@ class UserLibrary{
             'Content-Type': 'application/json',
           },
         };
-        console.log(options);
+        
         const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
-        console.log(response)
+        
         const authenticatedUser = await response.json();
       
         try{
@@ -72,15 +120,39 @@ class UserLibrary{
           Navigate('/');
         }catch(error){
           alert(authenticatedUser);
-        }  
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">An error has occurred.Please try again</div>`;
+          renderPopUp();
+          
+          
+        
+        }
+        
     }
 
-      async onLogin(e) { 
+  
+    async onLogin(e) { 
         
         e.preventDefault();
       
-        const mail = document.querySelector('#loginUsername').value;
-        const password = document.querySelector('#loginPassword').value;
+        const mail = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        if(mail.trim() === ' ' || password.trim() === ' '){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">Please, complete all the fields!</div>`;
+          renderPopUp();
+          return;
+        }
+
+        const user = await UserLibrary.prototype.emailAlreadyExist(mail);
+        
+        if(user === undefined){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">This email does not exist </div>`;
+          renderPopUp();
+          return;
+        }
       
         const options = {
           method: 'POST',
@@ -107,13 +179,17 @@ class UserLibrary{
             Navbar();     
             Navigate('/');
           } else {
-            alert('Login failed: Server response is not in JSON format.');
+            const message = document.getElementById('message');
+            message.innerHTML = `<div id="popUp">An error has occurred.Please try again</div>`;
+            renderPopUp();
           }
         } catch (error) {
         
           alert(error.message);
         }
     }
+
+
 
     static async getUserFromUsername(email){
       let  user='';
@@ -137,7 +213,7 @@ class UserLibrary{
     const url =`${process.env.API_BASE_URL}/user/`
     try {
         const reponse = await fetch(url+id);
-        console.log("résultat reponse " , reponse)
+        
   
         if (!reponse.ok) {
           throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
@@ -152,15 +228,15 @@ class UserLibrary{
 
  async onChangeInfo(id){
 
-        const firstname = document.querySelector('#firstname_').value;
-        const lastname = document.querySelector('#lastname_').value;
-        const mail = document.querySelector('#Username_').value;
-        const registerPassword = document.querySelector('#registerPassword_').value;
-        const registerConfPassword = document.querySelector('#registerConfPassword_').value;
-        const countryName = document.querySelector('#countryName_').value;
-        const zipCode = document.querySelector('#zipCode_').value;
-        const cityName = document.querySelector('#cityName_').value;
-        const streetName = document.querySelector('#streetName_').value;
+        const firstname = document.querySelector('#_firstname_').value;
+        const lastname = document.querySelector('#_lastname_').value;
+        const mail = document.querySelector('#_Username_').value;
+        const registerPassword = document.querySelector('#_registerPassword_').value;
+        const registerConfPassword = document.querySelector('#_registerConfPassword_').value;
+        const countryName = document.querySelector('#_countryName_').value;
+        const zipCode = document.querySelector('#_zipCode_').value;
+        const cityName = document.querySelector('#_cityName_').value;
+        const streetName = document.querySelector('#_streetName_').value;
 
         if(registerPassword !== registerConfPassword) {
           throw new Error(`The password is not the same`);
@@ -187,7 +263,9 @@ class UserLibrary{
         
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-    }
+  }
+
+ 
 
     
   

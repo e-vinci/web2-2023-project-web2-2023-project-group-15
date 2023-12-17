@@ -9,7 +9,10 @@ let html = ``;
 const main = document.querySelector('main');
 main.innerHTML = html;
 const orders = await OrderLibrary.prototype.getAllOrder(); 
-const totalPrice = await getTotalPriceOrder(orders);
+const annualTotalPrice = await getAnnualTotalPriceOrder(orders);
+const date= new Date();
+const month = date.getMonth() + 1; 
+const monthlyTotalPrice = await getMonthlyTotalPriceOrder(orders,month)
 
 html += `
 <div id="content-wrapper" class="d-flex flex-column">
@@ -18,10 +21,9 @@ html += `
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
         </div>
 
-        <!-- Content Row -->
+        
         <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
@@ -29,7 +31,7 @@ html += `
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Earnings (Monthly)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">${monthlyTotalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -39,7 +41,7 @@ html += `
                 </div>
             </div>
 
-            <!-- Earnings (Annual) Card Example -->
+            
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
@@ -47,7 +49,7 @@ html += `
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Earnings (Annual)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${totalPrice}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">${annualTotalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -57,7 +59,7 @@ html += `
                 </div>
             </div>
 
-            <!-- Tasks Card Example -->
+            
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-info shadow h-100 py-2">
                     <div class="card-body">
@@ -179,7 +181,7 @@ const recentTransactions = document.getElementById('recentTransactions');
             </div>
           </td>
           <td class="border-bottom-0">
-            <h6 class="fw-semibold mb-0 fs-4">$${price}</h6>
+            <h6 >${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</h6>
           </td>
       </tr>
         
@@ -195,15 +197,15 @@ const recentTransactions = document.getElementById('recentTransactions');
     (async function() {
 
       const data = [
-        { year: 2010, count: 10 },
-        { year: 2011, count: 20 },
-        { year: 2012, count: 15 },
-        { year: 2013, count: 25 },
-        { year: 2014, count: 22 },
-        { year: 2015, count: 30 },
-        { year: 2016, count: 28 },
+        { year: 2010, count: await countOrdersByYear(2010,orders) },
+        { year: 2011, count: await countOrdersByYear(2011,orders) },
+        { year: 2012, count: await countOrdersByYear(2012,orders) },
+        { year: 2013, count: await countOrdersByYear(2013,orders) },
+        { year: 2014, count: await countOrdersByYear(2014,orders) },
+        { year: 2015, count: await countOrdersByYear(2015,orders) },
+        { year: 2016, count: await countOrdersByYear(2016,orders) },
       ];
-    
+      console.log(data)
       // eslint-disable-next-line no-new
       new Chart(
         document.getElementById('myChart'),
@@ -225,21 +227,57 @@ const recentTransactions = document.getElementById('recentTransactions');
 
   };
 
-  async function getTotalPriceOrder(orders){
+  async function getAnnualTotalPriceOrder(orders){
    
-    let sumPrice = 0;
+    let sumAnnualPrice = 0;
 
     orders.forEach((item) => {
 
       if( item.totalPrice !== undefined){
-        sumPrice += item.totalPrice;
+        sumAnnualPrice += item.totalPrice;
       }
 
     });
    
-    return sumPrice;
+    return sumAnnualPrice;
     
   }
+
+  async function getMonthlyTotalPriceOrder(orders, month){
+   
+    let sumMonthlyPrice = 0;
+
+    orders.forEach((item) => {
+
+      if( item.totalPrice !== undefined){
+        if(item.month === month){
+            sumMonthlyPrice += item.totalPrice;
+        }
+        
+      }
+
+    });
+   
+    return sumMonthlyPrice;
+    
+  }
+
+  async function countOrdersByYear(year, orders){
+
+    let count = 0;
+
+    orders.forEach((item) => {
+
+     if(item.year === year){
+        count += 1;
+     }  
+
+    });
+   
+    return count;
+  }
+
+  
 
   
   export default AdminPage;

@@ -25,6 +25,7 @@ a:hover{
     text-align: center;
     align-items: center;
     text-decoration: none;
+    height: 120%;
 }
 .product-card{
     width: 400px;
@@ -72,7 +73,13 @@ h2{
     align-items: center;
     border-bottom: 2px solid color.$primary-black ;
 }
-
+.product-img{
+    height: 250px;
+    width: 200px;
+}
+.product-title{
+    padding-top: 2%;
+}
 .search-bar {
    
     display: flex;
@@ -167,7 +174,9 @@ h2{
 .input-search-bar{
     margin: 2%;
 }
-
+.showProduct{
+    padding-bottom: 10%;
+}
 //----------------------- Responsivite-------------------------------
 
 @include responsive.Phone{
@@ -204,6 +213,15 @@ h2{
     .dropdown-content a{
         font-size: smaller;
         padding: 10px 40px;
+    }
+    .product-title{
+        font-size: 17px !important;
+    }
+    .price-product{
+        font-size: 14px !important;
+    }
+    .link-products{
+        border-bottom: 2px solid rgba(96, 96, 96, 0.336);
     }
 }
 
@@ -279,3 +297,4 @@ h2{
         padding: 10px 40px;
     }
 }
+

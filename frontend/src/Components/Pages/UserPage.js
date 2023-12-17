@@ -2,6 +2,7 @@
 import UserLibrary from '../../Domain/UserLibrary';
 import OrderLibrary from '../../Domain/OrderLibrary';
 import '../../stylesheets/_userPage.scss';
+import Navigate from '../Router/Navigate';
 
 
 const UserPage = async () => {
@@ -9,10 +10,7 @@ const UserPage = async () => {
   const url = window.location.search;
   const email = url.split('=');
   console.log('email : ', email[1]);
-  /*
-  const userEmail = getAuthenticatedUser();
-  const url = `email=${userEmail.email}`
-  */
+
 
   const user = await getUserFromUsername(email[1]);
 
@@ -30,8 +28,7 @@ const UserPage = async () => {
   <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12">
-              <div class="backgroundForm
-              " style="border-radius: 15px;">
+              <div class="backgroundForm" style="border-radius: 15px;">
                   <div class="card-body p-0">
                       <div class="row g-0">
                           <div class="col-lg-8">
@@ -78,7 +75,7 @@ const UserPage = async () => {
                                       
                                   </ul>
   
-                                  <button type="button" id="modifyInfoBtn" class="btn btn-outline-dark" data-toggle="modal"
+                                  <button type="button" id="modifyInfoBtn" href="/"class="btn btn-outline-dark" data-toggle="modal"
                                       data-target="#modifyPersonalInfoModal">Modify Personal Information</button>
 
                                       <a href="/logout" class="btn btn-outline-dark">Logout</a>
@@ -110,50 +107,12 @@ const UserPage = async () => {
 
   const main = document.querySelector('main');
   main.innerHTML = html;
-  popupChangeInfo(user.id);
+  ChangeInfopage(user.id)
 };
 
-
-function popupChangeInfo(userId) {
+function ChangeInfopage(userId) {
   const modifyInfoBtn = document.querySelector('#modifyInfoBtn');
-  modifyInfoBtn.addEventListener('click', () => openPopup(userId));
-}
-
-function openPopup(userId) {
-  // Specify the URL of the page you want to load in the pop-up window
-  const popupUrl = `/changePersonalInfoPage?id=${userId}`; // Replace with your actual URL
-
-  // Specify the dimensions of the pop-up window
-  const popupWidth = 800;
-  const popupHeight = 600;
-
-  // Calculate the position to center the pop-up window on the screen
-  const left = (window.innerWidth - popupWidth) / 2;
-  const top = (window.innerHeight - popupHeight) / 2;
-
-  // Open the pop-up window
-  const popupWindow = window.open(
-    popupUrl,
-    '_blank',
-    `width=${popupWidth}, height=${popupHeight}, left=${left}, top=${top}`,
-  );
-
-  // Focus on the pop-up window (optional)
-  if (popupWindow) {
-    popupWindow.focus();
-  }
-
-  window.addEventListener('message', (event) => {
-    // Check if the message is from the popup window
-    if (event.source === popupWindow) {
-      // Check the message data to determine if it's a close request
-      if (event.data === 'closePopup') {
-        // Close the popup window
-        // alert('Info change successful!');
-        popupWindow.close();
-      }
-    }
-  });
+  modifyInfoBtn.addEventListener('click', () => Navigate(`/changePersonalInfoPage?id=${userId}`));
 }
 
 async function addOrder(id) {

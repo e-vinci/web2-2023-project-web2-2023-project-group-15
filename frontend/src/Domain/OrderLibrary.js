@@ -1,7 +1,8 @@
 /* eslint-disable class-methods-use-this */
 import { getAuthenticatedUser } from "../utils/auths";
-// import {getCartTotal} from "../utils/shoppingCart";
+import {getCartTotal} from "../utils/shoppingCart";
 // import Navigate from "../Components/Router/Navigate";
+import { renderPopUp } from "../utils/popUp";
 
 class OrderLibrary{
 
@@ -9,9 +10,18 @@ class OrderLibrary{
      async createOrder(){
 
         const user = getAuthenticatedUser();
-        const firstName = user.firstname;
-        const lastName = user.lastname;
-        const totalPrice =  document.getElementById('totalPrice').value;
+        const {id} = user;
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const totalPrice =  getCartTotal();
+                
+        const date= new Date();
+
+        
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; 
+        const day = date.getDate();
+
         let payementMethod;
 
         const paypal = document.getElementById('paypal').checked;
@@ -27,16 +37,28 @@ class OrderLibrary{
         if(debit === true) {
           payementMethod = 'debit';
         }
+
+        if(firstName.trim() === '' || firstName === undefined|| lastName.trim() === '' || lastName === undefined ){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">Please, complete all the fields!</div>`;
+          renderPopUp();
+          throw new Error();
+        }
         
         let order;
         try {
             const options = {
                 method: 'POST',
                 body: JSON.stringify({
+                  "buyerId" : id,
                   "firstName": firstName,
                   "lastName" : lastName,
-                  "payementMethod":payementMethod,
                   "totalPrice" : totalPrice,
+                  "payementMethod":payementMethod,
+                  "day" : day,
+                  "month" : month,
+                  "year" : year,
+                  
                 }),
                 headers: {
                   'Content-Type': 'application/json',
@@ -44,7 +66,7 @@ class OrderLibrary{
               };
             console.log(" ORDERLIBRARY TEST2 ");
 
-            // const reponse = await fetch(`${process.env.API_BASE_URL}/order/addOrder`, options);
+            
             const reponse = await fetch(`${process.env.API_BASE_URL}/order/addOrder`, options);
             console.log("résultat reponse " , reponse)
       
@@ -54,11 +76,13 @@ class OrderLibrary{
             
             order =  reponse.json();
           } catch (err) {
+            const message = document.getElementById('message');
+            message.innerHTML = `<div id="popUp">An error has occurred.Please try again</div>`;
+            renderPopUp();
             console.error('error: ', err);
           }
 
           
-          console.log(" ORDERLIBRARY TEST3 ");
           return order;
     
     }
@@ -95,6 +119,8 @@ class OrderLibrary{
         }
         return orders;
   }
+
+
 
 }
 export default OrderLibrary;

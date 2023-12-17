@@ -6,6 +6,7 @@ import { clearPage } from '../../utils/render';
 import Navigate from '../Router/Navigate';
 import fond from '../../img/login-register/fond.png';
 import degrade from '../../img/login-register/degrade.png';
+import '../../stylesheets/_login.scss';
 
 const LoginPage = () => {
     clearPage();
@@ -34,10 +35,8 @@ function renderLoginForm() {
   
     loginForm.innerHTML=
     ` 
-    <div class="container-fluid py-3 h-100">
-      <div class="row d-flex align-items-center h-100">
-        <div class="col-12">
-          <div class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover ">
+        <div class="container-login-register">
+          <div class="card bg-transparent text-white" id="login-box" style="border-radius: 1rem; background: url(${fond}); background-size: cover ">
             <div class="card-body px-5 py-3 text-center">
   
               <div class="mb-md-5 mt-md-4 pb-1 ">
@@ -55,12 +54,16 @@ function renderLoginForm() {
                 </div>
   
                 <input type="submit" class="btn btn-outline-light btn-lg px-5" value="LOGIN" />
-                 
-                <p class="text-white-50 mb-5">Pas Encore de compte ? <a href="#" id="inscriptionLink">Inscrivez-vous ici</a></p>
+                
+                </br>
+                </br>
+                <p >Pas Encore de compte ? <a href="#" id="inscriptionLink">Inscrivez-vous ici</a></p>
               </div>
   
             </div>
           </div>
+        </div>
+        <div id="message">
         </div>
       </div>
       </div>
