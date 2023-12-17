@@ -87,6 +87,14 @@ function readOneUserFromEmail(email) {
   return users[indexOfUserFound];
 }
 
+function ifUserExist(email) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const foundUser = users.find((user) => user.email === email);
+  console.log('ifUserExist');
+  console.log(foundUser);
+  return foundUser || undefined;
+}
+
 async function createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
   const users = parse(jsonDbPath, defaultUsers);
   
@@ -160,4 +168,5 @@ module.exports = {
   updateUserInfo,
   getUserFromUsername,
   defaultUsers,
+  ifUserExist,
 };

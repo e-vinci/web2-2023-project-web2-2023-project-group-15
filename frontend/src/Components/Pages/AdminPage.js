@@ -31,7 +31,7 @@ html += `
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Earnings (Monthly)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${monthlyTotalPrice}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">${monthlyTotalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -49,7 +49,7 @@ html += `
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Earnings (Annual)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${annualTotalPrice}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">${annualTotalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -181,7 +181,7 @@ const recentTransactions = document.getElementById('recentTransactions');
             </div>
           </td>
           <td class="border-bottom-0">
-            <h6 class="fw-semibold mb-0 fs-4">$${price}</h6>
+            <h6 >${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €</h6>
           </td>
       </tr>
         

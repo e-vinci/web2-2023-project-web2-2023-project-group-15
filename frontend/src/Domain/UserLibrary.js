@@ -27,13 +27,13 @@ class UserLibrary{
     const url =`${process.env.API_BASE_URL}/auths/getUserByEmail`
     try {
         const reponse = await fetch(url+email);
-  
         if (!reponse.ok) {
-          throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
+          return undefined;
         }
         user =  await reponse.json();
       } catch (err) {
         console.error('error: ', err);
+        return undefined;
       }
     return user;
   }
@@ -66,8 +66,6 @@ class UserLibrary{
         }
       
         if(registerPassword.trim() !== registerConfPassword.trim()) {
-          console.log(registerPassword)
-          console.log(registerConfPassword)
           const message = document.getElementById('message');
           message.innerHTML = `<div id="popUp">Passwords do not match!</div>`;
           renderPopUp();
@@ -80,7 +78,8 @@ class UserLibrary{
           renderPopUp();
           return;
         }
-        const user = UserLibrary.prototype.emailAlreadyExist(mail);
+        const user = await UserLibrary.prototype.emailAlreadyExist(mail);
+        
         
         if(user !== undefined){
           const message = document.getElementById('message');
@@ -108,9 +107,9 @@ class UserLibrary{
             'Content-Type': 'application/json',
           },
         };
-        console.log(options);
+        
         const response = await fetch(`${process.env.API_BASE_URL}/auths/register`, options);
-        console.log(response)
+        
         const authenticatedUser = await response.json();
       
         try{
@@ -146,7 +145,7 @@ class UserLibrary{
           return;
         }
 
-        const user = UserLibrary.prototype.emailAlreadyExist(mail);
+        const user = await UserLibrary.prototype.emailAlreadyExist(mail);
         
         if(user === undefined){
           const message = document.getElementById('message');
@@ -214,7 +213,7 @@ class UserLibrary{
     const url =`${process.env.API_BASE_URL}/user/`
     try {
         const reponse = await fetch(url+id);
-        console.log("résultat reponse " , reponse)
+        
   
         if (!reponse.ok) {
           throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
@@ -264,7 +263,9 @@ class UserLibrary{
         
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-    }
+  }
+
+ 
 
     
   

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 const express = require('express');
 
-const { register, login, readOneUserFromEmail } = require('../models/users');
+const { register, login, ifUserExist } = require('../models/users');
 
 const router = express.Router();
 
@@ -28,7 +28,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.get('/getUserByEmail:email', async (req, res) => {
-  const user = await readOneUserFromEmail(req.params.id);
+  const user = await ifUserExist(req.params.email);
   if (!user) return res.sendStatus(401);
   return res.json(user);
 });
