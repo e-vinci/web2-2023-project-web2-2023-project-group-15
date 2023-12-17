@@ -120,13 +120,15 @@ async function renderRegisterForm() {
   
   const btnChange = document.querySelector('#BtnChange');
   btnChange.addEventListener('click',  (e) => {
-    const mail = document.querySelector('#_Username_').value
-    console.log(`test de redirection  email:${mail}`)
+    console.log(`test de redirection  email:${user.email}`)
     if (!validateForm()) {
       e.preventDefault();
-    } else UserLibrary.prototype.onChangeInfo(user.id);
-    // window.opener.postMessage('closePopup', '*');
-  Navigate(`/user?email=${mail}`);
+    } else {
+      UserLibrary.prototype.onChangeInfo(user.id);
+      const urlnavigate = `/user?email=${user.email}`
+     e.preventDefault();
+    Navigate(urlnavigate);
+    }
   });
 }
 

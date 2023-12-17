@@ -20,6 +20,16 @@ input{
 #login-container{
     height: 1000px;
 }
+#login-box{
+    margin-top: 10% ;
+    height: 400px;
+    width: 800px;
+}
+.container-login-register{
+    height: 960px !important;
+    display: flex;
+    justify-content: center;
+}
 
 @include responsive.BigScreen{
     #background-sign-up{

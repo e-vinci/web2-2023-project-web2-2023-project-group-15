@@ -34,10 +34,8 @@ function renderLoginForm() {
   
     loginForm.innerHTML=
     ` 
-    <div class="container-fluid py-3 h-100">
-      <div class="row d-flex align-items-center h-100">
-        <div class="col-12">
-          <div class="card bg-transparent text-white" style="border-radius: 1rem; background: url(${fond}); background-size: cover ">
+        <div class="container-login-register">
+          <div class="card bg-transparent text-white" id="login-box" style="border-radius: 1rem; background: url(${fond}); background-size: cover ">
             <div class="card-body px-5 py-3 text-center">
   
               <div class="mb-md-5 mt-md-4 pb-1 ">
@@ -61,9 +59,6 @@ function renderLoginForm() {
   
             </div>
           </div>
-        </div>
-      </div>
-      </div>
    ` 
    const inscriptionLink = document.getElementById('inscriptionLink');
    inscriptionLink.addEventListener('click', () => {

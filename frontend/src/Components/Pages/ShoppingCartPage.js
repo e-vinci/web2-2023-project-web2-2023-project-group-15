@@ -19,16 +19,16 @@ const ShoppingCartPage = () => {
     }
 
     let html = `
-    <section class="h-100 h-custom" >
-    <div class="">
+    <section class="h-100 h-custom" id="container-shopping" >
+    <div class="container-shopping">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
           <div class="card card-registration card-registration-2" style="border-radius: 15px;">
             <div class="card-body p-0">
               <div class="row g-0">
                 <div class="col-lg-8">
-                  <div class="p-5">
-                    <div class="d-flex justify-content-between align-items-center mb-5">
+                  <div class="p-5" id="container-products-added">
+                    <div class="d-flex justify-content-between align-items-center mb-5" id="container-products-added">
                       <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
                       <h6 class="mb-0 text-muted">${countProductCart()} items</h6>
                     </div>
