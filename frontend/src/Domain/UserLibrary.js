@@ -1,7 +1,8 @@
 /* eslint-disable class-methods-use-this */
+// eslint-disable-next-line import/no-unresolved
 import Navbar from "../Components/Navbar/Navbar";
 import Navigate from "../Components/Router/Navigate";
-import {  setAuthenticatedUser, isStrongPassword } from '../utils/auths';
+import {  setAuthenticatedUser, isStrongPassword  } from '../utils/auths';
 import { renderPopUp } from "../utils/popUp";
 
 
@@ -16,7 +17,27 @@ const calculateAge = (birthdate) => {
   return age;
 }
 
+
+
 class UserLibrary{
+
+
+  async emailAlreadyExist(email){
+    let  user='';
+    const url =`${process.env.API_BASE_URL}/auths/getUserByEmail`
+    try {
+        const reponse = await fetch(url+email);
+  
+        if (!reponse.ok) {
+          throw new Error(`fetch error : ${reponse.status}${reponse.statusText}`);
+        }
+        user =  await reponse.json();
+      } catch (err) {
+        console.error('error: ', err);
+      }
+    return user;
+  }
+
     async onRegister(e) {
 
         e.preventDefault();
@@ -59,9 +80,17 @@ class UserLibrary{
           renderPopUp();
           return;
         }
-
+        const user = UserLibrary.prototype.emailAlreadyExist(mail);
+        
+        if(user !== undefined){
+          const message = document.getElementById('message');
+          message.innerHTML = `<div id="popUp">This email already belongs to an account </div>`;
+          renderPopUp();
+          return;
+        }
+        
         if(!isStrongPassword(registerPassword.trim())) return;
-      
+
           const options = {
           method: 'POST',
           body: JSON.stringify({
@@ -151,6 +180,8 @@ class UserLibrary{
           alert(error.message);
         }
     }
+
+
 
     static async getUserFromUsername(email){
       let  user='';

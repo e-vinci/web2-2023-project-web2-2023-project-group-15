@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved, import/no-relative-packages
 import { renderPopUp } from "./popUp";
 
 const STORE_NAME = 'user';
@@ -47,6 +48,8 @@ function setRememberMe(remembered) {
   localStorage.setItem(REMEMBER_ME, rememberedSerialized);
 }
 
+
+
 function isStrongPassword(password) {
 
   // Au moins une lettre majuscule, une lettre minuscule, un chiffre, et au moins 8 caractères
@@ -86,5 +89,5 @@ export {
   clearAuthenticatedUser,
   getRememberMe,
   setRememberMe,
-  isStrongPassword,
+  isStrongPassword
 };

@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 const express = require('express');
-const { register, login } = require('../models/users');
+
+const { register, login, readOneUserFromEmail } = require('../models/users');
 
 const router = express.Router();
 
@@ -16,12 +17,20 @@ router.post('/register', async (req, res) => {
   const country = req?.body?.country;
   const birthdate = req?.body?.birthdate;
 
-  if (!firstname || !lastname || !email || !street || !city || !zipcode || !country || !birthdate || !password) return res.sendStatus(400);
+  if (!firstname || !lastname || !email || !street || !city || !zipcode || !country || !birthdate || !password) {
+    return res.sendStatus(400);
+  }
+
   const authenticatedUser = await register(firstname, lastname, email, street, city, zipcode, country, birthdate, password);
 
   if (!authenticatedUser) return res.sendStatus(401);
-
   return res.json(authenticatedUser);
+});
+
+router.get('/getUserByEmail:email', async (req, res) => {
+  const user = await readOneUserFromEmail(req.params.id);
+  if (!user) return res.sendStatus(401);
+  return res.json(user);
 });
 
 /* Login a user */
