@@ -4,10 +4,11 @@
 /* eslint-disable no-unused-vars */
 import { loadScript } from "@paypal/paypal-js";
 import { getAuthenticatedUser } from "../../utils/auths";
-import { getCartTotal } from "../../utils/shoppingCart";
+import { getCartTotal, deleteCart } from "../../utils/shoppingCart";
 import Navigate from "../Router/Navigate";
 import OrderLibrary from "../../Domain/OrderLibrary";
 import '../../stylesheets/_checkout.scss';
+import Navbar from "../Navbar/Navbar";
 
 const CheckoutPage = () => {
     const user = getAuthenticatedUser();
@@ -31,14 +32,14 @@ const CheckoutPage = () => {
                         <div class="row">
                           <div class="col-md-6 mb-3">
                             <label for="firstName">First name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="" value="${user.firstname}" required>
+                            <input type="text" class="form-control inputValue" id="firstName" placeholder="" value="${user.firstname}" required>
                             <div class="invalid-feedback">
                               Valid first name is required.
                             </div>
                           </div>
                           <div class="col-md-6 mb-3">
                             <label for="lastName">Last name</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value="${user.lastname}" required>
+                            <input type="text" class="form-control inputValue" id="lastName" placeholder="" value="${user.lastname}" required>
                             <div class="invalid-feedback">
                               Valid last name is required.
                             </div>
@@ -47,7 +48,7 @@ const CheckoutPage = () => {
 
                         <div class="mb-3">
                           <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                          <input type="email" class="form-control" id="email" placeholder="" value="${user.email}">
+                          <input type="email" class="form-control inputValue" id="email" placeholder="" value="${user.email}">
                           <div class="invalid-feedback">
                             Please enter a valid email address for shipping updates.
                           </div>
@@ -57,7 +58,7 @@ const CheckoutPage = () => {
 
                         <div class="mb-3">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" value="${user.street}" required>
+                        <input type="text" class="form-control inputValue" id="address" value="${user.street}" required>
                         <div class="invalid-feedback">
                           Please enter your shipping address.
                         </div>
@@ -65,7 +66,7 @@ const CheckoutPage = () => {
                   
                       <div class="mb-3">
                         <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" value="">
                       </div>
                   
                       <div class="row">
@@ -189,7 +190,7 @@ const CheckoutPage = () => {
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <p>Thank you ${user.firstname} ${user.lastname} for your purchase</p>
+                                  <p>Thank you <strong>${user.firstname} ${user.lastname}</strong> for your purchase</p>
                                 </div>
                               </div>
                             </div>
@@ -204,12 +205,15 @@ const CheckoutPage = () => {
             </div>
           </div>
         </div>
+        <div id="message">
+        </div>
       </div>
    
     `;
 
     const main = document.querySelector('main');
     main.innerHTML = html;
+    changeValueInput();
 
     const script = document.createElement('script');
     // ajoute la source au script créé
@@ -246,16 +250,23 @@ const CheckoutPage = () => {
     const btnCheckout = document.getElementById('btnCheckout');
       
     btnCheckout.addEventListener('click', async (e) => {
-        e.preventDefault();
+      try {
+        
         await OrderLibrary.prototype.createOrder();
-        console.log(myModal)
-        myModal.show();
-       
 
+        myModal.show();
+    
         setTimeout(() => {
           myModal.hide();
+          deleteCart();
+          Navbar();
           Navigate('/');
         }, 3000);
+
+      } catch (error) {
+        console.error("Erreur lors de la création de la commande :", error);
+        
+      }
         
     });
       
@@ -294,6 +305,20 @@ function paypal() {
   }).render('#paypal-button-container');
 })
 }
+
+function changeValueInput(){
+  const inputValue = document.querySelectorAll('.inputValue');
+
+  inputValue.forEach((input) => {
+        input.addEventListener('input', function() {
+          this.setAttribute('value', this.value);
+        });
+      });
+}
+
+
+
+
 
 
 

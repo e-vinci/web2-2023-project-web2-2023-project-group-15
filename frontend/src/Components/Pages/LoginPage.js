@@ -6,6 +6,7 @@ import { clearPage } from '../../utils/render';
 import Navigate from '../Router/Navigate';
 import fond from '../../img/login-register/fond.png';
 import degrade from '../../img/login-register/degrade.png';
+import '../../stylesheets/_login.scss';
 
 const LoginPage = () => {
     clearPage();
@@ -53,12 +54,19 @@ function renderLoginForm() {
                 </div>
   
                 <input type="submit" class="btn btn-outline-light btn-lg px-5" value="LOGIN" />
-                 
-                <p class="text-white-50 mb-5">Pas Encore de compte ? <a href="#" id="inscriptionLink">Inscrivez-vous ici</a></p>
+                
+                </br>
+                </br>
+                <p >Pas Encore de compte ? <a href="#" id="inscriptionLink">Inscrivez-vous ici</a></p>
               </div>
   
             </div>
           </div>
+        </div>
+        <div id="message">
+        </div>
+      </div>
+      </div>
    ` 
    const inscriptionLink = document.getElementById('inscriptionLink');
    inscriptionLink.addEventListener('click', () => {

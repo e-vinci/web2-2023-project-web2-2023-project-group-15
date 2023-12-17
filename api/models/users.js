@@ -28,7 +28,7 @@ const defaultUsers = [
 ];
 
 async function login(email, password) {
-  const userFound = readOneUserFromUsername(email);
+  const userFound = readOneUserFromEmail(email);
   if (!userFound) return undefined;
 
   const passwordMatch = await bcrypt.compare(password, userFound.password);
@@ -57,10 +57,6 @@ async function login(email, password) {
 }
 
 async function register(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
-  // eslint-disable-next-line no-unused-vars
-  const userFound = readOneUserFromUsername(email);
-  if (!userFound) return undefined;
-
   await createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password);
 
   const token = jwt.sign(
@@ -68,7 +64,7 @@ async function register(firstname, lastname, email, street, city, zipcode, count
     jwtSecret, // secret used for the signature (signature part 3 of a JWT)
     { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
   );
-
+  
   const authenticatedUser = {
     firstname: firstname,
     lastname: lastname, 
@@ -84,11 +80,19 @@ async function register(firstname, lastname, email, street, city, zipcode, count
   return authenticatedUser;
 }
 
-function readOneUserFromUsername(email) {
+function readOneUserFromEmail(email) {
   const users = parse(jsonDbPath, defaultUsers);
   const indexOfUserFound = users.findIndex((user) => user.email === email);
   if (indexOfUserFound < 0) return undefined;
   return users[indexOfUserFound];
+}
+
+function ifUserExist(email) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const foundUser = users.find((user) => user.email === email);
+  console.log('ifUserExist');
+  console.log(foundUser);
+  return foundUser || undefined;
 }
 
 async function createOneUser(firstname, lastname, email, street, city, zipcode, country, birthdate, password) {
@@ -159,9 +163,10 @@ function updateUserInfo(id, propertiesToUpdate) {
 module.exports = {
   login,
   register,
-  readOneUserFromUsername,
+  readOneUserFromEmail,
   getInfoByUserId,
   updateUserInfo,
   getUserFromUsername,
   defaultUsers,
+  ifUserExist,
 };

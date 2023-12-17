@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/addOrder', (req, res) => {
-  console.log('ROUTER ORDER TEST1');
   const buyerId = req?.body?.buyerId?.length !== 0 ? req.body.buyerId : undefined;
   const firstName = req?.body?.firstName?.length !== 0 ? req.body.firstName : undefined;
   const lastName = req?.body?.lastName?.length !== 0 ? req.body.lastName : undefined;
