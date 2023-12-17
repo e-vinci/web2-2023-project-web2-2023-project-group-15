@@ -93,20 +93,30 @@ a:hover{
    
   }
 
-.shoppingCart-modal{
 
-  .modal{
-      background-image: none;
-      background-color: none;
-      color: black;
-      background: transparent;
-      font: 10px fonts.$regular-police;  
+  #popUp {
+    visibility: hidden; 
+    min-width: 250px; 
+    margin-left: -125px; 
+    background-color: red; 
+    color: #fff; 
+    text-align: center; 
+    border-radius: 25px; 
+    padding: 16px; 
+    position: fixed; 
+    z-index: 1; 
+    left: 50%;
+    bottom: 100px;
+  }
+  
+  
+  #popUp.show {
+    visibility: visible; 
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
   }
 
-  .h5{
-      font: 15px fonts.$regular-police;  
-  }
-}
+
   
 
   

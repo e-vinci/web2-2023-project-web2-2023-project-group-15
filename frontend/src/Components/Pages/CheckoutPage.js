@@ -4,10 +4,11 @@
 /* eslint-disable no-unused-vars */
 import { loadScript } from "@paypal/paypal-js";
 import { getAuthenticatedUser } from "../../utils/auths";
-import { getCartTotal } from "../../utils/shoppingCart";
+import { getCartTotal, deleteCart } from "../../utils/shoppingCart";
 import Navigate from "../Router/Navigate";
 import OrderLibrary from "../../Domain/OrderLibrary";
 import '../../stylesheets/_checkout.scss';
+import Navbar from "../Navbar/Navbar";
 
 const CheckoutPage = () => {
     const user = getAuthenticatedUser();
@@ -189,7 +190,7 @@ const CheckoutPage = () => {
                                   </button>
                                 </div>
                                 <div class="modal-body">
-                                  <p>Thank you ${user.firstname} ${user.lastname} for your purchase</p>
+                                  <p>Thank you <strong>${user.firstname} ${user.lastname}</strong> for your purchase</p>
                                 </div>
                               </div>
                             </div>
@@ -257,6 +258,8 @@ const CheckoutPage = () => {
     
         setTimeout(() => {
           myModal.hide();
+          deleteCart();
+          Navbar();
           Navigate('/');
         }, 3000);
 

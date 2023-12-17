@@ -4,6 +4,7 @@ import { getAuthenticatedUser, isAuthenticated } from "../../utils/auths";
 import Navigate from "../Router/Navigate";
 import Navbar from "../Navbar/Navbar";
 import { importAll } from '../../utils/utilsImages';
+import { renderPopUp } from "../../utils/popUp";
 import '../../stylesheets/_shoppingCart.scss';
 
 const productsImgs = importAll(require.context('../../img/products', true, /\.png$/));
@@ -82,27 +83,7 @@ const ShoppingCartPage = () => {
               <button class="delete btn btn-outline-danger"><i class="bi bi-trash3"></i></button>
             </div>
           
-            <div class="shoppingCart-modal">
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Purchase successfully completed</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>Thank you for your purchase</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">No</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <br>
           </div>
           `
@@ -163,6 +144,8 @@ const ShoppingCartPage = () => {
         </div>
         </div>
         </div>
+        <div id="message">
+        </div>
       </div>
     </div>
   </section>
@@ -173,6 +156,7 @@ const ShoppingCartPage = () => {
     const main = document.querySelector('main');
 
     main.innerHTML = html;
+    const message = document.getElementById('message');
 
     if (isAuthenticated()) {
       const showCartTotal = document.getElementById('totalPrice');
@@ -241,18 +225,15 @@ const ShoppingCartPage = () => {
           
         })
       }
-        // eslint-disable-next-line no-undef
-        const myModal = new bootstrap.Modal(document.getElementById('myModal'));
+      
 
         const btnDelete = document.getElementsByClassName('delete');
+        
         for (let y = 0; y < btnDelete.length; y += 1) {
             btnDelete[y].addEventListener('click', async (e) => {
                 e.preventDefault();
-                console.log("modal " , myModal);
-                myModal.show();
-                setTimeout(() => {
-                    myModal.hide();
-                }, 3000);
+                message.innerHTML = `<div id="popUp">Please, complete all the fields!</div>`;
+                renderPopUp();
                 deleteItem(productList[y].name)
                 ShoppingCartPage();
                 Navbar();
