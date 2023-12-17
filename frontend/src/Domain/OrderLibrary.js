@@ -12,9 +12,7 @@ class OrderLibrary{
         const user = getAuthenticatedUser();
         const {id} = user;
         const firstName = document.getElementById('firstName').value;
-        console.log(firstName);
         const lastName = document.getElementById('lastName').value;
-        console.log(lastName.value)
         const totalPrice =  getCartTotal();
                 
         const date= new Date();
