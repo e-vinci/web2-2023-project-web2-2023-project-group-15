@@ -196,8 +196,6 @@ const ShoppingCartPage = () => {
       let nbAdd = parseInt(document.querySelector('#productQuantity').value,10);
       for (let y = 0; y <  btnAddOne.length; y += 1) {
         
-       
-
         // eslint-disable-next-line no-loop-func
         btnAddOne[y].addEventListener('click' , async (e) => {
           e.preventDefault();

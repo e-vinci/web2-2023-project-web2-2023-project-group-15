@@ -22,7 +22,7 @@ class ProductLibrary{
 
     async getProductById(id){
       let  product='';
-        const url = `${process.env.API_BASE_URL}/product/getProduct`
+        const url = `${process.env.API_BASE_URL}/product/getProduct/`
         try {
             const reponse = await fetch(url+id);
             console.log("résultat reponse " , reponse)
