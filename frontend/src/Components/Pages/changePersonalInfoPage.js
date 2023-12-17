@@ -124,8 +124,9 @@ async function renderRegisterForm() {
     if (!validateForm()) {
       e.preventDefault();
     } else {
+      const email = document.querySelector('#_Username_').value;
       UserLibrary.prototype.onChangeInfo(user.id);
-      const urlnavigate = `/user?email=${user.email}`
+      const urlnavigate = `/user?email=${email}`
      e.preventDefault();
     Navigate(urlnavigate);
     }
