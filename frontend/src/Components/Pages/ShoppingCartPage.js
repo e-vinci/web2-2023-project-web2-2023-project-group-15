@@ -193,15 +193,17 @@ const ShoppingCartPage = () => {
       }
 
       const btnAddOne = document.getElementsByClassName('add');
+      let nbAdd = parseInt(document.querySelector('#productQuantity').value,10);
       for (let y = 0; y <  btnAddOne.length; y += 1) {
         
-        let nb = parseInt(document.querySelector('#productQuantity').value,10);
+       
 
-
+        // eslint-disable-next-line no-loop-func
         btnAddOne[y].addEventListener('click' , async (e) => {
           e.preventDefault();
-          nb += 1; 
-          document.querySelector('#productQuantity').value = nb;
+          // eslint-disable-next-line no-plusplus
+          nbAdd ++; 
+          document.querySelector('#productQuantity').value = nbAdd;
           addItemToCart(productList[y].id,productList[y].name,productList[y].price,productList[y].count);
           ShoppingCartPage();
           Navbar();
@@ -211,14 +213,15 @@ const ShoppingCartPage = () => {
       }
     
       const btnMinusOne = document.getElementsByClassName('minus');
+      let nbMin = parseInt(document.querySelector('#productQuantity').value,10);
       for (let y = 0; y <  btnMinusOne.length; y += 1) {
 
-        let nb = parseInt(document.querySelector('#productQuantity').value,10);
 
+        // eslint-disable-next-line no-loop-func
         btnMinusOne[y].addEventListener('click' , async (e) => {
           e.preventDefault();
-          nb -= 1; 
-          document.querySelector('#productQuantity').value = nb;
+          nbMin -= 1; 
+          document.querySelector('#productQuantity').value = nbMin;
           removeItemFromCart(productList[y].name);
           ShoppingCartPage();
           Navbar();
