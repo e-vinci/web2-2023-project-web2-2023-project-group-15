@@ -17,8 +17,10 @@ const defaultOrders = [
     firstName: 'Maureen',
     lastName: 'Renaux',
     totalPrice: 1500,
-    date: '21/11/2023',
     payementMethod: 'paypal',
+    day: 16,
+    month: 12,
+    year: 2010,
 
   },
   {
@@ -26,7 +28,9 @@ const defaultOrders = [
     firstName: 'Tom',
     lastName: 'Simonis',
     totalPrice: 3500,
-    date: '11/06/2023',
+    day: 8,
+    month: 4,
+    year: 2013,
     payementMethod: 'card',
 
   },
@@ -36,7 +40,9 @@ const defaultOrders = [
     lastName: 'Smeding',
     buyerId: 3,
     totalPrice: 500,
-    date: '2/08/2022',
+    day: 24,
+    month: 12,
+    year: 2012,
     payementMethod: 'paypal',
 
   },
@@ -46,7 +52,9 @@ const defaultOrders = [
     lastName: 'Smeding',
     buyerId: 3,
     totalPrice: 1500,
-    date: '12/08/2022',
+    day: 14,
+    month: 2,
+    year: 2014,
     payementMethod: 'card',
 
   },
