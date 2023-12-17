@@ -13,7 +13,7 @@ class OrderLibrary{
         const {id} = user;
         const firstName = document.getElementById('firstName').value;
         console.log(firstName);
-        const lastName = document.getElementById('lastName');
+        const lastName = document.getElementById('lastName').value;
         console.log(lastName.value)
         const totalPrice =  getCartTotal();
                 
@@ -40,7 +40,7 @@ class OrderLibrary{
           payementMethod = 'debit';
         }
 
-        if(firstName.trim() === '' || firstName === undefined|| lastName.trim() === '' || lastName === undefined || payementMethod === undefined){
+        if(firstName.trim() === '' || firstName === undefined|| lastName.trim() === '' || lastName === undefined ){
           const message = document.getElementById('message');
           message.innerHTML = `<div id="popUp">Please, complete all the fields!</div>`;
           renderPopUp();
@@ -68,7 +68,7 @@ class OrderLibrary{
               };
             console.log(" ORDERLIBRARY TEST2 ");
 
-            // const reponse = await fetch(`${process.env.API_BASE_URL}/order/addOrder`, options);
+            
             const reponse = await fetch(`${process.env.API_BASE_URL}/order/addOrder`, options);
             console.log("résultat reponse " , reponse)
       
@@ -85,7 +85,6 @@ class OrderLibrary{
           }
 
           
-          console.log(" ORDERLIBRARY TEST3 ");
           return order;
     
     }
