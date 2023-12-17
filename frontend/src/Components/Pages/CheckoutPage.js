@@ -12,7 +12,7 @@ import Navbar from "../Navbar/Navbar";
 
 const CheckoutPage = () => {
     const user = getAuthenticatedUser();
-
+   
     if(user === undefined){
       Navigate('/login');
     }
@@ -210,7 +210,7 @@ const CheckoutPage = () => {
       </div>
    
     `;
-
+    let active = '';
     const main = document.querySelector('main');
     main.innerHTML = html;
     changeValueInput();
@@ -239,7 +239,9 @@ const CheckoutPage = () => {
 
     btnPaypal.addEventListener('click' ,async (e) => {
       e.preventDefault();
+      if(!active){
       paypal();
+    }
       displayMethodPayment(content2);
     });
 
@@ -269,16 +271,17 @@ const CheckoutPage = () => {
       }
         
     });
-      
+    function displayMethodPayment(contentElement) {
+      const allContentElements = document.querySelectorAll('.payment-content');
+      allContentElements.forEach(element => {
+        element.style.display = 'none';
+      });
+      contentElement.style.display = 'block';
+      active = true;
+    } 
 }
 
-function displayMethodPayment(contentElement) {
-  const allContentElements = document.querySelectorAll('.payment-content');
-  allContentElements.forEach(element => {
-    element.style.display = 'none';
-  });
-  contentElement.style.display = 'block';
-}
+
 
 function paypal() {
    loadScript({

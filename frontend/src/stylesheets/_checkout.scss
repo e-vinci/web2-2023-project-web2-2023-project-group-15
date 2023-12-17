@@ -16,7 +16,7 @@
 }
 
 .checkout-button{
-    color: white;
+    color: white ;
     font: 25px fonts.$regular-police;
     background-color: black;
     border-radius: 8px;
@@ -24,6 +24,19 @@
     text-align: center;
     text-decoration: none;
     
+}
+#btnCheckout{
+    width: 100%;
+    color: white ;
+}
+#btnCheckout:hover{
+    color: rgb(0, 0, 0) !important;
+    background-color: rgb(255, 255, 255); 
+}
+.checkout-button:hover{
+    color: rgb(0, 0, 0) !important;
+    background-color: rgb(255, 255, 255); 
+    border: black solid 2px;
 }
 
 #popUp {
