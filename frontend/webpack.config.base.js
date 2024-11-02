@@ -6,7 +6,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 
 const DEVELOPMENT_API_BASE_URL = '/api'; // base URL of your local API. Use /api if you want to use webpack proxy, else use http://localhost:3000 (frontend origin http://localhost:8080 shall then be authorized by the API cors)
-const PRODUCTION_API_BASE_URL = 'https://your-app-name.azurewebsites.net'; // to be changed to point to the URL of your API
+const PRODUCTION_API_BASE_URL = 'https://grandiosovinci.azurewebsites.net'; // to be changed to point to the URL of your API
 const DEVELOPMENT_PATH_PREFIX = '/'; // normally not to be changed, your assets should be provided directly within /dist/ (and not /dist/mymovies/ e.g.)
 const PRODUCTION_PATH_PREFIX = '/'; // e.g. '/mymovies/' if you deploy to GitHub Pages as a Project site : mymovies would be the repo name
 
@@ -54,15 +54,23 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      
 
       // emits a separate file and exports the URLs => works for import in JS and url in CSS
       // default condition: a file with size less than 8kb will be treated as a inline
       // module type and resource module type otherwise
       {
-        test: /\.(png|jpg|gif|svg|mp3|mpe?g)$/,
+        test: /\.(png|jpg|gif|glb|svg|mp3|mpe?g)$/,
         type: 'asset/resource',
       },
-
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ],
+      },
       /* automatically chooses between exporting a data URI and emitting a separate file.
       {
         test: /\.(png|jpg|gif|svg|mp3|mpe?g)$/,

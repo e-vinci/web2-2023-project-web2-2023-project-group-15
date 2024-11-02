@@ -8,8 +8,14 @@
 
  import { usePathPrefix } from '../../utils/path-prefix';
 
- const Navigate = (toUri) => {
-   const fromUri = window.location.pathname;
+ const Navigate = (toUri, id) => {
+  
+  if(id !== undefined){
+    // eslint-disable-next-line no-param-reassign
+    toUri += id;
+  }
+
+  const fromUri = window.location.pathname;
    if (fromUri === toUri) return;
  
    window.history.pushState({}, '', usePathPrefix(toUri));
